@@ -1,24 +1,24 @@
 
 ## DebugText
-Debug[A][.][X]
+Debug[A][X]
 
 ## TurnTwoText
-This occurs on turn 2.[A][.][X]
+This occurs on turn 2.[A][X]
 
 ## CannotSurfYetText
 You cannot cross deep water[N]
-until defeating Sabrina.[A][.][X]
+until defeating Sabrina.[A][X]
 
 
 
 ## NotSafeToFleeText
-It's not safe to move![A][.][X]
+It's not safe to move![A][X]
 
 ## VictoryRoadNurseJoyText_A
 Trainers around here often need[N]
 their Pokémon revived.[A][N]
 How about you? Only 3000[Gold][N]
-[Yes][.][X]
+[Yes][X]
 
 ## VictoryRoadNurseJoyText_B
 I love watching the trainers[N]
@@ -26,13 +26,13 @@ that make it through here.[A][N]
 They have a real blast if they[N]
 reach the Indigo Plateau.[A][N]
 Shall I revive your team for 3000[Gold]?[N]
-[Yes][.][X]
+[Yes][X]
 
 ## Route14NurseJoyText
 You're over halfway to Fuchsia.[N]
 Keep at it, [Tact]![A][N]
 Need your party revived for 2000[Gold]?[N]
-[Yes][.][X]
+[Yes][X]
 
 ## MtMoonNurseJoyText
 People kept complaining, so I'm[N]
@@ -40,41 +40,41 @@ here to revive your party.[A][N]
 That'll be 1000[Gold], though, so[N]
 they'll probably still complain.[A][N]
 Revive your party?[N]
-[Yes][.][X]
+[Yes][X]
 
 
 ## SlotMachineDoesntWorkProperly
 Please note that the slots do not[N]
 work properly with random classes.[A][N]
 Even if you get a 3 in a row, you won't[N]
-win unless it was an originally used class.[A][.][X]
+win unless it was an originally used class.[A][X]
 
 ## BossPokemonWarningText
 Wild [ToggleRed]boss Pokémon[ToggleRed] shield themselves with a[N]
 powerful aura and cannot be caught.[A][N]
 They are immune to attacks until[N]
-their spawns are defeated.[A][.][X]
+their spawns are defeated.[A][X]
 
 ## SkipTutorialText
 Skip catching tutorial?[NL]
-[No][.][X]
+[No][X]
 
 ## RematchText
 Rematch trainer?[NL]
-[Yes][.][X]
+[Yes][X]
 
 ## SavingHelpText
 Your emulator's save type should be[N]
-"auto" for it to work properly.[A][.][X]
+"auto" for it to work properly.[A][X]
 
 ## GM_IntroTitle
-Pokémblem[.][X]
+Pokémblem[X]
 
 ## GM_Roaming_SH
-Roaming[.][X]
+Roaming[X]
 
 ## GM_Test
-Test[.][X]
+Test[X]
 
 
 
@@ -83,10 +83,10 @@ When you walk onto a dangerous[N]
 tile, battle will begin.[N]
 Press A on the protagonist to[N]
 explore in free movement mode[N]
-when it's safe again.[.][X]
+when it's safe again.[X]
 
 ## GM_Quicksave_SH 
-Quicksave[.][X]
+Quicksave[X]
 
 ## GM_Quicksave
 Reset and Resume to go back to[N]
@@ -94,210 +94,210 @@ the last turn you had no[N]
 Pokémon faint on.[N]
 Or turn Autosave in Options off,[N]
 so Quicksave can act as a[N]
-savestate.[.][X]
+savestate.[X]
 
 ## GM_Trainers_SH 
-Trainers[.][X]
+Trainers[X]
 
 ## GM_Trainers
 If you're within range of a trainer[N]
 on enemy phase, they'll challenge[N]
 you to a battle.[N]
 If one of your Pokémon leaves[N]
-the area, you can escape battle.[.][X]
+the area, you can escape battle.[X]
 
 ## GM_Discord_SH
-Discord[.][X]
+Discord[X]
 
 ## GM_Discord
 Go to:[N]
 discord.com/invite/XEZjTJQ[N]
-to join the community.[.][X]
+to join the community.[X]
 
 
 // misc 
 ## GM_Bushes_SH
-Wild Pokémon[.][X]
+Wild Pokémon[X]
 
 ## GM_Bushes
 Wild Pokémon spawn from bushes[N]
 and attack. They'll stop[N]
 appearing for a while if you[N]
-attack the bushes.[.][X]
+attack the bushes.[X]
 
 
 ## GM_CombatTitle
-Combat[.][X]
+Combat[X]
 
 ## GM_TipsTitle
-Tips[.][X]
+Tips[X]
 
 ## GM_MiscTitle
-Misc[.][X]
+Misc[X]
 
 ## GM_Capture_SH
-Capture[.][X]
+Capture[X]
 
 ## GM_Capture 
 Knock out a wild Pokémon while[N]
 capturing to add them to[N]
 your team, as long as you[N]
-can afford the 300 gold.[.][X]
+can afford the 300 gold.[X]
 
 ## GM_Party_SH
-Party[.][X]
+Party[X]
 
 ## GM_CatchTip
 If you have less than 6 Pokémon[N]
 with you and catch a new one,[N]
 it will immediately join you,[N]
-even if yours had fainted.[.][X]
+even if yours had fainted.[X]
 
 ## GM_Hitrate_SH
-Hitrate[.][X]
+Hitrate[X]
 
 ## GM_Hitrate
 Attacks cannot miss in this game.[N]
 Instead, a "miss" becomes a[N]
 glancing blow, which deals[N]
-half damage.[.][X]
+half damage.[X]
 
 
 
 ## GM_AoETitle
-AoE[.][X]
+AoE[X]
 
 ## GM_AoE_SH
-Area of Effect[.][X]
+Area of Effect[X]
 
 ## GM_AoEIntro_SH
-Intro[.][X]
+Intro[X]
 
 ## GM_AoE
 Area of Effect (AoE) attacks[N]
 deal 2/3rds damage but can hit[N]
 multiple targets.[N]
 Press L or R to rotate[N]
-AoE attacks.[.][X]
+AoE attacks.[X]
 
 ## GM_EffectivenessHeaderText
-Effective Dmg[.][X]
+Effective Dmg[X]
 
 ## GM_Effectiveness_SH
-Effectiveness[.][X]
+Effectiveness[X]
 
 ## GM_Effectiveness
 Super effective attacks[NL]
 deal around 150% damage.[N]
 The user takes 75% damage.[N]
-Resisted attacks deal 50%.[.][X]
+Resisted attacks deal 50%.[X]
 
 ## GM_ResistTitle
-Dmg Mdfy[.][X]
+Dmg Mdfy[X]
 
 ## GM_ResistHeaderText
-Ineffective Dmg[.][X]
+Ineffective Dmg[X]
 
 ## GM_Resist_SH
-Resistance[.][X]
+Resistance[X]
 
 ## GM_Resist
 Resisted attacks[NL]
-deal 50% damage.[.][X]
+deal 50% damage.[X]
 
 ## GM_TypeCombinations_SH
-Type Combinations[.][X]
+Type Combinations[X]
 
 ## GM_TypeCombinations
 Resistances / Immunities override[N]
 weaknesses in Pokémblem.[N]
 A Normal/Flying type resists[N]
 fighting. Additionally, Pokémon[N]
-cannot be doubly weak to moves.[.][X]
+cannot be doubly weak to moves.[X]
 
 
 
 ## GM_AoERotate_SH
-Rotate[.][X]
+Rotate[X]
 
 ## GM_RotateAoE
 Use L or R to rotate[N]
-area of effect attacks.[.][X]
+area of effect attacks.[X]
 
 
 
 
 ## GM_LevelupsHeaderText
-Leveling[.][X]
+Leveling[X]
 
 ## GM_Levelups_SH
-RNG[.][X]
+RNG[X]
 
 ## GM_Levelups
 A Pokémon cannot be more[N]
 than 3 points below average[N]
 in a stat; you cannot[N]
-be stat-screwed.[.][X]
+be stat-screwed.[X]
 
 ## GM_Grinding_SH
-Grinding[.][X]
+Grinding[X]
 
 ## GM_Grinding
 You will not gain exp if[N]
 you are overleveled.[N]
 Exp is very fast if[N]
-you are underleveled.[.][X]
+you are underleveled.[X]
 
 
 
 ## GM_Repels_SH
-Repels[.][X]
+Repels[X]
 
 ## GM_Repels
 Repels reduce wild Pokémon's[N]
 movement to 2, which makes[N]
-them less likely to attack.[.][X]
+them less likely to attack.[X]
 
 
 ## GM_Rematches_SH
-Rematches[.][X]
+Rematches[X]
 
 ## GM_Rematches
 Trainers provide 50% more exp[N]
 and can be rematched. But they[N]
-yield 1/4 the money this way.[.][X]
+yield 1/4 the money this way.[X]
 
 
 
 
 ## GM_Call_SH
-Call[.][X]
+Call[X]
 
 ## GM_Call
 Use the Call command when[N]
 outside of a trainer battle[N]
-to summon your team to you.[.][X]
+to summon your team to you.[X]
 
 ## GM_Submenu_SH
-Submenu[.][X]
+Submenu[X]
 
 ## GM_Submenu 
 Access the Submenu by moving to[N]
 a tile and pressing <- or ->.[N]
 Here you will find a Pokémon's[N]
-learnset and can reorder moves.[.][X]
+learnset and can reorder moves.[X]
 
 
 ## GM_Items_Title
-Items[.][X]
+Items[X]
 
 ## GM_Equipment_SH
-Equipment[.][X]
+Equipment[X]
 
 ## GM_Equipment 
 Accessories can be equipped[N]
 to provide a stat boost or[N]
-special effect.[.][X]
+special effect.[X]
 
 
 
@@ -307,7 +307,7 @@ special effect.[.][X]
 Save and revive Pokémon by visiting[N]
 home or a Pokecenter.[NL]
 [ToggleRed]There is no permadeath.[ToggleRed][N]
-            -Trainer's Tips[A][.][X]
+            -Trainer's Tips[A][X]
 
 ## TrainerTip_Quicksave
 The game autosaves at the[N]
@@ -315,13 +315,13 @@ start of your turn,[N]
 unless your Pokémon fainted.[A][N]
 Change this in [Red]Options[Red][N]
 to manually [Red]Quicksave[Red].[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 ## TrainerTip_Berries
 Berries may be equipped[N]
 and eaten during battle.[A][N]
 They're tasty, too![N]
-            -Trainer's Tips[A][.][X]
+            -Trainer's Tips[A][X]
 
 ## TrainerTip_Catch
 Press [ToggleRed]R[ToggleRed] on most things[N]
@@ -330,14 +330,14 @@ Press [Red]L[Red] to jump the cursor[N]
 to the next unit.[A][N]
 Hold [Red]B[Red] to move[N]
 the cursor faster.[A][N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 ## TrainerTip_Water
 Some Pokémon can traverse[N]
 shallow water or ledges.[N]
 Press [ToggleRed]L[ToggleRed] or [ToggleRed]Start[ToggleRed] to[N]
 access grid mode.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 ## TrainerTip_DangerZone
 Area of Effect (AoE) attacks[N]
@@ -346,19 +346,19 @@ multiple targets.[N]
 //[Red]Danger Zone[Red] pops up[N]
 //automatically.[A][N]//but can
 //be turned off in [Red]Config[Red].[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 ## TrainerTip_TMs_2
 All TMs and Skill Scrolls can be[N]
 purchased later on.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 ## TrainerTip_WildBosses
 Wild boss Pokémon shield themselves with a[N]
 powerful aura and cannot be caught.[A][N]
 They are immune to attacks until[N]
 their spawns are defeated.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 
 
@@ -371,7 +371,7 @@ be stat-screwed.[N]
 //to toggle [Red]Danger Zone[Red],[A][N]
 //or press [Red]Select[Red] on an empty tile[N]
 //to toggle [Red]Danger Zone[Red] nearby.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 ## TrainerTip_Zoning
 Attacks cannot miss in this game.[N]
@@ -380,11 +380,11 @@ glancing blow instead,[A][N]
 which deals half damage.[N]
 //Some enemies will [ToggleRed]ZONE[ToggleRed][NL]
 //you out, avoiding combat.[NL]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 ## TrainerTip_Accessory
 Equip an item for extra benefits.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 
 
@@ -393,7 +393,7 @@ Access the Submenu by moving to[N]
 a tile and pressing [Red]<-[Red] or [Red]->[Red].[A][N]
 Here you will find a Pokémon's[N]
 learnset and can reorder moves.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 
 
@@ -403,12 +403,12 @@ a great way to power-up![A][N]
 Some Pokémon are weak to special[N]
 attacks,[A] while others are weak to[N]
 physical attacks.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 ## PewterFlowerSignText
 Berries always seem to regrow[N]
 whenever you come back.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 		
 
 
@@ -417,14 +417,14 @@ If you have less than 6 Pokémon[N]
 with you and catch a new one,[A][N]
 it will immediately join you,[N]
 even if yours had fainted.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 
 	  
 ## TrainerTip_LearnTMs
 Pokémon can learn any move[N]
 they share a type with.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 
 
@@ -433,7 +433,7 @@ they share a type with.[N]
 ## TrainerTip_Typing
 Press [Red]R[Red] on a Pokémon's name[N]
 to see their weaknesses.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 		
 
 		
@@ -441,7 +441,7 @@ to see their weaknesses.[N]
 Use the Call command when[N]
 outside of a trainer battle[N]
 to summon your team to you.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 		
 ## TrainerTip_CursorJump
 Resistances / Immunities override[N]
@@ -449,32 +449,32 @@ weaknesses in Pokémblem.[A][N]
 A Normal/Flying type resists[N]
 fighting.[A] Additionally, Pokémon[N]
 cannot be doubly weak to moves.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 		
 ## TrainerTip_MaxPokemon
 You may only own up to 150[N]
 Pokémon at a time.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 ## TrainerTip_FourSkills
 Learn up to 4 Skills via Scrolls.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 
 ## TrainerTip_Submenu
 Access the Submenu by moving to[N]
 a tile and pressing [Red]<-[Red] or [Red]->[Red].[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 		
 ## TrainerTip_Release
 Release extra Pokémon from the[N]
 Submenu to free up space.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 		
 ## TrainerTip_ReorderMoves
 Reorder moves from the Submenu[N]
 without using up your action.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 
 
@@ -482,12 +482,12 @@ without using up your action.[N]
 // UNUSED trainer tips below 
 ## TrainerTip_TMs
 Upgrade your moves via TMs.[N]
-        - Trainer's Tips.[A][.][X]
+        - Trainer's Tips.[A][X]
 
 			
 ## UnusedTrainerTips1
 Manage your party at a Pokecenter.[NL]
-          - Trainer's Tips[A][.][X]
+          - Trainer's Tips[A][X]
 
 
 
@@ -495,39 +495,39 @@ Manage your party at a Pokecenter.[NL]
 
 // UNUSED 
 //Repels reduce the amount[NL]
-//of wild Pokémon found.[A][.][X]
+//of wild Pokémon found.[A][X]
 
 ## UnusedTrainerTips2
 You can carry up to 6 Pokémon[NL]
 with you at once.[NL]
-            - Trainer's Tips.[A][.][X]
+            - Trainer's Tips.[A][X]
 
 ## UnusedTrainerTips3
 Hold Down after Wait to[NL]
 quickly jump down ledges.[NL]
-      - Trainer's Tips.[A][.][X]
+      - Trainer's Tips.[A][X]
 
 ## SetNameTest
 Mewtwo[NL]
 Placeholder text[NL]
-is being used.[A][.][X]
+is being used.[A][X]
 
 
 ## CatchPokemonTutorial_1
-Let's catch a Pokémon.[A][.][X]
+Let's catch a Pokémon.[A][X]
 
 ## CatchPokemonTutorial_2
-Select the highlighted tile.[A][.][X]
+Select the highlighted tile.[A][X]
 
 ## CatchPokemonTutorial_3
-Let's guard for now.[A][.][X]
+Let's guard for now.[A][X]
 
 ## CatchPokemonTutorial_4
-We'll defend and counter.[A][.][X]
+We'll defend and counter.[A][X]
 
 ## CatchPokemonTutorial_5
 Great! It's weakened![A][N]
-Now we'll capture it.[A][.][X]
+Now we'll capture it.[A][X]
 
 ## CatchPokemonTutorial_6
 The Battle Forecast shows the[N]
@@ -537,55 +537,55 @@ dmg, hit rate, and crit chance.[A][N]
 You cannot miss; glancing[N]
 blows instead deal half damage.[A][N]
 Knock out an enemy while[N]
-capturing to catch 'em all![A][.][X]
+capturing to catch 'em all![A][X]
 
 ## CatchPokemonTutorial_7
 Well done![A] Catch lots[N]
-of Pokémon to progress.[A][.][X]
+of Pokémon to progress.[A][X]
 
 
 ## SignsFastTravel
 Some signs allow[NL]
-for fast travel.[A][.][X]
+for fast travel.[A][X]
 
 ## KnowledgeArea
 Your knowledge of this area[NL]
-allows for fast travel.[A][.][X]
+allows for fast travel.[A][X]
 
 ## RetreatCenter
 Retreat to last Pokecenter?[NL]
-[No][.][X]
+[No][X]
 
 ## ViridianGymText
-Viridian Gym[A][.][X]
+Viridian Gym[A][X]
 
 ## ViridianGymText2 // Some bug was making the LearnMoveText show up twice (in its slot and previous slot)
-Viridian Gym[A][.][X]
+Viridian Gym[A][X]
 
 ## LearnMoveText
 Learn the new move?[NL]
-[Yes][.][X]
+[Yes][X]
 
 ## ProceedAreaText
 Proceed to next area?[NL]
-[Yes][.][X]
+[Yes][X]
 
 ## ExitAreaText
 Exit the area?[N]
-[Yes][.][X]
+[Yes][X]
 
 ## ExitTowerText
 Exit the tower?[N]
-[Yes][.][X]
+[Yes][X]
 
 ## Route2UpperHouseText
 Whenever I come out of my house,[N]
 a Kadabra is waiting for me...[A][N]
-It knows what I did...[A][.][X]
+It knows what I did...[A][X]
 
 ## EnterOaksLabText
 [OpenMidRight][LoadOak][OpenMidRight]A world of catching[N]
-Pokémon awaits you![A][.][X]
+Pokémon awaits you![A][X]
 
 
 //## EnterOaksLabText
@@ -599,58 +599,58 @@ Pokémon awaits you![A][.][X]
 //Welp,[....] beats me.[A][LoadOverworldFaces][NL]
 //...fine. You have a number of Pokémon.[NL]
 //(Hey, one is a number too.)[A][NL]
-//Keep up the hard work.[A][.][X]
+//Keep up the hard work.[A][X]
 
 ## EnterGaryHouseText
 You find a world map![NL]
 ...but it is all scribbled over.[A][NL]
-You decide to leave it.[A][.][X]
+You decide to leave it.[A][X]
 
 
 ## CatchBeforePurchasePsyduckText
 I'm one of Prof Oak's Aides.[A][N]
 I'll sell you a Psyduck if you've[N]
-caught a Mankey, Pidgey, and Rattata.[A][.][X]
+caught a Mankey, Pidgey, and Rattata.[A][X]
 
 ## PurchasePsyduckText
 Ah, I see you've caught[N]
 them.[A][N]
 I'll let you have this 'ere[N]
 Psyduck for only 1000[Gold].[A][N]
-How's that sound?[A][.][X]
+How's that sound?[A][X]
 
 ## No_PurchasedPsyduckText
-That's a shame.[A][.][X]
+That's a shame.[A][X]
 
 ## Yes_PurchasedPsyduckText
-Enjoy![A][.][X]
+Enjoy![A][X]
 
 ## ViridianOaksAideBD
-Take good care of Psyduck![A][.][X]
+Take good care of Psyduck![A][X]
 
 
 
 ## CatchBeforePurchaseOddishText
 I support Prof Oak as an Aide.[A][N]
 I'm here to sell you an Oddish if you've[N]
-caught a Caterpie, Weedle, and Pikachu.[A][.][X]
+caught a Caterpie, Weedle, and Pikachu.[A][X]
 
 ## PurchaseOddishText
 Ah, you've caught them![N]
 Great work.[A][N]
 Would you like to add Oddish[N]
-to your team?[A][.][X]
+to your team?[A][X]
 
 ## No_PurchasedOddishText
-Come back if you change your mind.[A][.][X]
+Come back if you change your mind.[A][X]
 
 ## Yes_PurchasedOddishText
 I know you'll show Oddish[N]
-love and support.[A][.][X]
+love and support.[A][X]
 
 ## PewterOaksAideBD
 I know you'll show Oddish[N]
-love and support.[A][.][X]
+love and support.[A][X]
 
 
 
@@ -660,22 +660,22 @@ I'm an intern for the great[N]
 Prof Oak of Pallet Town.[A][N]
 If only I were paid...[A][N]
 Come see me when you have Bellsprout,[N]
-Ekans, and Spearow.[A][.][X]
+Ekans, and Spearow.[A][X]
 
 ## PurchaseGrowlitheText
 Ah, you've been working hard[N]
 I see.[A][N]
 Will you adopt Growlithe[N]
-into your team?[A][.][X]
+into your team?[A][X]
 
 ## No_PurchasedGrowlitheText
-Come back if you change your mind.[A][.][X]
+Come back if you change your mind.[A][X]
 
 ## Yes_PurchasedGrowlitheText
-I know you'll raise Growlithe well.[A][.][X]
+I know you'll raise Growlithe well.[A][X]
 
 ## CeruleanOaksAideBD
-I know you'll raise Growlithe well.[A][.][X]
+I know you'll raise Growlithe well.[A][X]
 
 
 ## CatchBeforePurchaseFarfetchdText
@@ -683,24 +683,24 @@ I took this summer job for Oak,[N]
 but it doesn't pay much.[A][N]
 I wish I had a chair...[A][N]
 Come see me when you have Vulpix,[N]
-Meowth, and Drowzee.[A][.][X]
+Meowth, and Drowzee.[A][X]
 
 ## PurchaseFarfetchdText
 Ah, you've been collecting[N]
 a number of Pokémon.[A][N]
 Are you interested in adding[N]
-Farfetch'd to your roster?[A][.][X]
+Farfetch'd to your roster?[A][X]
 
 ## No_PurchasedFarfetchdText
-Come back if you change your mind.[A][.][X]
+Come back if you change your mind.[A][X]
 
 ## Yes_PurchasedFarfetchdText
 I know you'll take care[N]
-of Farfetch'd.[A][.][X]
+of Farfetch'd.[A][X]
 
 ## VermilionOaksAideBD
 I know you'll take care[N]
-of Farfetch'd.[A][.][X]
+of Farfetch'd.[A][X]
 
 
 ## CatchBeforePurchaseElectabuzzText
@@ -708,22 +708,22 @@ Prof Oak has connections all[N]
 around Kanto.[A] He's entrusting[N]
 me with this special task.[A][N]
 I reward trainers who've caught[N]
-Geodude, Zubat, and Onix.[A][.][X]
+Geodude, Zubat, and Onix.[A][X]
 
 ## PurchaseElectabuzzText
 Ah, you've been through[N]
 Rock Tunnel, I can tell.[A][N]
 Do you want Electabuzz[N]
-on your team?[A][.][X]
+on your team?[A][X]
 
 ## No_PurchasedElectabuzzText
-Come back if you change your mind.[A][.][X]
+Come back if you change your mind.[A][X]
 
 ## Yes_PurchasedElectabuzzText
-I know you'll raise Electabuzz well.[A][.][X]
+I know you'll raise Electabuzz well.[A][X]
 
 ## LavenderOaksAideBD
-I know you'll raise Electabuzz well.[A][.][X]
+I know you'll raise Electabuzz well.[A][X]
 
 
 
@@ -732,21 +732,21 @@ Prof Oak has connections all[N]
 around Kanto.[A] He's entrusting[N]
 me with this special task.[A][N]
 I reward trainers who've caught[N]
-Venonat, Exeggcute, and Krabby.[A][.][X]
+Venonat, Exeggcute, and Krabby.[A][X]
 
 ## PurchaseMagmarText
 Wow, you've done it.[A][N]
 Do you want Magmar[N]
-on your team?[A][.][X]
+on your team?[A][X]
 
 ## No_PurchasedMagmarText
-Come back if you change your mind.[A][.][X]
+Come back if you change your mind.[A][X]
 
 ## Yes_PurchasedMagmarText
-I know Magmar's in good hands.[A][.][X]
+I know Magmar's in good hands.[A][X]
 
 ## FuschiaOaksAideBD
-I know Magmar's in good hands.[A][.][X]
+I know Magmar's in good hands.[A][X]
 
 
 
@@ -754,22 +754,22 @@ I know Magmar's in good hands.[A][.][X]
 Prof Oak's my mentor. He asked me[N]
 to wait around here.[A][N]
 This way I can help trainers who have[N]
-Doduo, Ponyta, and Pidgeotto.[A][.][X]
+Doduo, Ponyta, and Pidgeotto.[A][X]
 
 ## PurchaseJynxText
 You must've been on cycling road[N]
 if you've caught them.[A][N]
 Do you want Jynx[N]
-on your team?[A][.][X]
+on your team?[A][X]
 
 ## No_PurchasedJynxText
-Come back if you change your mind.[A][.][X]
+Come back if you change your mind.[A][X]
 
 ## Yes_PurchasedJynxText
-I know you'll raise Jynx well.[A][.][X]
+I know you'll raise Jynx well.[A][X]
 
 ## CeladonOaksAideBD
-I know you'll raise Jynx well.[A][.][X]
+I know you'll raise Jynx well.[A][X]
 
 
 
@@ -777,75 +777,75 @@ I know you'll raise Jynx well.[A][.][X]
 I spar in my free time, and assist[N]
 Prof Oak when I'm not busy.[A][N]
 I'm here for trainers who've caught[N]
-Scyther, Pinsir, and Chansey.[A][.][X]
+Scyther, Pinsir, and Chansey.[A][X]
 
 ## PurchaseHitmonchanText
 Wow, you must've spent a[N]
 while in the Safari Zone.[A][N]
 Do you want Hitmonchan[N]
-on your team?[A][.][X]
+on your team?[A][X]
 
 ## No_PurchasedHitmonchanText
-Come back if you change your mind.[A][.][X]
+Come back if you change your mind.[A][X]
 
 ## Yes_PurchasedHitmonchanText
-I know you'll raise Hitmonchan well.[A][.][X]
+I know you'll raise Hitmonchan well.[A][X]
 
 ## SaffronOaksAide1BD
-I know you'll raise Hitmonchan well.[A][.][X]
+I know you'll raise Hitmonchan well.[A][X]
 
 
 
 ## CatchBeforePurchaseHitmonleeText
 The Safari Zone's a big place.[A][N]
 It can be tough to find[N]
-Kangaskhan, Tauros, and Dratini.[A][.][X]
+Kangaskhan, Tauros, and Dratini.[A][X]
 
 ## PurchaseHitmonleeText
 ...but you did it![A][N]
 Do you want Hitmonlee[N]
-on your team?[A][.][X]
+on your team?[A][X]
 
 ## No_PurchasedHitmonleeText
-Come back if you change your mind.[A][.][X]
+Come back if you change your mind.[A][X]
 
 ## Yes_PurchasedHitmonleeText
-I know you'll raise Hitmonlee well.[A][.][X]
+I know you'll raise Hitmonlee well.[A][X]
 
 ## SaffronOaksAide2BD
-I know you'll raise Hitmonlee well.[A][.][X]
+I know you'll raise Hitmonlee well.[A][X]
 
 
 ## CatchBeforePurchaseLaprasText
 I work as Prof Oak's Aide.[A][N]
 I let trainers buy a Lapras once[N]
-they've fully-evolved their starter.[A][.][X]
+they've fully-evolved their starter.[A][X]
 
 ## PurchaseLaprasText
 Oh, you've done it![A][N]
 Do you want Lapras[N]
-on your team?[A][.][X]
+on your team?[A][X]
 
 ## No_PurchasedLaprasText
-Come back if you change your mind.[A][.][X]
+Come back if you change your mind.[A][X]
 
 ## Yes_PurchasedLaprasText
-I know Lapras will serve you well.[A][.][X]
+I know Lapras will serve you well.[A][X]
 
 ## PalletOaksAideBD
-I know Lapras will serve you well.[A][.][X]
+I know Lapras will serve you well.[A][X]
 
 
 
 ## GiveUpLearnMoveText
 Give up on new move?[NL]
-[Yes][.][X]
+[Yes][X]
 
 
 
 ## CannotEscapeTrainerBattleText
 [OpenMidRight][LoadOak][OpenMidRight]There's no running from[NL]
-this Trainer battle![A][.][X]
+this Trainer battle![A][X]
 
 ## GaryRoute2SChallengeText
 [OpenRight][LoadGaryShrug][OpenRight]Hah, I wondered when[NL]
@@ -854,42 +854,42 @@ It's sad to see that you're[N]
 struggling along back here.[A][N]
 [LoadGaryPoint]I've already caught 3 Pokémon![A][NL]
 [LoadGaryBattle]More than enough to[N]
-[ToggleRed]ambush[ToggleRed] and defeat you![A][.][X]
+[ToggleRed]ambush[ToggleRed] and defeat you![A][X]
 
 
 ## GaryRoute2SDefeatText
 [OpenMidLeft][LoadGaryShrug][OpenMidLeft]Whatever, man.[NL]
-I was goin' easy on ya.[A][.][X]
+I was goin' easy on ya.[A][X]
 
 
 		  
 ## ViridianForestNBirdkeeperText
 [OpenMidLeft][LoadBirdkeeper][OpenMidLeft]We won't let anyone through![NL]
 This is our turf, now.[A][2NL]
-Quick, form a [ToggleRed]line of defense[ToggleRed]![A][.][X]
+Quick, form a [ToggleRed]line of defense[ToggleRed]![A][X]
 
 
 ## RedHouseText
-[Tact]'s house.[A][.][X]
+[Tact]'s house.[A][X]
 
 ## GaryHouseText
-Gary's house.[A][.][X]
+Gary's house.[A][X]
 
 ## PalletTownText
-Pallet Town.[A][.][X]
+Pallet Town.[A][X]
 
 ## ResearchLabText
-Oak's Research Lab.[A][.][X]
+Oak's Research Lab.[A][X]
 
 
 		  
 ## ViridianCityText
-Viridian City.[A][.][X]
+Viridian City.[A][X]
 
 			
 ## JumpLedgeText
 Jump down?   
-[No][.][X]
+[No][X]
 
 
 
@@ -903,30 +903,30 @@ Jump down?
 The gym here's been[NL]
 closed quite a while.[A][NL]
 Shouldn't the league[NL]
-appoint somebody new?[A][.][X]
+appoint somebody new?[A][X]
 
 ## ViridianUpperHouseText_Lategame
 The new gym leader here[N]
-is shrouded in mystery...[A][.][X]
+is shrouded in mystery...[A][X]
 
 ## ViridianGrumpyManText
 HMM? Whatcha doin' bargin'[NL]
 up in here like ya own the place?[A][NL]
 This is private property![NL]
-Let me sip my coffee in peace.[A][.][X]
+Let me sip my coffee in peace.[A][X]
 
 ## MissingNoHintText
 I done 'ere seen it![N]
 Taller'an you or me![A][N]
 A giant Tetris block![N]
-L-shaped and spooky like...[A][.][X]
+L-shaped and spooky like...[A][X]
 
 ## CinnabarOldManText2
 My home's back in Viridian.[A][N]
 I thought this 'ere sea would[N]
 do these ole bones some good.[A][N]
 Terrified I am, now.[N]
-Perhaps I should head home soon..[A][.][X]
+Perhaps I should head home soon..[A][X]
 
 ## ViridianGrumpyManText2
 I used to teach 'em, y'kno.[N]
@@ -934,11 +934,11 @@ Wouldn't let'em past 'til[N]
 I showed 'em my weedle.[A][N]
 Made 'em catch it 'n everything.[A][N]
 Now I'm under house arrest[N]
-'n haunted by tetris blocks...[A][.][X]
+'n haunted by tetris blocks...[A][X]
 
 ## PolicemanOldManText
 Yeah yeah, that's what[N]
-they all say...[A][.][X]
+they all say...[A][X]
 
 
 ## PewterMuseumText
@@ -947,27 +947,27 @@ study evolution based on fossils.[A][NL]
 What? You've seen Pokémon evolve?[A][NL]
 Don't be absurd![NL]
 Evolution takes millions of years.[.....][NL]
-You're thinking of [ToggleRed]Metamorphosis.[A][.][X]
+You're thinking of [ToggleRed]Metamorphosis.[A][X]
 
 ## PewterSWHouseText
 Life here's pretty peaceful, y'know?[N]
-Being an NPC's not bad![A][.][X]
+Being an NPC's not bad![A][X]
 
 ## PewterNEHouseText
 I'll trade my Haunter [NL]
 if you bring me a Mewtwo.[A][2NL]
 Haha, I'm just messin'[NL]
 with you. I don't even[NL]
-have a Haunter.[A][.][X]
+have a Haunter.[A][X]
 
 ## PewterMuseumSignText
-Pewter Museum.[A][.][X]
+Pewter Museum.[A][X]
 
 
 
 ## PewterGymSignText
 Pewter Gym.[NL]
-Rock-type Pokémon.[A][.][X]
+Rock-type Pokémon.[A][X]
 
 ## BrockIntroText
 [OpenMidRight][LoadBrock][OpenMidRight]I believe in rock hard[NL]
@@ -977,13 +977,13 @@ all the rock-type.[A][CloseSpeechSlow][LoadOverworldFaces][NL]
 Hmm? What about my Diglett,[NL]
 Sandshrew, and Vulpix?[A][NL]
 Those don't count.[A][CloseSpeechSlow][LoadOverworldFaces][OpenMidRight][MoveLeft][OpenLeft]There there, sweetie.[NL]
-Daddy loves you.[A][CloseSpeechSlow][LoadOverworldFaces][OpenLeft][MoveMidRight][OpenMidRight]Ahem. Let's battle![A][.][X]
+Daddy loves you.[A][CloseSpeechSlow][LoadOverworldFaces][OpenLeft][MoveMidRight][OpenMidRight]Ahem. Let's battle![A][X]
 ## PewterCityText
-The city of Boulders.[A][.][X]
+The city of Boulders.[A][X]
 
 ## NoBoulderbadgeText2
 You need the Boulderbadge[NL]
-to progress through here.[A][.][X]
+to progress through here.[A][X]
 
 ## NoBoulderbadgeText
 Hey, don't rush ahead![N]
@@ -991,17 +991,17 @@ Keep your coal, man![A][N]
 Hmm? Don't think you can win?[N]
 Of quartz you can![A][N]
 Just never take your[N]
-Pokémon for granite![A][.][X]
+Pokémon for granite![A][X]
 
 ## PewterCheckGymText
 I must defeat Brock![A][N]
 Deep breaths.. gotta keep my[N]
 coal! I can do this...[A][N]
 Yes! Of quartz I can![N]
-It's all ore nothing![A][.][X]
+It's all ore nothing![A][X]
 
 ## ClosedAreaText
-This area is closed.[A][.][X]
+This area is closed.[A][X]
 
 
 ## BrockDefeatText
@@ -1010,15 +1010,15 @@ here's the Boulder Badge![A][NL]
 Wear it proud, knowing[NL]
 you've completed my gym.[A][NL]
 The others won't be[NL]
-quite so easy.[A][.][X]
+quite so easy.[A][X]
 
 ## MistyWaitText
 [OpenMidRight][LoadMisty][OpenMidRight]Wait![NL]
-Take this.[A][.][X]
+Take this.[A][X]
 
 ## BrockDryingPanText
 [OpenMidRight][LoadBrock][OpenMidRight]Wait![NL]
-Take this.[A][.][X]
+Take this.[A][X]
 
 ## BrockDryingPanText2
 [OpenMidRight][LoadBrock][OpenMidRight]
@@ -1026,7 +1026,7 @@ This trusty pan will negate[NL]
 any weakness to water moves.[A][NL]
 I am sad to part with it, but[NL]
 I know you'll take good care of it.[A][NL]
-Good luck, [Tact]![A][LoadOverworldFaces][.][X]
+Good luck, [Tact]![A][LoadOverworldFaces][X]
 
 
 ## MistyRewardText
@@ -1035,15 +1035,15 @@ This soothing ring will restore[NL]
 your health every turn.[A][NL]
 I'm going to teach my Starmie Renewal,[NL]
 so I don't really need it anymore.[A][NL]
-Keep at it, [Tact]![A][LoadOverworldFaces][.][X]
+Keep at it, [Tact]![A][LoadOverworldFaces][X]
 
 ## PokemonCapturedText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Pokémon captured.[NL]
-[ToggleRed]300[Gold][ToggleRed] consumed.[A][.][X]
+[ToggleRed]300[Gold][ToggleRed] consumed.[A][X]
 
 ## CannotCaptureText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]PC Box full.[NL]
-Please release some Pokémon.[A][.][X]
+Please release some Pokémon.[A][X]
 
 
 ## RocketMagikarpText_A
@@ -1053,21 +1053,21 @@ I'll let you have[NL]
 a swell MAGIKARP[A][NL]
 for just 2000[Gold]![A][NL]
 What do you say?[NL]
-     [No][.][X]
+     [No][X]
 
 ## RocketMagikarpText_B
-[OpenRight]Finally! I mean.. congrats.[A][.][X]
+[OpenRight]Finally! I mean.. congrats.[A][X]
 
 ## RocketMagikarpText_C
-[OpenRight]Tcch, what a waste of time.[A][.][X]
+[OpenRight]Tcch, what a waste of time.[A][X]
 
 
 
 ## UnusedSeenGastlyquote
-[OpenRight][LoadBlankFace][OpenRight]Have you seen a Gastly yet?[A][.][X]
+[OpenRight][LoadBlankFace][OpenRight]Have you seen a Gastly yet?[A][X]
 
 ## DoorLockedText
-The door is locked.[A][.][X]
+The door is locked.[A][X]
 
 
 
@@ -1076,7 +1076,7 @@ There's a Pokemaniac who[NL]
 lives just up north of here.[A][NL]
 We're safer off that way,[NL]
 if you ask me.[A] Who knows[NL]
-what he gets up to?[A][.][X]
+what he gets up to?[A][X]
 
 
 ## MistyChallengeText
@@ -1091,7 +1091,7 @@ What'll happen when some loser[NL]
 decides to catch 6 Pikachu?[A][NL]
 Still can't believe I lost...[A][2NL]
 Enough chatter! My Pokémon[NL]
-will scrub the floor with you![A][.][X]
+will scrub the floor with you![A][X]
 
 ## MistyDefeatText
 [OpenMidRight][LoadMisty][OpenMidRight]Ack! Washed away![A] Welp,[NL]
@@ -1099,46 +1099,46 @@ I guess you've earned this.[A][NL]
 The Cascade Badge is a[NL]
 symbol of your victory.[A][NL]
 Show it off - you've[NL]
-done well.[A][.][X]
+done well.[A][X]
 
 ## SaveCostText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Save for [G][Gold]?[NL]
-[Yes][.][X]
+[Yes][X]
 
 ## TooPoorToSaveText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Insufficient funds.[NL]
-Requires 500[Gold].[A][.][X]
+Requires 500[Gold].[A][X]
 
 ## BillHouseText
 My name's Bill.[NL]
 Here, take this.[A][2NL][CloseSpeechFast]
-OBTAINED SS. ANNE TICKET.[A][.][X]
+OBTAINED SS. ANNE TICKET.[A][X]
 
 
 ## ViridianForestTrainerE4Text
 I like shorts![A][NL]
-They're comfy and easy to wear![A][.][X]
+They're comfy and easy to wear![A][X]
 
 ## ViridianForestTrainerE4DefeatText
-Awww..[A][.][X]
+Awww..[A][X]
 
 
 ## VF_0xE5_BQ
 I might be little, but I won't like[NL]
-it if you go easy on me![A][.][X]
+it if you go easy on me![A][X]
 
 ## VF_0xE5_BD
 That totally stinks! I'm going to[NL]
-catch some stronger ones![A][.][X]
+catch some stronger ones![A][X]
 
 
 ## R1_0xE1_BQ
 I might be little, but I won't like[NL]
-it if you go easy on me![A][.][X]
+it if you go easy on me![A][X]
 
 ## R1_0xE1_BD
 That totally stinks! I'm going to[NL]
-catch some stronger ones![A][.][X]
+catch some stronger ones![A][X]
 	
 
 
@@ -1146,140 +1146,140 @@ catch some stronger ones![A][.][X]
 I just lost, so I'm trying[NL]
 to find more Pokémon.[A][NL]
 Wait! You look weak![NL]
-Come on, let's battle![A][.][X]
+Come on, let's battle![A][X]
 
 ## R1_0xE0_BD
-Ugh. I don't have any more Pokémon.[A][.][X]
+Ugh. I don't have any more Pokémon.[A][X]
 
 
 ## R2_0xE1_BQ
 Are you going to Viridian Forest?[NL]
 It's a natural maze in there.[A][NL]
-How about a battle?[A][.][X]
+How about a battle?[A][X]
 
 ## R2_0xE1_BD
-I got lost there, and lost here![A][.][X]
+I got lost there, and lost here![A][X]
 
 
 ## VFS_0xE0_BQ
 // Viridian Forest (south) trainer 0xE0 Battle Quote / Defeat
 I came here with some friends to[NL]
 catch us some BUG Pokémon![A][NL]
-Let's battle![A][.][X]
+Let's battle![A][X]
 
 ## VFS_0xE0_BD
-Ack! I lost?[A][.][X]
+Ack! I lost?[A][X]
 
 
 ## VF_0xE0_BQ
-I'm itching for a battle![A][.][X]
+I'm itching for a battle![A][X]
 
 ## VF_0xE0_BD
 Oh, boo.[NL]
-Nothing went right.[A][.][X]
+Nothing went right.[A][X]
 
 
 ## VF_0xE1_BQ
 Hey! You have Pokémon![NL]
-Come on! Let's battle'em![A][.][X]
+Come on! Let's battle'em![A][X]
 
 ## VF_0xE1_BD
-No! CATERPIE can't cut it![A][.][X]
+No! CATERPIE can't cut it![A][X]
 
 ## VF_0xE2_BQ
 Yo! You can't jam out if[NL]
-you're a Pokémon trainer![A][.][X]
+you're a Pokémon trainer![A][X]
 ## VF_0xE2_BD
-Huh? I ran out of Pokémon![A][.][X]
+Huh? I ran out of Pokémon![A][X]
 
 
 ## VF_0xE3_BQ
-Eek! I don't want any trouble![A][.][X]
+Eek! I don't want any trouble![A][X]
 ## VF_0xE3_BD
 My mom gave me these Pokémon[NL]
-to protect me...[A][.][X]
+to protect me...[A][X]
 
 
 
 ## VF_0xE4_BQ
-Hey, wait up! What's the hurry?[A][.][X]
+Hey, wait up! What's the hurry?[A][X]
 ## VF_0xE4_BD
-I give! You're good at this![A][.][X]
+I give! You're good at this![A][X]
 
 ## HireGeodudeText
 Want to rent my Rocky?[N]
-He knows the way.[A][.][X]
+He knows the way.[A][X]
 
 ## No_HireGeodudeText
-That's okay, Rocky.[A][.][X]
+That's okay, Rocky.[A][X]
 
 ## Yes_HireGeodudeText
 Rocky will take good[N]
-care of you![A][.][X]
+care of you![A][X]
 
 ## HiredGeodudeText
 Rocky will come find me[N]
-when you're done.[A][.][X]
+when you're done.[A][X]
 
 
 
 
 ## R3_0xE0_BQ
 Hey![NL]
-I saw you in Viridian Forest![A][.][X]
+I saw you in Viridian Forest![A][X]
 
 ## R3_0xE0_BD
-You beat me again![A][.][X]
+You beat me again![A][X]
 
 
 
 ## R3_0xE1_BQ
 Excuse me![NL]
-You looked at me, didn't you?[A][.][X]
+You looked at me, didn't you?[A][X]
 
 ## R3_0xE1_BD
-You're mean![A][.][X]
+You're mean![A][X]
 
 
 ## R3_0xE2_BQ
 Hi![NL]
 I like shorts![A][NL]
 They're delightfully comfy and[NL]
-easy to wear![A][.][X]
+easy to wear![A][X]
 
 ## R3_0xE2_BD
-I don't believe it![A][.][X]
+I don't believe it![A][X]
 
 
 ## R3_0xE3_BQ
 Eek![NL]
-Did you touch me?[A][.][X]
+Did you touch me?[A][X]
 
 ## R3_0xE3_BD
-That's it?[A][.][X]
+That's it?[A][X]
 
 ## R3_0xE4_BQ
 Are you a trainer?[NL]
-Let's get with it right away![A][.][X]
+Let's get with it right away![A][X]
 
 ## R3_0xE4_BD
 If I had new Pokémon,[NL]
-I would've won![A][.][X]
+I would've won![A][X]
 
 ## R3_0xE5_BQ
 That look you gave me...[NL]
-It's so intriguing![A][.][X]
+It's so intriguing![A][X]
 
 ## R3_0xE5_BD
-Be nice![A][.][X]
+Be nice![A][X]
 
 ## R3_0xE6_BQ
 Hey! You're not wearing shorts![NL]
-What's wrong with you?[A][.][X]
+What's wrong with you?[A][X]
 
 ## R3_0xE6_BD
 I always wear shorts, even in[NL]
-winter. That's my policy.[A][.][X]
+winter. That's my policy.[A][X]
 
 
 
@@ -1290,73 +1290,73 @@ winter. That's my policy.[A][.][X]
 ## MMB1_0xE0_BQ
 What?[NL]
 I'm waiting for my friends to find[A][NL]
-me here.[A][.][X]
+me here.[A][X]
 
 ## MMB1_0xE0_BD
-I lost?[A][.][X]
+I lost?[A][X]
 
 ## MMB1_0xE1_BQ
 Did you come to explore the cave,[NL]
-too?[A][.][X]
+too?[A][X]
 
 ## MMB1_0xE1_BD
-I feel at home in here.[A][.][X]
+I feel at home in here.[A][X]
 
 
 
 ## MMB1_0xE2_BQ
 What![NL]
-Don't sneak up on me![A][.][X]
+Don't sneak up on me![A][X]
 
 ## MMB1_0xE2_BD
-My Pokémon won't do![A][.][X]
+My Pokémon won't do![A][X]
 
 
 ## MMB1_0xE3_BQ
 Wow! It's way bigger in here than[NL]
-I thought![A][.][X]
+I thought![A][X]
 
 ## MMB1_0xE3_BD
 Oh! I lost it! 
 How do you get out of here?[NL]
-It's so big, I may get lost.[A][.][X]
+It's so big, I may get lost.[A][X]
 
 ## MMB1_0xE4_BQ
 WHOA![NL]
 You shocked me![A][NL]
-...Oh, you're just a kid![A][.][X]
+...Oh, you're just a kid![A][X]
 
 ## MMB1_0xE4_BD
 Wow![NL]
-Shocked again![A][.][X]
+Shocked again![A][X]
 
 ## MMB1_0xE5_BQ
 Suspicious men are in the cave.[NL]
-What about you?[A][.][X]
+What about you?[A][X]
 
 ## MMB1_0xE5_BD
 You got me![A][NL]
 I saw them![NL]
-I'm sure they're from Team Rocket![A][.][X]
+I'm sure they're from Team Rocket![A][X]
 
 
 
 
 ## MMB2_0xE0_BQ
 I came because I heard there are[NL]
-some very rare fossils here.[A][.][X]
+some very rare fossils here.[A][X]
 
 ## MMB2_0xE0_BD
-I lost.[A][.][X]
+I lost.[A][X]
 
 ## MMB2_0xE1_BQ
 This way's a dead end![NL]
 I just came back from it, so I know.[A][NL]
-Let's battle![A][.][X]
+Let's battle![A][X]
 
 ## MMB2_0xE1_BD
 You need to go through this cave[NL]
-to get to Cerulean City.[A][.][X]
+to get to Cerulean City.[A][X]
 
 
 
@@ -1365,36 +1365,36 @@ to get to Cerulean City.[A][.][X]
 We, Team Rocket, shall find the[NL]
 fossils![A][NL]
 Reviving Pokémon from them will[NL]
-earn us huge riches.[A][.][X]
+earn us huge riches.[A][X]
 
 ## MMB3_0xE0_BD
 Urgh![NL]
-Now I'm mad![A][.][X]
+Now I'm mad![A][X]
 
 ## MMB3_0xE1_BQ
 We, Team Rocket, are Pokémon[NL]
 gangsters![A][NL]
-We strike fear with our strength![A][.][X]
+We strike fear with our strength![A][X]
 
 ## MMB3_0xE1_BD
-I blew it![A][.][X]
+I blew it![A][X]
 
 
 ## MMB3_0xE2_BQ
 We're pulling a big job here![NL]
-Get lost, kid.[A][.][X]
+Get lost, kid.[A][X]
 
 ## MMB3_0xE2_BD
-So, you are good...[A][.][X]
+So, you are good...[A][X]
 
 
 ## MMB3_0xE3_BQ
 Little kids shouldn't be messing[NL]
 around with grown-ups![A][NL]
-It could be bad news.[A][.][X]
+It could be bad news.[A][X]
 
 ## MMB3_0xE3_BD
-I'm steamed![A][.][X]
+I'm steamed![A][X]
 
 
 
@@ -1403,31 +1403,31 @@ I'm steamed![A][.][X]
 "Hey, stop![A][NL]
 I found these fossils!",[A][NL]
 I told them.[NL]
-But they didn't listen...[A][.][X]
+But they didn't listen...[A][X]
 
 ## MMB3_0xE4_BD
-Now I don't have any fossils...[A][.][X]
+Now I don't have any fossils...[A][X]
 
 
 ## MMB3_0xE5_BQ
-Prepare for trouble![A][.][X]
+Prepare for trouble![A][X]
 
 ## MMB3_0xE5_BD
-Looks like we're..[A][.][X]
+Looks like we're..[A][X]
 
 ## MMB3_0xE6_BQ
-And make it double![A][.][X]
+And make it double![A][X]
 
 ## MMB3_0xE6_BD
-Blasting off again![A][.][X]
+Blasting off again![A][X]
 
 
 ## R4_0xE0_BQ
 I came to MT. MOON in search of[NL]
-new rock Pokémon.[A][.][X]
+new rock Pokémon.[A][X]
 
 ## R4_0xE0_BD
-All I found was rocks...[A][.][X]
+All I found was rocks...[A][X]
 
 
 ## GaryCeruleanChallengeText
@@ -1438,7 +1438,7 @@ in Viridian.[A][NL]
 [LoadGaryShrug]Hm? What are you[NL]
 blabbering about.[A][NL]
 [LoadGaryBattle]I have some steam[NL]
-to blow off. Let's go![A][.][X]
+to blow off. Let's go![A][X]
 
 ## GaryCeruleanDefeatText
 [OpenMidRight][LoadGaryShrug][OpenMidRight]Tcch. I coulda won.[NL]
@@ -1446,23 +1446,23 @@ These rules are dumb.[A][NL]
 I already beat Misty, y'kno.[A][NL]
 She didn't stand a chance[NL]
 against my team of Pikachu.[A][NL]
-Smell ya later, loser.[A][.][X]
+Smell ya later, loser.[A][X]
 
 
 ## NoCascadeBadgeText
 I'm on patrol for[NL]
-Team Rocket.[A][.][X]
+Team Rocket.[A][X]
 
 
 ## CeruleanGymSignText
-Cerulean Gym[A][.][X]
+Cerulean Gym[A][X]
 
 ## CeruleanBicycleShopSignText
-Bicycle Shop[A][.][X]
+Bicycle Shop[A][X]
 
 ## BicycleShopText
 Want to buy a Bicycle?[NL]
-That'll be 1,000,000[Gold]![A][.][X]
+That'll be 1,000,000[Gold]![A][X]
 
 
 
@@ -1475,22 +1475,22 @@ But you shouldn't be[N]
 entering people's yards.[A][N]
 And you shouldn't eat[N]
 candy you find on the ground.[A][N]
-It isn't healthy.[A][.][X]
+It isn't healthy.[A][X]
 
 ## CeruleanCityWHouseText
 You're a Trainer, too?[A][NL]
 Collecting, battling...[NL]
-It's a tough life, isn't it?[A][.][X]
+It's a tough life, isn't it?[A][X]
 	
 ## CeruleanCityNHouseText
 Sigh...[NL]
 Too much time, too little to do...[A][NL]
 Is nothing entertaining happening[NL]
-anywhere?[A][.][X]
+anywhere?[A][X]
 
 ## CeruleanCitySHouseText
 Did you know that you can CUT down[NL]
-small trees with the right HM?[A][.][X]
+small trees with the right HM?[A][X]
 
 // 1 house is just door locked 
 
@@ -1500,7 +1500,7 @@ small trees with the right HM?[A][.][X]
 
 ## UNUSED_0xE1_BD
 Losing stinks![NL]
-It's so uncool.[A][.][X]
+It's so uncool.[A][X]
 
 
 
@@ -1510,20 +1510,20 @@ It's so uncool.[A][.][X]
 
 ## R24_0xE0_BQ
 Here I come![NL]
-I won't be easy![A][.][X]
+I won't be easy![A][X]
 	
 ## R24_0xE0_BD
 Ow![NL]
-Stomped flat![A][.][X]
+Stomped flat![A][X]
 	
 
 ## R24_0xE1_BQ	
 Okay! I'm ready![NL]
-I'll stomp you![A][.][X]
+I'll stomp you![A][X]
 
 ## R24_0xE1_BD
 Whoa![NL]
-Too much![A][.][X]
+Too much![A][X]
 
 ## R24_0xE2_BQ
 By the way, how would you like to[NL]
@@ -1536,38 +1536,38 @@ Come on, join us![A][NL]
 I'm telling you to join![A][NL]
 ...Okay, you need convincing![A][NL]
 I'll make you an offer you can't[NL]
-refuse![A][.][X]
+refuse![A][X]
 
 ## R24_0xE2_BD
 Arrgh![NL]
-You are good![A][.][X]
+You are good![A][X]
 
 
 
 ## R25_0xE0_BQ
 Local trainers come here to[NL]
-practice.[A][.][X]
+practice.[A][X]
 ## R25_0xE0_BD
-You're decent.[A][.][X]
+You're decent.[A][X]
 
 ## R25_0xE1_BQ
 I had this feeling...[NL]
-I knew I had to battle you![A][.][X]
+I knew I had to battle you![A][X]
 ## R25_0xE1_BD
-I knew I'd lose, too![A][.][X]
+I knew I'd lose, too![A][X]
 
 ## R25_0xE3_BQ
 My friend has many cute Pokémon.[NL]
-I'm so jealous![A][.][X]
+I'm so jealous![A][X]
 ## R25_0xE3_BD
-I'm not so jealous![A][.][X]
+I'm not so jealous![A][X]
 
 ## R25_0xE2_BQ
 I just got down from MT. MOON,[NL]
-but I've still got gas in the tank![A][.][X]
+but I've still got gas in the tank![A][X]
 ## R25_0xE2_BD
 Drat![NL]
-A ZUBAT bit me back in that cave.[A][.][X]
+A ZUBAT bit me back in that cave.[A][X]
 
 ## DaycareHouseText
 I run the DAY-CARE service.[A][NL]
@@ -1575,68 +1575,68 @@ You'd like me to raise one of[NL]
 your Pokémon?[A][2NL]
 I can put you down on the wait list,[NL]
 but it's several months long...[A][NL]
-Sorry, but could you come back later?[A][.][X]
+Sorry, but could you come back later?[A][X]
 
 
 ## UndergroundPassText
 After a long walk, you[NL]
-emerge at the other side.[A][.][X]
+emerge at the other side.[A][X]
 
 
 
 ## R5_0xE0_BQ 
-Let's go, but don't cheat![A][.][X]
+Let's go, but don't cheat![A][X]
 
 ## R5_0xE0_BD 
 Huh?[N]
-That's not right![A][.][X]
+That's not right![A][X]
 
 
 ## R5_0xE1_BQ 
 I've never seen you around.[N]
-Are you good?[A][.][X]
+Are you good?[A][X]
 
 ## R5_0xE1_BD 
-You're too good![A][.][X]
+You're too good![A][X]
 
 
 
 ## R6_0xE0_BQ 
 Who's there?[N]
-Alright, let's go![A][.][X]
+Alright, let's go![A][X]
 
 
 ## R6_0xE0_BD
-I just can't win![A][.][X]
+I just can't win![A][X]
 
 ## R6_0xE1_BQ 
 I raised my Pokémon carefully.[N]
-They should be ready by now![A][.][X]
+They should be ready by now![A][X]
 
 ## R6_0xE1_BD
 Tch...[N]
-I better go find stronger ones![A][.][X]
+I better go find stronger ones![A][X]
 
 
 
 
 ## R6_0xE2_BQ 
-There aren't many bugs out here.[A][.][X]
+There aren't many bugs out here.[A][X]
 
 ## R6_0xE2_BD
 No![N]
 You're kidding![A][NL]
 I like bugs, so I'm going back to[N]
-Viridian Forest.[A][.][X]
+Viridian Forest.[A][X]
 
 
 // vermilion 
 ## VermilionGymSignText
-Vermilion Gym[A][.][X]
+Vermilion Gym[A][X]
 
 
 ## VermilionFanClubSignText
-Vermilion Fan Club[A][.][X]
+Vermilion Fan Club[A][X]
 
 
 
@@ -1665,55 +1665,55 @@ Tell me about yourself![A][N]
 Hmm? You just want a Bike voucher?[A][N]
 Hah, sure, kid. Let me also write up[N]
 a cheque for you to buy a car.[A][N]
-Fat chance. Now go away.[A][.][X]
+Fat chance. Now go away.[A][X]
 
 ## VermilionNWHouseText
 I'm the FISHING GURU![N]
 I simply looove fishing![A][N]
 I'd share my love of fishing with you,[N]
-but the lazy developer hasn't made rods.[A][.][X]
+but the lazy developer hasn't made rods.[A][X]
 
 ## VermilionMidHouseText
 Hi![N]
 Do you have a Hoot-hoot?[A][N]
 Want to trade it for my Kadabra?[N]
-No..? That's too bad.[A][.][X]
+No..? That's too bad.[A][X]
 
 ## VermilionSEHouseText
 I'm getting my PIDGEY to fly a[N]
-letter to Saffron in the north.[A][.][X]
+letter to Saffron in the north.[A][X]
 
 
 
 
 ## R11_0xE0_BQ
 I'm the best in my class.[N]
-I train every morning.[A][.][X]
+I train every morning.[A][X]
 
 ## R11_0xE0_BD
 Darn![N]
-My Pokémon need to be stronger![A][.][X]
+My Pokémon need to be stronger![A][X]
 
 ## R11_0xE1_BQ
 Careful![N]
-I'm laying down some cables![A][.][X]
+I'm laying down some cables![A][X]
 
 ## R11_0xE1_BD
-That was electric![A][.][X]
+That was electric![A][X]
 
 ## R11_0xE2_BQ
 You can't be a coward in the world[N]
-of Pokémon![A][.][X]
+of Pokémon![A][X]
 
 ## R11_0xE2_BD
-Aww! I've had enough![A][.][X]
+Aww! I've had enough![A][X]
 
 ## R11_0xE3_BQ
-Watch out for live wires![A][.][X]
+Watch out for live wires![A][X]
 
 ## R11_0xE3_BD
 Whoa![N]
-You spark plug![A][.][X]
+You spark plug![A][X]
 
 
 
@@ -1735,12 +1735,12 @@ beaten Surge yet?[A][N]
 How about your POKEDEX?[N]
 I already caught 40 kinds, pal.[A][N]
 [LoadGaryBattle]I hope you can swim, 'cause I'm[N]
-about to knock you overboard![A][.][X]
+about to knock you overboard![A][X]
 
 ## SSA_0xE0_BD
 [OpenMidRight][LoadGaryShrug][OpenMidRight]Humph![A][2NL]
 If I didn't waste time[NL]
-catching so many, I woulda won.[A][.][X]
+catching so many, I woulda won.[A][X]
 
 
 
@@ -1748,30 +1748,30 @@ catching so many, I woulda won.[A][.][X]
 
 ## SSA_0xE3_BQ
 You insolent pup![N]
-How dare you barge in![A][.][X]
+How dare you barge in![A][X]
 
 ## SSA_0xE3_BD
 Humph! You rude child![N]
-You have no sense of courtesy![A][.][X]
+You have no sense of courtesy![A][X]
 	
 	
 
 ## SSA_0xE2_BQ
 Hey, matey![A][N]
-Let's do a little jig![A][.][X]
+Let's do a little jig![A][X]
 
 ## SSA_0xE2_BD
-You're impressive![A][.][X]
+You're impressive![A][X]
 
 
 
 ## SSA_0xE4_BQ
 I am but a solitary traveler...[A][N]
 My sole companions and friends are[N]
-Pokémon I caught on my journeys...[A][.][X]
+Pokémon I caught on my journeys...[A][X]
 
 ## SSA_0xE4_BD
-My, my friends...[A][.][X]
+My, my friends...[A][X]
 
 
 
@@ -1780,7 +1780,7 @@ My, my friends...[A][.][X]
 Using CUT, you can chop down[N]
 small trees.[A][N]
 Why not try it with the trees[N]
-around Vermilion City?[A][.][X]
+around Vermilion City?[A][X]
 
 
 ## CaptainTeachHMText
@@ -1792,149 +1792,149 @@ Watch closely...[NL]
 ....[A][2NL]
 Ho-haah![A][NL]
 ..[NL]
-...[A][.][X]
+...[A][X]
 
 ## LearnedCutText
 You feel you've learned how[N]
-to cut little bushes now.[A][.][X]
+to cut little bushes now.[A][X]
 
 
 ## Route9W_WaitingSurge
 I'm waiting for Lt. Surge![A][N]
 He promised to give me a[N]
-tour of the Power Plant...[A][.][X]
+tour of the Power Plant...[A][X]
 
 ## Route9W_WaitingSurge2
 I'm waiting for Lt. Surge![A][N]
 There's something up with[N]
-the Power Plant...[A][.][X]
+the Power Plant...[A][X]
 
 ## R9W_0xE0_BQ
 You have Pokémon with you![N]
-You're mine![A][.][X]
+You're mine![A][X]
 	
 ## R9W_0xE0_BD
-You deceived me...[A][.][X]
+You deceived me...[A][X]
 	
 
 ## R9W_0xE1_BQ
 Who's that walking there with those[N]
-good-looking Pokémon?[A][.][X]
+good-looking Pokémon?[A][X]
 ## R9W_0xE1_BD
-Out like a light![A][.][X]
+Out like a light![A][X]
 
 
 ## R9E_0xE0_BQ
-Don't you dare patronize me![A][.][X]
+Don't you dare patronize me![A][X]
 ## R9E_0xE0_BD
 No![N]
-You're too much.[A][.][X]
+You're too much.[A][X]
 
 	
 ## R9E_0xE1_BQ
 I'm taking the ROCK TUNNEL to[N]
-go to Lavender...[A][.][X]
+go to Lavender...[A][X]
 
 ## R9E_0xE1_BD
-Can't measure up...[A][.][X]
+Can't measure up...[A][X]
 
 ## R10_0xE0_BQ
 I've been out at a Pokémon Gym[N]
 a few times.[A][N]
-...But I always lose.[A][.][X]
+...But I always lose.[A][X]
 
 ## R10_0xE0_BD
 Ohh![N]
-After all my training![A][.][X]
+After all my training![A][X]
 	
 
 ## RTB1_0xE0_BQ
-This tunnel goes a long way, kid![A][.][X]
+This tunnel goes a long way, kid![A][X]
 
 ## RTB1_0xE0_BD
 Doh![N]
-You win![A][.][X]
+You win![A][X]
 	
 ## RTB1_0xE1_BQ    
 Hmm.[N]
-Maybe I'm lost in here...[A][.][X]
+Maybe I'm lost in here...[A][X]
 
 ## RTB1_0xE1_BD  
 Ease up![N]
 What am I doing?[A][N]
-Which way is out?[A][.][X]
+Which way is out?[A][X]
 	
 ## RTB1_0xE2_BQ  
 Eek![A][N]
 Don't try anything[N]
-funny in here![A][.][X]
+funny in here![A][X]
 
 ## RTB1_0xE2_BD  
-It was too dark...[A][.][X]
+It was too dark...[A][X]
 	
 ## RTB1_0xE3_BQ  
 I came this far looking for wild[N]
-Pokémon.[A][.][X]
+Pokémon.[A][X]
 
 ## RTB1_0xE3_BD  
-I'm out of Pokémon![A][.][X]
+I'm out of Pokémon![A][X]
 	
 
 
 
 ## RTB2_0xE0_BQ  
 Hahaha![N]
-Can you beat my power?[A][.][X]
+Can you beat my power?[A][X]
 
 ## RTB2_0xE0_BD  
 Oops![N]
-Outmuscled![A][.][X]
+Outmuscled![A][X]
 	
 
 ## RTB2_0xE1_BQ  
-Hit me with your best shot![A][.][X]
+Hit me with your best shot![A][X]
 
 ## RTB2_0xE1_BD 
-Fired away![A][.][X]
+Fired away![A][X]
 	
 
 
 ## RTB2_0xE2_BQ  
 My Pokémon techniques will leave[N]
-you crying![A][.][X]
+you crying![A][X]
 
 ## RTB2_0xE2_BD  
 I give![N]
-You're a better technician![A][.][X]
+You're a better technician![A][X]
 	
 
 ## RTB2_0xE3_BQ  
 I draw illustrations of Pokémon[N]
-when I'm home.[A][.][X]
+when I'm home.[A][X]
 
 ## RTB2_0xE3_BD  
 Whew...[N]
-I'm exhausted...[A][.][X]
+I'm exhausted...[A][X]
 
 
 
 ## PokemonTowerText
 Pokémon Tower[N]
-Becalm the Spirits of Pokémon[A][.][X]
+Becalm the Spirits of Pokémon[A][X]
 
 ## GhostsText
-Do you believe in ghosts?[A][.][X]
+Do you believe in ghosts?[A][X]
 
 ## LavenderHouse1Text
 This town is known as the grave[N]
 site of Pokémon.[A][N]
 Memorial services are held in[N]
-Pokémon Tower.[A][.][X]
+Pokémon Tower.[A][X]
 
 ## LavenderHouse2Text
 Ghosts appeared in Pokémon Tower.[A][N]
 I think they're the spirits of[N]
-Pokémon that the Rockets killed.[A][.][X]
+Pokémon that the Rockets killed.[A][X]
 
 
 ## GaryLavenderChallengeText
@@ -1943,7 +1943,7 @@ Did your Pokémon die?[A][N]
 What? You're not playing a Nuzlocke?[N]
 [LoadGaryPoint]Filthy casual.[A][N]
 [LoadGaryBattle]I can at least make them[N]
-faint! Let's go![A][.][X]
+faint! Let's go![A][X]
 
 ## GaryLavenderNuzlockeChallengeText
 [OpenRight][LoadGaryShrug][OpenRight]Hey, [Tact]![N]
@@ -1959,69 +1959,69 @@ have to travel far.[A][N]
 [LoadGaryPoint]We're already at their final[N]
 resting point. How convenient![A][N]
 [LoadGaryBattle]I wonder how many of yours[N]
-I can knock out. Let's go![A][.][X]
+I can knock out. Let's go![A][X]
 
 ## GaryLavenderDefeatText
 [OpenRight][LoadGaryShrug][OpenRight]Arrgh![N]
 You stinker![A][N]
-Tch.. I took it easy on you.[A][.][X]
+Tch.. I took it easy on you.[A][X]
 
 ## PTF2_0xE0_BQ
 Urrg... Awaa...[N]
-Huhu... Graa...[A][.][X]
+Huhu... Graa...[A][X]
 
 ## PTF2_0xE0_BD
 Hmm?[N]
 What am I doing?[A][N]
 Sorry![N]
-I was possessed![A][.][X]
+I was possessed![A][X]
 
 ## PTF3_0xE0_BQ
 Kekeke...[N]
-Kwaaah![A][.][X]
+Kwaaah![A][X]
 
 ## PTF3_0xE0_BD
 Hwa![N]
-I'm saved![A][.][X]
+I'm saved![A][X]
 
 
 ## PTF4_0xE0_BQ
 Give.. me...[N]
-blood...[A][.][X]
+blood...[A][X]
 
 ## PTF4_0xE0_BD
-I feel anemic and weak...[A][.][X]
+I feel anemic and weak...[A][X]
 
 ## PTF4_MarowakChallengeText
 Be gone...[N]
-Intruders...[A][.][X]
+Intruders...[A][X]
 
 ## PTF4_MarowakDefeatText
 The spirit was calmed.[N]
-It departed to the afterlife.[A][.][X]
+It departed to the afterlife.[A][X]
 
 ## AuraFlareText
 The Wild Pokémon's[N]
-Aura flared to life![A][.][X]
+Aura flared to life![A][X]
 
 ## AuraDissipated
 The Wild Pokémon's[N]
-Aura is dissipating![A][.][X]
+Aura is dissipating![A][X]
 
 ## CannotEscapeAuraBattleText
-You can't escape![A][.][X]
+You can't escape![A][X]
 
 ## PTF5_0xE0_BQ
-What do you want?[A][.][X]
+What do you want?[A][X]
 ## PTF5_0xE1_BQ
-Why are you here?[A][.][X]
+Why are you here?[A][X]
 
 ## PTF5_0xE0_BD
 What? I just[N]
-want to make money[A][.][X]
+want to make money[A][X]
 ## PTF5_0xE1_BD
 Hmm? I'm here[N]
-doing a job.[A][.][X]
+doing a job.[A][X]
 
 ## MrFujiText
 Heh?[N]
@@ -2034,81 +2034,81 @@ I think MAROWAK's spirit has[N]
 finally left us.[A][N]
 I must thank you for your kind[N]
 concern.[A][N]
-Here, take this.[A][.][X]
+Here, take this.[A][X]
 
 ## ObtainedPokefluteText
-Obtained Pokéflute.[A][.][X]
+Obtained Pokéflute.[A][X]
 
 ## MrFujiText2
 Use it to wake up[N]
-sleeping Pokémon.[A][.][X]
+sleeping Pokémon.[A][X]
 
 ## MrFujiText3
 I come up here to[N]
-meditate sometimes.[A][.][X]
+meditate sometimes.[A][X]
 
 ## R12N_0xE0_BQ
 Do you know how[N]
-to train MAGIKARP?[A][.][X]
+to train MAGIKARP?[A][X]
 ## R12N_0xE0_BD
-I wish I knew![A][.][X]
+I wish I knew![A][X]
 
 
 
 ## R12N_0xE1_BQ
 Yeah! I got[N]
-a bite here![A][.][X]
+a bite here![A][X]
 
 ## R12N_0xE1_BD
 Tch! Just a[N]
-small fry...[A][.][X]
+small fry...[A][X]
 
 
 ## R12N_0xE2_BQ
 What, MAGIKARP? I[N]
-catch them all the time.[A][.][X]
+catch them all the time.[A][X]
 
 ## R12N_0xE2_BD
 Boy, MAGIKARP[N]
 sure are wimpy.[A][N]
-But GYARADOS is great.[A][.][X]
+But GYARADOS is great.[A][X]
 
 ## R12N_0xE3_BQ
 The FISHING FOOL versus[N]
-Pokémon KID![A][.][X]
+Pokémon KID![A][X]
 ## R12N_0xE3_BD
-Touch too much![A][.][X]
+Touch too much![A][X]
 
 
 ## R12N_0xE4_BQ
 I love fishing,[N]
 don't get me wrong.[A][N]
 But it'd be best if[N]
-I also had more work.[A][.][X]
+I also had more work.[A][X]
 
 ## R12N_0xE4_BD
-It's not easy...[A][.][X]
+It's not easy...[A][X]
 
 ## Route12ClosedText
 Sorry, we've closed[N]
 off the area.[A][N]
 A sleeping Pokémon is[N]
-blocking the road![A][.][X]
+blocking the road![A][X]
 
 ## SnorlaxSleepingText
 A sleeping Pokémon[N]
-blocks the way...[A][.][X]
+blocks the way...[A][X]
 
 ## PlayPokefluteText
 [Tact] played the[N]
-Pokéflute.[A][.][X]
+Pokéflute.[A][X]
 
 ## SnorlaxGrumpyText
 The Pokémon attacked[N]
-in a grumpy rage![A][.][X]
+in a grumpy rage![A][X]
 
 ## SnorlaxLeftText
-Rrggrg..[A][.][X]
+Rrggrg..[A][X]
 
 ## Route12FisherHouseText
 Fishing? I sure love fishing,[N]
@@ -2118,64 +2118,64 @@ A talking house?[A][N]
 You didn't think there were[N]
 [ToggleRed]people[ToggleRed] in here, did you?[A][N]
 No no, I ate them[N]
-long ago.[A][.][X]
+long ago.[A][X]
 
 
 ## R12S_0xE0_BQ
 I don't know a thing about[N]
 fishing for Pokémon.[A][N]
 I can't seem to[N]
-catch anything new.[A][.][X]
+catch anything new.[A][X]
 
 ## R12S_0xE0_BD
 Maybe I should try[N]
-another fishing spot...[A][.][X]
+another fishing spot...[A][X]
 
 ## R12S_0xE1_BQ
 With a better ROD, I could catch[N]
-amazing Pokémon...[A][.][X]
+amazing Pokémon...[A][X]
 ## R12S_0xE1_BD
 Hang on![N]
-My line's snagged![A][.][X]
+My line's snagged![A][X]
 
 
 ## R12S_0xE2_BQ
 Be patient. Fishing[N]
-is a waiting game.[A][.][X]
+is a waiting game.[A][X]
 ## R12S_0xE2_BD
-That one got away![A][.][X]
+That one got away![A][X]
 
 ## R12S_0xE3_BQ
 What's catching?[A][N]
 You never know what[N]
-you could catch![A][.][X]
+you could catch![A][X]
 
 ## R12S_0xE3_BD
-Lost it![A][.][X]
+Lost it![A][X]
 
 
 // 3, 4, 6
 
 ## R13_0xE0_BQ // picnicker, pic, lass 
 My Pokémon want to[N]
-battle with you![A][.][X]
+battle with you![A][X]
 ## R13_0xE0_BD
 My Pokémon look happy[N]
-even though they lost.[A][.][X]
+even though they lost.[A][X]
 
 ## R13_0xE1_BQ
 I'm told that I'm[N]
-good for a kid.[A][.][X]
+good for a kid.[A][X]
 ## R13_0xE1_BD
 Ohh![N]
-I lost![A][.][X]
+I lost![A][X]
 
 ## R13_0xE2_BQ
 My cute Pokémon wish[N]
-to make your acquaintance.[A][.][X]
+to make your acquaintance.[A][X]
 ## R13_0xE2_BD
 Good going![N]
-You totally won![A][.][X]
+You totally won![A][X]
 	
 
 
@@ -2183,84 +2183,84 @@ You totally won![A][.][X]
 
 ## R14_0xE0_BQ 
 Wow! Your BADGES[N]
-are too cool![A][.][X]
+are too cool![A][X]
 
 ## R14_0xE0_BD
 You got those BADGES[N]
-from Gym LEADERS. I know![A][.][X]
+from Gym LEADERS. I know![A][X]
 	
 ## R14_0xE1_BQ
 I found CARBOS in a cave once[N]
-while I was spelunking.[A][.][X]
+while I was spelunking.[A][X]
 ## R14_0xE1_BD
 CARBOS boosted the SPEED[N]
-of my Pokémon.[A][.][X]
+of my Pokémon.[A][X]
 
 ## R14_0xE2_BQ
 There have been reports[N]
-of bikers loitering about.[A][.][X]
+of bikers loitering about.[A][X]
 ## R14_0xE2_BD
-Stay safe out there.[A][.][X]
+Stay safe out there.[A][X]
 
 ## R14_0xE3_BQ
 I need to burn some time.[N]
-Let's just battle.[A][.][X]
+Let's just battle.[A][X]
 ## R14_0xE3_BD
 What?[N]
-You!?[A][.][X]
+You!?[A][X]
 
 
 // cool, pic, camp, cool, pic, camp 
 
 ## R15_0xE0_BQ 
 I just got some Pokémon in trades.[N]
-Can I try them out on you?[A][.][X]
+Can I try them out on you?[A][X]
 
 ## R15_0xE0_BD
-Not good enough![A][.][X]
+Not good enough![A][X]
 	
 	
 ## R15_0xE1_BQ
 Sure, I'll play with[N]
-you, sweetie.[A][.][X]
+you, sweetie.[A][X]
 
 ## R15_0xE1_BD
 Oh! You[N]
-little beast![A][.][X]
+little beast![A][X]
 	
 	
 ## R15_0xE2_BQ
 You look gentle, so I[N]
 think I can beat you.[A][N]
-I'll give it a go![A][.][X]
+I'll give it a go![A][X]
 
 ## R15_0xE2_BD
-No, wrong![A][.][X]
+No, wrong![A][X]
 
 ## R15_0xE3_BQ
 I raise Pokémon for protection[N]
-because I live alone.[A][.][X]
+because I live alone.[A][X]
 
 ## R15_0xE3_BD
 Uggh.. Pokémon isn't just about[N]
-winning or losing for me.[A][.][X]
+winning or losing for me.[A][X]
 	
 	
 ## R15_0xE4_BQ
 Do you want to battle[N]
-some Pokémon with me?[A][.][X]
+some Pokémon with me?[A][X]
 
 ## R15_0xE4_BD
-It's over already?[A][.][X]
+It's over already?[A][X]
 	
 	
 ## R15_0xE5_BQ
 I don't have friends to trade with,[N]
-so I used a link stone to evolve.[A][.][X]
+so I used a link stone to evolve.[A][X]
 
 ## R15_0xE5_BD
 Maybe I should find[N]
-some friends anyway...[A][.][X]
+some friends anyway...[A][X]
 
 
 
@@ -2268,7 +2268,7 @@ some friends anyway...[A][.][X]
 The Safari Zone has a zoo in[N]
 front of the entrance.[A][N]
 Out back is the Safari Zone for[N]
-catching Pokémon.[A][.][X]
+catching Pokémon.[A][X]
 	
 
 ## FuschiaSEHouseAText
@@ -2278,7 +2278,7 @@ Slow down, kid.[A][N]
 I ain't got any of that[N]
 stuff for ya, sorry.[A][N]
 What, did you think it[N]
-was Halloween?[A][.][X]
+was Halloween?[A][X]
 
 
 ## FuschiaSEHouseBText
@@ -2286,144 +2286,144 @@ Do you love fishing?[N]
 Cause I sure hate it![A][N]
 What a silly mechanic to code.[A][N]
 I wonder if anyone will ever[N]
-make fishing a reality...[A][.][X]
+make fishing a reality...[A][X]
 
 ## FuschiaWHouseAText
 Did you visit the Safari Zone?[A][N]
 There are some rare Pokémon that[N]
-can only be caught there.[A][.][X]
+can only be caught there.[A][X]
 
 ## FuschiaWHouseBText
 Koga uses Poison Pokémon.[N]
 Hmm?[.....] Why aren't they[N]
 called Venom Pokémon?[A][N]
 I dunno.[.....] Maybe they eat[N]
-each other in battle?[A][.][X]
+each other in battle?[A][X]
 
 
 ## FuschiaSESignText
-Warden's House[A][.][X]
+Warden's House[A][X]
 
 ## FuschiaGymSignText
-Fuchsia City Gym[A][.][X]
+Fuchsia City Gym[A][X]
 
 ## FuschiaSafariSignText
-Safari Zone[A][.][X]
+Safari Zone[A][X]
 
 ## EnterSafariZoneText
 Enjoy your time in there![N]
-It's free, and there's no time limit.[A][.][X]
+It's free, and there's no time limit.[A][X]
 
 ## SafariSHouseText
 Urrg.. leave me alone.[A][N]
 Maybe I should've chosen[N]
-somewhere else to live...[A][.][X]
+somewhere else to live...[A][X]
 
 ## SafariNHouseText
 The variety of species in[N]
-here sure is spectacular![A][.][X]
+here sure is spectacular![A][X]
 
 ## SafariEHouseText
 There are a lot of strong[N]
-Pokémon roaming about![A][.][X]
+Pokémon roaming about![A][X]
 
 ## SafariWHouse_AText
-Watch out for Scyther![A][.][X]
+Watch out for Scyther![A][X]
 
 ## SafariWHouse_BText
 Hmm? A special reward?[N]
-Well, alright.[A][.][X]
+Well, alright.[A][X]
 
 ## SafariWHouse_CText
 You learn the ability[N]
-to Smash Rocks.[A][.][X]
+to Smash Rocks.[A][X]
 
 ## CompleteGymFirst
 I should complete the[N]
-local gym first...[A][.][X]
+local gym first...[A][X]
 
 ## R18_0xE0_BQ // coolertrainer_f
 I always check every grassy area[N]
-for new Pokémon.[A][.][X]
+for new Pokémon.[A][X]
 ## R18_0xE0_BD
-Tch![A][.][X]
+Tch![A][X]
 	
 ## R18_0xE1_BQ // biker
 This is my turf![N]
-Get out of here![A][.][X]
+Get out of here![A][X]
 
 ## R18_0xE1_BD // biker
-Darn![A][.][X]
+Darn![A][X]
 
 
 ## R17S_0xE0_BQ // bikers 
-What do you want?[A][.][X]
+What do you want?[A][X]
 ## R17S_0xE0_BD
 We like just hanging here.[N]
-What's it to you?[A][.][X]
+What's it to you?[A][X]
 
 ## R17S_0xE1_BQ
 Nice Pokémon![N]
-Hand 'em over![A][.][X]
+Hand 'em over![A][X]
 ## R17S_0xE1_BD
-Forget it, who needs 'em![A][.][X]
+Forget it, who needs 'em![A][X]
 	
 ## R17S_0xE2_BQ
-Come out and play, little mouse![A][.][X]
+Come out and play, little mouse![A][X]
 
 ## R17S_0xE2_BD
-You little rat![A][.][X]
+You little rat![A][X]
 	
 
 ## R17S_0xE3_BQ
-Hey, you just bumped me![A][.][X]
+Hey, you just bumped me![A][X]
 ## R17S_0xE3_BD
-Kaboom![A][.][X]
+Kaboom![A][X]
 	
 ## R17S_0xE4_BQ
 I'm feeling hungry and mean![N]
-I need a punching bag![A][.][X]
+I need a punching bag![A][X]
 ## R17S_0xE4_BD
-Bad, bad, bad![A][.][X]
+Bad, bad, bad![A][X]
 
 
 ## R17N_0xE0_BQ // bikers 
 Hey, there! Let's have[N]
-ourselves a good time![A][.][X]
+ourselves a good time![A][X]
 
 ## R17N_0xE0_BD // bikers 
-Don't make me mad![A][.][X]
+Don't make me mad![A][X]
 	
 ## R17N_0xE1_BQ
 There's no getting rich[N]
-quick in battling kids.[A][.][X]
+quick in battling kids.[A][X]
 ## R17N_0xE1_BD
-Burned out![A][.][X]
+Burned out![A][X]
 ## R17N_0xE2_BQ
 I'm mighty proud of my[N]
-bod, kiddo. Come on![A][.][X]
+bod, kiddo. Come on![A][X]
 ## R17N_0xE2_BD
-Whoo![A][.][X]
+Whoo![A][X]
 ## R17N_0xE3_BQ
-I love racing downhill![A][.][X]
+I love racing downhill![A][X]
 ## R17N_0xE3_BD
-Crash and burn![A][.][X]
+Crash and burn![A][X]
 ## R17N_0xE4_BQ
-We rule the roads, man![A][.][X]
+We rule the roads, man![A][X]
 ## R17N_0xE4_BD
-Smoked![A][.][X]
+Smoked![A][X]
 
 
 ## R16_0xE0_BQ // bikers 
-I need a little exercise![A][.][X]
+I need a little exercise![A][X]
 ## R16_0xE0_BD 
 Whew![N]
-Good workout![A][.][X]
+Good workout![A][X]
 
 ## R16_0xE1_BQ
-Be a rebel![A][.][X]
+Be a rebel![A][X]
 ## R16_0xE1_BD
-Aaaargh![A][.][X]
+Aaaargh![A][X]
 
 
 
@@ -2462,178 +2462,178 @@ a perfect hiding spot...[A][.....][N]
 Well, let me teach you[N]
 my secret technique.[A][N]
 Ahem.. here goes...[A][N]
-[ToggleRed][......]BIRDS[......] CAN[......] FLY![ToggleRed][A][.][X]
+[ToggleRed][......]BIRDS[......] CAN[......] FLY![ToggleRed][A][X]
 
 ## LearnFlyText
 You suddenly realize[N]
-that birds can fly.[A][.][X]
+that birds can fly.[A][X]
 
 ## UseFlyText
 I don't know why everyone[N]
-needs me to tell them that...[A][.][X]
+needs me to tell them that...[A][X]
 
 ## HowToFlyText
 Access [ToggleRed]Fly[ToggleRed] through the[N]
-[ToggleRed]Travel[ToggleRed] command.[.][X]
+[ToggleRed]Travel[ToggleRed] command.[X]
 
 ## YouAlreadyRevivedThisPokemonText
 You already revived[N]
-this Pokémon.[A][.][X]
+this Pokémon.[A][X]
 
 ## YouDontHaveThisFossilText
 Hmm? You don't seem[N]
-to have this fossil.[A][.][X]
+to have this fossil.[A][X]
 
 ## DomeFossilChoice
-I have this dome fossil...[.][X]
+I have this dome fossil...[X]
 
 ## HelixFossilChoice
-I have this helix fossil...[.][X]
+I have this helix fossil...[X]
 
 ## OldAmberChoice
-I have this old amber...[.][X]
+I have this old amber...[X]
 
 ## ExitChoice
-Exit[.][X]
+Exit[X]
 
 ## CinnabarLabIntroText
 We're an important facility.[N]
 We study Pokémon fossils![A][N]
-Have you got a fossil for us?[A][.][X]
+Have you got a fossil for us?[A][X]
 	
 	
 
 ## PurchaseKabutoText
 I can revive that fossil for you[N]
-but you'll need to fund our research.[A][.][X]
+but you'll need to fund our research.[A][X]
 
 ## No_PurchasedKabutoText
-Okay. Enjoy your hunk of rock.[A][.][X]
+Okay. Enjoy your hunk of rock.[A][X]
 
 ## Yes_PurchasedKabutoText
 Thank you! Take good[N]
-care of Kabuto![A][.][X]
+care of Kabuto![A][X]
 
 ## PurchaseOmanyteText
 I can revive that fossil for you[N]
-but you'll need to fund our research.[A][.][X]
+but you'll need to fund our research.[A][X]
 
 ## No_PurchasedOmanyteText
-Okay. Enjoy your hunk of rock.[A][.][X]
+Okay. Enjoy your hunk of rock.[A][X]
 
 ## Yes_PurchasedOmanyteText
 Thank you! Take good[N]
-care of Omanyte![A][.][X]
+care of Omanyte![A][X]
 
 ## PurchaseAerodactylText
 I can revive that fossil for you[N]
-but you'll need to fund our research.[A][.][X]
+but you'll need to fund our research.[A][X]
 
 ## No_PurchasedAerodactylText
-Okay. Enjoy your hunk of amber.[A][.][X]
+Okay. Enjoy your hunk of amber.[A][X]
 
 ## Yes_PurchasedAerodactylText
 Thank you! Take good[N]
-care of Aerodactyl![A][.][X]
+care of Aerodactyl![A][X]
 
 ## ObtainOldAmber
 The strategy guide told me to[N]
 collect this, but I don't want it.[A][N]
 I only use OU Pokémon,[N]
-so you can have it.[A][.][X]
+so you can have it.[A][X]
 
 ## ObtainOldAmber2
-Obtained the Old Amber.[A][.][X]
+Obtained the Old Amber.[A][X]
 
 ## AlreadyObtainedOldAmber
-Who needs strategy guides, anyway?[A][.][X]
+Who needs strategy guides, anyway?[A][X]
 
 ## WordsEchoedText
-Words echoed in your mind...[A][.][X]
+Words echoed in your mind...[A][X]
 
 ## ReleaseThemText
-[OpenMidRight][LoadFlareon][OpenMidRight][ToggleColorInvert]Release.. them...[ToggleColorInvert][A][.][X]
+[OpenMidRight][LoadFlareon][OpenMidRight][ToggleColorInvert]Release.. them...[ToggleColorInvert][A][X]
 
 ## ThisIsntTheTimeText
-[OpenMidRight][LoadOak][OpenMidRight][ToggleColorInvert]This isn't the time to use that![ToggleColorInvert][A][.][X]
+[OpenMidRight][LoadOak][OpenMidRight][ToggleColorInvert]This isn't the time to use that![ToggleColorInvert][A][X]
 
 ## ObtainHelixFossilText
-Obtained the Helix Fossil.[A][.][X]
+Obtained the Helix Fossil.[A][X]
 ## ObtainDomeFossilText
-Obtained the Dome Fossil.[A][.][X]
+Obtained the Dome Fossil.[A][X]
 
 ## PurchaseEeveeText
 I found this Eevee wandering[N]
 the streets. Poor thing.[A][N]
 It needs a reliable trainer[N]
 to take care of it.[A][N]
-Are you interested?[A][.][X]
+Are you interested?[A][X]
 
 ## No_PurchasedEeveeText
-Aww. I'll keep looking.[A][.][X]
+Aww. I'll keep looking.[A][X]
 
 ## Yes_PurchasedEeveeText
 Thank you! Take good[N]
-care of Eevee![A][.][X]
+care of Eevee![A][X]
 
 ## PurchasePrizeText
 Can I interested you in the[N]
-finest specimens around?[A][.][X]
+finest specimens around?[A][X]
 
 ## No_PurchasedPrizeText
 Come back when[N]
-you win big![A][.][X]
+you win big![A][X]
 
 ## Yes_PurchasedPrizeText
-Wow! A big spender![A][.][X]
+Wow! A big spender![A][X]
 
 
 ## DeveloperText
 Vesly here, the developer.[A][N]
 I might use this for some post-game[N]
-activity later, but for now, nothing to see.[A][.][X]
+activity later, but for now, nothing to see.[A][X]
 //Come back here after beating[N]
-//the game and we'll have some fun.[A][.][X]
+//the game and we'll have some fun.[A][X]
 
 ## ComingSoonText
-Coming soon.[A][.][X]
+Coming soon.[A][X]
 
 ## CeladonGymSignText
-Celadon Gym[A][.][X]
+Celadon Gym[A][X]
 
 ## CeladonSlotsSignText
 //1000[Gold] Bonus! 5 free spins![N]
 Newcomer Bonus! Win free spins![N]
-Visit the Celadon Slots today![A][.][X]
+Visit the Celadon Slots today![A][X]
 
 ## CeladonMartSignText
-Celadon Superstore[A][.][X]
+Celadon Superstore[A][X]
 
 ## CeladonSHouseText
 Aggh.. I'm ruined.[N]
-What will I tell my family?[A][.][X]
+What will I tell my family?[A][X]
 
 ## CeladonSEHouseText
 Soon enough Celadon's going[N]
 to be all Condos...[A][N]
 I wonder when I[N]
-should sell...[A][.][X]
+should sell...[A][X]
 
 ## PlaySlotsText
 1000[Gold] a game.[N]
 Play the slots?[N]
-[Yes][.][X]
+[Yes][X]
 
 ## PlaySlotsAgainText
 Play again?[N]
-[Yes][.][X]
+[Yes][X]
 
 ## InsufficientFundsText
 Sorry, pal.[N]
-You're cleaned out.[A][.][X]
+You're cleaned out.[A][X]
 
 ## BetterSlowDownText
-Better pace myself...[A][.][X]
+Better pace myself...[A][X]
 
 
 
@@ -2643,20 +2643,20 @@ Better pace myself...[A][.][X]
 
 ## PsychicSaffronText
 Wait! Don't say a word![A][N]
-You wanted this![A][.][X]
+You wanted this![A][X]
 
 ## PsychicSaffronText2
 You already know,[N]
 don't you?[A][Clear]
 PSYCHIC types are overpowered[N]
-in generation one.[A][.][X]
+in generation one.[A][X]
 
 ## SilphCoSignText
-Silph Co[A][.][X]
+Silph Co[A][X]
 ## SaffronGymSignText
-Saffron Gym[A][.][X]
+Saffron Gym[A][X]
 ## SaffronDojoSignText
-Saffron Dojo[A][.][X]
+Saffron Dojo[A][X]
 
 ## SaffronNWHouseText
 .........[N]
@@ -2665,14 +2665,14 @@ Saffron Dojo[A][.][X]
 ...............[A][N]
 Gah! You're no fun.[A][N]
 I can't mimic you[N]
-if you're silent.[A][.][X]
+if you're silent.[A][X]
 
 ## SaffronWHouseText
 The COPYCAT is cute! I'm[N]
-getting her a POKé DOLL.[A][.][X]
+getting her a POKé DOLL.[A][X]
 
 ## SaffronKaraokeClub
-Karaoke Fan Club[A][.][X]
+Karaoke Fan Club[A][X]
 
 ## SaffronEHouseText
 I want to be the very best[....][N]
@@ -2723,21 +2723,21 @@ Po[.....]ké[.....]mon![.....][N]
 Gotta catch 'em all[N]
 Gotta catch 'em all[N]
 Pokémon![.....][N]
-[Yes][.][X]
+[Yes][X]
 
 
 
 ## SaffronRocket_0
 What do you want?[N]
-Get lost![A][.][X]
+Get lost![A][X]
 
 ## SaffronRocket_1
 BOSS said he'll take this town[N]
-in the name of Team Rocket![A][.][X]
+in the name of Team Rocket![A][X]
 
 ## SaffronRocket_2
 Don't get defiant![N]
-Or I'll have to hurt you![A][.][X]
+Or I'll have to hurt you![A][X]
 
 
 ## GarySilphCoChallengeText
@@ -2748,7 +2748,7 @@ turn up if I waited here![A][N]
 //[LoadGaryPoint]I guess Team Rocket slowed you[N]
 //down! Not that I care![A][N]
 [LoadGaryBattle]I saw you in Saffron, so I decided[N]
-to see if you got better![A][.][X]
+to see if you got better![A][X]
 
 ## GarySilphCoDefeatText
 [OpenMidRight][LoadGaryShrug][OpenMidRight]Oh, man![N]
@@ -2760,137 +2760,137 @@ I'm going to the Pokémon League to[N]
 boot out the Elite Four.[A][N]
 I'll become the world's most[N]
 powerful trainer![A][N]
-Smell ya later![A][.][X]
+Smell ya later![A][X]
  
 
 ## OutOfServiceText
-Out of service[A][.][X]
+Out of service[A][X]
 
 
 ## MagicFeelsDrained
 Your magic feels[N]
-drained...[A][.][X]
+drained...[A][X]
 
 ## StrFeelsSapped
 Your strength feels[N]
-sapped...[A][.][X]
+sapped...[A][X]
 
 ## DefFeelsSapped
 Your defences feel[N]
-weakened...[A][.][X]
+weakened...[A][X]
 
 ## StatsSapped
-You feel drained...[A][.][X]
+You feel drained...[A][X]
 
 
 // 11 rockets, 3 scientists 
 
 ## SilphCo_2F_0xE0_BQ
-No kids are allowed in here![A][.][X]
+No kids are allowed in here![A][X]
 
 ## SilphCo_2F_0xE0_BD
-Tough![A][.][X]
+Tough![A][X]
 
 ## SilphCo_2F_0xE1_BQ
 It's off-limits here![N]
-Go home![A][.][X]
+Go home![A][X]
 
 ## SilphCo_2F_0xE1_BD
-You're good.[A][.][X]
+You're good.[A][X]
 
 ## SilphCo_2F_0xE2_BQ
-Quit messing with us, kid![A][.][X]
+Quit messing with us, kid![A][X]
 
 ## SilphCo_2F_0xE2_BD
-I give up![A][.][X]
+I give up![A][X]
 
 ## SilphCo_2F_0xE3_BQ
-Intruder spotted![A][.][X]
+Intruder spotted![A][X]
 
 ## SilphCo_2F_0xE3_BD
-Who are you?[A][.][X]
+Who are you?[A][X]
 
 ## SilphCo_2F_0xE4_BQ
 Team Rocket has taken control[N]
-of SILPH CO.![A][.][X]
+of SILPH CO.![A][X]
 
 ## SilphCo_2F_0xE4_BD
-Arrgh![A][.][X]
+Arrgh![A][X]
 
 ## SilphCo_2F_0xE5_BQ
 Whaaat?[A][N]
 There shouldn't be any[N]
-children here![A][.][X]
+children here![A][X]
 
 ## SilphCo_2F_0xE5_BD
-Oh, goodness![A][.][X]
+Oh, goodness![A][X]
 
 ## SilphCo_3F_0xE0_BQ
-You dare face Team Rocket?[A][.][X]
+You dare face Team Rocket?[A][X]
 
 ## SilphCo_3F_0xE0_BD
-You'll pay![A][.][X]
+You'll pay![A][X]
 
 
 ## SilphCo_3F_0xE1_BQ // evil scientist 
 Help![N]
-I'm a SILPH employee.[A][.][X]
+I'm a SILPH employee.[A][X]
 ## SilphCo_3F_0xE1_BD
 How did you know[N]
-I was a ROCKET?[A][.][X]
+I was a ROCKET?[A][X]
 
 
 
 
 ## SilphCo_3F_0xE2_BQ // bad office scientist 
 I'm not even worth[N]
-a real office..[A][.][X]
+a real office..[A][X]
 
 ## SilphCo_3F_0xE2_BD // bad office scientist 
 Maybe I should research[N]
-something more interesting...[A][.][X]
+something more interesting...[A][X]
 
 //Would it kill them[N]
-//to add windows?[A][.][X]
+//to add windows?[A][X]
 
 
 ## SilphCo_3F_0xE3_BQ
 I heard a kid was wandering[N]
-around.[A][.][X]
+around.[A][X]
 
 ## SilphCo_3F_0xE3_BD
-Boom![A][.][X]
+Boom![A][X]
 
 ## SilphCo_3F_0xE4_BQ
 Uh-oh![N]
-I smell a little mouse![A][.][X]
+I smell a little mouse![A][X]
 
 ## SilphCo_3F_0xE4_BD
-Lights out![A][.][X]
+Lights out![A][X]
 
 ## SilphCo_4F_0xE0_BQ
 A child intruder?[N]
-That must be you![A][.][X]
+That must be you![A][X]
 
 ## SilphCo_4F_0xE0_BD
 Fine![N]
-I lost![A][.][X]
+I lost![A][X]
 
 ## SilphCo_4F_0xE1_BQ
-You're causing us problems![A][.][X]
+You're causing us problems![A][X]
 
 ## SilphCo_4F_0xE1_BD
 Huh?[N]
-I lost?[A][.][X]
+I lost?[A][X]
 
 
 ## SilphCo_4F_0xE2_BQ // Hiding scientist 
 Sssh! Can't you[N]
-see I'm hiding?[A][.][X]
+see I'm hiding?[A][X]
 
 ## SilphCo_4F_0xE2_BD // Hiding scientist 
 Drat! You blew[N]
-my cover![A][.][X]
+my cover![A][X]
 
 
  ## SilphCo_4F_0xE2_Unused // Hiding scientist 
@@ -2908,24 +2908,24 @@ be much better off with you.[A][N]
 I think you will be a good trainer[N]
 for LAPRAS![A][N]
 It's a good swimmer.[N]
-It'll give you a lift across water![A][.][X]
+It'll give you a lift across water![A][X]
 
 
 ## SilphCo_2F_Report
 It's a Pokémon REPORT![A][N]
 Pokémon LAB created PORYGON,[N]
-the first virtual-reality Pokémon.[A][.][X]
+the first virtual-reality Pokémon.[A][X]
 
 
 ## SilphCo_3F_Report_A
 It's a Pokémon REPORT![A][N]
 Some Pokémon have been confirmed[N]
-to evolve when they are traded.[A][.][X]
+to evolve when they are traded.[A][X]
 
 ## SilphCo_3F_Report_B
 It's a Pokémon REPORT![A][N]
 Over 150 Pokémon have[N]
-been confirmed.[A][.][X]
+been confirmed.[A][X]
 
 ## SilphCo_Giovanni_Challenge
 [OpenMidRight][LoadGiovanni][OpenMidRight]Ah, [Tact]![N]
@@ -2934,7 +2934,7 @@ I must say, I am impressed you[N]
 got here.[A][N]
 But you should keep your nose out of[N]
 grown-up matters...[A][N]
-Or, experience a world of pain![A][.][X]
+Or, experience a world of pain![A][X]
 
 
 ## SilphCo_Giovanni_Defeat
@@ -2944,7 +2944,7 @@ You ruined our plans for SILPH![A][N]
 But, Team Rocket will never fall![A][N]
 [Tact]! Never forget that all[N]
 Pokémon exist for Team Rocket![A][N]
-I must go, but I shall return![A][.][X]
+I must go, but I shall return![A][X]
 
 
 ## KiyoChallengeText
@@ -2952,104 +2952,104 @@ I am the KARATE MASTER![N]
 I am always ready to spar![A][N]
 You wish to challenge me?[N]
 Expect no mercy![A][N]
-Fwaaa![A][.][X]
+Fwaaa![A][X]
 
 ## KiyoDefeatText
 Hwa![N]
-Arrgh! Beaten![A][.][X]
+Arrgh! Beaten![A][X]
 
 ## KiyoTalkText
 Never lose focus![N]
-Never falter![A][.][X]
+Never falter![A][X]
 
 
 ## R8_0xE0_BQ
 All right![N]
-Let's play a game![A][.][X]
+Let's play a game![A][X]
 
 ## R8_0xE0_BD
 Drat![N]
-Came up short![A][.][X]
+Came up short![A][X]
 	
 
 ## R8_0xE1_BQ
-My bike's acting up, man.[A][.][X]
+My bike's acting up, man.[A][X]
 
 ## R8_0xE1_BD
 Aww, man.[N]
-I'm not into this.[A][.][X]
+I'm not into this.[A][X]
 
 
 ## R8_0xE2_BQ
 Clear the way, or I'll[N]
-run you down![A][.][X]
+run you down![A][X]
 
 ## R8_0xE2_BD
-You for real, kid?[A][.][X]
+You for real, kid?[A][X]
 
 
 
 ## R8_0xE3_BQ
 You think you're special,[N]
-kid?[A][.][X]
+kid?[A][X]
 	
 ## R8_0xE3_BD
 Tcch.[......] I got grass caught[N]
-up in my spokes, man.[A][.][X]
+up in my spokes, man.[A][X]
 
 ## R8_0xE4_BQ
 What's a cute, round, and fluffy[N]
-Pokémon?[A][.][X]
+Pokémon?[A][X]
 
 ## R8_0xE4_BD
 Stop![A][N]
 Don't be so mean to my CLEFAIRY![A][N]
-What? I nicknamed her CLEFAIRY.[A][.][X]
+What? I nicknamed her CLEFAIRY.[A][X]
 
 ## R8_0xE5_BQ
 You need strategy and determination[N]
-to win at this![A][.][X]
+to win at this![A][X]
 
 ## R8_0xE5_BD
-Things didn't work today.[A][.][X]
+Things didn't work today.[A][X]
 
 
 
 
 ## R19_0xE0_BQ 
 I love swimming![N]
-What about you?[A][.][X]
+What about you?[A][X]
 
 ## R19_0xE0_BD
-Belly flop![A][.][X]
+Belly flop![A][X]
 
 
 ## R19_0xE1_BQ
 You want to know if the fish are[N]
-biting?[A][.][X]
+biting?[A][X]
 ## R19_0xE1_BD
-Dang![A][.][X]
+Dang![A][X]
 
 ## R19_0xE2_BQ
 I got a big haul![N]
-Wanna go for it?[A][.][X]
+Wanna go for it?[A][X]
 
 ## R19_0xE2_BD
 Heheh, MAGIKARP just don't make[N]
-the grade, do they?[A][.][X]
+the grade, do they?[A][X]
 
 ## R19_0xE3_BQ
-What's beyond the horizon?[A][.][X]
+What's beyond the horizon?[A][X]
 ## R19_0xE3_BD
 I see a couple of islands over[N]
-yonder![A][.][X]
+yonder![A][X]
 
 ## R19_0xE4_BQ
 It's still a long way to go to[N]
-SEAFOAM ISLANDS...[A][.][X]
+SEAFOAM ISLANDS...[A][X]
 	
 ## R19_0xE4_BD
-I want to go back to FUCHSIA...[A][.][X]
+I want to go back to FUCHSIA...[A][X]
 
 
 
@@ -3058,187 +3058,187 @@ I want to go back to FUCHSIA...[A][.][X]
 
 ## R20E_0xE0_BQ
 My big sis taught me how[N]
-to swim and train Pokémon.[A][.][X]
+to swim and train Pokémon.[A][X]
 
 ## R20E_0xE0_BD
 Oh, wow! You might be[N]
-tougher than my big sis![A][.][X]
+tougher than my big sis![A][X]
 
 
 ## R20E_0xE1_BQ
 I came right through[N]
-Seafoam Islands to get here.[A][.][X]
+Seafoam Islands to get here.[A][X]
 //I look at the sea to forget all[N]
-//the bad things that happened.[A][.][X]
+//the bad things that happened.[A][X]
 
 ## R20E_0xE1_BD
 Ooh![N]
-Traumatic![A][.][X]
+Traumatic![A][X]
 
 
 ## R20E_0xE2_BQ
 Swimming's great![N]
-Sunburns aren't![A][.][X]
+Sunburns aren't![A][X]
 
 ## R20E_0xE2_BD
-Shocker![A][.][X]
+Shocker![A][X]
 
 
 
 ## R20W_0xE0_BQ
 The water is shallow here.[N]
-There are many people swimming.[A][.][X]
+There are many people swimming.[A][X]
 
 ## R20W_0xE0_BD
-Splash![A][.][X]
+Splash![A][X]
 
 
 ## R20W_0xE1_BQ
 My friends buried me[N]
-in the sand for fun![A][.][X]
+in the sand for fun![A][X]
 
 ## R20W_0xE1_BD
 Hey, guys?[N]
 You there?[A][N]
 I'm sure they'll be[N]
-back any minute now.[A][.][X]
+back any minute now.[A][X]
 
 //There's a huge cavern underneath[N]
-//this island.[A][.][X]
-//Quit it![A][.][X]
+//this island.[A][X]
+//Quit it![A][X]
 
 ## R20W_0xE2_BQ
 I love floating with the fishes[N]
-here among the waves.[A][.][X]
+here among the waves.[A][X]
 
 ## R20W_0xE2_BD
 Yowch![A][N]
-Want to float with me?[A][.][X]
+Want to float with me?[A][X]
 
 ## R20W_0xE3_BQ
-Check out my buff physique![A][.][X]
+Check out my buff physique![A][X]
 
 ## R20W_0xE3_BD
 Wimpy![A][N]
 I should've been buffing up my[N]
-Pokémon, not me![A][.][X]
+Pokémon, not me![A][X]
 
 ## R20W_0xE4_BQ
 I swam here from Cinnabar Island.[N]
-It wasn't easy, I tell you.[A][.][X]
+It wasn't easy, I tell you.[A][X]
 
 ## R20W_0xE4_BD
-I'm so disappointed![A][.][X]
+I'm so disappointed![A][X]
 
 
 ## R20W_0xE5_BQ
 Cinnabar has a LAB[N]
 for Pokémon.[A][N]
-My daddy works there.[A][.][X]
+My daddy works there.[A][X]
 
 
 ## R20W_0xE5_BD
 Arrg! I lost.[A][N]
 Cinnabar is a volcanic island.[N]
-I heard it rose out of the sea.[A][.][X]
+I heard it rose out of the sea.[A][X]
 
 
 ## R21_0xE0_BQ
-I caught my Pokémon at sea.[A][.][X]
+I caught my Pokémon at sea.[A][X]
 
 ## R21_0xE0_BD
 Diver!![N]
-Down!![A][.][X]
+Down!![A][X]
 
 ## R21_0xE1_BQ
-The sea cleanses my body and soul![A][.][X]
+The sea cleanses my body and soul![A][X]
 
 ## R21_0xE1_BD
 Ayah![A][N]
 The sea is great and all, but I[N]
-like the mountains, too.[A][.][X]
+like the mountains, too.[A][X]
 
 ## R21_0xE2_BQ
 Ahh![N]
-Feel the sun and the wind![A][.][X]
+Feel the sun and the wind![A][X]
 
 ## R21_0xE2_BD
 Yow![N]
-I lost![A][.][X]
+I lost![A][X]
 
 
 
 
 //## R20E_0xE0_BQ 
 //I have to exercise and warm up[N]
-//before going out for a swim.[A][.][X]
+//before going out for a swim.[A][X]
 //
 //Route19_Text_RichardDefeat:: @ 81877DF
-//All warmed up![A][.][X]
+//All warmed up![A][X]
 //
 //Wait! Slow down![N]
-//You'll have a heart attack![A][.][X]
+//You'll have a heart attack![A][X]
 //
 //Route19_Text_ReeceDefeat:: @ 818783E
 //Ooh![N]
-//That's chilly![A][.][X]
+//That's chilly![A][X]
 
 
 
 
 
 ## R21_0xE3_BQ
-Right now, I'm in a triathlon meet.[A][.][X]
+Right now, I'm in a triathlon meet.[A][X]
 
 ## R21_0xE3_BD
 Pant...[N]
 Pant... Pant...[A][N]
 I'm beat! But, I still have the[N]
-bike race and marathon left![A][.][X]
+bike race and marathon left![A][X]
 
 ## R21_0xE4_BQ
-My boyfriend gave me big pearls.[A][.][X]
+My boyfriend gave me big pearls.[A][X]
 
 ## R21_0xE4_BD
 Oh, no![N]
-I dropped a pearl![A][.][X]
+I dropped a pearl![A][X]
 
 ## R21_0xE5_BQ
 I swam here with my friends...[N]
-I'm tired...[A][.][X]
+I'm tired...[A][X]
 
 ## R21_0xE5_BD
-I'm exhausted...[A][.][X]
+I'm exhausted...[A][X]
 
 ## ObtainedSecretKeyText
-Obtained the Secret Key![A][.][X]
+Obtained the Secret Key![A][X]
 
 ## ObtainedCardKeyText
-Obtained the Card Key![A][.][X]
+Obtained the Card Key![A][X]
 
 
 
 ## TombstonerText
 Is tombstoner the ultimate[N]
 unreleased move?[N]
-[Yes][.][X]
+[Yes][X]
 
 ## DiscordText
 Have you joined the[N]
 project's Discord?[N]
-[Yes][.][X]
+[Yes][X]
 
 ## MissingNoQuestionText
 MissingNo is[N]
 Normal/Flying type?[N]
-[Yes][.][X]
+[Yes][X]
 
 ## CinnabarLabSignText
-Cinnabar Lab[.][X]
+Cinnabar Lab[X]
 ## CinnabarGymSignText
-Cinnabar Gym[.][X]
+Cinnabar Gym[X]
 ## CinnabarMansionSignText
-Cinnabar Mansion[.][X]
+Cinnabar Mansion[X]
 
 ## GaryRoute22ChallengeText
 [OpenMidRight][LoadGaryPoint][OpenMidRight]What? [Tact]![N]
@@ -3249,7 +3249,7 @@ You collected all the BADGES, too?[N]
 That's cool![A][N]
 [LoadGaryBattle]Then I'll whip you as a warm-up[N]
 for the Pokémon League![A][N]
-Come on![A][.][X]
+Come on![A][X]
 
 ## GaryRoute22DefeatText
 [LoadGaryPoint]What!?[N]
@@ -3259,7 +3259,7 @@ I'm ready for the Pokémon League![A][N]
 [Tact], you[N]
 need more practice.[A][N]
 But hey, you know that![N]
-I'm out of here. Smell ya![A][.][X]
+I'm out of here. Smell ya![A][X]
 
 ## OakNotifyRematchesText
 Ahem. It's Oak.[N]
@@ -3268,7 +3268,7 @@ I've let the gym leaders know[N]
 that you're ready for a rematch.[A][N]
 Though I can't seem to get ahold of[N]
 Viridian Gym anymore.[A][N]
-In any case, best of luck.[A][.][X]
+In any case, best of luck.[A][X]
 
 ## OakNotifyRematches2Text
 Oak here. We found someone to[N]
@@ -3278,79 +3278,79 @@ I've spoken to him and he's promised[N]
 to tone down his hijinks.[A][N]
 Ah, how proud I am of him.[N]
 I hear he hasn't lost to anyone yet![N]
-I'll be seeing you, [Tact].[A][.][X]
+I'll be seeing you, [Tact].[A][X]
 
 
 ## VRB1_0xE0_BQ // battle girl 
 I wonder if you are good enough[N]
-for me?[A][.][X]
+for me?[A][X]
 
 ## VRB1_0xE0_BD
 I lost out...[N]
 I never wanted to lose to anybody,[N]
-especially to a younger kid...[A][.][X]
+especially to a younger kid...[A][X]
 
 
 ## VRB1_0xE1_BQ // bug catcher 
 Some people say BUG Pokémon[N]
 aren't the best.[A][N]
-But I've proven them all wrong![A][.][X]
+But I've proven them all wrong![A][X]
 
 ## VRB1_0xE1_BD 
 Tch![N]
-I concede... for now![A][.][X]
+I concede... for now![A][X]
 
 
 ## VRB2_0xE0_BQ 
 This here is VICTORY ROAD.[N]
-It's the final test for trainers![A][.][X]
+It's the final test for trainers![A][X]
 
 ## VRB2_0xE0_BD
 Atcho![N]
 If you get stuck, try moving some[N]
-boulders around.[A][.][X]
+boulders around.[A][X]
 
 
 ## VRB2_0xE1_BQ 
 If you can get through here,[N]
-you can go meet the Elite Four.[A][.][X]
+you can go meet the Elite Four.[A][X]
 
 ## VRB2_0xE1_BD 
 No![N]
-Unbelievable![A][.][X]
+Unbelievable![A][X]
 
 
 
 
 ## VRB2_0xE2_BQ 
 Ah, so you wish to challenge the[N]
-Elite Four?[A][.][X]
+Elite Four?[A][X]
 
 ## VRB2_0xE2_BD
-You got me![A][.][X]
+You got me![A][X]
 
 
 
 ## VRB2_0xE3_BQ 
 [Tact]![N]
 I knew I'd find you here![A][N]
-I'll never forgive you![A][.][X]
+I'll never forgive you![A][X]
 
 
 ## VRB2_0xE3_BD
 Ahh!![N]
 Hmm? Who am I?[N]
 Yeah, right.[A][N]
-Like you could forget your rival...[A][.][X]
+Like you could forget your rival...[A][X]
 
 
 ## VRB3_0xE0_BQ 
-Is VICTORY ROAD too tough?[A][.][X]
+Is VICTORY ROAD too tough?[A][X]
 
 ## VRB3_0xE0_BD 
 Well done![N]
 Many trainers give up their[N]
-challenge here and go home.[A][.][X]
+challenge here and go home.[A][X]
 	
 
 
@@ -3358,64 +3358,64 @@ challenge here and go home.[A][.][X]
 
 
 ## VRB3_0xE1_BQ 
-I heard rumors of a child prodigy.[A][.][X]
+I heard rumors of a child prodigy.[A][X]
 
 ## VRB3_0xE1_BD
 The rumors were true![N]
 So, it was you who beat Giovanni[N]
-of Team Rocket?[A][.][X]
+of Team Rocket?[A][X]
 
 ## VRB3_0xE2_BQ 
 trainers live to seek stronger[N]
-opponents.[A][.][X]
+opponents.[A][X]
 
 ## VRB3_0xE2_BD
 Oh![N]
-So strong![A][.][X]
+So strong![A][X]
 
 
 ## VRB3_0xE3_BQ 
 I'll show you just how good you[N]
-are. Not![A][.][X]
+are. Not![A][X]
 
 ## VRB3_0xE3_BD 
 I'm furious![N]
 You showed me just how good[N]
-I was...[A][.][X]
+I was...[A][X]
 
 ## VRB3_0xE4_BQ 
-Only the chosen can pass here![A][.][X]
+Only the chosen can pass here![A][X]
 
 ## VRB3_0xE4_BD
 I don't believe it![N]
 All trainers here are headed to[N]
 the Pokémon League.[A][N]
-Don't let down your guard.[A][.][X]
+Don't let down your guard.[A][X]
 
 
 ## MoltresChallengeText
-Baroo![A][.][X]
+Baroo![A][X]
 
 ## MoltresDefeatText
-Moltres fled somewhere![A][.][X]
+Moltres fled somewhere![A][X]
 
 ## ZapdosChallengeText
-Baroo![A][.][X]
+Baroo![A][X]
 
 ## ZapdosDefeatText
-Zapdos fled somewhere![A][.][X]
+Zapdos fled somewhere![A][X]
 
 ## ArticunoChallengeText
-Baroo![A][.][X]
+Baroo![A][X]
 
 ## ArticunoDefeatText
-Articuno fled somewhere![A][.][X]
+Articuno fled somewhere![A][X]
 
 ## MewChallengeText
-Mew![A][.][X]
+Mew![A][X]
 
 ## MewDefeatText
-Mew fled somewhere![A][.][X]
+Mew fled somewhere![A][X]
 
 ## VeslyRoute23ChallengeText 
 Hey, Vesly here.[N]
@@ -3426,29 +3426,29 @@ the originals has come through here.[A][N]
 I'd love to hear your experience,[N]
 so feel free to reach out to me.[A][N]
 Of course, this wouldn't be complete[N]
-without a battle, would it?[A][.][X]
+without a battle, would it?[A][X]
 
 ## VeslyRoute23DefeatText 
 I never had a chance, did I?[A][N]
 It seems you're ready.[A][N]
 Ready to challenge the Elite Four.[A][N]
-Good luck, [Tact].[A][.][X]
+Good luck, [Tact].[A][X]
 
 
 ## VeslyNuzlockeRoute23ChallengeText 
 A nuzlocke? Ouch.[N]
 Well, I won't pull my punches.[A][N]
-Sorry about this.[A][.][X]
+Sorry about this.[A][X]
 
 ## Elite4Explanation
 You can exit anytime, but if you leave[N]
-Lorelei's room, your progress resets.[A][.][X]
+Lorelei's room, your progress resets.[A][X]
 
 ## Elite4ExitText
 If you exit, your progress[N]
 will be reset.[A][Clear]
 Will you leave?[N]
-[Yes][.][X]
+[Yes][X]
 
 ## LoreleiChallengeText
 [OpenMidLeft][LoadLorelei][OpenMidLeft]Welcome to the Pokémon League.[A][N]
@@ -3459,7 +3459,7 @@ Your Pokémon will be at my mercy[N]
 as they slip and slide around my room.[A][N]
 Hahaha![N]
 Can you feel it?[A][N]
-The chill has already begun.[A][.][X]
+The chill has already begun.[A][X]
 
 
 
@@ -3468,13 +3468,13 @@ The chill has already begun.[A][.][X]
 [OpenMidLeft][LoadLorelei][OpenMidLeft]You're tougher than expected.[N]
 Go on ahead.[A][N]
 You only got a taste of the[N]
-Pokémon League's power.[A][.][X]
+Pokémon League's power.[A][X]
 
 ## LoreleiTalkText
 You're tougher than expected.[N]
 Go on ahead.[A][N]
 You only got a taste of the[N]
-Pokémon League's power.[A][.][X]
+Pokémon League's power.[A][X]
 
 
 ## BrunoChallengeText
@@ -3486,18 +3486,18 @@ Scale any summit![A][N]
 I've lived and trained this way![N]
 And I will never submit![A][N]
 We will grind you down the mountain![N]
-Hoo hah![A][.][X]
+Hoo hah![A][X]
 	
 
 ## BrunoDefeatText
 [OpenMidLeft][LoadBruno][OpenMidLeft]The best view comes after[N]
 the hardest climb.[A][N]
 My job is done.[N]
-Go face your next challenge.[A][.][X]
+Go face your next challenge.[A][X]
 
 ## BrunoTalkText
 My job is done.[N]
-Go face your next challenge.[A][.][X]
+Go face your next challenge.[A][X]
 
 
 ## AgathaChallengeText
@@ -3515,7 +3515,7 @@ He won't even battle me anymore...[N]
 He's such a fool.[A][N]
 Pokémon are for battling![A][N]
 [Tact]! I'll show you how a real[N]
-Trainer battles![A][.][X]
+Trainer battles![A][X]
 
 
 
@@ -3525,7 +3525,7 @@ duff does not care about you.[A][N]
 He used me, and he's[N]
 using you, too.[A][N]
 I have nothing else to say.[N]
-Run along now, child![A][.][X]
+Run along now, child![A][X]
 
 ## AgathaTalkText
 Hmpf. The old[N]
@@ -3533,7 +3533,7 @@ duff does not care about you.[A][N]
 He used me, and he's[N]
 using you, too.[A][N]
 I have nothing else to say.[N]
-Run along now, child![A][.][X]
+Run along now, child![A][X]
 	
 
 ## LanceChallengeText
@@ -3550,7 +3550,7 @@ They're virtually indestructible.[N]
 What are they even weak to?[A][N]
 I hope you're ready to lose.[A][N]
 Your League challenge ends with[N]
-me, [Tact]![A][.][X]
+me, [Tact]![A][X]
 
 
 ## LanceDefeatText
@@ -3569,7 +3569,7 @@ Gary![A][N]
 He beat the Elite Four before[N]
 you.[A][N]
 He is the real Pokémon[N]
-League Champion.[A][.][X]
+League Champion.[A][X]
 
 ## LanceTalkText
 I still can't believe my dragons[N]
@@ -3584,7 +3584,7 @@ Gary![A][N]
 He beat the Elite Four before[N]
 you.[A][N]
 He is the real Pokémon[N]
-League Champion.[A][.][X]
+League Champion.[A][X]
 
 
 ## GaryChallengeText
@@ -3603,16 +3603,16 @@ I'm the Pokémon League Champion![A][N]
 Do you know what that means?[A][N]
 I'll tell you.[A][N]
 [OpenMidLeft][LoadGaryBattle]I am the most powerful trainer in[N]
-the world![A][.][X]
+the world![A][X]
 
 ## GaryDefeatPhaseOneText
 [OpenMidRight][LoadGaryPoint][OpenMidRight][ToggleColorInvert]NO![N]
 Impossible![A][N]
-[LoadGaryBattle]I won't lose![A][ToggleColorInvert][.][X]
+[LoadGaryBattle]I won't lose![A][ToggleColorInvert][X]
 
 
 ## GaryGamesharkText
-Gary took out his [ToggleRed]Gameshark![ToggleRed][A][.][X]
+Gary took out his [ToggleRed]Gameshark![ToggleRed][A][X]
 
 ## GaryDefeatText
 [OpenMidLeft][LoadGaryPoint][OpenMidLeft]You beat me at my best![A][N]
@@ -3626,7 +3626,7 @@ I never made any mistakes raising[N]
 my Pokémon...[A][N]
 Darn it! You're the new Pokémon[N]
 League CHAMPION![A][N]
-Although I don't like to admit it...[A][.][X]
+Although I don't like to admit it...[A][X]
 
 ## GaryTalkText
 You beat me at my best![A][N]
@@ -3640,7 +3640,7 @@ I never made any mistakes raising[N]
 my Pokémon...[A][N]
 Darn it! You're the new Pokémon[N]
 League Champion![A][N]
-Although I don't like to admit it...[A][.][X]
+Although I don't like to admit it...[A][X]
 
 
 ## OakLeagueText
@@ -3651,7 +3651,7 @@ You're the new Pokémon[N]
 League Champion![A][N]
 You've grown up so much since you[N]
 left to work on your Pokédex.[A][N]
-[Tact], you have come of age![A][.][X]
+[Tact], you have come of age![A][X]
 
 ## OakLeagueText2 
 [OpenMidRight][LoadOak][OpenMidRight]OAK: Gary...[N]
@@ -3665,7 +3665,7 @@ you lost?[A][N]
 You have forgotten to treat your[N]
 Pokémon with love and trust.[A][N]
 Without them, you will never[N]
-become a Champ again![A][.][X]
+become a Champ again![A][X]
 
 ## OakLeagueText3
 [OpenMidRight][LoadOak][OpenMidRight]OAK: [Tact].[A][N]
@@ -3674,7 +3674,7 @@ was not just your own doing.[A][N]
 The bond you share with your[N]
 Pokémon is marvelous.[A][N]
 [Tact]![N]
-Come with me![A][.][X]
+Come with me![A][X]
 
 
 ## OakLeagueText4
@@ -3690,19 +3690,19 @@ the Hall of Fame.[A][N]
 You have worked hard to become[N]
 the new League Champion.[A][N]
 Congratulations, [Tact], you and[N]
-your Pokémon are Hall of Famers![A][.][X]
+your Pokémon are Hall of Famers![A][X]
 
 ## BrockRematchText
 [OpenMidRight][LoadBrock][OpenMidRight]Ah, you've come back.[N]
 I won't hold back this time.[A][N]
-Let's go![A][.][X]
+Let's go![A][X]
 
 ## BrockRematchDefeatText 
 [OpenMidRight][LoadBrock][OpenMidRight]Every town's Pokémon Gym is different![N]
 Pewter Gym's design is my pride.[A][N]
 The tricks aren't much, but you can't[N]
 deny that when you enter, the design[A][N]
-has a breathtaking impact, right?[A][.][X]
+has a breathtaking impact, right?[A][X]
 
 ## MistyRematchText
 [OpenMidRight][LoadMisty][OpenMidRight]Hey, do you have a favorite[N]
@@ -3712,7 +3712,7 @@ along Route 25![A][N]
 I've got so many memories of[N]
 things along that coast...[A][N]
 What kinds of memories? Pfft![N]
-Like I'd tell you![A][.][X]
+Like I'd tell you![A][X]
 
 ## MistyRematchDefeatText
 [OpenMidRight][LoadMisty][OpenMidRight]Hey, did you hear? If you take[N]
@@ -3721,7 +3721,7 @@ partner and stare into the pool of[N]
 water, you get to make a true-love wish![A][N]
 You didn't hear about that?[N]
 Really?[A] Well, that would be[N]
-because I just made it up! Ha ha ha![A][.][X]
+because I just made it up! Ha ha ha![A][X]
 
 
 
@@ -3736,38 +3736,38 @@ I tell you, kid, electric Pokémon[N]
 saved me during the war![A][N]
 They zapped my enemies into[N]
 paralysis![A][N]
-The same as I'll do to you![A][.][X]
+The same as I'll do to you![A][X]
 	
 ## LtSurgeDefeatText
 [OpenMidRight][LoadLtSurge][OpenMidRight]Bah. As a reward for your win,[N]
 take this Thunder Badge.[A][N]
 It mighta been a fluke,[N]
-but rules are rules...[A][.][X]
+but rules are rules...[A][X]
 
 ## LtSurgeWaitText
 [OpenMidRight][LoadLtSurge][OpenMidRight]Hold up, kid.[N]
-Take this![A][.][X]
+Take this![A][X]
 
 ## LtSurgeRewardText
 [OpenMidRight][LoadLtSurge][OpenMidRight]This here'll make the[N]
 difference 'tween life and[A][N]
 death, sometimes![A][N]
 'Course, it can come[N]
-back to bite ya.[A][.][X]
+back to bite ya.[A][X]
 
 ## LtSurgeRematchText
 [OpenMidRight][LoadLtSurge][OpenMidRight]When I was fighting for my country,[N]
 I helped raise a lot of trainers.[A][N]
 taught 'em the ropes. I drilled[N]
 'em from dawn to dusk.[A][N]
-You're goin' down![A][.][X]
+You're goin' down![A][X]
 
 
 ## LtSurgeRematchDefeatText
 [OpenMidRight][LoadLtSurge][OpenMidRight]Where'd you train?[N]
 Who taught you how to battle?[A][N]
 We need more folks like[N]
-you on the force.[A][.][X]
+you on the force.[A][X]
 
 
 
@@ -3777,7 +3777,7 @@ You're but a child![A][N]
 You dare challenge me?[N]
 Very well, you shall know true terror.[A][N]
 Prepare to be the victim[N]
-of my sinister technique.[A][.][X]
+of my sinister technique.[A][X]
 
 
 	
@@ -3785,27 +3785,27 @@ of my sinister technique.[A][.][X]
 [OpenMidRight][LoadKoga][OpenMidRight]Humph! You have[N]
 proven your worth![A][N]
 Here![N]
-Take the Soul Badge![A][.][X]
+Take the Soul Badge![A][X]
 
 ## KogaWaitText
 [OpenMidRight][LoadKoga][OpenMidRight]Ah![N]
-Take this, too![A][.][X]
+Take this, too![A][X]
 
 ## KogaRewardText
 [OpenMidRight][LoadKoga][OpenMidRight]This ancient artifact will damage[N]
 nearby enemies after attacking.[A][N]
 It is a secret technique dating[N]
-back some four hundred years.[A][.][X]
+back some four hundred years.[A][X]
 
 ## KogaRematchText
 [OpenMidRight][LoadKoga][OpenMidRight]Fufufu.. we meet again.[N]
 I rule the shadows as a ninja![A][N]
 My intricate style will[N]
-confound and destroy you![A][.][X]
+confound and destroy you![A][X]
 
 ## KogaRematchDefeatText
 [OpenMidRight][LoadKoga][OpenMidRight]My efforts failed again.[N]
-I must hone my skills.[A][.][X]
+I must hone my skills.[A][X]
 
 ## ErikaChallengeText
 [OpenMidRight][LoadErika][OpenMidRight]My name is Erika.[A][N]
@@ -3814,23 +3814,23 @@ concoct herbal remedies.[A][N]
 I use Pokémon in my research[N]
 in pursuit of scientific truths.[A][N]
 You wish to challenge me?[A][N]
-Very well, but I shall not lose.[A][.][X]
+Very well, but I shall not lose.[A][X]
 
 ## ErikaDefeatText
 [OpenMidRight][LoadErika][OpenMidRight]I concede defeat.[N]
 It's curious, how strong you are...[A][N]
 I must confer on you the[N]
-Rainbow Badge.[A][.][X]
+Rainbow Badge.[A][X]
 
 ## ErikaWaitText
 [OpenMidRight][LoadErika][OpenMidRight][Tact]![N]
-Please, take this.[A][.][X]
+Please, take this.[A][X]
 
 ## ErikaRewardText
 [OpenMidRight][LoadErika][OpenMidRight]This will soothe and restore[N]
 all nearby allies.[A][N]
 I hope you'll make[N]
-good use of it.[A][.][X]
+good use of it.[A][X]
 
 
 ## ErikaRematchText
@@ -3843,14 +3843,14 @@ wither and die.[A][N]
 Pokémon, too, are delicate.[A][N]
 Exposed to certain stimuli.. they'll[N]
 quickly pass out.[A][N]
-Here, I'll show you.[A][.][X]
+Here, I'll show you.[A][X]
 
 ## ErikaRematchDefeatText
 [OpenMidRight][LoadErika][OpenMidRight]Nobody blinks an eye when[N]
 you experiment on plants.[A][N]
 But the second you use live[N]
 critters as specimens, there's[A][N]
-an uproar...[A][.][X]
+an uproar...[A][X]
 
 //I installed cameras around this gym.[A][N]
 //Things are easier... when they're[N]
@@ -3864,41 +3864,41 @@ I feel them, too.[A][N]
 Prophecies, memories, sensations...[N]
 I meditate to regain control.[A][N]
 You're in the way of my solitude.[N]
-I will now take control.[A][.][X]
+I will now take control.[A][X]
 
 
 ## ShowSabrinaText
-[OpenMidRight][LoadSabrina][OpenMidRight]...[A][CloseSpeechSlow][.][X]
+[OpenMidRight][LoadSabrina][OpenMidRight]...[A][CloseSpeechSlow][X]
 
 ## SabrinaDefeatText
 [OpenMidRight][LoadSabrina][OpenMidRight]Hmpf. Go now.[A][N]
 Your victory has earned[N]
 you the Marsh Badge.[A][N]
 You may now cross the harsh[N]
-seas and head to Cinnabar...[A][.][X]
+seas and head to Cinnabar...[A][X]
 
 ## SabrinaWaitText
 [OpenMidRight][LoadSabrina][OpenMidRight]Wait, please take[N]
-this with you.[A][.][X]
+this with you.[A][X]
 
 ## SabrinaRewardText
 [OpenMidRight][LoadSabrina][OpenMidRight]This concentrates your psychic[N]
 power to evade criticals.[A][N]
 What? Everyone has psychic power.[N]
-They just don't realize it.[A][.][X]
+They just don't realize it.[A][X]
 
 ## SabrinaRematchText
 [OpenMidRight][LoadSabrina][OpenMidRight]Psychic ability is all about control.[A][N]
 You close your eyes, clear your mind,[N]
 and push things away.[A][N]
 Just keep pushing until nothing[N]
-can bother you anymore.[A][.][X]
+can bother you anymore.[A][X]
 
 ## SabrinaRematchDefeatText
 [OpenMidRight][LoadSabrina][OpenMidRight]I envy you.[A][N]
 Your mind is weak, but you[N]
 are not afflicted by it.[A][N]
-Perhaps control isn't everything.[A][.][X]
+Perhaps control isn't everything.[A][X]
 
 
 
@@ -3914,31 +3914,31 @@ Nothing can withstand intense heat![A][N]
 My fiery Pokémon will incinerate[N]
 any challenger![A][N]
 Hah![N]
-You better have Burn Heal![A][.][X]
+You better have Burn Heal![A][X]
 
 ## BlaineDefeatText
 [OpenMidRight][LoadBlaine][OpenMidRight]I have burned down to nothing![N]
 Not even ashes remain![A][N]
-You have earned the Volcano Badge.[A][.][X]
+You have earned the Volcano Badge.[A][X]
 
 ## BlaineWaitText
-[OpenMidRight][LoadBlaine][OpenMidRight]Here, you can have this, too![A][.][X]
+[OpenMidRight][LoadBlaine][OpenMidRight]Here, you can have this, too![A][X]
 
 ## BlaineRewardText
 [OpenMidRight][LoadBlaine][OpenMidRight]This headband will[N]
-fire you up![A][.][X]
+fire you up![A][X]
 
 ## BlaineRematchText
 [OpenMidRight][LoadBlaine][OpenMidRight]I've been training in the[N]
 Seafoam Islands lately.[A][N]
 The frigid temperatures just[N]
-make our hearts burn hotter![A][.][X]
+make our hearts burn hotter![A][X]
 
 ## BlaineRematchDefeatText
 [OpenMidRight][LoadBlaine][OpenMidRight]I've put my life into this gym.[N]
 Yet, it is still not enough.[A][N]
 I must train in even more[N]
-extreme temperatures.[A][.][X]
+extreme temperatures.[A][X]
 
 
 
@@ -3951,7 +3951,7 @@ But, you have found me again.[N]
 So be it.[A][Clear]
 This time, I'm not holding back![A][N]
 Once more, you shall face[N]
-Giovanni, the greatest trainer![A][.][X]
+Giovanni, the greatest trainer![A][X]
 
 
 ## Giovanni_GymDefeatText
@@ -3959,12 +3959,12 @@ Giovanni, the greatest trainer![A][.][X]
 That was a truly intense fight.[A][Clear]
 You have won![A][N]
 As proof, here is the Earth Badge,[N]
-and with it, the power of Strength![A][.][X]
+and with it, the power of Strength![A][X]
 
 
 ## Giovanni_GymWaitText
 [OpenMidRight][LoadGiovanni][OpenMidRight]Consider this a gift for your Pokémon[N]
-League challenge.[A][.][X]
+League challenge.[A][X]
 
 ## Giovanni_GymRewardText
 [OpenMidRight][LoadGiovanni][OpenMidRight]Having lost in this fashion, [N]
@@ -3975,7 +3975,7 @@ finished forever![A][N]
 As for myself, I shall dedicate[N]
 my life to training again.[A][N]
 Let us meet again someday![N]
-Farewell![A][.][X]
+Farewell![A][X]
 
 ## GaryRematchText
 [OpenMidRight][LoadGaryPoint][OpenMidRight]Hahaha, it's [Tact]![N]
@@ -3986,7 +3986,7 @@ Can you believe it?[N]
 I haven't given anyone a badge yet.[A][N]
 [LoadGaryPoint]It's thanks to me[N]
 no one's challenged you yet.[A][N]
-[LoadGaryBattle]Let's settle the score, now.[A][.][X]
+[LoadGaryBattle]Let's settle the score, now.[A][X]
 
 ## GaryRematchDefeatText
 [OpenMidRight][LoadGaryShrug][OpenMidRight]Tcch. You only won 'cuz[N]
@@ -3994,32 +3994,32 @@ you have plot armor.[A][N]
 Overpowered protagonist much?[N]
 You're the real cheater.[A][N]
 How many times have you[N]
-reloaded a save?[A][.][X]
+reloaded a save?[A][X]
 
 ## MewAlertedText
-[OpenMidRight][LoadMew][OpenMidRight]...![A][.][X]
+[OpenMidRight][LoadMew][OpenMidRight]...![A][X]
 
 ## CeruleanCaveUnworhtyText
 A psychic barrier seals the cave.[N]
-You are unworthy.[A][.][X]
+You are unworthy.[A][X]
 
 ## CeruleanCaveSealText
-A psychic barrier seals the cave.[A][.][X]
+A psychic barrier seals the cave.[A][X]
 
 ## MewSealText
-You feel the tug of a cruise ship...[A][.][X]
+You feel the tug of a cruise ship...[A][X]
 
 ## ArticunoSealText
 You sense a chill from a[N]
-faraway, desolate cave...[A][.][X]
+faraway, desolate cave...[A][X]
 
 ## ZapdosSealText
 A jolt of electricity sparks[N]
-your interest to explore elsewhere...[A][.][X]
+your interest to explore elsewhere...[A][X]
 
 ## MoltresSealText
 The path to victory ignites[N]
-your passion for battle...[A][.][X]
+your passion for battle...[A][X]
 
 
 
@@ -4032,25 +4032,25 @@ I'm the Move Reminder.[A][N]
 //For a heart scale, I can remind[N]
 //a Pokémon of who they once were.[A][N]
 I can remind a Pokémon[N]
-of who they once were.[A][.][X]
+of who they once were.[A][X]
 
 ## MoveRelearnerYes
 Shall I reinvigorate a Pokémon?[N]
-[Yes][.][X]
+[Yes][X]
 
 ## MoveRelearnerHeartScale
 I'm afraid you'll need[N]
-a heart scale.[A][.][X]
+a heart scale.[A][X]
 
 ## MoveRelearnerPokemonTalk
 Just have your Pokémon[N]
-come up to me.[A][.][X]
+come up to me.[A][X]
 
 ## MewtwoChallengeText
 [OpenMidLeft][LoadMewtwo][OpenMidLeft][ToggleColorInvert]You, champion of Kanto,[N]
 I sense your overwhelming ambition.[A][N]
 If you desire power, then[N]
-I will show you power.[A][.][X]
+I will show you power.[A][X]
 
 
 
