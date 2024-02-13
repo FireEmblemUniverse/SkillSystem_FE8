@@ -1,16 +1,16 @@
 
 # 0x0002 textWeaponRankIncreasedTo
- Weapon rank increased to [X]
+ Weapon rank increased to [.][X]
 
 #0x94 Text_Options_HPBars
-Map HP Bars[X]
+Map HP Bars[.][X]
 
 #0xB2 Text_Options_HPBars_Desc
-Show HP bars and warning icons[X]
+Show HP bars and warning icons[.][X]
 
 #0x3A LearnedSkillText
 //#first text ID in the free block
-Learned  [X]
+Learned  [.][X]
 
 
 
@@ -18,132 +18,132 @@ Learned  [X]
 
 #0xd4c LikesText
 //#first text ID in the free block
-Likes:[X]
+Likes:[.][X]
 
 #0xd4d DislikesText
-[0x9E]i[0x90]li[0x8A][0x85][0x90]:[X]
+[0x9E]i[0x90]li[0x8A][0x85][0x90]:[.][X]
 
 #0xd4e HeightText
-Height:[X]
+Height:[.][X]
 
 #0xd4f AgeText
-Age:[X]
+Age:[.][X]
 
 
 #0x9E TxtData0x09E
-[OpenRight][X]
+[OpenRight][.][X]
 #0xBA TxtData0x0BA
-[OpenRight][X]
+[OpenRight][.][X]
 
 #0xF04 TxtData0xF04
 Fallen units return
 in next chapter.
 Recommended for 
 Casual Gamers and
-IronMan player.[X]
+IronMan player.[.][X]
 
 #0xF05 TxtData0xF05
 Fallen units are
 gone and disappear.
 Recommended for if
 you want to play
-tough simulations.[X]
+tough simulations.[.][X]
 
 
 #0x9B7 PlaceUnitsText
- Toy Box[X]
+ Toy Box[.][X]
 
 #0x9B8 PlaceUnitsHelpText
-Freely place units.[X]
+Freely place units.[.][X]
 
 #0xF17 TxtData0xF17
- Wait >>[X]
+ Wait >>[.][X]
 
 #0xD4B TxtData0x0D4B
-Debug Error[X]
+Debug Error[.][X]
 
 #0xEA0 HouseText
 //#first text ID in the free block
-[MidRight][LoadFace][CurrentPortrait]Nothing to see here.[A][X]
+[MidRight][LoadFace][CurrentPortrait]Nothing to see here.[A][.][X]
 
 ## VillageText
-[MidRight][LoadFace][0xFF][0xFF]These look useful.[A][X]
+[MidRight][LoadFace][0xFF][0xFF]These look useful.[A][.][X]
 
 ## DV1Desc
 Freeze all enemies[N]
-for one turn[X]
+for one turn[.][X]
 
 ## nameCamus
 //#for identity problems
-Camus[X]
+Camus[.][X]
 
 ## nameSirius
-Sirius[X]
+Sirius[.][X]
 
 ## nameZeke
-Zeke[X]
+Zeke[.][X]
 
 ## StairsNameText
- Teleport[X]
+ Teleport[.][X]
 
 ## StairsDescText
 Take this teleporter[N]
-somewhere...[X]
+somewhere...[.][X]
 
 ## StairsBlockedText
 The teleporter is blocked[N]
-from the other side.[X]
+from the other side.[.][X]
 
 ## RaidNameText
- Raid[X]
+ Raid[.][X]
 
 ## RaidDescText
 Destroy this village[N]
-for items and gold.[X]
+for items and gold.[.][X]
 
 ## EscapeName
- Escape[X]
+ Escape[.][X]
 
 ## EscapeDesc
 Have this unit[N]
-leave this chapter.[X]
+leave this chapter.[.][X]
 
 ## ArriveName
- Arrive[X]
+ Arrive[.][X]
 
 ## ArriveDesc
 Complete this chapter[N]
-by having this unit arrive.[X]
+by having this unit arrive.[.][X]
 
 ## LordMustEscapeLastText
-This unit must escape last.[X]
+This unit must escape last.[.][X]
 
 ## Mov_Text_ID
-Mov[X]
+Mov[.][X]
 
 ## UM_GaidenBlackMagic
- Attack[X]
+ Attack[.][X]
 
 ## UM_GaidenWhiteMagic
- Debuff[X]
+ Debuff[.][X]
 
 ## UM_GaidenMagicDesc
-Attack an enemy.[X]
+Attack an enemy.[.][X]
 
 ## GaidenMagicUMErrorText
 You don't have enough HP[NL]
-to use any moves.[X]
+to use any moves.[.][X]
 
 ## GaidenMagicSpellMenuErrorText
 You don't have enough HP[NL]
-to use this attack.[X]
+to use this attack.[.][X]
 
 ## GaidenMagicHPCostText
-Cost[X]
+Cost[.][X]
 
 ## PrepScreenUseSkillScroll
 # this iterates automatically, so if the last one with a fixed address is 0x1500, the first free is 1501 
- Skill learned[X]
+ Skill learned[.][X]
  
  #include "unitinfo_text.txt"
  

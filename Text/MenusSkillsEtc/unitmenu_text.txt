@@ -1,502 +1,502 @@
 
 ## UM_Travel
- Travel[X]
+ Travel[.][X]
 
 ## UM_TravelDesc
 Travel via fly, dig[N]
-or teleport.[X]
+or teleport.[.][X]
 
 ## CM_Dig
- Dig[X]
+ Dig[.][X]
  
 ## CM_DigDesc
-Dig out of dungeons.[X]
+Dig out of dungeons.[.][X]
 
 ## CM_EscapeRope
- Escape Rope[X]
+ Escape Rope[.][X]
  
 ## CM_EscapeRopeDesc
-Escape out of dungeons.[X]
+Escape out of dungeons.[.][X]
 
 ## CM_Teleport
- Teleport[X]
+ Teleport[.][X]
 
 ## CM_TeleportDesc 
 Teleport to your last[N]
-visited Pokécenter.[X]
+visited Pokécenter.[.][X]
 
 ## CM_WarpCrystal
- Warp Crystal[X]
+ Warp Crystal[.][X]
 
 ## CM_WarpCrystalDesc 
 Teleport to your last[N]
-visited Pokécenter.[X]
+visited Pokécenter.[.][X]
 
 ## UM_Revive
- Revive[X]
+ Revive[.][X]
 
 ## UM_ReviveDesc
-Revive a fainted Pokémon.[X]
+Revive a fainted Pokémon.[.][X]
 
 
 ## TurboText
-Turbo[X]
+Turbo[.][X]
  
 ## TurboHelpText
-Speedup various mechanics.[X]
+Speedup various mechanics.[.][X]
 
 ## PrepScreenExitText
-Exit[X]
+Exit[.][X]
 
 ## PrepScreenExitHelpText
-Leave this menu.[X]
+Leave this menu.[.][X]
 
 ## UseName
- Use[X]
+ Use[.][X]
  
  ## RepelStepsRemainingText
 [LoadDex]Your repel will last[N]
-another [G] steps.[A][X]
+another [G] steps.[A][.][X]
 
 ## FMU_MenuName
- Grid Mode[X]
+ Grid Mode[.][X]
 
 ## FMU_MenuDesc
 Control multiple units[N]
-on a grid.[X]
+on a grid.[.][X]
 
 ## UM_Learnset
- Learnset[X]
+ Learnset[.][X]
 
 ## UM_LearnsetDesc
-View moves to be learned.[X]
+View moves to be learned.[.][X]
 
 ## UM_HealTile
- Heal[X]
+ Heal[.][X]
  
 ## UM_HealTileDesc
-Heal nearby units.[X]
+Heal nearby units.[.][X]
 ## SuspiciousRockText
-A suspicious looking rock...[A][X]
+A suspicious looking rock...[A][.][X]
 
 ## PokedexNameText
- Pokédex[X]
+ Pokédex[.][X]
 
 ## PokedexDescText
-View Pokémon data[X]
+View Pokémon data[.][X]
 
 ## OrderMovesName
- Moves[X]
+ Moves[.][X]
 
 ## QuicksaveHelpText
-Create a temporary save.[X]
+Create a temporary save.[.][X]
 
 ## CM_QuicksaveText
- ^{Quicksave}[X]
+ ^{Quicksave}[.][X]
 
 ## ConfigText
- Config[X]
+ Config[.][X]
  
 ## ConfigHelpText
-Configure game options.[X]
+Configure game options.[.][X]
 
 ## UM_Promote
- Evolve[X]
+ Evolve[.][X]
  
 ## UM_PromoteDesc
 Evolve this unit. There is no[N]
-reason not to evolve immediately.[X]
+reason not to evolve immediately.[.][X]
 
 
 ## UM_Fly
- Fly[X]
+ Fly[.][X]
 
 ## UM_FlyDesc
-Fly to a destination.[X]
+Fly to a destination.[.][X]
 
 ## UM_Fly2
- Fly Menu[X]
+ Fly Menu[.][X]
 
 ## UM_FlyDesc2
 Fly to a destination[N]
-with a basic menu.[X]
+with a basic menu.[.][X]
 
 ## QuicksaveText
-Quicksave[X]
+Quicksave[.][X]
 ## PlayerPhaseHelpText
-Autosave at the start of Player Phase.[X]
+Autosave at the start of Player Phase.[.][X]
 ## PlayerPhaseText
-Auto[X]
+Auto[.][X]
 ## ManualHelpText
-Quicksave manually from the Ch. Menu.[X]
+Quicksave manually from the Ch. Menu.[.][X]
 ## ManualText
-Manual[X]
+Manual[.][X]
 
 ## DangerRadiusText
-Danger Zone[X]
+Danger Zone[.][X]
 ## DangerRadiusHelpText
-Display Danger Zone automatically.[X]
+Display Danger Zone automatically.[.][X]
 ## DangerRadiusAutoText
-Auto[X]
+Auto[.][X]
 ## DangerRadiusManualHelpText
-Press Select to toggle Danger Zone.[X]
+Press Select to toggle Danger Zone.[.][X]
 ## DangerRadiusManualText
-Manual[X]
+Manual[.][X]
 
 ## HelpInfoText
-Help Info[X]
+Help Info[.][X]
 ## HelpInfoHelpText
-Provide helpful information.[X]
+Provide helpful information.[.][X]
 ## HelpInfoEnableText
-ON[X]
+ON[.][X]
 ## HelpInfoDisableHelpText
-Disable helpful information.[X]
+Disable helpful information.[.][X]
 ## HelpInfoDisableText
-OFF[X]
+OFF[.][X]
 
 ## FullyParalyzedText
-Fully Paralyzed![A][X]
+Fully Paralyzed![A][.][X]
 
 ## OrderMovesDesc
 Arrange your moves[N]
-for counter-attacking.[X]
+for counter-attacking.[.][X]
 
 ## UM_RecoverMove
- Recover[X]
+ Recover[.][X]
 
 ## UM_Wish
- Wish[X]
+ Wish[.][X]
  
 ## UM_HealPulse
- Heal Pulse[X]
+ Heal Pulse[.][X]
 
 ## UM_SplashName
- Splash[X]
+ Splash[.][X]
  
 ## UM_SplashDesc
-Does nothing.[X]
+Does nothing.[.][X]
 
 
 ## UM_SwordsDanceName ^
- Swords Dance[X]
+ Swords Dance[.][X]
 
 ## UM_SwordsDanceDesc 
-+10 Str.[X]
++10 Str.[.][X]
 
 ## UM_GuardName
- Guard[X]
+ Guard[.][X]
 
 ## UM_GuardDesc
-+4 HP/Def/Res.[X]
++4 HP/Def/Res.[.][X]
 
 ## GuardMoveName
-Guard[X]
+Guard[.][X]
 
 ## GuardMoveDesc
-+4 HP/Def/Res.[X]
++4 HP/Def/Res.[.][X]
 
 ## UM_HardenName
- Harden[X]
+ Harden[.][X]
 
 ## UM_HardenDesc
-+5 Def.[X]
++5 Def.[.][X]
 
 ## UM_TailwindName
- Tailwind[X]
+ Tailwind[.][X]
 
 ## UM_TailwindDesc
-+5 Spd to nearby allies.[X]
++5 Spd to nearby allies.[.][X]
 
 ## UM_HealPulseName
- Heal Pulse[X]
+ Heal Pulse[.][X]
 
 ## UM_HealPulseDesc
-Restores HP to a nearby ally.[X]
+Restores HP to a nearby ally.[.][X]
 
 ## UM_WishName
- Wish[X]
+ Wish[.][X]
 
 ## UM_WishDesc
-Restores HP to nearby allies.[X]
+Restores HP to nearby allies.[.][X]
 
 ## UM_BulkUpName
- Bulk Up[X]
+ Bulk Up[.][X]
 
 ## UM_BulkUpDesc
-+5 Str/Def.[X]
++5 Str/Def.[.][X]
 
 ## UM_CalmMindName
- Calm Mind[X]
+ Calm Mind[.][X]
 
 ## UM_CalmMindDesc
-+5 Mag/Res.[X]
++5 Mag/Res.[.][X]
 
 ## UM_HoneClawsName
- Hone Claws[X]
+ Hone Claws[.][X]
 
 ## UM_HoneClawsDesc
-+5 Str, +10 Skl.[X]
++5 Str, +10 Skl.[.][X]
 
 ## UM_FocusEnergyName
- Focus Energy[X]
+ Focus Energy[.][X]
 
 ## UM_FocusEnergyDesc
-+10 Skl.[X]
++10 Skl.[.][X]
 
 ## UM_AgilityName
- Agility[X]
+ Agility[.][X]
 ## UM_AgilityDesc
-+10 Spd.[X]
++10 Spd.[.][X]
 ## UM_AmnesiaName
- Amnesia[X]
+ Amnesia[.][X]
 ## UM_AmnesiaDesc
-+10 Mag/Res.[X]
++10 Mag/Res.[.][X]
 
 
 
 ## SplashMeterRisingText
 Your [Red]Splash[N]
-Meter[Red] is rising![A][X]
+Meter[Red] is rising![A][.][X]
 
 
 ## UM_AoEHelp
-Select an area to Attack. Press L/R to Rotate.[X]
+Select an area to Attack. Press L/R to Rotate.[.][X]
 
 ## UM_AoEHealHelp
-Select an area to Heal. Press L/R to Rotate.[X]
+Select an area to Heal. Press L/R to Rotate.[.][X]
 
 ## UM_AoEName
- AoE[X]
+ AoE[.][X]
 
 ## UM_AoEDesc
-Hit multiple units.[X]
+Hit multiple units.[.][X]
 
 ## UM_AoEName0
- Atk Name[X]
+ Atk Name[.][X]
 
 ## UM_AoEName1
- Atk Name[X]
+ Atk Name[.][X]
 
 ## UM_AoEName2
- Atk Name[X]
+ Atk Name[.][X]
 
 ## UM_AoEName3
- Atk Name[X]
+ Atk Name[.][X]
 
 ## UM_AoEName4
- Atk Name[X]
+ Atk Name[.][X]
 
 ## UM_AoEName5
- Atk Name[X]
+ Atk Name[.][X]
 
 ## UM_AoEName6
- Atk Name[X]
+ Atk Name[.][X]
 
 ## UM_AoEName7
- Atk Name[X]
+ Atk Name[.][X]
 
 ## UM_AoEName8
- Atk Name[X]
+ Atk Name[.][X]
 
 ## UM_AoEName9
- Atk Name[X]
+ Atk Name[.][X]
 
 
 
 ## UM_BlazeName
-Blaze[X]
+Blaze[.][X]
 
 ## UM_TorrentName
-Torrent[X]
+Torrent[.][X]
 
 ## UM_OvergrowthName
-Overgrowth[X]
+Overgrowth[.][X]
 
 ## UM_BlazeDesc
-Burn nearby foes.[X]
+Burn nearby foes.[.][X]
 
 ## UM_TorrentDesc
-Blast nearby foes.[X]
+Blast nearby foes.[.][X]
 
 ## UM_OvergrowthDesc
-Sweep nearby foes.[X]
+Sweep nearby foes.[.][X]
 
 ## UM_RecoverName
- Recover[X]
+ Recover[.][X]
  
 ## UM_RecoverDesc
-Restore some HP.[X]
+Restore some HP.[.][X]
 
 ## UM_GrowthName
-Growth[X]
+Growth[.][X]
 
 ## UM_GrowthDesc
-Boosts Str/Mag/Skl+5.[X]
+Boosts Str/Mag/Skl+5.[.][X]
 
 ## UM_Release
- Release[X]
+ Release[.][X]
  
 ## UM_ReleaseDesc
-Let the Pokémon free.[X]
+Let the Pokémon free.[.][X]
 
 ## ReleasePokemonText
 Will you release this Pokémon?[NL]
-[No][X]
+[No][.][X]
 
 ## GoodbyeReleasePokemonText
-Goodbye![A][X]
+Goodbye![A][.][X]
 
 ## CannotReleasePokemonText
-That's your last one![A][X]
+That's your last one![A][.][X]
 
 ## BetterKeepPokemonText
-Better keep them.[A][X]
+Better keep them.[A][.][X]
 
 
 ## ToyBoxText
- Toy Box[X]
+ Toy Box[.][X]
  
 ## ToyBoxDescText
-Freely place units.[X]
+Freely place units.[.][X]
 
 ## AttackStatsText
-Stats[X]
+Stats[.][X]
 
 ## PressRSkillDetails
 Learn this skill.[NL]
 Press R to view[NL]
-more details.[X]
+more details.[.][X]
 
 ## CannotEquipAccessoryTextID
-You cannot equip this![X]
+You cannot equip this![.][X]
 
 ## IM_UnequipAccessory 
-Unequip[X]
+Unequip[.][X]
 
 ## PressRSpellDetails
 Learn this move.
 #[NL]
 //#Press R to view[NL]
 //#more details.
-[X]
+[.][X]
 
 ## LearnedSpellText
- Learned  [X]
+ Learned  [.][X]
 
 ## SS_LearnNewSpell
- SPALL[X]
+ SPALL[.][X]
 
 ## NoBerriesLeftText
-The tree is barren![A][X]
+The tree is barren![A][.][X]
 
 ## UM_PickBerry
- Forage[X]
+ Forage[.][X]
 ## UM_PickBerryDesc
-Look for berries.[X]
+Look for berries.[.][X]
 
 ## UM_EatBerry
- Eat[X]
+ Eat[.][X]
 ## UM_EatBerryDesc
-Eat from the tree.[X]
+Eat from the tree.[.][X]
 
 
 
 ## UM_Call
- Call[X]
+ Call[.][X]
 ## UM_CallDesc
 Summons your party[N]
-to nearby tiles.[X]
+to nearby tiles.[.][X]
 ## UM_Rest
- Rest[X]
+ Rest[.][X]
 ## UM_RestDesc 
 Heal all units
-and go to sleep.[X]
+and go to sleep.[.][X]
 ## UM_Cut
- Cut[X]
+ Cut[.][X]
 ## UM_CutDesc
-Cut down the bush.[X]
+Cut down the bush.[.][X]
 ## UM_RockSmash
- Rock Smash[X]
+ Rock Smash[.][X]
 ## UM_RockSmashDesc
-Destroy the rocks.[X]
+Destroy the rocks.[.][X]
 ## UM_Strength
- Strength[X]
+ Strength[.][X]
 ## UM_StrengthDesc
-Push heavy objects.[X]
+Push heavy objects.[.][X]
 ## UM_StepOn
- Step-on[X]
+ Step-on[.][X]
 ## UM_StepOnDesc
-This looks dangerous...[X]
+This looks dangerous...[.][X]
 
 
 
 
 ## UM_Jump
- Jump[X]
+ Jump[.][X]
 ## UM_JumpDesc
-Jump into the hole.[X]
+Jump into the hole.[.][X]
 ## UM_Eat
- Eat[X]
+ Eat[.][X]
 ## UM_EatDesc
-Eat the food.[X]
+Eat the food.[.][X]
 ## UM_Examine
- Examine[X]
+ Examine[.][X]
 ## UM_ExamineDesc
-Hmm...[X]
+Hmm...[.][X]
 ## UM_Interact
- Interact[X]
+ Interact[.][X]
 ## UM_InteractDesc
-Perform an action.[X]
+Perform an action.[.][X]
 ## UM_Talk2
- Talk[X]
+ Talk[.][X]
 ## UM_Talk2Desc 
-Start a conversation.[X]
+Start a conversation.[.][X]
 
 
 ## UM_Attack2
- Attack[X]
+ Attack[.][X]
 ## UM_Attack2Desc
-Attack an enemy.[X]
+Attack an enemy.[.][X]
 
 
 ## UM_Enter
- Enter[X]
+ Enter[.][X]
 ## UM_EnterDesc
-Enter into it.[X]
+Enter into it.[.][X]
 
 
 ## UM_Exit2
- Exit[X]
+ Exit[.][X]
 ## UM_Exit2Desc
-Exit out of it.[X]
+Exit out of it.[.][X]
 ## UM_Confirm
- Confirm[X]
+ Confirm[.][X]
 ## UM_ConfirmDesc
-Process action.[X]
+Process action.[.][X]
 ## UM_Read
- Read[X]
+ Read[.][X]
 ## UM_ReadDesc
-Read the words.[X]
+Read the words.[.][X]
 
 ## UM_Take2
- Take[X]
+ Take[.][X]
 ## UM_Take2Desc
-Take the item.[X]
+Take the item.[.][X]
 
 ## UM_Pickup
- Pickup[X]
+ Pickup[.][X]
 ## UM_PickupDesc
-Pick it up.[X]
+Pick it up.[.][X]
 
 ## UM_Save
- Save[X]
+ Save[.][X]
 ## UM_SaveDesc
-Save the game.[X]
+Save the game.[.][X]
 
 ## UM_Use
- Use[X]
+ Use[.][X]
 ## UM_UseDesc
-Use it.[X]
+Use it.[.][X]
 
 
 
@@ -506,514 +506,514 @@ Use it.[X]
 
 
 ## UM_Rally
- Rally[X]
+ Rally[.][X]
 
 ## UM_RallyDesc
-Buff nearby allies.[X]
+Buff nearby allies.[.][X]
 
 ## UM_Lunge
- Lunge[X]
+ Lunge[.][X]
 
 ## UM_LungeDesc
 Switch places with opponent[N]
 after combat.[N]
-(3 Durability Per Hit)[X]
+(3 Durability Per Hit)[.][X]
 
 ## UM_Mercy
- Mercy[X]
+ Mercy[.][X]
 
 ## UM_MercyDesc
 Leave opponent with[N]
 at least 1 HP.[N]
-(3 Durability Per Hit)[X]
+(3 Durability Per Hit)[.][X]
 
 ## UM_Gamble
- Gamble[X]
+ Gamble[.][X]
 
 ## UM_GambleDesc
 2x crit rate, 0.5x hit rate.[N]
-(3 Durability Per Hit)[X]
+(3 Durability Per Hit)[.][X]
 
 
 ## UMText_DV
- Dragon Vein[X]
+ Dragon Vein[.][X]
 
 ## UMText_DVDesc
-Use the power of dragons.[X]
+Use the power of dragons.[.][X]
 
 ## UM_Shove
- Shove[X]
+ Shove[.][X]
 
 ## UM_ShoveDesc
 Push an adjacent unit one[N]
-tile away.[X]
+tile away.[.][X]
 
 ## UM_Smite
- Smite[X]
+ Smite[.][X]
 
 ## UM_SmiteDesc
 Push an adjacent unit two[N]
-tiles away.[X]
+tiles away.[.][X]
 
 ## UM_Pivot
- Pivot[X]
+ Pivot[.][X]
 
 ## UM_PivotDesc
 Move to opposite side of[N]
-an adjacent ally.[X]
+an adjacent ally.[.][X]
 
 ## UM_Reposition
- Reposition[X]
+ Reposition[.][X]
 
 ## UM_RepositionDesc
 Move adjacent ally to this[N]
-unit's opposite side.[X]
+unit's opposite side.[.][X]
 
 ## UM_Swap
- Swap[X]
+ Swap[.][X]
 
 ## UM_SwapDesc
 Swap positions with adjacent[N]
-ally.[X]
+ally.[.][X]
 
 ## UM_Capture
- Capture[X]
+ Capture[.][X]
 
 ## UM_CaptureDesc
-Capture a Pokémon.[X]
+Capture a Pokémon.[.][X]
 
 ## UM_EditSkill
- Edit Skills[X]
+ Edit Skills[.][X]
 
 ## UM_EditSkillDesc
-DEBUG: Edit this unit's skill set.[X]
+DEBUG: Edit this unit's skill set.[.][X]
 
 ## UM_CombatArts
- Combat Arts[X]
+ Combat Arts[.][X]
  
 ## UM_CombatArtsDesc
-Select an alternative attack.[X]
+Select an alternative attack.[.][X]
 
 ## UM_Adept
- Adept[X]
+ Adept[.][X]
  
 ## UM_AdeptDesc
 Gain a consecutive attack.[N]
-(3 Durability Per Hit)[X]
+(3 Durability Per Hit)[.][X]
 
 ## UM_Aether
- Aether[X]
+ Aether[.][X]
  
 ## UM_AetherDesc
 First strike absorbs HP,[N]
 second strike negates defenses.[N]
-(4 Durability Per Hit)[X]
+(4 Durability Per Hit)[.][X]
 
 ## UM_Astra
- Astra[X]
+ Astra[.][X]
  
 ## UM_AstraDesc
 5 attacks at half damage.[N]
-(1 Durability Per Hit)[X]
+(1 Durability Per Hit)[.][X]
 
 ## UM_DragonFang
- Dragon Fang[X]
+ Dragon Fang[.][X]
  
 ## UM_DragonFangDesc
 1.5x damage.[N]
-(3 Durability Per Hit)[X]
+(3 Durability Per Hit)[.][X]
 
 ## UM_Glacies
- Glacies[X]
+ Glacies[.][X]
 
 ## UM_GlaciesDesc
 Add unit's Resistance to damage[N]
-dealt. (3 Durability Per Hit)[X]
+dealt. (3 Durability Per Hit)[.][X]
 
 ## UM_Ignis
- Ignis[X]
+ Ignis[.][X]
  
 ## UM_IgnisDesc
 Add Def/2 and Res/2[N]
 to damage dealt.[N]
-(3 Durability Per Hit)[X]
+(3 Durability Per Hit)[.][X]
  
 ## UM_Luna
- Luna[X]
+ Luna[.][X]
  
 ## UM_LunaDesc
 Negates enemy defenses.[N]
-(3 Durability Per Hit)[X]
+(3 Durability Per Hit)[.][X]
 
 ## UM_Sol
- Sol[X]
+ Sol[.][X]
  
 ## UM_SolDesc
 Restore damage dealt as HP.[N]
-(3 Durability Per Hit)[X]
+(3 Durability Per Hit)[.][X]
 
 ## UM_SureShot
- Sure Shot[X]
+ Sure Shot[.][X]
  
 ## UM_SureShotDesc
 A precision attack that always[N]
 hits and does 1.5x damage.[N]
-(4 Durability Per Hit)[X]
+(4 Durability Per Hit)[.][X]
 
 ## UM_Swarp
- Swarp[X]
+ Swarp[.][X]
 
 ## UM_SwarpDesc
 Swap positions with a distant[N]
-ally.[X]
+ally.[.][X]
 
 ## UM_Skill1
- Skill1[X]
+ Skill1[.][X]
 ## UM_Skill1_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill2
- Skill2[X]
+ Skill2[.][X]
 ## UM_Skill2_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill3
- Skill3[X]
+ Skill3[.][X]
 ## UM_Skill3_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill4
- Skill4[X]
+ Skill4[.][X]
 ## UM_Skill4_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill5
- Skill5[X]
+ Skill5[.][X]
 ## UM_Skill5_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill6
- Skill6[X]
+ Skill6[.][X]
 ## UM_Skill6_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill7
- Skill7[X]
+ Skill7[.][X]
 ## UM_Skill7_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill8
- Skill8[X]
+ Skill8[.][X]
 ## UM_Skill8_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill9
- Skill9[X]
+ Skill9[.][X]
 ## UM_Skill9_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill10
- Skill10[X]
+ Skill10[.][X]
 ## UM_Skill10_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill11
- Skill11[X]
+ Skill11[.][X]
 ## UM_Skill11_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill12
- Skill12[X]
+ Skill12[.][X]
 ## UM_Skill12_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill13
- Skill13[X]
+ Skill13[.][X]
 ## UM_Skill13_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill14
- Skill14[X]
+ Skill14[.][X]
 ## UM_Skill14_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill15
- Skill15[X]
+ Skill15[.][X]
 ## UM_Skill15_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill16
- Skill16[X]
+ Skill16[.][X]
 ## UM_Skill16_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill17
- Skill17[X]
+ Skill17[.][X]
 ## UM_Skill17_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill18
- Skill18[X]
+ Skill18[.][X]
 ## UM_Skill18_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill19
- Skill19[X]
+ Skill19[.][X]
 ## UM_Skill19_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill20
- Skill20[X]
+ Skill20[.][X]
 ## UM_Skill20_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill21
- Skill21[X]
+ Skill21[.][X]
 ## UM_Skill21_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill22
- Skill22[X]
+ Skill22[.][X]
 ## UM_Skill22_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill23
- Skill23[X]
+ Skill23[.][X]
 ## UM_Skill23_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill24
- Skill24[X]
+ Skill24[.][X]
 ## UM_Skill24_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill25
- Skill25[X]
+ Skill25[.][X]
 ## UM_Skill25_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill26
- Skill26[X]
+ Skill26[.][X]
 ## UM_Skill26_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill27
- Skill27[X]
+ Skill27[.][X]
 ## UM_Skill27_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill28
- Skill28[X]
+ Skill28[.][X]
 ## UM_Skill28_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill29
- Skill29[X]
+ Skill29[.][X]
 ## UM_Skill29_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill30
- Skill30[X]
+ Skill30[.][X]
 ## UM_Skill30_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill31
- Skill31[X]
+ Skill31[.][X]
 ## UM_Skill31_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill32
- Skill32[X]
+ Skill32[.][X]
 ## UM_Skill32_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill33
- Skill33[X]
+ Skill33[.][X]
 ## UM_Skill33_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill34
- Skill34[X]
+ Skill34[.][X]
 ## UM_Skill34_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill35
- Skill35[X]
+ Skill35[.][X]
 ## UM_Skill35_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill36
- Skill36[X]
+ Skill36[.][X]
 ## UM_Skill36_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill37
- Skill37[X]
+ Skill37[.][X]
 ## UM_Skill37_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill38
- Skill38[X]
+ Skill38[.][X]
 ## UM_Skill38_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill39
- Skill39[X]
+ Skill39[.][X]
 ## UM_Skill39_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill40
- Skill40[X]
+ Skill40[.][X]
 ## UM_Skill40_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill41
- Skill41[X]
+ Skill41[.][X]
 ## UM_Skill41_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill42
- Skill42[X]
+ Skill42[.][X]
 ## UM_Skill42_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill43
- Skill43[X]
+ Skill43[.][X]
 ## UM_Skill43_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill44
- Skill44[X]
+ Skill44[.][X]
 ## UM_Skill44_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill45
- Skill45[X]
+ Skill45[.][X]
 ## UM_Skill45_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill46
- Skill46[X]
+ Skill46[.][X]
 ## UM_Skill46_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill47
- Skill47[X]
+ Skill47[.][X]
 ## UM_Skill47_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill48
- Skill48[X]
+ Skill48[.][X]
 ## UM_Skill48_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill49
- Skill49[X]
+ Skill49[.][X]
 ## UM_Skill49_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill50
- Skill50[X]
+ Skill50[.][X]
 ## UM_Skill50_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill51
- Skill51[X]
+ Skill51[.][X]
 ## UM_Skill51_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill52
- Skill52[X]
+ Skill52[.][X]
 ## UM_Skill52_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill53
- Skill53[X]
+ Skill53[.][X]
 ## UM_Skill53_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill54
- Skill54[X]
+ Skill54[.][X]
 ## UM_Skill54_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill55
- Skill55[X]
+ Skill55[.][X]
 ## UM_Skill55_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill56
- Skill56[X]
+ Skill56[.][X]
 ## UM_Skill56_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill57
- Skill57[X]
+ Skill57[.][X]
 ## UM_Skill57_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill58
- Skill58[X]
+ Skill58[.][X]
 ## UM_Skill58_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill59
- Skill59[X]
+ Skill59[.][X]
 ## UM_Skill59_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill60
- Skill60[X]
+ Skill60[.][X]
 ## UM_Skill60_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill61
- Skill61[X]
+ Skill61[.][X]
 ## UM_Skill61_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill62
- Skill62[X]
+ Skill62[.][X]
 ## UM_Skill62_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill63
- Skill63[X]
+ Skill63[.][X]
 ## UM_Skill63_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill64
- Skill64[X]
+ Skill64[.][X]
 ## UM_Skill64_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill65
- Skill65[X]
+ Skill65[.][X]
 ## UM_Skill65_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill66
- Skill66[X]
+ Skill66[.][X]
 ## UM_Skill66_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill67
- Skill67[X]
+ Skill67[.][X]
 ## UM_Skill67_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill68
- Skill68[X]
+ Skill68[.][X]
 ## UM_Skill68_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill69
- Skill69[X]
+ Skill69[.][X]
 ## UM_Skill69_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
 ## UM_Skill70
- Skill70[X]
+ Skill70[.][X]
 ## UM_Skill70_Desc
-Has a variable effect.[X]
+Has a variable effect.[.][X]
 
