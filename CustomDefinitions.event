@@ -31,7 +31,7 @@
 //#define USE_PMD_SPRITES
 
 PUSH; ORG $D74D0	//{U}
-String("V1.13.00 DEBUG BUILD  Feb 2024") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.13.00              Feb 2024") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 #define ProtagID 0x45 
 
