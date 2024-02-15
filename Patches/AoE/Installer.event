@@ -184,7 +184,10 @@ MenuCommandID(QuickAttackName, 				UM_AoEDesc, NormalText, 136, AoE_SpecificUsab
 MenuCommandID(TriAttackName, 				UM_AoEDesc, NormalText, 137, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(FissureName, 				UM_AoEDesc, NormalText, 138, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(BonemerangName, 				UM_AoEDesc, NormalText, 139, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+
+//unused 
 MenuCommandID(FuryCutterName, 				UM_AoEDesc, NormalText, 140, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+
 MenuCommandID(JumpKickName, 				UM_AoEDesc, NormalText, 141, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(IronTailName, 				UM_AoEDesc, NormalText, 142, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(HurricaneName, 				UM_AoEDesc, NormalText, 143, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
@@ -2198,7 +2201,7 @@ BYTE 0 // Config2
 
 // Entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 FuryCutter // Always usable by anyone 
+BYTE 0 0 0 0xFF // Always usable by anyone 
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range

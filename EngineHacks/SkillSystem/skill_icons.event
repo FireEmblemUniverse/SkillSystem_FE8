@@ -30,6 +30,8 @@ ORG SkillIcon(MultiscaleID)
 #incbin "SkillIcons/PowerfulAura.dmp" 
 ORG SkillIcon(SilphScopeID)
 #incbin "SkillIcons/PowerfulAura.dmp" 
+ORG SkillIcon(TintedLensID)
+#incbin "SkillIcons/Boon.dmp" 
 
 ORG SkillIcon(WeakChipDmgID)
 #incbin "SkillIcons/Acrobat.dmp"
