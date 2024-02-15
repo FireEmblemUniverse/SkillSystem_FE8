@@ -3099,8 +3099,8 @@ BYTE 20 Fly
 BYTE 25 Agility //?Buff
 BYTE 30 Ancientpower
 BYTE 35 Avalanche
-BYTE 40 Psychic
-BYTE 45 IceBeam
+BYTE 40 IceBeam
+BYTE 45 Psychic
 BYTE 50 SkyAttack
 BYTE 55 Hurricane
 BYTE 60 Blizzard
@@ -3121,8 +3121,8 @@ BYTE 25 Fly
 BYTE 28 Agility
 BYTE 30 Ancientpower
 BYTE 35 VoltTackle
-BYTE 40 SeismicToss
-BYTE 45 Thunderbolt
+BYTE 40 Thunderbolt
+BYTE 45 HiJumpKick
 BYTE 50 SkyAttack
 BYTE 55 Hurricane
 BYTE 60 ThunderMove
@@ -3142,8 +3142,8 @@ BYTE 25 Agility
 BYTE 30 Ancientpower
 BYTE 35 SacredFire 
 //BYTE 43 Barrier //?Buff (Safeguard) 
-BYTE 40 DarkPulse
-BYTE 45 Flamethrower 
+BYTE 40 Flamethrower
+BYTE 45 DarkPulse
 BYTE 50 SkyAttack
 BYTE 55 Hurricane
 BYTE 60 FireBlast 
@@ -3253,15 +3253,15 @@ BYTE 10 RecoverMove
 BYTE 15 CalmMind
 BYTE 20 Psybeam
 BYTE 25 TriAttack
-BYTE 30 SeismicToss
-BYTE 35 HealPulse
+BYTE 30 ShadowBall 
+BYTE 35 Agility
 //BYTE 40 ShadowBall
 BYTE 45 FlashCannon 
-BYTE 50 DarkPulse
-BYTE 55 Amnesia
-BYTE 60 ShadowBall
+BYTE 50 Amnesia
+BYTE 55 DarkPulse
+BYTE 60 Submission
 BYTE 65 Psychic
-BYTE 75 HyperBeam
+BYTE 70 HyperBeam
 //BYTE 64 ??? ?Buff (Power Swap, Guard Swap)
 //BYTE 79 ??? ?Buff (Me First)
 //BYTE 93 ??? ?Buff (Safeguard)
@@ -3270,25 +3270,20 @@ BYTE 0 0
 ALIGN 4
 MewLearnset:
 BYTE 1 Pound
-BYTE 5 Ancientpower
-BYTE 10 BugBuzz
-BYTE 15 Hurricane
-BYTE 20 PoisonJab
-BYTE 25 HiJumpKick
-BYTE 30 Psychic
-BYTE 35 Earthquake
-BYTE 40 DarkPulse
-BYTE 45 FlashCannon
-BYTE 50 Outrage
-BYTE 55 Amnesia
+BYTE 1 Transform
+BYTE 5 AncientPower
+BYTE 10 HealPulse
+BYTE 15 Psychic
+BYTE 20 Explosion
+BYTE 25 Blizzard
+BYTE 30 SkyAttack
+BYTE 35 BugBuzz
+BYTE 45 SacredFire
+BYTE 50 Sludge
+BYTE 55 Fissure
 BYTE 60 HydroPump
-BYTE 65 ShadowBall
-BYTE 70 Blizzard
-BYTE 75 ThunderMove
-BYTE 80 FireBlast
-BYTE 85 SolarBeam
-BYTE 90 HyperBeam
-BYTE 95 Explosion
+BYTE 65 HiJumpKick
+BYTE 70 SolarBeam
 BYTE 0 0
 
 ALIGN 4
