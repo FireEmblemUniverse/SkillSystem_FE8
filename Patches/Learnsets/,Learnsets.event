@@ -3270,7 +3270,6 @@ BYTE 0 0
 ALIGN 4
 MewLearnset:
 BYTE 1 Pound
-BYTE 1 Transform
 BYTE 5 AncientPower
 BYTE 10 HealPulse
 BYTE 15 Psychic
@@ -3280,9 +3279,9 @@ BYTE 30 SkyAttack
 BYTE 35 BugBuzz
 BYTE 45 SacredFire
 BYTE 50 Sludge
-BYTE 55 Fissure
+BYTE 55 Transform
 BYTE 60 HydroPump
-BYTE 65 HiJumpKick
+BYTE 65 Fissure
 BYTE 70 SolarBeam
 BYTE 0 0
 
