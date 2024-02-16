@@ -8,7 +8,6 @@
 // Numbers will display over map battles unless flag BATTLE_MAPANIMATION_NUMBERS_FLAG is on.
 // define BATTLE_MAPANIMATION_NUMBERS_FLAG as desired (default is 0xEE)
 //#include "Draw/Installer.event"
-
 // if you are using FEBuilder. 
 #ifdef FEBUILDER_EXTRA_ORG
 #include "FEBuilderGBA/EN.event"	//{U}
@@ -2087,7 +2086,7 @@ BYTE 0 // Config2
 
 // Entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 Hex // Always usable by anyone 
+BYTE 0 0 0 HexAtt // Always usable by anyone 
 BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE SpeMin 2 // Attack range

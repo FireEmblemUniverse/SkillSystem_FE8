@@ -229,7 +229,7 @@ UNIT
 
 EnemyTrainersB:
 UNIT 0xD0 RaichuID 0x0 Level(0, Enemy, 1) [7,8]  0b 0x0	0x1 REDA7R8 		[Thunderbolt,GrassKnot,Surf,0x0] PursueWithoutHeedAI
-UNIT 0xA0 MagnetonID 0xD0 Level(0, Enemy, 1) [8,10]  0b 0x0	0x1 REDA8R10 	[Thunder,Screech,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA0 MagnetonID 0xD0 Level(0, Enemy, 1) [8,10]  0b 0x0	0x1 REDA8R10 	[ThunderMove,Screech,0x0,0x0] PursueWithoutHeedAI
 UNIT 0xA1 ElectrodeID 0xD0 Level(0, Enemy, 1) [7,12]  0b 0x0	0x1 REDA7R12 	[Screech,Explosion,0x0,0x0] PursueWithoutHeedAI
 UNIT 0xA2 ElectabuzzID 0xD0 Level(0, Enemy, 1) [4,10]  0b 0x0 0x1 REDA4R10 [ThunderPunch,IcePunch,FirePunch,0x0] PursueWithoutHeedAI
 UNIT 0xA3 JolteonID 0xD0 Level(0, Enemy, 1) [10,10]  0b 0x0	0x1 REDA10R10 	[Thunderbolt,SignalBeam, 0x0,0x0] PursueWithoutHeedAI
