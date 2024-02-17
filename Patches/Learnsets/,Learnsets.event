@@ -1141,11 +1141,12 @@ BYTE 20 Screech
 BYTE 22 Dig
 BYTE 25 TakeDown
 BYTE 28 Glare
-BYTE 33 IronTail
-BYTE 35 DoubleEdge
-BYTE 37 NightSlash
-BYTE 40 XScissor
-BYTE 45 SwordsDance
+BYTE 30 IronTail
+BYTE 32 DoubleEdge
+BYTE 35 NightSlash
+BYTE 38 XScissor
+BYTE 40 SwordsDance
+BYTE 45 Guillotine
 BYTE 0 0
 
 ALIGN 4
@@ -1161,11 +1162,12 @@ BYTE 20 Screech
 BYTE 22 Dig
 BYTE 25 TakeDown
 BYTE 28 Glare
-BYTE 33 IronTail
-BYTE 35 DoubleEdge
-BYTE 37 NightSlash
-BYTE 40 XScissor
-BYTE 45 SwordsDance
+BYTE 30 IronTail
+BYTE 32 DoubleEdge
+BYTE 35 XScissor
+BYTE 38 NightSlash
+BYTE 40 SwordsDance
+BYTE 45 Guillotine
 BYTE 0 0
 
 ALIGN 4
