@@ -60,7 +60,7 @@ ldrb r1,[r1]
 cmp r2,r1
 bne TorchOnOffCheck
 
-ldrb r0,[r4,#0x7]
+ldrb r0,[r4,#0x5]
 push {r2}
 blh CheckEventId,r1
 pop {r2}
