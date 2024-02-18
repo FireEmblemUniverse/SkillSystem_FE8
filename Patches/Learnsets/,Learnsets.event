@@ -2837,14 +2837,16 @@ EeveeLearnset:
 BYTE 1 Growl
 BYTE 1 Tackle
 BYTE 1 TailWhip
-BYTE 5 SandAttack
-BYTE 8 Swift
-BYTE 10 QuickAttack
-BYTE 15 RecoverMove
-BYTE 20 Bite
-BYTE 25 BodySlam
+BYTE 1 SandAttack
+BYTE 5 Swift
+BYTE 7 QuickAttack
+BYTE 10 Bite
+BYTE 15 BodySlam
+BYTE 18 RecoverMove
+BYTE 22 Dig
+BYTE 25 TakeDown
 // BYTE 36 Resv BatonPass
-BYTE 30 TakeDown
+BYTE 30 TriAttack
 BYTE 40 DoubleEdge // LastResort
 BYTE 45 HyperBeam // TrumpCard
 BYTE 0 0
@@ -3157,9 +3159,9 @@ BYTE 11 Headbutt
 BYTE 13 DragonRage
 BYTE 16 Dragonbreath
 BYTE 21 Slam
-BYTE 23 BubbleBeam
+BYTE 23 WaterPulse
 BYTE 25 Agility //?Buff 
-BYTE 28 ShockWave
+BYTE 28 Thunderbolt
 BYTE 30 Fly 
 BYTE 32 Waterfall
 BYTE 35 DragonClaw
@@ -3189,9 +3191,9 @@ BYTE 11 Headbutt
 BYTE 13 DragonRage
 BYTE 16 Dragonbreath
 BYTE 21 Slam
-BYTE 23 BubbleBeam
+BYTE 23 WaterPulse
 BYTE 25 Agility //?Buff 
-BYTE 28 ShockWave
+BYTE 28 Thunderbolt
 BYTE 30 Fly 
 BYTE 32 Waterfall
 BYTE 35 DragonClaw
@@ -3221,9 +3223,9 @@ BYTE 11 Headbutt
 BYTE 13 DragonRage
 BYTE 16 Dragonbreath
 BYTE 21 Slam
-BYTE 23 BubbleBeam
+BYTE 23 WaterPulse
 BYTE 25 Agility //?Buff 
-BYTE 28 ShockWave
+BYTE 28 Thunderbolt
 BYTE 30 Fly 
 BYTE 32 Waterfall
 BYTE 35 DragonClaw
