@@ -6,7 +6,7 @@ typedef struct {
   u8 Page;
   u8 CursorIndex;
   u8 LastCursorIndex;
-  u8 Option[7];
+  s8 Option[8];
   u8 CasualMode;
   u8 FixedGrowths;
   u8 RN;
@@ -21,6 +21,8 @@ void GenerateBGTsa(u16 *MapOffset, u32 NumberOfTiles, u8 PaletteId, u16 baseTile
 void SetOptionFlagsASMC();
 void SaveOptionsData(void* target, unsigned size);
 void LoadOptionsData(void* source, unsigned size);
+
+extern void BG_Fill(void *dest, int b);
 
 extern u8 CasualModeFlagLink;
 
@@ -51,12 +53,12 @@ extern void LZ77UnCompVram();
 extern void nullsub_64();
 
 
-#define BGLoc(BGOffset, x, y) (BGOffset + 0x2 * x + 0x40 * y)
-#define BG0Buffer 0x02022CA8
-#define BG1Buffer 0x020234A8
-#define BG2Buffer 0x02023CA8
-#define BG3Buffer 0x020244A8 
-#define BG0Offset 0x6006000
+#define BGLoc(BGOffset, x, y) (void*)(BGOffset + 0x2 * x + 0x40 * y)
+#define BG0Buffer (void*)0x02022CA8
+#define BG1Buffer (void*)0x020234A8
+#define BG2Buffer (void*)0x02023CA8
+#define BG3Buffer (void*)0x020244A8 
+#define BG0Offset (void*)0x6006000
 #define gColorSpecialEffectsSelectionBuffer (u16*) 0x030030BC
 #define gBg1ControlBuffer (u16*) 0x03003090
 #define SoundRoomTable ((struct SoundRoomData*) 0x8A20E74)
@@ -84,17 +86,6 @@ extern void nullsub_64();
 #define InputDown 0x80
 #define InputR 0x100
 #define InputL 0x200
-
-#define PAGE1MAXINDEX 6
-
-NumberOfOptions[6] { 
-2, 
-2, 
-2, 
-2, 
-2, 
-2, 
-}; 
 
 typedef struct {
 	u8 firstTickDelay;

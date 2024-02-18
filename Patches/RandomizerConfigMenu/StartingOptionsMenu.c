@@ -74,6 +74,18 @@ static const ProcCode NewGameDifficultySelect[] = {
 };
 
 
+#define PAGE1MAXINDEX 7
+const u8 NumberOfOptions[7] = 
+{ 
+2, 
+2, 
+2, 
+2, 
+2, 
+2, 
+2, 
+}; 
+
 static const LocationTable CursorLocationTable[] = {
   {10, 0x18},
   {10, 0x28},
@@ -81,7 +93,8 @@ static const LocationTable CursorLocationTable[] = {
   {10, 0x48},
   {10, 0x58},
   {10, 0x68},
-  {10, 0x78} //,
+  {10, 0x78}, //,
+  {10, 0x88} //,
   // {10, 0x88} //leave room for a description?
 };
 
@@ -94,16 +107,16 @@ void StartingOptionsSetup(OptionsProc* CurrentProc){
 	//set up bg graphics
 	ClearBG0BG1();
 	EnableBgSyncByIndex(0);
-	CpuSet(0x859ED70, (0x020228A8 + 16 * 0x20), 0x20); //ui palette
+	CpuSet((void*)0x859ED70, ((void*)0x020228A8 + 16 * 0x20), 0x20); //ui palette
 
 
-	CpuSet(0x8b1754c+0x20, (0x020228A8 + 8 * 0x20), 0x20); //bg palette
+	CpuSet((void*)0x8b1754c+0x20, ((void*)0x020228A8 + 8 * 0x20), 0x20); //bg palette
 
 	VBlankIntrWait();
-	LZ77UnCompVram(0x8b12db4, 0x6003000); //bg (changed from 0x6008000)
+	LZ77UnCompVram((void*)0x8b12db4, (void*)0x6003000); //bg (changed from 0x6008000)
 	GenerateBGTsa((u16*)BG1Buffer, 0x280, 8, 0x180); //was BG1Buffer
-	FillBgMap(0x6006000, 0); //clear bg0 tilemap
-	FillBgMap(0x6006800, 0); //clear bg1 tilemap
+	//BG_Fill((void*)0x6007000, 0); //clear bg0 tilemap
+	//BG_Fill((void*)0x6007800, 0); //clear bg1 tilemap
 	VBlankIntrWait();
 	*gColorSpecialEffectsSelectionBuffer = 0xA44; //blending set
 	*gBg1ControlBuffer = 0xD03; //priority set
@@ -137,23 +150,34 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 	//clear bg font buffers
 	Text_ResetTileAllocation();
 	// ClearBG0BG1();
-	FillBgMap(BG0Buffer, 0);
+	BG_Fill((u16*)BG0Buffer, 0);
 	EnableBgSyncByIndex(0);
 	//Print Headings
+	char* string = "Settings"; 
 	DrawTextInline(0, BGLoc(BG0Buffer, 2, 0), 4, 0, 8, "Settings");
 	//DrawTextInline(0, BGLoc(BG0Buffer, 19, 0), 4, 0, 8, "<< L/R >>");
 	int i = 0; 
 
+	
 	if (thisPage == 1){
 		//option names
-		DrawTextInline(0, BGLoc(BG0Buffer, 2, 3), 3, 0, 10, "Wild Pokemon:");
-		DrawTextInline(0, BGLoc(BG0Buffer, 2, 5), 3, 0,10, "Trainer Pokemon:");
-		DrawTextInline(0, BGLoc(BG0Buffer, 2, 7), 3, 0, 10, "Gyms/Bosses:");
-		DrawTextInline(0, BGLoc(BG0Buffer, 2, 9), 3, 0, 10, "Items Found:");
-		DrawTextInline(0, BGLoc(BG0Buffer, 2, 11), 3, 0, 10, "Move Stats:");
-		DrawTextInline(0, BGLoc(BG0Buffer, 2, 13), 3, 0, 10, "Stats:");
-		DrawTextInline(0, BGLoc(BG0Buffer, 2, 15), 3, 0, 10, "Growths:");
-		DrawTextInline(0, BGLoc(BG0Buffer, 2, 17), 3, 0, 10, "Music:");
+		string = "Wild Pokemon:"; 
+		DrawTextInline(0, BGLoc(BG0Buffer, 2, 3), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
+		
+		string = "Trainer Pokemon:"; 
+		DrawTextInline(0, BGLoc(BG0Buffer, 2, 5), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
+		string = "Gyms/Bosses:";
+		DrawTextInline(0, BGLoc(BG0Buffer, 2, 7), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
+		string = "Items Found:";
+		DrawTextInline(0, BGLoc(BG0Buffer, 2, 9), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
+		string = "Move Stats:";
+		DrawTextInline(0, BGLoc(BG0Buffer, 2, 11), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
+		string = "Stats:";
+		DrawTextInline(0, BGLoc(BG0Buffer, 2, 13), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
+		string = "Growths:";
+		DrawTextInline(0, BGLoc(BG0Buffer, 2, 15), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
+		string = "Music:";
+		DrawTextInline(0, BGLoc(BG0Buffer, 2, 17), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
 
 
 		//option values
@@ -161,9 +185,11 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 		i = 0; 
 		switch (CurrentProc->Option[i]) { 
 			case 0: { 
-			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, 10, "Normal"); break; } 
+			string = "Normal"; 
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
-			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, 10, "Randomized"); break; } break; 
+			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
 		} 
 		
 		
@@ -171,18 +197,68 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 		i = 1; 
 		switch (CurrentProc->Option[i]) { 
 			case 0: { 
-			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, 10, "Normal"); break; } 
+			string = "Normal"; 
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
-			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, 10, "Randomized"); break; } break; 
+			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
 		} 
 		
 		
 		i = 2; 
 		switch (CurrentProc->Option[i]) { 
 			case 0: { 
-			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, 10, "Normal"); break; } 
+			string = "Normal"; 
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
-			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, 10, "Randomized"); break; } break; 
+			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
+		} 
+		
+		i = 3; 
+		switch (CurrentProc->Option[i]) { 
+			case 0: { 
+			string = "Normal"; 
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 1: { 
+			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
+		} 
+		i = 4; 
+		switch (CurrentProc->Option[i]) { 
+			case 0: { 
+			string = "Normal"; 
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 1: { 
+			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
+		} 
+		i = 5; 
+		switch (CurrentProc->Option[i]) { 
+			case 0: { 
+			string = "Normal"; 
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 1: { 
+			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
+		} 
+		i = 6; 
+		switch (CurrentProc->Option[i]) { 
+			case 0: { 
+			string = "Normal"; 
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 1: { 
+			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
+		} 
+		i = 7; 
+		switch (CurrentProc->Option[i]) { 
+			case 0: { 
+			string = "Normal"; 
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 1: { 
+			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
 		} 
 		
 		
@@ -240,7 +316,7 @@ void SaveOptionsData(void* target, unsigned size) {
 }
 
 void LoadOptionsData(void* source, unsigned size) {
-	ReadSramFast(source, &OptionsSaved, size);
+	ReadSramFast(source, (void*)&OptionsSaved, size);
 }
 
 void SetOptionFlagsASMC() {
@@ -309,12 +385,12 @@ void StartingOptionsLoop(OptionsProc* CurrentProc){
 	*(u32*) 0x5000262 = 0x739eFFFF; //fill in the only obj palette colour that matters lol
 	
 	
-	if (CurrentProc->CursorIndex != CurrentProc->LastCursorIndex) updateOptionsPage(CurrentProc);
-	CurrentProc->LastCursorIndex = CurrentProc->CursorIndex;
+	//if (CurrentProc->CursorIndex != CurrentProc->LastCursorIndex) updateOptionsPage(CurrentProc);
+	//CurrentProc->LastCursorIndex = CurrentProc->CursorIndex;
 	
 	// UpdateBG3HOffset();
 	UpdateHandCursor(CursorLocationTable[CurrentProc->CursorIndex].x, CursorLocationTable[CurrentProc->CursorIndex].y);	
-	if (((newInput & InputStart) != 0)|((newInput & InputA) != 0)) { //press A or Start to continue
+	if ((newInput & InputStart)||(newInput & InputA)) { //press A or Start to continue
 		BreakProcLoop((Proc *)CurrentProc);
 		m4aSongNumStart(0x6B); 
 	};
@@ -322,30 +398,30 @@ void StartingOptionsLoop(OptionsProc* CurrentProc){
 
   if (thisPage == 1) {
     if ((newInput & InputDown) != 0) {
-      if (CurrentProc->CursorIndex < PAGE1MAXINDEX) CurrentProc->CursorIndex++;
-      else CurrentProc->CursorIndex = 0;
-    };
+      if (CurrentProc->CursorIndex < PAGE1MAXINDEX) { CurrentProc->CursorIndex++; }
+      else { CurrentProc->CursorIndex = 0; } 
+	  updateOptionsPage(CurrentProc);
+    }
     if ((newInput & InputUp) != 0) {
-      if (CurrentProc->CursorIndex != 0) CurrentProc->CursorIndex--;
-      else CurrentProc->CursorIndex = PAGE1MAXINDEX;
-    };
-    //CasualMode
-	
-    if (CurrentProc->CursorIndex == 0) {
-      if (newInput & InputLeft) {
+      if (CurrentProc->CursorIndex != 0) { CurrentProc->CursorIndex--; }
+      else { CurrentProc->CursorIndex = PAGE1MAXINDEX; }
+	  updateOptionsPage(CurrentProc);
+    }
+
+	if (newInput & InputLeft) {
 		CurrentProc->Option[CurrentProc->CursorIndex]--;
 		if (CurrentProc->Option[CurrentProc->CursorIndex] < 0) { 
 			CurrentProc->Option[CurrentProc->CursorIndex] = NumberOfOptions[CurrentProc->CursorIndex] - 1;
 		} 
-	  } 
-      if (newInput & InputRight) {
+		updateOptionsPage(CurrentProc);
+	} 
+	if (newInput & InputRight) {
 		CurrentProc->Option[CurrentProc->CursorIndex]++;
 		if (CurrentProc->Option[CurrentProc->CursorIndex] >= NumberOfOptions[CurrentProc->CursorIndex]) { 
 			CurrentProc->Option[CurrentProc->CursorIndex] = 0;
 		} 
 		updateOptionsPage(CurrentProc);
-	}}
-	} 
+	}
   }
 
 
