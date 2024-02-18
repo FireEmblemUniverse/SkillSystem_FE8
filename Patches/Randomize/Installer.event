@@ -59,7 +59,7 @@ ALIGN 4
 Stage2_List: 
 BYTE IvysaurID CharmeleonID WartortleID ButterfreeID BeedrillID PidgeottoID RaticateID FearowID ArbokID NidorinaID 
 BYTE NidorinoID GolbatID GloomID ParasectID PoliwhirlID KadabraID MachokeID WeepinbellID GravellerID HaunterID OnixID 
-BYTE ChanseyID GyaradosID DragonairID 0 
+BYTE ChanseyID GyaradosID DragonairID DittoID 0 
 
 ALIGN 4 
 Stage3_List: 
@@ -253,7 +253,7 @@ CB_Entry(TaurosID                , Stage3      )
 CB_Entry(MagikarpID              , Stage1      )
 CB_Entry(GyaradosID              , Stage4      )
 CB_Entry(LaprasID                , Stage4      )
-CB_Entry(DittoID                 , DoNotRandomize      )
+CB_Entry(DittoID                 , Stage2      )
 CB_Entry(EeveeID                 , Stage1      )
 CB_Entry(VaporeonID              , Stage3      )
 CB_Entry(JolteonID               , Stage3      )
