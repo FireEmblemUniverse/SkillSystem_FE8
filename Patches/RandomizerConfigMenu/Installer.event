@@ -1,0 +1,50 @@
+//base code epically borrowed from circles
+
+#include "StartingOptionsMenu.lyn.event" //reassembling will give you a bunch of warnings, you can ignore them
+#include "spin/spin.event"
+
+// This uses the last 4 bytes of global flags
+// for storing options state, which in practice means 
+// the removal of about 32 global flags on the end
+// but, this is only until the ASMC is run to set options
+// so just don't use them before then 
+
+PUSH
+ORG $a20164
+POIN NewDifficultySelectFunc
+ORG $83d20
+BYTE 0x13 //clear slightly fewer global flags on new file
+POP
+
+
+
+
+
+
+
+
+
+
+
+CasualModeFlagLink:
+BYTE $B0
+FixedGrowthsFlagLink:
+BYTE 1 //FIXED_GROWTHS_FLAG_ID
+OneRNFlagLink:
+BYTE 1 //Enable1RNFlag
+FatesRNFlagLink:
+BYTE 1 //EnableFatesRNFlag
+EvilRNFlagLink:
+BYTE 1 //EnableEvilRNFlag
+PerfectHitFlagLink:
+BYTE 1 //EnablePerfectHitFlag
+NiceRNGFlagLink:
+BYTE 1 //EnableNiceRNGFlag
+CoinTossRNGFlagLink:
+BYTE 1 //EnableCoinTossRNGFlag
+ZeroGrowthsFlagLink:
+BYTE 1 //ZeroGrowthsFlag
+PerfectGrowthsFlagLink:
+BYTE 1 //PerfectGrowthsFlag
+
+
