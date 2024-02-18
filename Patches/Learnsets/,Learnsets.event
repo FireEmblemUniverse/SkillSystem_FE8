@@ -2470,7 +2470,7 @@ BYTE 8 Leer
 BYTE 10 WaterGun
 BYTE 13 Dragonbreath
 BYTE 15 AuroraBeam
-BYTE 18 BubbleBeam
+BYTE 18 WaterPulse
 BYTE 22 PoisonJab 
 BYTE 24 Agility
 BYTE 26 Waterfall
@@ -2481,7 +2481,7 @@ BYTE 37 SignalBeam
 // BYTE 38 Resv DragonDance
 BYTE 42 Outrage // DragonPulse
 BYTE 45 HydroPump
-BYTE 0 0 // Kingdra gets Yawn
+BYTE 0 0 //
 
 ALIGN 4
 SeadraLearnset:
@@ -2493,7 +2493,7 @@ BYTE 8 Leer
 BYTE 10 WaterGun
 BYTE 13 Dragonbreath
 BYTE 15 AuroraBeam
-BYTE 18 BubbleBeam
+BYTE 18 WaterPulse
 BYTE 22 PoisonJab 
 BYTE 24 Agility
 BYTE 26 Waterfall
@@ -2505,7 +2505,6 @@ BYTE 37 SignalBeam
 BYTE 42 Outrage // DragonPulse
 BYTE 45 HydroPump
 BYTE 0 0 // Kingdra gets Yawn
-BYTE 0 0
 
 ALIGN 4
 GoldeenLearnset:
