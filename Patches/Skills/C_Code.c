@@ -46,7 +46,7 @@ void SwarmEffect(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 				int dmg = bunitB->battleAttack - bunitA->battleDefense; 
 				if (dmg < 0) dmg = 0; 
 				int addDmg = ((dmg)*(SwarmBonusDamagePercent))/100; // dmg+(dmg*SwarmBonusDamagePercent/200) for rounding 
-				//int addDmg = ((dmg+(dmg*SwarmBonusDamagePercent/200))*(SwarmBonusDamagePercent))/100; // dmg+(dmg*SwarmBonusDamagePercent/200) for rounding 
+				//int addDmg = ((dmg+(dmg*SwarmBonusDamagePercent/200))*(SwarmBonusDamagePercent+100))/100; // dmg+(dmg*SwarmBonusDamagePercent/200) for rounding 
 				bunitB->battleAttack += addDmg; 
 			}
 		} 
@@ -68,12 +68,19 @@ void FlankEffect(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 				int dirX = activeX - targetX; 
 				int dirY = activeY - targetY; 
 				int deploymentID = bunitB->unit.index; 
-				int allyID = gBmMapUnit[activeY+dirY+dirY][activeX+dirX+dirX]; 
+				int allyID = 0; 
+				if (dirX > 0) allyID = gBmMapUnit[activeY][activeX-2]; 
+				if ((dirX < 0) && (activeX > 1)) allyID = gBmMapUnit[activeY][activeX+2]; 
+				if (dirY > 0) allyID = gBmMapUnit[activeY-2][activeX]; 
+				if ((dirY < 0) && (activeY > 1)) allyID = gBmMapUnit[activeY+2][activeX]; 
+				
+				//int allyID = gBmMapUnit[activeY+dirY+dirY][activeX+dirX+dirX]; 
 				
 				if ((allyID) && (AreUnitsAllied(deploymentID, allyID))) { 
 					int dmg = bunitB->battleAttack - bunitA->battleDefense; 
 					if (dmg < 0) dmg = 0; 
-					int addDmg = ((dmg+(dmg*FlankBonusDamagePercent/200))*(FlankBonusDamagePercent))/100; // dmg+(dmg*FlankBonusDamagePercent/200) for rounding 
+					//int addDmg = ((dmg+(dmg*FlankBonusDamagePercent/200))*(FlankBonusDamagePercent+100))/100; // dmg+(dmg*FlankBonusDamagePercent/200) for rounding 
+					int addDmg = ((dmg)*(FlankBonusDamagePercent))/100; // dmg+(dmg*FlankBonusDamagePercent/200) for rounding 
 					bunitB->battleAttack += addDmg; 
 				}
 				

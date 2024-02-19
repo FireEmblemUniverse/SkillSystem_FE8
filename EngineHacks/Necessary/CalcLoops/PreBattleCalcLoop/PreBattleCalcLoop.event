@@ -76,7 +76,7 @@ POIN SuperFangEffect
 POIN WeakChipDmg
 
 // Dragonskin goes after anything effecting atk or def
-POIN Dragonskin MultiscaleEffect FlankEffect SwarmEffect
+POIN Dragonskin MultiscaleEffect 
 // Because of how killing machine works, critical check should always be done last
 POIN CriticalCheck
 #ifdef CANNOT_CRIT
@@ -127,18 +127,18 @@ AuraSkillEntry(NightTideID)
 ALIGN 4 
 DamageModifierCalcLoop:
 
-//POIN WeaponsThatAlwaysDouble
-//POIN WeakChipDmg ScaledUp
-//POIN EnemyWeightBonus
-//POIN TransformFunction 
-//POIN MinimumDamage // so SE moves will deal at least 2 dmg i guess 
-//POIN TypeEffectiveness // also caps moves to deal max 255 
-//#ifdef ENABLE_DAMAGE_REDUCTION
-//	POIN LevelDamageReduction
-//#endif 
-//POIN DoublingDamageModifierFunc // this also occurs on weapons that cannot double if you would be able to otherwise 
-//POIN ScaledBackFunc
-//POIN TransformFunction 
+POIN WeaponsThatAlwaysDouble
+POIN WeakChipDmg ScaledUp
+POIN EnemyWeightBonus
+POIN TransformFunction 
+POIN MinimumDamage // so SE moves will deal at least 2 dmg i guess 
+POIN TypeEffectiveness // also caps moves to deal max 255 
+#ifdef ENABLE_DAMAGE_REDUCTION
+	POIN LevelDamageReduction
+#endif 
+POIN DoublingDamageModifierFunc // this also occurs on weapons that cannot double if you would be able to otherwise 
+POIN ScaledBackFunc FlankEffect SwarmEffect
+POIN TransformFunction 
 POIN MinimumDamage
 POIN MaximumDamage // caps moves to 99 dmg 
 POIN SuperFangEffect 

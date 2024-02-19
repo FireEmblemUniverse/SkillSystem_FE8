@@ -5,9 +5,9 @@ WORD SwarmID
 FlankID_Link:
 WORD FlankID
 SwarmBonusDamagePercent:
-WORD 50
+WORD 100
 FlankBonusDamagePercent:
-WORD 25
+WORD 50
 FlankRequiresSkill_Link:
 WORD 1 // true // 0 // false
 MultiscaleID_Link:
