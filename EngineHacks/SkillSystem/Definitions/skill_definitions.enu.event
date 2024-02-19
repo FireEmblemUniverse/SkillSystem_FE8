@@ -246,6 +246,8 @@
 #define MultiscaleID 0xF5
 #define SilphScopeID 0xF6
 #define TintedLensID 0xF7
+#define FlankID 0xF8
+#define SwarmID 0xF9
 #define DownWithArchID 0xFF
 #define CharismaID 0xFF
 #define CharmID 0xFF

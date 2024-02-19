@@ -1,5 +1,15 @@
 
 ALIGN 4 
+SwarmID_Link: 
+WORD SwarmID
+FlankID_Link:
+WORD FlankID
+SwarmBonusDamagePercent:
+WORD 50
+FlankBonusDamagePercent:
+WORD 25
+FlankRequiresSkill_Link:
+WORD 1 // true // 0 // false
 MultiscaleID_Link:
 WORD MultiscaleID 
 SilphScopeID_Link:
