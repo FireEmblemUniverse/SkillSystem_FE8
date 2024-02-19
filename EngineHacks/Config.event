@@ -226,7 +226,7 @@ MESSAGE Please see the README.md there or ask @Vesly for help.
 #define NewUnitLoadBufferLoc 0x2026E30
 
 // If uncommented, unit branched promotion list will be expanded to 6
-#define CLASS_CHG_EXPANSION
+//#define CLASS_CHG_EXPANSION
 
 // =================================
 // = SKILL BEHAVIOUR CONFIGURATION =
