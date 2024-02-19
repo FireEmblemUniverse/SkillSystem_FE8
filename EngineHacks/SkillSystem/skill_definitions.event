@@ -732,6 +732,19 @@
 // By Vesly 
 #define SteadyBrawlerID 255
 
+// Multiscale: Take half damage when at full HP.
+// By Vesly 
+#define MultiscaleID 255
+
+// Flank: If an ally is on the opposite side of an adjacent target, deal 25% more damage.
+// By Vesly 
+#define FlankID 255 
+
+//Swarm: If an adjacent target is surrounded, deal 50% more damage.
+// By Vesly 
+#define SwarmID 255 
+
+
 
 //Proc Skills
 
