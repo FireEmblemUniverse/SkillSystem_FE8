@@ -69,10 +69,10 @@ void FlankEffect(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 				int dirY = activeY - targetY; 
 				int deploymentID = bunitB->unit.index; 
 				int allyID = 0; 
-				if (dirX > 0) allyID = gBmMapUnit[activeY][activeX-2]; 
-				if ((dirX < 0) && (activeX > 1)) allyID = gBmMapUnit[activeY][activeX+2]; 
-				if (dirY > 0) allyID = gBmMapUnit[activeY-2][activeX]; 
-				if ((dirY < 0) && (activeY > 1)) allyID = gBmMapUnit[activeY+2][activeX]; 
+				if ((dirX > 0) && (activeX > 1)) allyID = gBmMapUnit[activeY][activeX-2]; 
+				if (dirX < 0) allyID = gBmMapUnit[activeY][activeX+2]; 
+				if ((dirY > 0) && (activeY > 1)) allyID = gBmMapUnit[activeY-2][activeX]; 
+				if (dirY < 0) allyID = gBmMapUnit[activeY+2][activeX]; 
 				
 				//int allyID = gBmMapUnit[activeY+dirY+dirY][activeX+dirX+dirX]; 
 				
