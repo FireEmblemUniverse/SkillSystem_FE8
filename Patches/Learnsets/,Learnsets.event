@@ -200,7 +200,6 @@ BYTE 1 Harden
 BYTE 1 Tackle
 BYTE 1 StringShot
 BYTE 3 TailWhip
-BYTE 6 ConfuseRay
 BYTE 8 GuardMove
 BYTE 10 Confusion
 BYTE 12 Gust
@@ -224,7 +223,6 @@ BYTE 1 Harden
 BYTE 1 Tackle
 BYTE 1 StringShot
 BYTE 3 TailWhip
-BYTE 6 ConfuseRay
 BYTE 8 GuardMove
 BYTE 10 Confusion
 BYTE 12 Gust
@@ -248,7 +246,6 @@ BYTE 1 Harden
 BYTE 1 Tackle
 BYTE 1 StringShot
 BYTE 3 TailWhip
-BYTE 6 ConfuseRay
 BYTE 8 GuardMove
 BYTE 10 Confusion
 BYTE 12 Gust
@@ -271,8 +268,7 @@ WeedleLearnset:
 BYTE 1 Harden
 BYTE 1 StringShot
 BYTE 1 PoisonSting
-BYTE 3 Tackle
-BYTE 6 TailWhip 
+BYTE 3 TailWhip
 BYTE 8 GuardMove 
 BYTE 10 PinMissile 
 BYTE 12 Peck
@@ -294,8 +290,7 @@ KakunaLearnset:
 BYTE 1 Harden
 BYTE 1 StringShot
 BYTE 1 PoisonSting
-BYTE 3 Tackle
-BYTE 6 TailWhip 
+BYTE 3 TailWhip
 BYTE 8 GuardMove 
 BYTE 10 PinMissile 
 BYTE 12 Peck
@@ -317,8 +312,7 @@ BeedrillLearnset:
 BYTE 1 Harden
 BYTE 1 StringShot
 BYTE 1 PoisonSting
-BYTE 3 Tackle
-BYTE 6 TailWhip 
+BYTE 3 TailWhip
 BYTE 8 GuardMove 
 BYTE 10 PinMissile 
 BYTE 12 Peck
@@ -487,18 +481,18 @@ BYTE 1 Constrict
 BYTE 1 Leer
 BYTE 3 PoisonSting 
 BYTE 5 Absorb
-BYTE 7 LeechLife
-BYTE 9 Bite
-BYTE 11 Glare
-BYTE 13 MegaDrain
-BYTE 16 Acid
-BYTE 19 Dig
-BYTE 22 Screech
-BYTE 25 PoisonJab
-BYTE 28 Thrash
+BYTE 8 LeechLife
+BYTE 10 Bite
+BYTE 12 Glare
+BYTE 14 MegaDrain
+BYTE 18 Dig
+BYTE 21 Screech
+BYTE 24 PoisonJab
+BYTE 27 Thrash
 //BYTE 28 Resv //Haze
-BYTE 32 NightSlash
-BYTE 35 IronTail
+BYTE 30 NightSlash
+BYTE 33 Earthquake
+BYTE 37 IronTail
 BYTE 40 SwordsDance
 BYTE 0 0
 
@@ -508,18 +502,18 @@ BYTE 1 Constrict
 BYTE 1 Leer
 BYTE 3 PoisonSting 
 BYTE 5 Absorb
-BYTE 7 LeechLife
-BYTE 9 Bite
-BYTE 11 Glare
-BYTE 13 MegaDrain
-BYTE 16 Acid
-BYTE 19 Dig
-BYTE 22 Screech
-BYTE 25 PoisonJab
-BYTE 28 Thrash
+BYTE 8 LeechLife
+BYTE 10 Bite
+BYTE 12 Glare
+BYTE 14 MegaDrain
+BYTE 18 Dig
+BYTE 21 Screech
+BYTE 24 PoisonJab
+BYTE 27 Thrash
 //BYTE 28 Resv //Haze
-BYTE 32 NightSlash
-BYTE 35 IronTail
+BYTE 30 NightSlash
+BYTE 33 Earthquake
+BYTE 37 IronTail
 BYTE 40 SwordsDance
 BYTE 0 0
 
@@ -1097,14 +1091,14 @@ BYTE 1 SandAttack
 BYTE 1 Growl
 BYTE 4 Magnitude
 BYTE 7 ConfuseRay
+BYTE 10 MudBomb
 BYTE 12 Slash
-BYTE 15 MudBomb
-BYTE 17 Dig
+BYTE 15 Dig
+BYTE 17 Agility
 BYTE 20 Screech
 BYTE 22 ThiefAtt
 BYTE 24 EarthPower
-BYTE 26 Agility
-BYTE 28 Earthquake
+BYTE 27 Earthquake
 BYTE 30 NightSlash
 BYTE 32 RockSlide
 BYTE 34 DoubleEdge
@@ -1119,14 +1113,14 @@ BYTE 1 SandAttack
 BYTE 1 Growl
 BYTE 4 Magnitude
 BYTE 7 ConfuseRay
+BYTE 10 MudBomb
 BYTE 12 Slash
-BYTE 15 MudBomb
-BYTE 17 Dig
+BYTE 15 Dig
+BYTE 17 Agility
 BYTE 20 Screech
 BYTE 22 ThiefAtt
 BYTE 24 EarthPower
-BYTE 26 Agility
-BYTE 28 Earthquake
+BYTE 27 Earthquake
 BYTE 30 NightSlash
 BYTE 32 RockSlide
 BYTE 34 DoubleEdge
@@ -1147,11 +1141,12 @@ BYTE 20 Screech
 BYTE 22 Dig
 BYTE 25 TakeDown
 BYTE 28 Glare
-BYTE 33 IronTail
-BYTE 35 DoubleEdge
-BYTE 37 NightSlash
-BYTE 40 XScissor
-BYTE 45 SwordsDance
+BYTE 30 IronTail
+BYTE 32 DoubleEdge
+BYTE 35 NightSlash
+BYTE 38 XScissor
+BYTE 40 SwordsDance
+BYTE 45 Guillotine
 BYTE 0 0
 
 ALIGN 4
@@ -1167,11 +1162,12 @@ BYTE 20 Screech
 BYTE 22 Dig
 BYTE 25 TakeDown
 BYTE 28 Glare
-BYTE 33 IronTail
-BYTE 35 DoubleEdge
-BYTE 37 NightSlash
-BYTE 40 XScissor
-BYTE 45 SwordsDance
+BYTE 30 IronTail
+BYTE 32 DoubleEdge
+BYTE 35 XScissor
+BYTE 38 NightSlash
+BYTE 40 SwordsDance
+BYTE 45 Guillotine
 BYTE 0 0
 
 ALIGN 4
@@ -1759,16 +1755,22 @@ DoduoLearnset:
 BYTE 1 Peck 
 BYTE 1 Growl
 BYTE 5 QuickAttack
-BYTE 10 Rage
-BYTE 14 DoubleHit // FuryAttack
-BYTE 19 ThiefAtt // Pursuit
-BYTE 23 Swift // Uproar
+BYTE 8 Rage
+BYTE 10 Swift // Uproar
+BYTE 12 DoubleHit // FuryAttack
+BYTE 14 ThiefAtt // Pursuit
+BYTE 18 TakeDown
+BYTE 20 TriAttack
+BYTE 22 Dig
+BYTE 24 JumpKick
 BYTE 27 DrillPeck
 // BYTE 28 Resv Acupressure
 BYTE 30 Thrash
 BYTE 32 Agility
-BYTE 38 DoubleEdge
-BYTE 41 JumpKick
+BYTE 35 HiJumpKick
+BYTE 38 SwordsDance
+BYTE 42 DoubleEdge
+BYTE 45 Outrage
 // BYTE 46 Endeavor
 BYTE 0 0 
 
@@ -1777,16 +1779,22 @@ DodrioLearnset:
 BYTE 1 Peck 
 BYTE 1 Growl
 BYTE 5 QuickAttack
-BYTE 10 Rage
-BYTE 14 DoubleHit // FuryAttack
-BYTE 19 ThiefAtt // Pursuit
-BYTE 23 Swift // Uproar
+BYTE 8 Rage
+BYTE 10 Swift // Uproar
+BYTE 12 DoubleHit // FuryAttack
+BYTE 14 ThiefAtt // Pursuit
+BYTE 18 TakeDown
+BYTE 20 TriAttack
+BYTE 22 Dig
+BYTE 24 JumpKick
 BYTE 27 DrillPeck
 // BYTE 28 Resv Acupressure
 BYTE 30 Thrash
 BYTE 32 Agility
-BYTE 38 DoubleEdge
-BYTE 41 JumpKick
+BYTE 35 HiJumpKick
+BYTE 38 SwordsDance
+BYTE 42 DoubleEdge
+BYTE 45 Outrage
 // BYTE 46 Endeavor
 BYTE 0 0 
 
@@ -1993,9 +2001,9 @@ BYTE 1 Tackle
 BYTE 1 Growl 
 BYTE 1 Constrict // Bind 
 BYTE 1 TailWhip
-BYTE 4 RockTomb 
-BYTE 6 Rage
-BYTE 8 Magnitude
+BYTE 5 RockTomb 
+BYTE 7 Rage
+BYTE 9 Magnitude
 BYTE 12 RockThrow 
 BYTE 14 Bite
 BYTE 17 Slam
@@ -2204,7 +2212,7 @@ BYTE 1 Growl
 BYTE 1 Scratch
 BYTE 3 TailWhip
 BYTE 7 Magnitude // BoneClub
-BYTE 9  Leer
+BYTE 9 Rage
 BYTE 11 Headbutt
 BYTE 13 DoubleKick
 BYTE 15 FocusEnergy
@@ -2228,7 +2236,7 @@ BYTE 1 Growl
 BYTE 1 Scratch
 BYTE 3 TailWhip
 BYTE 7 Magnitude // BoneClub
-BYTE 9  Leer
+BYTE 9 Rage
 BYTE 11 Headbutt
 BYTE 13 DoubleKick
 BYTE 15 FocusEnergy
@@ -2261,10 +2269,10 @@ BYTE 23 JumpKick // 17 BrickBreak + 29 hijumpkick /2 = 23
 BYTE 25 Agility
 BYTE 28 UTurn
 // BYTE 33 Resv Mind Reader
-BYTE 33 HiJumpKick
+BYTE 32 FirePunch // Blaze Kick
 // BYTE 37 Resv Foresight
-BYTE 37 FirePunch // Blaze Kick
-BYTE 41 RecoverMove
+BYTE 35 HiJumpKick
+BYTE 40 RecoverMove
 BYTE 45 DoubleEdge
 // BYTE 57 Reversal
 BYTE 0 0
@@ -2283,9 +2291,9 @@ BYTE 23 FirePunch
 // BYTE 26 Sky Uppercut
 BYTE 25 ThunderPunch
 BYTE 28 IcePunch
-BYTE 33 Submission
-BYTE 37 Agility
-BYTE 41 Thrash
+BYTE 32 Submission
+BYTE 35 Agility
+BYTE 40 Thrash
 // BYTE 46 Resv Detect
 BYTE 45 MeteorMash
 // BYTE 56 CloseCombat
@@ -2366,12 +2374,14 @@ BYTE 1 HornAttack
 BYTE 1 TailWhip
 BYTE 5 Magnitude
 BYTE 9 RockTomb
-BYTE 13 DoubleHit // FuryAttack
-BYTE 21 Glare // ScaryFace
-BYTE 25 RockThrow // Rock Blast
-BYTE 28 Dig
-BYTE 30 TakeDown 
-BYTE 33 RockSlide // Stone Edge
+BYTE 11 DoubleHit // FuryAttack
+BYTE 13 RockThrow // Rock Blast
+BYTE 15 Glare // ScaryFace
+BYTE 20 Rollout
+BYTE 23 TakeDown
+BYTE 25 Dig
+BYTE 28 RockSlide // Stone Edge
+BYTE 30 DoubleEdge 
 BYTE 35 Earthquake
 BYTE 38 HornDrill
 BYTE 40 Submission // Hammer Arm
@@ -2384,12 +2394,14 @@ BYTE 1 HornAttack
 BYTE 1 TailWhip
 BYTE 5 Magnitude
 BYTE 9 RockTomb
-BYTE 13 DoubleHit // FuryAttack
-BYTE 21 Glare // ScaryFace
-BYTE 25 RockThrow // Rock Blast
-BYTE 28 Dig
-BYTE 30 TakeDown 
-BYTE 33 RockSlide // Stone Edge
+BYTE 11 DoubleHit // FuryAttack
+BYTE 13 RockThrow // Rock Blast
+BYTE 15 Glare // ScaryFace
+BYTE 20 Rollout
+BYTE 23 TakeDown
+BYTE 25 Dig
+BYTE 28 RockSlide // Stone Edge
+BYTE 30 DoubleEdge 
 BYTE 35 Earthquake
 BYTE 38 HornDrill
 BYTE 40 Submission // Hammer Arm
@@ -2474,7 +2486,7 @@ BYTE 8 Leer
 BYTE 10 WaterGun
 BYTE 13 Dragonbreath
 BYTE 15 AuroraBeam
-BYTE 18 BubbleBeam
+BYTE 18 WaterPulse
 BYTE 22 PoisonJab 
 BYTE 24 Agility
 BYTE 26 Waterfall
@@ -2483,9 +2495,9 @@ BYTE 32 Sludge
 BYTE 35 IceBeam
 BYTE 37 SignalBeam
 // BYTE 38 Resv DragonDance
+BYTE 40 HydroPump
 BYTE 42 Outrage // DragonPulse
-BYTE 45 HydroPump
-BYTE 0 0 // Kingdra gets Yawn
+BYTE 0 0 //
 
 ALIGN 4
 SeadraLearnset:
@@ -2497,7 +2509,7 @@ BYTE 8 Leer
 BYTE 10 WaterGun
 BYTE 13 Dragonbreath
 BYTE 15 AuroraBeam
-BYTE 18 BubbleBeam
+BYTE 18 WaterPulse
 BYTE 22 PoisonJab 
 BYTE 24 Agility
 BYTE 26 Waterfall
@@ -2506,10 +2518,9 @@ BYTE 32 Sludge
 BYTE 35 IceBeam
 BYTE 37 SignalBeam
 // BYTE 38 Resv DragonDance
+BYTE 40 HydroPump
 BYTE 42 Outrage // DragonPulse
-BYTE 45 HydroPump
 BYTE 0 0 // Kingdra gets Yawn
-BYTE 0 0
 
 ALIGN 4
 GoldeenLearnset:
@@ -2731,7 +2742,9 @@ BYTE 13 BugBite
 BYTE 15 BodySlam
 // BYTE 18 Revenge
 BYTE 20 SeismicToss
+BYTE 23 BulkUp
 // BYTE 25 VitalThrow
+BYTE 27 TakeDown
 BYTE 30 Submission
 BYTE 32 XScissor
 BYTE 35 Thrash
@@ -2747,17 +2760,18 @@ BYTE 1 TailWhip
 BYTE 4 Rage
 BYTE 7 HornAttack
 BYTE 10 Glare // ScaryFace
-BYTE 13 Magnitude
-BYTE 15 ThiefAtt
-BYTE 18 BodySlam
+BYTE 12 Magnitude
+BYTE 14 ThiefAtt
+BYTE 16 BodySlam
 // BYTE 19 Resv Rest
-BYTE 20 BulkUp
-BYTE 25 Thrash
+BYTE 18 BulkUp
+BYTE 22 TakeDown
+BYTE 27 Thrash
 // BYTE 27 ZenHeadbutt
-BYTE 30 TakeDown
+BYTE 30 Earthquake
 BYTE 35 NightSlash
 BYTE 38 DoubleEdge
-BYTE 40 Earthquake
+BYTE 40 Fissure
 BYTE 45 HornDrill
 BYTE 0 0
 
@@ -2841,14 +2855,16 @@ EeveeLearnset:
 BYTE 1 Growl
 BYTE 1 Tackle
 BYTE 1 TailWhip
-BYTE 5 SandAttack
-BYTE 8 Swift
-BYTE 10 QuickAttack
-BYTE 15 RecoverMove
-BYTE 20 Bite
-BYTE 25 BodySlam
+BYTE 1 SandAttack
+BYTE 5 Swift
+BYTE 7 QuickAttack
+BYTE 10 Bite
+BYTE 15 BodySlam
+BYTE 18 RecoverMove
+BYTE 22 Dig
+BYTE 25 TakeDown
 // BYTE 36 Resv BatonPass
-BYTE 30 TakeDown
+BYTE 30 TriAttack
 BYTE 40 DoubleEdge // LastResort
 BYTE 45 HyperBeam // TrumpCard
 BYTE 0 0
@@ -2862,15 +2878,16 @@ BYTE 1 WaterGun
 BYTE 5 SandAttack
 BYTE 7 Swift
 BYTE 10 QuickAttack
-BYTE 14 RecoverMove
+BYTE 12 RecoverMove
+BYTE 14 BubbleBeam
 BYTE 18 BodySlam
 BYTE 20 Bite
 BYTE 22 WaterPulse
 BYTE 25 AuroraBeam
 BYTE 28 MudBomb
-BYTE 30 Amnesia
-BYTE 32 DoubleEdge
-BYTE 35 Surf
+BYTE 30 Surf
+BYTE 32 Amnesia
+BYTE 35 DoubleEdge
 BYTE 38 TriAttack
 BYTE 40 Waterfall
 BYTE 42 HydroPump
@@ -2886,15 +2903,16 @@ BYTE 1 Thundershock
 BYTE 5 SandAttack
 BYTE 7 Swift
 BYTE 10 QuickAttack
-BYTE 14 RecoverMove
+BYTE 12 RecoverMove
+BYTE 14 Spark
 BYTE 18 BodySlam
 BYTE 20 Bite
-BYTE 22 ShockWave
+BYTE 22 Shockwave
 BYTE 25 SignalBeam
 BYTE 28 WaterPulse
-BYTE 30 Agility
-BYTE 32 DoubleEdge
-BYTE 35 Thunderbolt
+BYTE 30 Thunderbolt
+BYTE 32 Agility
+BYTE 35 DoubleEdge
 BYTE 38 TriAttack
 BYTE 40 VoltTackle
 BYTE 42 ThunderMove
@@ -2910,15 +2928,16 @@ BYTE 1 Ember
 BYTE 5 SandAttack
 BYTE 7 Swift
 BYTE 10 QuickAttack
-BYTE 14 RecoverMove
+BYTE 12 RecoverMove
+BYTE 14 Scorch
 BYTE 18 BodySlam
 BYTE 20 Bite
 BYTE 22 FlameWheel
 BYTE 25 Dig
 BYTE 28 PoisonJab
-BYTE 30 SwordsDance
-BYTE 32 DoubleEdge
-BYTE 35 Flamethrower
+BYTE 30 Flamethrower
+BYTE 32 SwordsDance
+BYTE 35 DoubleEdge
 BYTE 38 TriAttack
 BYTE 40 FireBlast
 BYTE 42 SacredFire
@@ -3049,10 +3068,10 @@ BYTE 8 Headbutt
 BYTE 12 WingAttack
 BYTE 14 RockThrow
 BYTE 17 Agility 
-BYTE 19 TakeDown
-BYTE 21 Fly
-BYTE 25 Ancientpower
-BYTE 28 AirSlash
+BYTE 19 Ancientpower
+BYTE 21 AirSlash
+BYTE 25 TakeDown
+BYTE 28 Fly
 BYTE 32 NightSlash
 BYTE 35 RockSlide 
 BYTE 37 HyperBeam
@@ -3067,7 +3086,7 @@ BYTE 1 Tackle
 BYTE 4 GuardMove
 BYTE 6 Lick
 BYTE 8 Bite
-BYTE 9 Amnesia //?Buff 
+BYTE 10 Amnesia //?Buff 
 BYTE 12 BodySlam 
 BYTE 15 Magnitude
 BYTE 18 Rollout
@@ -3099,8 +3118,8 @@ BYTE 20 Fly
 BYTE 25 Agility //?Buff
 BYTE 30 Ancientpower
 BYTE 35 Avalanche
-BYTE 40 Psychic
-BYTE 45 IceBeam
+BYTE 40 IceBeam
+BYTE 45 Psychic
 BYTE 50 SkyAttack
 BYTE 55 Hurricane
 BYTE 60 Blizzard
@@ -3121,8 +3140,8 @@ BYTE 25 Fly
 BYTE 28 Agility
 BYTE 30 Ancientpower
 BYTE 35 VoltTackle
-BYTE 40 SeismicToss
-BYTE 45 Thunderbolt
+BYTE 40 Thunderbolt
+BYTE 45 SeismicToss
 BYTE 50 SkyAttack
 BYTE 55 Hurricane
 BYTE 60 ThunderMove
@@ -3142,8 +3161,8 @@ BYTE 25 Agility
 BYTE 30 Ancientpower
 BYTE 35 SacredFire 
 //BYTE 43 Barrier //?Buff (Safeguard) 
-BYTE 40 DarkPulse
-BYTE 45 Flamethrower 
+BYTE 40 Flamethrower
+BYTE 45 DarkPulse
 BYTE 50 SkyAttack
 BYTE 55 Hurricane
 BYTE 60 FireBlast 
@@ -3161,9 +3180,9 @@ BYTE 11 Headbutt
 BYTE 13 DragonRage
 BYTE 16 Dragonbreath
 BYTE 21 Slam
-BYTE 23 BubbleBeam
+BYTE 23 WaterPulse
 BYTE 25 Agility //?Buff 
-BYTE 28 ShockWave
+BYTE 28 Thunderbolt
 BYTE 30 Fly 
 BYTE 32 Waterfall
 BYTE 35 DragonClaw
@@ -3193,9 +3212,9 @@ BYTE 11 Headbutt
 BYTE 13 DragonRage
 BYTE 16 Dragonbreath
 BYTE 21 Slam
-BYTE 23 BubbleBeam
+BYTE 23 WaterPulse
 BYTE 25 Agility //?Buff 
-BYTE 28 ShockWave
+BYTE 28 Thunderbolt
 BYTE 30 Fly 
 BYTE 32 Waterfall
 BYTE 35 DragonClaw
@@ -3225,9 +3244,9 @@ BYTE 11 Headbutt
 BYTE 13 DragonRage
 BYTE 16 Dragonbreath
 BYTE 21 Slam
-BYTE 23 BubbleBeam
+BYTE 23 WaterPulse
 BYTE 25 Agility //?Buff 
-BYTE 28 ShockWave
+BYTE 28 Thunderbolt
 BYTE 30 Fly 
 BYTE 32 Waterfall
 BYTE 35 DragonClaw
@@ -3253,15 +3272,14 @@ BYTE 10 RecoverMove
 BYTE 15 CalmMind
 BYTE 20 Psybeam
 BYTE 25 TriAttack
-BYTE 30 SeismicToss
-BYTE 35 HealPulse
-//BYTE 40 ShadowBall
+BYTE 30 ShadowBall 
+BYTE 35 Agility
 BYTE 45 FlashCannon 
-BYTE 50 DarkPulse
-BYTE 55 Amnesia
-BYTE 60 ShadowBall
+BYTE 50 Amnesia
+BYTE 55 DarkPulse
+BYTE 60 Submission
 BYTE 65 Psychic
-BYTE 75 HyperBeam
+BYTE 70 HyperBeam
 //BYTE 64 ??? ?Buff (Power Swap, Guard Swap)
 //BYTE 79 ??? ?Buff (Me First)
 //BYTE 93 ??? ?Buff (Safeguard)
@@ -3270,25 +3288,19 @@ BYTE 0 0
 ALIGN 4
 MewLearnset:
 BYTE 1 Pound
-BYTE 5 Ancientpower
-BYTE 10 BugBuzz
-BYTE 15 Hurricane
-BYTE 20 PoisonJab
-BYTE 25 HiJumpKick
-BYTE 30 Psychic
-BYTE 35 Earthquake
-BYTE 40 DarkPulse
-BYTE 45 FlashCannon
-BYTE 50 Outrage
-BYTE 55 Amnesia
+BYTE 5 AncientPower
+BYTE 10 HealPulse
+BYTE 15 Psychic
+BYTE 20 Explosion
+BYTE 25 Blizzard
+BYTE 30 SkyAttack
+BYTE 35 BugBuzz
+BYTE 45 SacredFire
+BYTE 50 Sludge
+BYTE 55 Transform
 BYTE 60 HydroPump
-BYTE 65 ShadowBall
-BYTE 70 Blizzard
-BYTE 75 ThunderMove
-BYTE 80 FireBlast
-BYTE 85 SolarBeam
-BYTE 90 HyperBeam
-BYTE 95 Explosion
+BYTE 65 Fissure
+BYTE 70 SolarBeam
 BYTE 0 0
 
 ALIGN 4
