@@ -153,6 +153,88 @@ void GenerateBGTsa(u16 *MapOffset, u32 NumberOfTiles, u8 PaletteId, u16 baseTile
     MapOffset[NumberOfTiles-(i-baseTile)] = (i | (PaletteId << 12) | (3<<10)); //v and h flipped
   }
 }
+extern char Title_Text; 
+extern char OptionsCommand0_Text;
+extern char OptionsCommand1_Text;
+extern char OptionsCommand2_Text;
+extern char OptionsCommand3_Text;
+extern char OptionsCommand4_Text;
+extern char OptionsCommand5_Text;
+extern char OptionsCommand6_Text;
+extern char OptionsCommand7_Text;
+
+extern char Command0_Option0_Text; 
+extern char Command0_Option1_Text; 
+extern char Command0_Option2_Text; 
+extern char Command0_Option3_Text; 
+extern char Command0_Option4_Text; 
+extern char Command0_Option5_Text; 
+extern char Command0_Option6_Text; 
+extern char Command0_Option7_Text; 
+
+extern char Command1_Option0_Text; 
+extern char Command1_Option1_Text; 
+extern char Command1_Option2_Text; 
+extern char Command1_Option3_Text; 
+extern char Command1_Option4_Text; 
+extern char Command1_Option5_Text; 
+extern char Command1_Option6_Text; 
+extern char Command1_Option7_Text; 
+
+extern char Command2_Option0_Text; 
+extern char Command2_Option1_Text; 
+extern char Command2_Option2_Text; 
+extern char Command2_Option3_Text; 
+extern char Command2_Option4_Text; 
+extern char Command2_Option5_Text; 
+extern char Command2_Option6_Text; 
+extern char Command2_Option7_Text; 
+
+extern char Command3_Option0_Text; 
+extern char Command3_Option1_Text; 
+extern char Command3_Option2_Text; 
+extern char Command3_Option3_Text; 
+extern char Command3_Option4_Text; 
+extern char Command3_Option5_Text; 
+extern char Command3_Option6_Text; 
+extern char Command3_Option7_Text; 
+
+extern char Command4_Option0_Text; 
+extern char Command4_Option1_Text; 
+extern char Command4_Option2_Text; 
+extern char Command4_Option3_Text; 
+extern char Command4_Option4_Text; 
+extern char Command4_Option5_Text; 
+extern char Command4_Option6_Text; 
+extern char Command4_Option7_Text; 
+
+extern char Command5_Option0_Text; 
+extern char Command5_Option1_Text; 
+extern char Command5_Option2_Text; 
+extern char Command5_Option3_Text; 
+extern char Command5_Option4_Text; 
+extern char Command5_Option5_Text; 
+extern char Command5_Option6_Text; 
+extern char Command5_Option7_Text; 
+
+extern char Command6_Option0_Text; 
+extern char Command6_Option1_Text; 
+extern char Command6_Option2_Text; 
+extern char Command6_Option3_Text; 
+extern char Command6_Option4_Text; 
+extern char Command6_Option5_Text; 
+extern char Command6_Option6_Text; 
+extern char Command6_Option7_Text; 
+
+extern char Command7_Option0_Text; 
+extern char Command7_Option1_Text; 
+extern char Command7_Option2_Text; 
+extern char Command7_Option3_Text; 
+extern char Command7_Option4_Text; 
+extern char Command7_Option5_Text; 
+extern char Command7_Option6_Text; 
+extern char Command7_Option7_Text; 
+
 
 void updateOptionsPage(OptionsProc* CurrentProc) {
 
@@ -162,30 +244,30 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 	BG_Fill((u16*)BG0Buffer, 0);
 	EnableBgSyncByIndex(0);
 	//Print Headings
-	char* string = "Settings"; 
-	DrawTextInline(0, BGLoc(BG0Buffer, 2, 0), 4, 0, 8, "Settings");
+	char* string = &Title_Text; 
+	DrawTextInline(0, BGLoc(BG0Buffer, 2, 0), 4, 0, (Text_GetStringTextWidth(string)+8)/8, string);
 	//DrawTextInline(0, BGLoc(BG0Buffer, 19, 0), 4, 0, 8, "<< L/R >>");
 	int i = 0; 
 
 	
 	if (thisPage == 1){
 		//option names
-		string = "Wild Pokemon:"; 
+		string = &OptionsCommand0_Text;
 		DrawTextInline(0, BGLoc(BG0Buffer, 2, 3), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
 		
-		string = "Trainer Pokemon:"; 
+		string = &OptionsCommand1_Text;
 		DrawTextInline(0, BGLoc(BG0Buffer, 2, 5), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
-		string = "Gyms/Bosses:";
+		string = &OptionsCommand2_Text;
 		DrawTextInline(0, BGLoc(BG0Buffer, 2, 7), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
-		string = "Items Found:";
+		string = &OptionsCommand3_Text;
 		DrawTextInline(0, BGLoc(BG0Buffer, 2, 9), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
-		string = "Move Stats:";
+		string = &OptionsCommand4_Text;
 		DrawTextInline(0, BGLoc(BG0Buffer, 2, 11), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
-		string = "Stats:";
+		string = &OptionsCommand5_Text;
 		DrawTextInline(0, BGLoc(BG0Buffer, 2, 13), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
-		string = "Growths:";
+		string = &OptionsCommand6_Text;
 		DrawTextInline(0, BGLoc(BG0Buffer, 2, 15), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
-		string = "Music:";
+		string = &OptionsCommand7_Text;
 		DrawTextInline(0, BGLoc(BG0Buffer, 2, 17), 3, 0, (Text_GetStringTextWidth(string)+8)/8, string);
 
 
@@ -194,10 +276,28 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 		i = 0; 
 		switch (CurrentProc->Option[i]) { 
 			case 0: { 
-			string = "Normal"; 
+			string = &Command0_Option0_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
-			string = "Randomized";
+			string = &Command0_Option1_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 2: { 
+			string = &Command0_Option2_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 3: { 
+			string = &Command0_Option3_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 4: { 
+			string = &Command0_Option4_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 5: { 
+			string = &Command0_Option5_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 6: { 
+			string = &Command0_Option6_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 7: { 
+			string = &Command0_Option7_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			default: { 
 			string = "N/A";
@@ -209,10 +309,28 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 		i = 1; 
 		switch (CurrentProc->Option[i]) { 
 			case 0: { 
-			string = "Normal"; 
+			string = &Command1_Option0_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
-			string = "Randomized";
+			string = &Command1_Option1_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 2: { 
+			string = &Command1_Option2_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 3: { 
+			string = &Command1_Option3_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 4: { 
+			string = &Command1_Option4_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 5: { 
+			string = &Command1_Option5_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 6: { 
+			string = &Command1_Option6_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 7: { 
+			string = &Command1_Option7_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			default: { 
 			string = "N/A";
@@ -223,10 +341,28 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 		i = 2; 
 		switch (CurrentProc->Option[i]) { 
 			case 0: { 
-			string = "Normal"; 
+			string = &Command2_Option0_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
-			string = "Randomized";
+			string = &Command2_Option1_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 2: { 
+			string = &Command2_Option2_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 3: { 
+			string = &Command2_Option3_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 4: { 
+			string = &Command2_Option4_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 5: { 
+			string = &Command2_Option5_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 6: { 
+			string = &Command2_Option6_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 7: { 
+			string = &Command2_Option7_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			default: { 
 			string = "N/A";
@@ -236,10 +372,28 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 		i = 3; 
 		switch (CurrentProc->Option[i]) { 
 			case 0: { 
-			string = "Normal"; 
+			string = &Command3_Option0_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
-			string = "Randomized";
+			string = &Command3_Option1_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 2: { 
+			string = &Command3_Option2_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 3: { 
+			string = &Command3_Option3_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 4: { 
+			string = &Command3_Option4_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 5: { 
+			string = &Command3_Option5_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 6: { 
+			string = &Command3_Option6_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 7: { 
+			string = &Command3_Option7_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			default: { 
 			string = "N/A";
@@ -248,22 +402,58 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 		i = 4; 
 		switch (CurrentProc->Option[i]) { 
 			case 0: { 
-			string = "Normal"; 
+			string = &Command4_Option0_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
-			string = "Randomized";
+			string = &Command4_Option1_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 2: { 
+			string = &Command4_Option2_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 3: { 
+			string = &Command4_Option3_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 4: { 
+			string = &Command4_Option4_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 5: { 
+			string = &Command4_Option5_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 6: { 
+			string = &Command4_Option6_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 7: { 
+			string = &Command4_Option7_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			default: { 
 			string = "N/A";
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
-		} 
+		}  
 		i = 5; 
 		switch (CurrentProc->Option[i]) { 
 			case 0: { 
-			string = "Normal"; 
+			string = &Command5_Option0_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
-			string = "Randomized";
+			string = &Command5_Option1_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 2: { 
+			string = &Command5_Option2_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 3: { 
+			string = &Command5_Option3_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 4: { 
+			string = &Command5_Option4_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 5: { 
+			string = &Command5_Option5_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 6: { 
+			string = &Command5_Option6_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 7: { 
+			string = &Command5_Option7_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			default: { 
 			string = "N/A";
@@ -272,10 +462,28 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 		i = 6; 
 		switch (CurrentProc->Option[i]) { 
 			case 0: { 
-			string = "Normal"; 
+			string = &Command6_Option0_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
-			string = "Randomized";
+			string = &Command6_Option1_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 2: { 
+			string = &Command6_Option2_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 3: { 
+			string = &Command6_Option3_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 4: { 
+			string = &Command6_Option4_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 5: { 
+			string = &Command6_Option5_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 6: { 
+			string = &Command6_Option6_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 7: { 
+			string = &Command6_Option7_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			default: { 
 			string = "N/A";
@@ -284,10 +492,28 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 		i = 7; 
 		switch (CurrentProc->Option[i]) { 
 			case 0: { 
-			string = "Normal"; 
+			string = &Command7_Option0_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
-			string = "Randomized";
+			string = &Command7_Option1_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 2: { 
+			string = &Command7_Option2_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 3: { 
+			string = &Command7_Option3_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 4: { 
+			string = &Command7_Option4_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 5: { 
+			string = &Command7_Option5_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 6: { 
+			string = &Command7_Option6_Text;
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			case 7: { 
+			string = &Command7_Option7_Text;
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			default: { 
 			string = "N/A";
