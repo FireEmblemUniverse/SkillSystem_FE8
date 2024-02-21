@@ -847,7 +847,7 @@ AoE: Debuffs Str/Mag by 5.[X]
 [PI] A weak whipping attack.[X]
 
 ## HeadbuttDesc
-[PI] The user attacks with its head.[N]
+[PI] The user butts with its head.[N]
 Knocks the target back.[X]
 
 
@@ -857,7 +857,8 @@ Knocks the target back.[X]
 [PI] A powerful punch.[X]
 
 ## ThunderboltDesc
-[SI] A powerful bolt of electricity.[X]
+[SI] A powerful bolt of electricity.[N]
+10% Paralysis chance.[X]
 
 ## PoundDesc
 Chip damage.[N]
@@ -899,7 +900,8 @@ Knocks the target back.[X]
 more damage on heavier foes.[X]
 
 ## ThundershockDesc
-[SI] A weak jolt of electricity.[X]
+[SI] A weak jolt of electricity.[N]
+10% Paralysis chance.[X]
 
 ## AcidDesc
 Chip damage.[N]
@@ -907,10 +909,11 @@ Debuffs Def/Res by 8.[N]
 AoE: Debuffs Def/Res by 5.[X]
 
 ## PoisonStingDesc
-[PI] A weak, venomous sting.[X]
+[PI] A weak, venomous sting.[N]
+30% Poison chance.[X]
 ## SmogDesc
 Chip damage.[N]
-May Poison.[X]
+40% Poison chance.[X]
 
 ## WaterGunDesc
 [SI] A weak spout of water.[X]
@@ -919,7 +922,8 @@ May Poison.[X]
 [SI] A powerful stream of bubbles.[X]
 
 ## ThunderPunchDesc
-[PI] An electric punch.[X]
+[PI] An electric punch.[N]
+10% Paralysis chance.[X]
 
 ## AbsorbDesc
 [SI] Saps some health.[X]
@@ -974,7 +978,7 @@ Gust[X]
 ## PeckName ^
 Peck[X]
 ## PeckDesc
-[PI] A small peck on the cheek![X]
+[PI] A small peck on the cheek. <3[X]
 ## SkyAttackName ^
 Sky Attack[X]
 ## SkyAttackDesc
@@ -1054,7 +1058,7 @@ AoE: Debuffs Spd by 5.[X]
 Rollout[X]
 ## RolloutDesc
 [PI] An intense, rolling attack.[N]
-Lands on the other side of the target.[X]
+Lands on the other side of the foe.[X]
 ## SandstormName ^
 Sandstorm[X]
 ## SandstormDesc
@@ -1062,7 +1066,8 @@ Sandstorm[X]
 ## ConfuseRayName ^
 Confuse Ray[X]
 ## ConfuseRayDesc
-[SI] May inflict confusion.[X]
+[SI] A confusing ray attack.[N]
+50% Berserk chance.[X]
 ## LickName ^
 Lick[X]
 ## LickDesc
@@ -1079,11 +1084,11 @@ Nightmare[X]
 ## ShadowBallName ^
 Shadow Ball[X]
 ## ShadowBallDesc
-[SI] A shadowy blob attack[X]
+[SI] A shadowy blob attack.[X]
 ## ShadowPunchName ^
 Shadow Punch[X]
 ## ShadowPunchDesc
-[PI] A punch from the shadows[X]
+[PI] A punch from the shadows.[X]
 ## DragonClawName ^
 Dragon Claw[X]
 ## DragonClawDesc
@@ -1095,7 +1100,7 @@ Dragon Dance[X]
 ## DragonRageName ^
 Dragon Rage[X]
 ## DragonRageDesc
-[SI] Deals 20 Damage.[X]
+[SI] Deals exactly 20 Damage.[X]
 ## DragonbreathName ^
 Dragonbreath[X]
 ## DragonbreathDesc
@@ -1145,7 +1150,8 @@ AoE: Debuffs Spd by 5.[X]
 ## UTurnName ^
 U-Turn[X]
 ## UTurnDesc
-[PI] A rush and retreat attack.[X]
+[PI] A rush and retreat attack.[N]
+Grants Canto+.[X]
 ## XScissorName ^
 X-Scissor[X]
 ## XScissorDesc
@@ -1174,7 +1180,8 @@ Magical Leaf[X]
 ## SparkName ^
 Spark[X]
 ## SparkDesc
-[PI] A weak spark.[X]
+[PI] A weak spark.[N]
+30% Paralysis chance.[X]
 
 
 ## BiteName
@@ -1214,14 +1221,16 @@ Crush Claw[X]
 [PI] A basic, cutting attack.[X]
 
 ## DoubleEdgeDesc
-[PI] A reckless, life-risking tackle.[X]
+[PI] A reckless, life-risking tackle.[N]
+Takes 7 damage recoil.[X]
 
 ## EggBombDesc 
 [PI] A large egg is hurled at the foe.[X]
 
 ## ExplosionDesc
 [PI] The user explodes at the[N]
-enemy. Always Critical Hits.[X]
+enemy. Always Critical Hits.[N]
+Also deals minor AoE.[X]
 
 ## GlareDesc
 [PI] Paralyzes the foe.[X]
@@ -1230,13 +1239,13 @@ enemy. Always Critical Hits.[X]
 +5 Str/Mag/Spd.[X]
 
 ## GuillotineDesc
-[PI] An extremely powerful cutting blow.[X]
+[PI] A powerful cutting blow.[X]
 
 ## HornAttackDesc
 [PI] Impales the foe with a horn.[X]
 
 ## HornDrillDesc
-[PI] Turns a horn into a powerful drill.[X]
+[PI] Drills the foe with a horn.[X]
 
 ## HyperBeamDesc
 [SI] A powerful beam that[N]
@@ -1247,9 +1256,9 @@ if it doesn't KO. Cannot double.[X]
 [PI] Bites with superior fangs.[X]
 
 ## MegaKickDesc
-[PI] A fiersomely normal kick. Inflicts[N]
+[PI] A fearsome kick. Inflicts[N]
 more damage on heavier foes.[N]
-Lands on the other side of the target.[X]
+Lands on the other side of the foe.[X]
 ## PayDayDesc
 [PI] Throws coins to damage foes.[X]
 
@@ -1262,13 +1271,14 @@ If below full HP, +4 damage.[X]
 Metal Claw[X]
 
 ## MetalClawDesc
-[PI] Slashes the foe with metalic claws.[X]
+[PI] A slash with metalic claws.[X]
 
 ## IronTailName ^
 Iron Tail[X]
 
 ## IronTailDesc
-[PI] Steels the tail for a sturdy strike.[X]
+[PI] A steel strike with the tail.[X]
+
 
 ## MeteorMashName ^
 Meteor Mash[X]
@@ -1286,7 +1296,7 @@ Mirror Shot[X]
 Flash Cannon[X]
 
 ## FlashCannonDesc
-[SI] Emits a harsh technological light.[X]
+[SI] Emits a technological flash.[X]
 
 ## MetalSoundName ^
 Metal Sound[X]
@@ -1312,51 +1322,59 @@ Deals 1/4 remaining HP.[X]
 
 
 ## TakeDownDesc
-[PI] A harsh tackle that injures the user.[X]
+[PI] A harsh, reckless tackle.[N]
+Takes 6 damage recoil.[X]
 
 ## ThrashDesc
-[PI] A rough series of strikes a blows.[X]
+[PI] A rough, thrashing blow.[N]
+Takes 4 damage recoil.[X]
 
 ## TriAttackDesc
 [SI] A fiery, icy and electric blast.[X]
 
 ## FirePunchDesc
-[PI] A blazing punch of flame.[X]
+[PI] A blazing punch of flame.[N]
+10% Burn chance.[X]
 
 ## FlameWheelDesc
-[PI] A blazing fiery tackle.[X]
+[PI] A blazing fiery tackle.[N]
+10% Burn chance.[X]
 
 ## ScorchDesc
-[SI] A burst of hot flame.[X]
+[SI] A burst of hot flame.[N]
+10% Burn chance.[X]
 
 ## FlamethrowerDesc
-[SI] A searing torrent of flame.[X]
+[SI] A searing torrent of flame.[N]
+10% Burn chance.[X]
 
 ## FireSpinDesc
 [SI] An entrapping circle of flames.[N]
 Pulls the target and binds them.[X]
 
 ## FireBlastDesc
-[SI] An intense blast of fire.[X]
+[SI] An intense blast of fire.[N]
+10% Burn chance.[X]
 
 ## SacredFireDesc
-[PI] A blast of searing holy flame.[X]
+[PI] A blast of searing holy flame.[N]
+50% Burn chance.[X]
 
 ## ClampDesc
 [PI] Clamps down hard on the foe.[N]
 Pulls the target and binds them.[X]
 
 ## CrabhammerDesc
-[PI] Swats at the foe with a crabbed arm.[X]
+[PI] Swats with a crabbed arm.[X]
 
 ## HydroPumpDesc
 [SI] Blasts the foe with water jets.[X]
 
 ## SurfDesc
-[SI] Torrents of water strike the foe.[X]
+[SI] Torrents of water hit the foe.[X]
 
 ## WaterfallDesc
-[PI] Crashes the foe with a waterfall.[X]
+[PI] Crashes like a waterfall.[X]
 
 ## WaterPulseDesc
 [SI] Pulses water at the foe.[X]
@@ -1391,7 +1409,7 @@ Waterfall[X]
 power.[X]
 
 ## LeafBladeDesc
-[PI] A cutting blade of sharp leaves.[X]
+[PI] Cuts with a blade of leaves.[X]
 
 ## SolarBeamDesc
 [SI] A beam of solar power that[N]
@@ -1402,13 +1420,16 @@ if it doesn't KO. Cannot double.[X]
 [PI] A barrage of cutting leaves.[X]
 
 ## ThunderDesc
-[SI] A fierce but shaky bolt.[X]
+[SI] A fierce but shaky bolt.[N]
+30% Paralysis chance.[X]
 
 ## VoltTackleDesc
-[PI] A powerful electric tackle.[X]
+[PI] A powerful electric tackle.[N]
+10% Paralysis chance.[N]
+Takes 7 damage recoil.[X]
 
 ## BlizzardDesc
-[SI] Unleashes a harsh blizzard on foe.[X]
+[SI] Unleashes a harsh storm.[X]
 
 ## AuroraBeamDesc
 [SI] Creates a chilly beam of frost.[X]
@@ -1429,27 +1450,30 @@ more damage on heavier foes.[X]
 ## HiJumpKickDesc
 [PI] A leaping kick of strength.[N]
 Inflicts extra on heavier foes.[N]
-Lands on the other side of the target.[X]
+Lands on the other side of the foe.[X]
 
 ## JumpKickDesc
 [PI] A leaping kick of power.[N]
 Inflicts extra on heavier foes.[X]
 
 ## RollingKickDesc
-[PI] User rolls about unleashing kicks.[N]
+[PI] User rolls and unleashes kicks.[N]
 Inflicts extra on heavier foes.[N]
-Lands on the other side of the target.[X]
+Lands on the other side of the foe.[X]
 
 ## SeismicTossDesc
 [PI] A hardy judo throw.[N]
 Negates 50% Def. Cannot double.[X]
 
 ## SubmissionDesc
-[PI] Throws the foe with all their might.[N]
-Inflicts extra on heavier foes.[X]
+[PI] Throws the foe with their might.[N]
+Inflicts extra on heavier foes.[N]
+Takes 7 damage recoil.[X]
 
 ## PoisonGasDesc
-[SI] A foul smelling poison gas attack.[X]
+[SI] A foul smelling poison attack.[N]
+Poisons the foe for 4 turns.[N]
+AoE: Poisons for 2 turns.[X]
 
 ## PoisonPowderName ^
 Poison Powder[X]
@@ -1460,29 +1484,32 @@ Poisons the foe for 4 turns.[N]
 AoE: Poisons for 2 turns.[X]
 
 ## SludgeDesc
-[SI] A poisonous goo hurled[N]
-at the foe.[X]
+[SI] Hurls a poisonous goo.[N]
+30% Poison chance.[X]
 
 ## PoisonJabDesc
-[PI] A poisonous strike.[X]
+[PI] A poisonous strike.[N]
+30% Poison chance.[X]
 
 ## ToxicDesc
-Chip damage. Badly poisons target on hit.[X]
+Chip damage.[N]
+Poisons the foe for 4 turns.[N]
+AoE: Poisons for 2 turns.[X]
 
 ## DigDesc
 [PI] An earthy strike from below.[X]
 
 ## BonemerangDesc
-[PI] Whip a bone boomerang at the foe.[X]
+[PI] Whips a bone boomerang.[X]
 
 ## EarthquakeDesc
-[PI] Shatters techtonics to destroy foes.[X]
+[PI] Creates a powerful quake.[X]
 
 ## FissureDesc
 [PI] Creates an earthen rift.[X]
 
 ## EarthPowerDesc
-[SI] Strikes by shaking the earth itself.[X]
+[SI] Strikes by shaking the ground.[X]
 
 ## MudBombName ^
 Mud Bomb[X]
@@ -1506,7 +1533,7 @@ Mud Shot[X]
 Air Slash[X]
 
 ## AirSlashDesc
-[SI] A diving slash of wind and wings.[X]
+[SI] A diving slash of wind.[X]
 
 ## HexName ^
 Hex[X]
@@ -1542,7 +1569,7 @@ Hurricane[X]
 
 ## HurricaneDesc
 [SI] A fierce wind attack.[N]
-May confuse the foe.[X]
+10% Berserk chance.[X]
 
 
 ## MoonStoneName ^

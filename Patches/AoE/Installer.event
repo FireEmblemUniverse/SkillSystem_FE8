@@ -8,7 +8,6 @@
 // Numbers will display over map battles unless flag BATTLE_MAPANIMATION_NUMBERS_FLAG is on.
 // define BATTLE_MAPANIMATION_NUMBERS_FLAG as desired (default is 0xEE)
 //#include "Draw/Installer.event"
-
 // if you are using FEBuilder. 
 #ifdef FEBUILDER_EXTRA_ORG
 #include "FEBuilderGBA/EN.event"	//{U}
@@ -184,13 +183,21 @@ MenuCommandID(QuickAttackName, 				UM_AoEDesc, NormalText, 136, AoE_SpecificUsab
 MenuCommandID(TriAttackName, 				UM_AoEDesc, NormalText, 137, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(FissureName, 				UM_AoEDesc, NormalText, 138, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(BonemerangName, 				UM_AoEDesc, NormalText, 139, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+
+//unused 
 MenuCommandID(FuryCutterName, 				UM_AoEDesc, NormalText, 140, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+
 MenuCommandID(JumpKickName, 				UM_AoEDesc, NormalText, 141, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(IronTailName, 				UM_AoEDesc, NormalText, 142, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(HurricaneName, 				UM_AoEDesc, NormalText, 143, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(MetalClawName, 				UM_AoEDesc, NormalText, 144, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(NightShadeName, 				UM_AoEDesc, NormalText, 145, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 MenuCommandID(SeismicTossName, 				UM_AoEDesc, NormalText, 146, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(HornAttackName, 				UM_AoEDesc, NormalText, 147, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(AbsorbName, 					UM_AoEDesc, NormalText, 148, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(PoisonStingName, 				UM_AoEDesc, NormalText, 149, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(RageName, 						UM_AoEDesc, NormalText, 150, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
+MenuCommandID(SmogName, 						UM_AoEDesc, NormalText, 151, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 //MenuCommandID(ConfuseRayName, 				UM_AoEDesc, NormalText, 131, AoE_SpecificUsability|1, AoE_SpecificEffect|1, AoE_SpecificHover|1, HideMoveRangeGraphicsWrapper|1)
 
 
@@ -2079,7 +2086,7 @@ BYTE 0 // Config2
 
 // Entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 Hex // Always usable by anyone 
+BYTE 0 0 0 HexAtt // Always usable by anyone 
 BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE SpeMin 2 // Attack range
@@ -2109,7 +2116,7 @@ BYTE 0 0 0 Glare // Always usable by anyone
 BYTE 0 FriendlyFireBool|FixedDamageBool
 BYTE 2 T1AoE_Var // variance range of 0 - 2 
 BYTE 1 2 // Attack range
-BYTE SmallLine debuffAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallTriangle debuffAnimationID // Index of RangeMask, AnimationALL,
 BYTE 100 0x26 // paralyze 2 turns 
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -2193,11 +2200,11 @@ BYTE 0 // Config2
 
 // Entry 
 BYTE 0 0 0 0
-BYTE 0 0 0 FuryCutter // Always usable by anyone 
+BYTE 0 0 0 0xFE // Always usable by anyone 
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
-BYTE SmallCross bugAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallMeleeLine bugAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -2210,7 +2217,7 @@ BYTE 0 0 0 JumpKick // Always usable by anyone
 BYTE 0 FriendlyFireBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE 1 1 // Attack range
-BYTE SmallCross fightingAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallMeleeLine fightingAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -2260,7 +2267,7 @@ BYTE 0 0 0 NightShade // Always usable by anyone
 BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
 BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
 BYTE SpeMin 2 // Attack range
-BYTE SmallCross ghostAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallLine ghostAnimationID // Index of RangeMask, AnimationALL,
 BYTE AoEPercentDmg 0 // DamagePercent, Status
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
@@ -2278,6 +2285,73 @@ BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
 BYTE 0 // Amount of weapon uses to deplete.
 BYTE 0 // Config2
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 HornAttack // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 1 // Attack range
+BYTE SmallMeleeLine normalAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Absorb // Always usable by anyone 
+BYTE 0 FriendlyFireBool|MagBasedBool|HitResBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE SpeMin 2 // Attack range
+BYTE SmallLine grassAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 PoisonSting // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 1 // Attack range
+BYTE SmallMeleeLine poisonAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Rage // Always usable by anyone 
+BYTE 0 FriendlyFireBool
+BYTE T1AoE_Mt T1AoE_Var // variance range of 0 - 2 
+BYTE 1 1 // Attack range
+BYTE SmallMeleeLine normalAnimationID // Index of RangeMask, AnimationALL,
+BYTE AoEPercentDmg 0 // DamagePercent, Status
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+// Entry 
+BYTE 0 0 0 0
+BYTE 0 0 0 Smog // Always usable by anyone 
+BYTE 0 FriendlyFireBool|FixedDamageBool
+BYTE 5 T1AoE_Var // variance range of 0 - 2 
+BYTE 1 2 // Attack range
+BYTE Square poisonAnimationID // Index of RangeMask, AnimationALL,
+BYTE 100 0x21 // poison 2 turns 
+BYTE 0 0 // DebuffID, EventIndex
+BYTE 0xFF 0 // Weapon Type and WEXP to use this. 
+BYTE 0 // Amount of weapon uses to deplete.
+BYTE 0 // Config2
+
+
 
 AoE_TableTerminator
 

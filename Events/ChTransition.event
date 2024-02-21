@@ -122,7 +122,7 @@ SVAL r7 1
 BNE 0 rA r7 
 // They said yes 
 SVAL rC 0 
-GetNthUnit(2) 
+GetNthUnitExceptProtag(2) 
 BEQ 10 rC r0
 // And they have another unit deployed 
 TutText_B(GoodbyeReleasePokemonText)
@@ -1597,35 +1597,35 @@ ENDA
 
 CheckDeployed:
 ReorderParty
-GetNthUnit(6)
+GetNthUnitExceptProtag(6)
 BEQ Try5Label rC r0 
 LOAD3 0x0 First6Players 
 SVAL r4 6
 GOTO EndLabel
 
 Label Try5Label
-GetNthUnit(5)
+GetNthUnitExceptProtag(5)
 BEQ Try4Label rC r0 
 LOAD3 0x0 First5Players 
 SVAL r4 5
 GOTO EndLabel 
 
 Label Try4Label
-GetNthUnit(4)
+GetNthUnitExceptProtag(4)
 BEQ Try3Label rC r0 
 LOAD3 0x0 First4Players 
 SVAL r4 4
 GOTO EndLabel 
 
 Label Try3Label
-GetNthUnit(3)
+GetNthUnitExceptProtag(3)
 BEQ Try2Label rC r0 
 LOAD3 0x0 First3Players 
 SVAL r4 3
 GOTO EndLabel 
 
 Label Try2Label
-GetNthUnit(2)
+GetNthUnitExceptProtag(2)
 BEQ Try1Label rC r0 
 LOAD3 0x0 First2Players 
 SVAL r4 2

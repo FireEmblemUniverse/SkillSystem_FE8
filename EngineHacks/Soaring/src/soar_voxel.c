@@ -428,10 +428,10 @@ const u8 originCoords[106][2] = { //world map coords per chapter entry
 	{1,4}, //indigo plateau
 	{1,4}, //indigo plateau
 	{1,4}, //indigo plateau
-	{0,0}, //pc box
-	{1,4}, //indigo plateau
-	{0,0}, //pc box
-	{0,0}, //pc box
+	{0,0}, //SaveWithHealCh
+	{1,4}, //SaveWithoutHealCh
+	{0,0}, // ViridianGymCh 0x41
+	{11,10}, //SSAnneDocks
 	{2,14}, //debug room
 	{0,0} //debug room
 };

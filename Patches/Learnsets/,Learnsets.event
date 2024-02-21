@@ -3314,7 +3314,7 @@ BYTE 0 0
 
 
 ALIGN 4 
-AllMovesLearnset:
+AllMovesLearnset1:
 BYTE 1 0x1
 BYTE 1 0x2
 BYTE 1 0x3
@@ -3443,6 +3443,10 @@ BYTE 1 0x7D
 BYTE 1 0x7E
 BYTE 1 0x7F
 BYTE 1 0x80
+BYTE 1 0 
+
+ALIGN 4 
+AllMovesLearnset2:
 BYTE 1 0x81
 BYTE 1 0x82
 BYTE 1 0x83
@@ -3733,3 +3737,4 @@ GaidenList(DragoniteID,DragoniteLearnset)
 GaidenList(MewtwoID,MewtwoLearnset)
 GaidenList(MewID,MewLearnset)
 GaidenList(MissingnoID,MissingnoLearnset)
+//GaidenList(MissingnoID,AllMovesLearnset2)

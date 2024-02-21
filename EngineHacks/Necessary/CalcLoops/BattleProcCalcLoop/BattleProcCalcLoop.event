@@ -48,6 +48,10 @@ POIN Proc_Start	//start
 	//POIN CombatArt_Astra
 #endif // COMBAT_ARTS
 
+#ifdef STATUS_WEAPONS
+	POIN Proc_StatusWeapons 
+#endif // STATUS_WEAPONS
+
 //POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
 #ifdef ReplaceMissWithHalfDamage
 POIN NeverMiss
@@ -76,9 +80,7 @@ POIN Proc_TripleHit Proc_MultiHit Proc_Absorb Proc_Drain
 
 //POIN Proc_BlackMagic Proc_Petrify Proc_Enrage Proc_Deadeye //skills that apply a status effect
 
-#ifdef STATUS_WEAPONS
-	POIN Proc_StatusWeapons 
-#endif // STATUS_WEAPONS
+
 
 #ifdef COMBAT_ARTS
 	POIN Proc_CombatArtCost
