@@ -984,13 +984,13 @@ ALIGN 4
 ArticunoTMs:
 BYTE Agility DoubleEdge HyperBeam Rage Swift TakeDown WaterGun BubbleBeam WaterPulse Reflect Rest Ancientpower Twister SignalBeam UTurn Sandstorm Roar AttackPulse
 BYTE Bubble Psychic Confusion
-BYTE RecoverMove Guillotine
+BYTE RecoverMove
 BYTE 0
 
 ALIGN 4
 ZapdosTMs:
 BYTE Agility DoubleEdge Flash HyperBeam Rage Swift TakeDown Rest Ancientpower Twister SignalBeam UTurn Sandstorm Roar LightScreen AttackPulse
-BYTE RecoverMove
+BYTE RecoverMove SeismicToss
 BYTE 0
 
 ALIGN 4
