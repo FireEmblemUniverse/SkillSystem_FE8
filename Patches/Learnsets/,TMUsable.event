@@ -75,7 +75,7 @@ ALIGN 4
 CharizardTMs:
 BYTE BodySlam DoubleEdge Growl Headbutt HyperBeam Leer MegaKick MegaPunch Rage Scratch MetalClaw IronTail Slash Swift SwordsDance TakeDown HoneClaws SeismicToss Submission Dig Earthquake Fissure Rest RockSlide RockTomb DragonClaw DragonRage Dragonbreath Outrage FuryCutter Twister Cut Sandstorm Roar Counter GuardMove
 BYTE LowKick Magnitude MudShot RockThrow
-BYTE AirSlash Hurricane
+BYTE AirSlash Hurricane SolarBeam
 BYTE 0
 
 ALIGN 4
@@ -870,7 +870,7 @@ ALIGN 4
 MagmarTMs:
 BYTE BodySlam DoubleEdge Headbutt HyperBeam Leer MegaKick MegaPunch Rage IronTail TakeDown ThunderPunch SeismicToss Submission Smog Psychic Rest ConfuseRay ThiefAtt Teleport Metronome Counter LightScreen
 BYTE LowKick Confusion Sludge PoisonJab
-BYTE SandAttack Bite NightDaze
+BYTE SandAttack Bite NightDaze SolarBeam
 BYTE 0
 
 ALIGN 4
