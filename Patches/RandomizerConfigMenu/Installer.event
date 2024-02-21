@@ -38,10 +38,10 @@ BYTE 2
 // if you need more than 6 entries for one option, you can add more macros as above 
 ALIGN 4 
 OptionsToFlagsList: 
-OptionFlagsEntry(0, 0x103, 0x100, 0x101) // option 0 sets flag 0 (none), flag 0x90, or flag 0x89 
-OptionFlagsEntry(1, 0xFD, 0) // option 1 sets flag 0x88 or flag 0 (none) 
-OptionFlagsEntry(2, 0x103, 0, 0x104, 0x105) // option 2 sets flag 0x88 or flag 0 (none) 
-OptionFlagsEntry(3, 0xFB, 0) // option 2 sets flag 0x88 or flag 0 (none) 
+OptionFlagsEntry(0, 0, 0x90, 0x89) // option 0 sets flag 0 (none), flag 0x90, or flag 0x89 
+OptionFlagsEntry(1, 0x88, 0) // option 1 sets flag 0x88 or flag 0 (none) 
+OptionFlagsEntry(2, 0x91, 0, 0x92, 0x93) // option 2 sets flag 0x91, 0, 0x92, or 0x93 
+OptionFlagsEntry(3, 0xFB, 0) // option 3 sets flag 0xFB or flag 0 (none) 
 
 SHORT 0xFEDC // Terminator 
 
