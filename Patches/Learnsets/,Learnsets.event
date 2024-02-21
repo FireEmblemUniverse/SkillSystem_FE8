@@ -2487,13 +2487,13 @@ BYTE 10 WaterGun
 BYTE 13 Dragonbreath
 BYTE 15 AuroraBeam
 BYTE 18 WaterPulse
-BYTE 22 PoisonJab 
+BYTE 20 PoisonJab 
+BYTE 22 SignalBeam
 BYTE 24 Agility
 BYTE 26 Waterfall
 BYTE 30 Surf // Brine
 BYTE 32 Sludge
 BYTE 35 IceBeam
-BYTE 37 SignalBeam
 // BYTE 38 Resv DragonDance
 BYTE 40 HydroPump
 BYTE 42 Outrage // DragonPulse
@@ -2510,13 +2510,13 @@ BYTE 10 WaterGun
 BYTE 13 Dragonbreath
 BYTE 15 AuroraBeam
 BYTE 18 WaterPulse
-BYTE 22 PoisonJab 
+BYTE 20 PoisonJab 
+BYTE 22 SignalBeam
 BYTE 24 Agility
 BYTE 26 Waterfall
 BYTE 30 Surf // Brine
 BYTE 32 Sludge
 BYTE 35 IceBeam
-BYTE 37 SignalBeam
 // BYTE 38 Resv DragonDance
 BYTE 40 HydroPump
 BYTE 42 Outrage // DragonPulse
