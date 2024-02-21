@@ -1760,15 +1760,17 @@ BYTE 10 Swift // Uproar
 BYTE 12 DoubleHit // FuryAttack
 BYTE 14 ThiefAtt // Pursuit
 BYTE 18 TakeDown
-BYTE 21 TriAttack
-BYTE 24 Dig
+BYTE 20 TriAttack
+BYTE 22 Dig
+BYTE 24 JumpKick
 BYTE 27 DrillPeck
 // BYTE 28 Resv Acupressure
 BYTE 30 Thrash
 BYTE 32 Agility
-BYTE 35 JumpKick
+BYTE 35 HiJumpKick
 BYTE 38 SwordsDance
 BYTE 42 DoubleEdge
+BYTE 45 Outrage
 // BYTE 46 Endeavor
 BYTE 0 0 
 
@@ -1782,15 +1784,17 @@ BYTE 10 Swift // Uproar
 BYTE 12 DoubleHit // FuryAttack
 BYTE 14 ThiefAtt // Pursuit
 BYTE 18 TakeDown
-BYTE 21 TriAttack
-BYTE 24 Dig
+BYTE 20 TriAttack
+BYTE 22 Dig
+BYTE 24 JumpKick
 BYTE 27 DrillPeck
 // BYTE 28 Resv Acupressure
 BYTE 30 Thrash
 BYTE 32 Agility
-BYTE 35 JumpKick
+BYTE 35 HiJumpKick
 BYTE 38 SwordsDance
 BYTE 42 DoubleEdge
+BYTE 45 Outrage
 // BYTE 46 Endeavor
 BYTE 0 0 
 
