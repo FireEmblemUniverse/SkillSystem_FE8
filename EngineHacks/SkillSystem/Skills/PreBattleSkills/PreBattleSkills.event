@@ -377,6 +377,7 @@ POIN SkillTester
 WORD StunningSmileID
 
 #include "KeenFighter/Installer.event" 
+#include "FlankSwarmScale/Installer.event" 
 
 
 #ifdef MODULAR_PRE_BATTLE_SKILLS

@@ -1643,4 +1643,16 @@ Fail 'n Gale: Move again[N]
 after attacking but failing[N]
 to harm an enemy.[X]
 
+## SD_Multiscale
+Multiscale: Take half[N]
+damage when at full HP.[X]
+
+## SD_Flank
+Flank: If an ally is on the[N]
+opposite side of an adjacent[N]
+target, deal 25% more damage.[X]
+
+## SD_Swarm
+Swarm: If an adjacent target is[N]
+surrounded, deal 50% more damage.[X]
 

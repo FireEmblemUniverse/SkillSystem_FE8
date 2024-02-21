@@ -1,0 +1,17 @@
+
+ALIGN 4 
+SwarmID_Link: 
+WORD SwarmID
+FlankID_Link:
+WORD FlankID
+SwarmBonusDamagePercent:
+WORD 100
+FlankBonusDamagePercent:
+WORD 50
+FlankRequiresSkill_Link:
+WORD 1 // true // 0 // false
+MultiscaleID_Link:
+WORD MultiscaleID 
+
+#include "C_Code.lyn.event" 
+
