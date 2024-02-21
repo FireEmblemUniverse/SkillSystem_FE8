@@ -24,6 +24,13 @@ static const ProcCode StartingOptionsProc[] = {
   PROC_END
 };
 
+static const ProcCode StartingOptionsSavedProc[] = {
+  PROC_SET_NAME("StartingOptionsSaved"),
+    PROC_SLEEP(1),
+  PROC_LOOP_ROUTINE(SaveStartingOptionsLoop), 
+  PROC_END
+};
+
 static const ProcCode SpinProc[] = {
   PROC_SET_NAME("SpinnyBoi"),
   PROC_SET_MARK(0xD),
@@ -73,18 +80,9 @@ static const ProcCode NewGameDifficultySelect[] = {
   PROC_END
 };
 
+extern int PAGE1MAXINDEX;
+extern const u8 NumberOfOptionsPerEntryTable[]; 
 
-#define PAGE1MAXINDEX 7
-const u8 NumberOfOptions[7] = 
-{ 
-2, 
-2, 
-2, 
-2, 
-2, 
-2, 
-2, 
-}; 
 
 static const LocationTable CursorLocationTable[] = {
   {10, 0x18},
@@ -133,7 +131,18 @@ void StartingOptionsSetup(OptionsProc* CurrentProc){
 	CurrentProc->Page = 1;
 	CurrentProc->Option[0] = 0;
 	CurrentProc->Option[1] = 0;
-	CurrentProc->RN = 0;
+	CurrentProc->Option[2] = 0;
+	CurrentProc->Option[3] = 0;
+	CurrentProc->Option[4] = 0;
+	CurrentProc->Option[5] = 0;
+	CurrentProc->Option[6] = 0;
+	CurrentProc->Option[7] = 0;
+
+	
+	OptionsSavedProc* proc = (void*)ProcStart(StartingOptionsSavedProc, (void*)3); 
+	for (int i = 0; i<21; i++) { 
+		proc->FlagOn[i] = 0; // init to 0 
+	} 
 
 	updateOptionsPage(CurrentProc);
 };
@@ -189,6 +198,9 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
 			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			default: { 
+			string = "N/A";
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
 		} 
 		
@@ -201,6 +213,9 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
 			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			default: { 
+			string = "N/A";
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
 		} 
 		
@@ -212,6 +227,9 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
 			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			default: { 
+			string = "N/A";
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
 		} 
 		
@@ -222,6 +240,9 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
 			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			default: { 
+			string = "N/A";
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
 		} 
 		i = 4; 
@@ -231,6 +252,9 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
 			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			default: { 
+			string = "N/A";
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
 		} 
 		i = 5; 
@@ -240,6 +264,9 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
 			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			default: { 
+			string = "N/A";
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
 		} 
 		i = 6; 
@@ -249,6 +276,9 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
 			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			default: { 
+			string = "N/A";
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
 		} 
 		i = 7; 
@@ -258,6 +288,9 @@ void updateOptionsPage(OptionsProc* CurrentProc) {
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
 			case 1: { 
 			string = "Randomized";
+			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } 
+			default: { 
+			string = "N/A";
 			DrawTextInline(0, BGLoc(BG0Buffer, 15, (3+(i*2))), 2, 0, (Text_GetStringTextWidth(string)+8)/8, string); break; } break; 
 		} 
 		
@@ -319,65 +352,75 @@ void LoadOptionsData(void* source, unsigned size) {
 	ReadSramFast(source, (void*)&OptionsSaved, size);
 }
 
-void SetOptionFlagsASMC() {
-	
-	//casual mode
-	if (OptionsSaved->CasualMode == 1) SetEventId(CasualModeFlagLink);
-	
-	//growths
-	switch (OptionsSaved->GrowthSetting) {
-	
-		case 1: //Fixed
-			SetEventId(FixedGrowthsFlagLink);
-			break;
-		
-		case 2: //0%
-			SetEventId(ZeroGrowthsFlagLink);
-			break;
-		
-		case 3: //100%
-			SetEventId(PerfectGrowthsFlagLink);
-			break;
-		
-		default:
-			break;
-		
+extern u16 OptionsToFlagsList[]; 
+
+u16* GetOptionsToFlagData(int commandID) { 
+
+	u16* data = &OptionsToFlagsList[0];
+	if (commandID == 0) { 
+		data++; // 0th entry is immediately after the ID 
+		return data; 
 	}
 	
-	//hit rng
-	switch (OptionsSaved->RNGSetting) {
+	while (*data != 0xFEDC) { 
+		data++; 
+		if (*data == 0xFFFF) { 
+			data++; // we want the entry immediately after SHORT 0xFFFF 
+			if (*data == commandID) { 
+				data++; // we also want to ignore the SHORT commandID 
+				return data; 
+			} 
+		} 
 	
-		case 1:
-			SetEventId(OneRNFlagLink);
-			break;
-		
-		case 2:
-			SetEventId(FatesRNFlagLink);
-			break;
-		
-		case 3:
-			SetEventId(EvilRNFlagLink);
-			break;
-		
-		case 4:
-			SetEventId(PerfectHitFlagLink);
-			break;
-		
-		case 5:
-			SetEventId(NiceRNGFlagLink);
-			break;
-		
-		case 6:
-			SetEventId(CoinTossRNGFlagLink);
-			break;
-		
-		default:
-			break;
-		
-	}
+	} 
+	return NULL; 
 	
+
+} 
+extern struct ProcCode* ProcScr_StdEventEngine; // map event engine proc
+
+extern u8 gPermanentFlagBits[];
+void CallResetPermanentFlags(void) {
+    int i;
+
+    for (i = 0; i < 25; i++) {
+        gPermanentFlagBits[i] = 0;
+    }
+
+    return;
 }
 
+extern struct ProcCode* ProcScr_BmFadeOUT; // save screen fade out 
+void SaveStartingOptionsLoop(OptionsSavedProc* CurrentProc){
+	OptionsProc* proc = (void*)ProcFind((void*)&StartingOptionsProc); 
+	if (proc) { 
+		for (int commandID = 0; commandID < PAGE1MAXINDEX; commandID++) { 
+			u16* data = GetOptionsToFlagData(commandID);
+			//asm("mov r11, r11"); 
+			if (data) CurrentProc->FlagOn[commandID] = data[proc->Option[commandID]]; 
+		} 
+		return; 
+	} 
+	
+	Proc* saveFadeOut = (void*)ProcFind((void*)&ProcScr_BmFadeOUT);
+	if (saveFadeOut) { 
+		//asm("mov r11, r11"); 
+		CallResetPermanentFlags(); 
+		// save flags and kill proc 
+		int flag = 0; 
+		for (int i = 0; i < 21; i++) { 
+			flag = CurrentProc->FlagOn[i]; 
+			if (flag > 0) { SetEventId(flag); } 
+		} 
+		//int slot = gChapterData.saveSlotIndex; 
+		
+		BreakProcLoop((void*)CurrentProc); 
+		//when event engine runs, save to file? 
+	} 
+
+	return; 
+	
+} 
 
 void StartingOptionsLoop(OptionsProc* CurrentProc){
 
@@ -411,13 +454,13 @@ void StartingOptionsLoop(OptionsProc* CurrentProc){
 	if (newInput & InputLeft) {
 		CurrentProc->Option[CurrentProc->CursorIndex]--;
 		if (CurrentProc->Option[CurrentProc->CursorIndex] < 0) { 
-			CurrentProc->Option[CurrentProc->CursorIndex] = NumberOfOptions[CurrentProc->CursorIndex] - 1;
+			CurrentProc->Option[CurrentProc->CursorIndex] = NumberOfOptionsPerEntryTable[CurrentProc->CursorIndex] - 1;
 		} 
 		updateOptionsPage(CurrentProc);
 	} 
 	if (newInput & InputRight) {
 		CurrentProc->Option[CurrentProc->CursorIndex]++;
-		if (CurrentProc->Option[CurrentProc->CursorIndex] >= NumberOfOptions[CurrentProc->CursorIndex]) { 
+		if (CurrentProc->Option[CurrentProc->CursorIndex] >= NumberOfOptionsPerEntryTable[CurrentProc->CursorIndex]) { 
 			CurrentProc->Option[CurrentProc->CursorIndex] = 0;
 		} 
 		updateOptionsPage(CurrentProc);

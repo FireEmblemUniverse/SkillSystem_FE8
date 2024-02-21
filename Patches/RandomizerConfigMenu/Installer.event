@@ -12,39 +12,48 @@
 PUSH
 ORG $a20164
 POIN NewDifficultySelectFunc
-ORG $83d20
-BYTE 0x13 //clear slightly fewer global flags on new file
+ORG $83d18 // don't clear global flags on new game except through our function 
+SHORT $4770 // bx lr 
+//ORG $83d20
+//BYTE 0x13 //clear slightly fewer global flags on new file
 POP
 
+ALIGN 4
+PAGE1MAXINDEX: 
+WORD 7 // Max is 7 (for 8 entries) 
+
+NumberOfOptionsPerEntryTable:
+BYTE 3 // 0th entry has 2 choices 
+BYTE 2 // 1st entry has 2 choices 
+BYTE 4
+BYTE 2
+BYTE 2
+BYTE 2
+BYTE 2
+BYTE 2
+
+
+// optionID, flag to set 
+#define OptionFlagsEntry(commandID, flagA) "SHORT commandID flagA 0xFFFF" 
+#define OptionFlagsEntry(commandID, flagA, flagB) "SHORT commandID flagA flagB 0xFFFF" 
+#define OptionFlagsEntry(commandID, flagA, flagB, flagC) "SHORT commandID flagA flagB flagC 0xFFFF" 
+#define OptionFlagsEntry(commandID, flagA, flagB, flagC, flagD) "SHORT commandID flagA flagB flagC flagD 0xFFFF" 
+#define OptionFlagsEntry(commandID, flagA, flagB, flagC, flagD, flagE) "SHORT commandID flagA flagB flagC flagD flagE 0xFFFF" 
+#define OptionFlagsEntry(commandID, flagA, flagB, flagC, flagD, flagE, flagF) "SHORT commandID flagA flagB flagC flagD flagE flagF 0xFFFF" 
+// if you need more than 6 entries for one option, you can add more macros as above 
+ALIGN 4 
+OptionsToFlagsList: 
+OptionFlagsEntry(0, 0xFF, 0x100, 0x101) // option 0 sets flag 0 (none), flag 0x90, or flag 0x89 
+OptionFlagsEntry(1, 0xFD, 0) // option 1 sets flag 0x88 or flag 0 (none) 
+OptionFlagsEntry(2, 0x103, 0, 0x104, 0x105) // option 2 sets flag 0x88 or flag 0 (none) 
+OptionFlagsEntry(3, 0xFB, 0) // option 2 sets flag 0x88 or flag 0 (none) 
 
 
 
+SHORT 0xFEDC 0xFFFF // Terminator 
+SHORT 0x1234 0x5678 
+SHORT 0xFFFF 0xFFFF // Terminator 
 
 
-
-
-
-
-
-CasualModeFlagLink:
-BYTE $B0
-FixedGrowthsFlagLink:
-BYTE 1 //FIXED_GROWTHS_FLAG_ID
-OneRNFlagLink:
-BYTE 1 //Enable1RNFlag
-FatesRNFlagLink:
-BYTE 1 //EnableFatesRNFlag
-EvilRNFlagLink:
-BYTE 1 //EnableEvilRNFlag
-PerfectHitFlagLink:
-BYTE 1 //EnablePerfectHitFlag
-NiceRNGFlagLink:
-BYTE 1 //EnableNiceRNGFlag
-CoinTossRNGFlagLink:
-BYTE 1 //EnableCoinTossRNGFlag
-ZeroGrowthsFlagLink:
-BYTE 1 //ZeroGrowthsFlag
-PerfectGrowthsFlagLink:
-BYTE 1 //PerfectGrowthsFlag
 
 

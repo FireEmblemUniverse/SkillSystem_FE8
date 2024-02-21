@@ -7,13 +7,17 @@ typedef struct {
   u8 CursorIndex;
   u8 LastCursorIndex;
   s8 Option[8];
-  u8 CasualMode;
-  u8 FixedGrowths;
-  u8 RN;
 
   //more options here
 } OptionsProc;
 
+// Temporarily save via a proc until the game starts 
+typedef struct {
+  Proc Header;
+  u16 FlagOn[20];
+} OptionsSavedProc;
+
+void SaveStartingOptionsLoop(OptionsSavedProc* CurrentProc);
 void StartingOptionsSetup(OptionsProc* CurrentProc);
 void updateOptionsPage(OptionsProc* CurrentProc);
 void StartingOptionsLoop(OptionsProc* CurrentProc);
