@@ -2700,7 +2700,8 @@ BYTE 21 SeismicToss
 //BYTE 25 LightScreen
 BYTE 24 Thunderbolt
 BYTE 28 ThunderPunch
-BYTE 32 Screech
+BYTE 30 Screech
+BYTE 32 IcePunch
 BYTE 35 Submission
 BYTE 38 Psychic
 BYTE 40 VoltTackle
@@ -2716,16 +2717,17 @@ BYTE 3 SandAttack // SmokeScreen
 BYTE 5 FlameWheel
 BYTE 8 Scorch
 BYTE 10 ConfuseRay
-BYTE 13 FireSpin
+BYTE 13 Confusion
 BYTE 15 RollingKick
-BYTE 18 Confusion
+BYTE 18 FireSpin
 BYTE 21 PoisonJab
 BYTE 24 Flamethrower
 BYTE 28 FirePunch
-BYTE 32 NightDaze // FaintAttack
-BYTE 35 Sludge
-BYTE 38 Psychic
-BYTE 40 SacredFire
+BYTE 30 Sludge
+BYTE 32 DarkPulse // FaintAttack
+BYTE 35 Psychic
+BYTE 38 SacredFire
+BYTE 40 SolarBeam
 BYTE 45 FireBlast
 // BYTE 49 Resv SunnyDay
 BYTE 0 0
