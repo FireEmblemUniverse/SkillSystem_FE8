@@ -1447,17 +1447,19 @@ BYTE 0 0
 ALIGN 4
 BellsproutLearnset:
 BYTE 1 VineWhip 
-BYTE 4 Constrict
-BYTE 7 Acid
-BYTE 8 LeafFlurry
-BYTE 10 Bite
-BYTE 13 PoisonPowder
-BYTE 15 RazorLeaf
+BYTE 1 Constrict
+BYTE 5 Acid
+BYTE 7 LeafFlurry
+BYTE 9 RazorLeaf
+BYTE 11 Bite
+BYTE 13 MagicalLeaf
+BYTE 15 PoisonPowder
 BYTE 17 LeechLife
 BYTE 19 Growth
 BYTE 21 Sludge
-BYTE 24 LeafBlade
-BYTE 27 PoisonJab
+BYTE 23 LeafBlade
+BYTE 25 PoisonJab
+BYTE 27 PetalDance
 BYTE 29 RecoverMove //?Support SweetScent
 BYTE 32 SwordsDance
 BYTE 35 NightSlash
@@ -1468,17 +1470,19 @@ BYTE 0 0
 ALIGN 4
 WeepinbellLearnset:
 BYTE 1 VineWhip 
-BYTE 4 Constrict
-BYTE 7 Acid
-BYTE 8 LeafFlurry
-BYTE 10 Bite
-BYTE 13 PoisonPowder
-BYTE 15 RazorLeaf
+BYTE 1 Constrict
+BYTE 5 Acid
+BYTE 7 LeafFlurry
+BYTE 9 RazorLeaf
+BYTE 11 Bite
+BYTE 13 MagicalLeaf
+BYTE 15 PoisonPowder
 BYTE 17 LeechLife
 BYTE 19 Growth
 BYTE 21 Sludge
-BYTE 24 LeafBlade
-BYTE 27 PoisonJab
+BYTE 23 LeafBlade
+BYTE 25 PoisonJab
+BYTE 27 PetalDance
 BYTE 29 RecoverMove //?Support SweetScent
 BYTE 32 SwordsDance
 BYTE 35 NightSlash
@@ -1489,17 +1493,19 @@ BYTE 0 0
 ALIGN 4
 VictreebelLearnset:
 BYTE 1 VineWhip 
-BYTE 4 Constrict
-BYTE 7 Acid
-BYTE 8 LeafFlurry
-BYTE 10 Bite
-BYTE 13 PoisonPowder
-BYTE 15 RazorLeaf
+BYTE 1 Constrict
+BYTE 5 Acid
+BYTE 7 LeafFlurry
+BYTE 9 RazorLeaf
+BYTE 11 Bite
+BYTE 13 MagicalLeaf
+BYTE 15 PoisonPowder
 BYTE 17 LeechLife
 BYTE 19 Growth
 BYTE 21 Sludge
-BYTE 24 LeafBlade
-BYTE 27 PoisonJab
+BYTE 23 LeafBlade
+BYTE 25 PoisonJab
+BYTE 27 PetalDance
 BYTE 29 RecoverMove //?Support SweetScent
 BYTE 32 SwordsDance
 BYTE 35 NightSlash
@@ -2377,12 +2383,12 @@ BYTE 9 RockTomb
 BYTE 11 DoubleHit // FuryAttack
 BYTE 13 RockThrow // Rock Blast
 BYTE 15 Glare // ScaryFace
-BYTE 20 Rollout
-BYTE 23 TakeDown
-BYTE 25 Dig
-BYTE 28 RockSlide // Stone Edge
-BYTE 30 DoubleEdge 
-BYTE 35 Earthquake
+BYTE 18 Rollout
+BYTE 20 TakeDown
+BYTE 23 Dig
+BYTE 27 RockSlide // Stone Edge
+BYTE 30 Earthquake
+BYTE 35 DoubleEdge 
 BYTE 38 HornDrill
 BYTE 40 Submission // Hammer Arm
 BYTE 45 Megahorn
@@ -2397,12 +2403,12 @@ BYTE 9 RockTomb
 BYTE 11 DoubleHit // FuryAttack
 BYTE 13 RockThrow // Rock Blast
 BYTE 15 Glare // ScaryFace
-BYTE 20 Rollout
-BYTE 23 TakeDown
-BYTE 25 Dig
-BYTE 28 RockSlide // Stone Edge
-BYTE 30 DoubleEdge 
-BYTE 35 Earthquake
+BYTE 18 Rollout
+BYTE 20 TakeDown
+BYTE 23 Dig
+BYTE 27 RockSlide // Stone Edge
+BYTE 30 Earthquake
+BYTE 35 DoubleEdge 
 BYTE 38 HornDrill
 BYTE 40 Submission // Hammer Arm
 BYTE 45 Megahorn
