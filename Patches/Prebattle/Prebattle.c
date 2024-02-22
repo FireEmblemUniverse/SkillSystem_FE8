@@ -227,22 +227,26 @@ void TransformInit(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 	//if (gBattleStats.config & (BATTLE_CONFIG_REAL | BATTLE_CONFIG_SIMULATE)) {
 	//	return; 
 	//}
-	if ((bunitA->unit.pClassData->number == DittoID_Link) || (bunitA->weaponBefore == Transform_Link)) { 
-		bunitA->battleAttack = 0; 
-		bunitA->battleDefense = 0; 
-		bunitA->battleSpeed = 0; 
-		bunitA->battleHitRate = 0; 
-		bunitA->battleAvoidRate = 0; 
-		bunitA->battleCritRate = 0; 
+	if (bunitA->unit.pClassData) { 
+		if ((bunitA->unit.pClassData->number == DittoID_Link) || (bunitA->weaponBefore == Transform_Link)) { 
+			bunitA->battleAttack = 0; 
+			bunitA->battleDefense = 0; 
+			bunitA->battleSpeed = 0; 
+			bunitA->battleHitRate = 0; 
+			bunitA->battleAvoidRate = 0; 
+			bunitA->battleCritRate = 0; 
+		}
 	}
-	if ((bunitB->unit.pClassData->number == DittoID_Link) || (bunitB->weaponBefore == Transform_Link)) { 
-		bunitB->battleAttack = 0; 
-		bunitB->battleDefense = 0; 
-		bunitB->battleSpeed = 0; 
-		bunitB->battleHitRate = 0; 
-		bunitB->battleAvoidRate = 0; 
-		bunitB->battleCritRate = 0; 
-	}
+	if (bunitB->unit.pClassData) { 
+		if ((bunitB->unit.pClassData->number == DittoID_Link) || (bunitB->weaponBefore == Transform_Link)) { 
+			bunitB->battleAttack = 0; 
+			bunitB->battleDefense = 0; 
+			bunitB->battleSpeed = 0; 
+			bunitB->battleHitRate = 0; 
+			bunitB->battleAvoidRate = 0; 
+			bunitB->battleCritRate = 0; 
+		}
+	} 
 }
 			
 

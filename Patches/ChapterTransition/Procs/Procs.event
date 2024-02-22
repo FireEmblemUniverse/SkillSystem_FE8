@@ -1,5 +1,8 @@
 // Procs and proc routines
 
+ALIGN 4 
+#include "ChIntro/ChIntroInitValues.lyn.event" 
+
 ALIGN 4
 Proc_ChIntro:
 #include "ChIntro/ChIntro.event"

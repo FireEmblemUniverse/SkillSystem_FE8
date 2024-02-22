@@ -40,7 +40,7 @@ void SilphScopeEffect(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 
 extern const void* ObjTypePalettePLIST[];
 void UnpackChapterMapPalette(void) {
-	if ((gActiveUnit->pCharacterData) && (gActiveUnit->pClassData->number == MissingnoID_Link)) { 
+	if ((gActiveUnit) && (gActiveUnit->pCharacterData) && (gActiveUnit->pClassData->number == MissingnoID_Link)) { 
 		ApplyPalettes(
 			//gChapterDataAssetTable[GetROMChapterStruct(NextRN_N(gPlaySt.chapterIndex))->map.paletteId],
 			ObjTypePalettePLIST[GetROMChapterStruct(NextRN_N(99))->map.paletteId],
@@ -56,9 +56,8 @@ void UnpackChapterMapPalette(void) {
 
 
 void MissingnoEffect(struct Unit* actor, struct Unit* target) { 
-	if ((actor->pClassData->number == MissingnoID_Link) || (target->pClassData->number == MissingnoID_Link)) { 
-		if (gActionData.unitActionType == UNIT_ACTION_COMBAT) { // attacking only 
-			
+	if (gActionData.unitActionType == UNIT_ACTION_COMBAT) { // attacking only 
+		if ((actor->pClassData->number == MissingnoID_Link) || (target->pClassData->number == MissingnoID_Link)) { 	
 			for (int i = 4; i>0; i--) { // dupe items
 				if (!actor->items[i]) { 
 					actor->items[i] = actor->items[(4-i)]; 

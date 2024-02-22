@@ -1,4 +1,5 @@
-//PROTECT $1453161
+//PROTECT $14B0D04
+//PROTECT $14B0A16
 // 7BCA8 // ~5 extra frames than needed? nvm 
 // gProc_PopR_AnimsOnWrapper ~3 frames? 
 // post action events? 1-2 frames? 
@@ -31,7 +32,7 @@
 //#define USE_PMD_SPRITES
 
 PUSH; ORG $D74D0	//{U}
-String("V1.13.02              Feb 2024") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.13.03              Feb 2024") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 #define ProtagID 0x45 
 
