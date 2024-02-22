@@ -495,19 +495,19 @@ BYTE 0
 ALIGN 4
 BellsproutTMs:
 BYTE DoubleEdge Flash Growth Rage Slam SwordsDance TakeDown Rest ThiefAtt Cut AttackPulse XScissor
-BYTE Leer Constrict RecoverMove NightSlash 
+BYTE Leer Constrict RecoverMove NightSlash LeechLife
 BYTE 0
 
 ALIGN 4
 WeepinbellTMs:
 BYTE DoubleEdge Flash Growth Rage Slam SwordsDance TakeDown Rest ThiefAtt Cut AttackPulse XScissor
-BYTE Leer Constrict RecoverMove NightSlash 
+BYTE Leer Constrict RecoverMove NightSlash LeechLife
 BYTE 0
 
 ALIGN 4
 VictreebelTMs:
 BYTE BodySlam DoubleEdge Flash Growth HyperBeam Rage Slam SwordsDance TakeDown Rest ThiefAtt Cut AttackPulse XScissor
-BYTE Leer Constrict RecoverMove NightSlash 
+BYTE Leer Constrict RecoverMove NightSlash LeechLife
 BYTE 0
 
 ALIGN 4
