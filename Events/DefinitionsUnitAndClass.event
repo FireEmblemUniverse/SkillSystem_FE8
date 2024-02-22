@@ -318,6 +318,9 @@ super_nerdID - Electric/Fire - Vulpix, Ponyta, Koffing, Grimer, Voltorb, Magnemi
 #define UnitElite4Trainer 0xC8 
 #define UnitCeruleanCaveBoss 0xC9 
 
+
+// unit IDs 0xD0 and higher don't get move debuff by 1 
+
 //#define ShedinjaUnitID 0xD5  
 //#define SableyeUnitID 0xD6  
 #define StarmieRenewalUnitID 0xD7  

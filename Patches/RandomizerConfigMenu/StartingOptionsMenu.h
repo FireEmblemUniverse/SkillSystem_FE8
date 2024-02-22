@@ -14,7 +14,7 @@ typedef struct {
 // Temporarily save via a proc until the game starts 
 typedef struct {
   Proc Header;
-  u16 FlagOn[20];
+  s16 FlagOn[20]; // so we can ignore negative / 0xFFFF flags just in case 
 } OptionsSavedProc;
 
 void SaveStartingOptionsLoop(OptionsSavedProc* CurrentProc);

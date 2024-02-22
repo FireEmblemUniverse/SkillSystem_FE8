@@ -4,6 +4,9 @@ push  {r4-r5, r14}
 
 mov   r1, #0x4C
 ldrb  r2, [r0, r1]
+mov r1, #0xFE 
+and r2, r1 @ forced to be even number 
+mov r1, #0x4C 
 add   r2, #0x2
 strb  r2, [r0, r1]
 
