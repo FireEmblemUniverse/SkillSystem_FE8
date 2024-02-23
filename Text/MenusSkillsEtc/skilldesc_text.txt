@@ -3,6 +3,27 @@
 Surf: Can traverse[N]
 deep waters.[X]
 
+## SD_Multiscale
+Multiscale: Take half[N]
+damage when at full HP.[X]
+
+## SD_SilphScope
+Silph Scope: Super effective[N]
+attacks always critical hit.[X]
+
+## SD_TintedLens
+Tinted Lens: Your ineffective[N]
+attacks will hit neutrally.[X]
+
+## SD_Flank
+Infiltrator: If an ally is on the[N]
+opposite side of an adjacent[N]
+target, deal 50% more damage.[X]
+
+## SD_Swarm
+Swarm: If an adjacent target is[N]
+surrounded, deal 100% more damage.[X]
+
 ## SD_Hover
 Hover: Can go over[N]
 ledges and water.[X]
@@ -245,7 +266,8 @@ attacking and defeating an enemy.[X]
 
 ## SD_Galeforce
 Galeforce: Move again after[N]
-attacking and defeating an enemy.[X]
+attacking and defeating an enemy[N]
+if this was equipped start of turn.[X]
 
 ## SD_Renewal
 Renewal: Restore 30% of max HP[N]
@@ -622,8 +644,8 @@ Breath of Life: After attacking,[N]
 allies in 2 tiles heal 20% of max HP.[X]
 
 ## SD_Fury
-Fury: +2 Atk/Spd/Def/Res. Unit[N]
-takes 6 damage after combat.[X]
+Enhanced DNA: +20% Str/Mag/Spd/Def/Res.[N]
+Unit loses 10% HP after combat.[X]
 
 ## SD_Dazzle
 Dazzle: Opponents cannot[N]

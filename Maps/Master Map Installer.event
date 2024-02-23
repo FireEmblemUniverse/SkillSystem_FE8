@@ -301,6 +301,9 @@
 #include "Maps\SSAnne.event"
 }
 {
+#include "Maps\SSAnneDocks.event"
+}
+{
 #include "Maps\Vermilion.event"
 }
 {
@@ -326,4 +329,7 @@
 }
 {
 #include "Maps\ViridianGym.event"
+}
+{
+#include "Maps\ViridianGym2.event"
 }

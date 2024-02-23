@@ -1,0 +1,86 @@
+
+#define RingSFX 0x315
+#include "Ring.event" 
+
+
+// remember the annoying part of gen 2 pokemon where you occasionally get
+// meaningless and pointless phone calls that just waste your time?
+// let's do that here :)
+
+PUSH
+	//ORG $59A2B4 //MapMain "call new child proc TerrainHealLoop"
+	//POIN NewTerrainHealLoopProc
+
+POP
+
+ALIGN 4
+NewTerrainHealLoopProc:
+	PROC_CALL_ROUTINE(LiteralTelephone)	
+	PROC_CALL_ROUTINE($8035E21) 
+
+PROC_LABEL(0)
+	PROC_CALL_ROUTINE($8035E51)
+	PROC_CALL_ROUTINE($8035ED9)
+	PROC_YIELD
+
+	PROC_CALL_ROUTINE($8035EFD)
+	PROC_YIELD
+
+	PROC_CALL_ROUTINE($8035F41)
+
+PROC_LABEL(1)
+	PROC_CALL_ROUTINE($8035F6D)
+	PROC_GOTO(0)
+PROC_END
+
+ALIGN 4
+#include "LiteralTelephone.lyn.event"
+
+ALIGN 4
+TelephoneChance:
+BYTE 25
+
+
+ALIGN 4
+TelephoneEvent: // memory slot 2 has text id to show 
+ASMC DrawCallGfx2
+SOUN RingSFX
+STAL 45
+ASMC DrawCallGfx1
+STAL 45
+ASMC DrawCallGfx2
+SOUN RingSFX
+STAL 45
+ASMC DrawCallGfx1
+STAL 45
+ASMC DrawCallGfx2
+
+//SVAL s2 0x919
+//RANDOMNUMBER 15
+//SADD s2 s2 sC
+
+EVBIT_MODIFY 1
+CenterTutorialTextBox
+TUTORIALTEXTBOXSTART 
+TEXTSHOW (-1)
+TEXTEND
+REMA
+EVBIT_MODIFY 0
+
+CLEAN
+NoFade
+ENDA
+
+ALIGN 4
+callGfx1:
+#incbin "phonecall1.img.bin"
+
+ALIGN 4
+callGfx2:
+#incbin "phonecall2.img.bin"
+
+ALIGN 4
+callPal:
+#incbin "phonecall.pal.bin"
+
+

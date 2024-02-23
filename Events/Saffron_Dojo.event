@@ -146,6 +146,7 @@ SilentGiveItemWithDurability(0xA4, SuperPotion,0x2)
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 BottomWallText(KiyoChallengeText)
 MarkTrainerAsDefeated(0xE1)
 
@@ -170,6 +171,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 CAM1 [8,6] 
+EVBIT_MODIFY 4 
 BottomWallText(KiyoDefeatText)
 SVAL r3 1000 
 GIVETOMAIN 0 

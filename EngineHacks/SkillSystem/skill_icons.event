@@ -26,6 +26,16 @@ ORG SkillIcon(DowngradeID)
 #incbin "SkillIcons/SealSpd.dmp"
 ORG SkillIcon(GuardBreakerID)
 #incbin "SkillIcons/SealDef.dmp"
+ORG SkillIcon(MultiscaleID)
+#incbin "SkillIcons/PowerfulAura.dmp" 
+ORG SkillIcon(SilphScopeID)
+#incbin "SkillIcons/PowerfulAura.dmp" 
+ORG SkillIcon(TintedLensID)
+#incbin "SkillIcons/Boon.dmp" 
+ORG SkillIcon(FlankID)
+#incbin "SkillIcons/ArcaneBlade.dmp" 
+ORG SkillIcon(SwarmID)
+#incbin "SkillIcons/LuckyInit.dmp" 
 
 ORG SkillIcon(WeakChipDmgID)
 #incbin "SkillIcons/Acrobat.dmp"

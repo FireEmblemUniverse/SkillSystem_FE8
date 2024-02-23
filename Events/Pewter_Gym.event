@@ -73,7 +73,7 @@ CALL LoadAndPlacePlayers
 DisableFreeMovement
 #endif
 CHECK_EVENTID BoulderbadgeObtained
-BNE 0x63 rC r0 
+BNE 10 rC r0 
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
 CAM1 [7,0] 
@@ -151,10 +151,44 @@ TEXTCONT
 TEXTEND 
 REMA 
 CAM1 [7,12] 
+GOTO 99 
+
+LABEL 10 // Rematch 
+ENUT TrainerBattleActiveFlag
+MUSC 0x7FFF // Mute 
+CAM1 [7,0] 
+
+
+LOAD1 0x1 EnemyTrainersB
+ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(RematchLevel, True, 0x90EF) // Trainers given +5 visible levels 
+CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+
+SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+// 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
+
+SilentGiveSkillAccessory(0xD0, CounterID) // Onix 
+SilentGiveSkillAccessory(0xA1, RockyHelmetSkillID) // golem 
+SilentGiveSkillAccessory(0xA3, WaryFighterID) // Sandslash 
+//SilentGiveItemWithDurability(0xD0, SteelShield_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA0, StatAccessory, VintageBoots_BoostIndex|0x80) // Dugtrio 
+SilentGiveItemWithDurability(0xA2, StatAccessory, WiseGlassesT3_BoostIndex|0x80) // Ninetales 
+//SilentGiveItemWithDurability(0xA3, SteelShield_BoostIndex|0x80) // Sandslash 
+SilentGiveItemWithDurability(0xA4, StatAccessory, SteelShield_BoostIndex|0x80) // Rhydon 
+
+EVBIT_MODIFY 4 
+MUSCFAST PreIntroBGM
+MUSCFAST IntroBGM 
+ShowMap
+TEXTSTART 
+TEXTSHOW BrockRematchText 
+TEXTEND 
+REMA
 
 
 
-LABEL 0x63
+LABEL 99 
 NoFade
 ENDA
 
@@ -163,7 +197,7 @@ ENDA
 
 EndingScene: 
 CHECK_EVENTID BoulderbadgeObtained 
-BNE 0x63 rC r0 
+BNE 10 rC r0 
 EVBIT_MODIFY 4 
 MUSC 0x7FFF // Mute 
 #ifdef UnsetAllDangerRadius
@@ -172,10 +206,12 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(BrockDefeatText)
 GiveItemWithDurability(0, SpellScroll, RockTomb)
 //GiveItemWithDurability(0, SpellScroll, RockTomb)
 ENUT BoulderbadgeObtained 
+ENUT PewterGymClosedFlag
 SVAL r3 3000 
 GIVETOMAIN 0 
 TEXTSHOW BrockDryingPanText
@@ -189,7 +225,27 @@ TEXTEND
 FADI 4 
 REMA 
 ForcedChapterTransition(PewterCh, 12, 16)
-LABEL 0x63 
+GOTO 99 
+
+LABEL 10 // Rematch 
+EVBIT_MODIFY 4 
+MUSC 0x7FFF // Mute 
+#ifdef UnsetAllDangerRadius
+UnsetAllDangerRadius
+#endif 
+UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
+Text(BrockRematchDefeatText)
+GiveItemWithDurability(0, SpellScroll, BulkUp)
+ENUT PewterGymRematchedFlag 
+//GiveItemWithDurability(0, SpellScroll, RockTomb)
+SVAL r3 5000 
+GIVETOMAIN 0 
+ForcedChapterTransition(PewterCh, 12, 16)
+
+LABEL 99
 NoFade
 ENDA
 
@@ -218,6 +274,14 @@ UNIT 0xA2 VulpixID 0xD0 Level(0, Enemy, 1) [3,8]  0b 0x0	0x1 REDA3R8 	[0x0,0x0,0
 UNIT 0xA3 SandshrewID 0xD0 Level(0, Enemy, 1) [11,8]  0b 0x0 0x1 REDA11R8 [0x0,0x0,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT
 
+EnemyTrainersB:
+UNIT 0xD0 OnixID 0x0 Level(0, Enemy, 1) [7,7]  0b 0x0	0x1 REDA7R7 		[0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA0 DugtrioID 0xD0 Level(0, Enemy, 1) [5,8]  0b 0x0	0x1 REDA5R8 	[0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA1 GolemID 0xD0 Level(0, Enemy, 1) [9,8]  0b 0x0	0x1 REDA9R8 	[0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA2 NinetalesID 0xD0 Level(0, Enemy, 1) [3,9]  0b 0x0	0x1 REDA3R9 	[0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA3 SandslashID 0xD0 Level(0, Enemy, 1) [11,9]  0b 0x0 0x1 REDA11R9 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA4 RhydonID 0xD0 Level(0, Enemy, 1) [7,9]  0b 0x0 0x1 REDA7R9 [0x0,0x0,0x0,0x0] PursueWithoutHeedAI
+UNIT
 
 	
 #undef GenericA 

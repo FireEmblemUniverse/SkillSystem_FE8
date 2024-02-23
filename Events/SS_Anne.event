@@ -49,6 +49,7 @@ END_MAIN
 CaptainHMevent:
 BottomWallText(CaptainTeachHMText)
 STAL 15 
+EVBIT_MODIFY 4 
 TutText(LearnedCutText)
 NoFade
 ENDA 
@@ -60,7 +61,7 @@ NoFade
 ENDA 
 
 LocationBasedEvents:
-House(0, ToVermilion, 19,2) 
+House(0, ToSSAnneDocks, 19,2) 
 //House(0, UpperBoat, 2,6) 
 END_MAIN
 
@@ -77,10 +78,10 @@ EscapeTileEntry(19,2)
 EscapeTileTerminator ; } 
 #endif 
 
-ToVermilion:
+ToSSAnneDocks:
 CHECK_EVENTID PlayableCutsceneFlag 
 BNE 20 rC r0 
-ChapterTransition(VermilionCh, 21,33)
+ChapterTransition(SSAnneDocksCh, 21,14)
 
 LABEL 20 // Cutscene prevents escape 
 CALL CannotEscapeTrainerBattleEvent
@@ -101,7 +102,8 @@ Traps1:
 
 //CutBush(9,0)
 
-SkillAccessoryTrap(22,23, (ChapterID*2)+1, VantagePlusID) 
+
+SkillAccessoryTrap(22,23, (ChapterID*2)+1, PoisonStrikeID) 
 
 
 //RockSmash(3,2)

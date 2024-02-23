@@ -1,0 +1,38 @@
+
+PUSH 
+ORG $59BFC 
+POIN NewCharPalettes
+ORG $59CD0
+POIN NewCharPalettes
+ORG $59D24 
+POIN NewCharPalettes
+ORG $5A7AC 
+POIN NewCharPalettes
+ORG $5A928 
+POIN NewCharPalettes
+POP 
+
+PUSH
+ORG 0x95EEA4
+FILL (255*7)
+//MESSAGE CurrentOffSet // 95F59C
+POP
+
+
+
+ALIGN 4 
+NewCharPalettes: 
+// no palettes unique to characters 
+FILL(256*4)
+WORD 0 0 0 0 // Terminator 
+
+
+
+
+
+
+
+
+
+
+

@@ -52,7 +52,8 @@
 	SetTrapEventInit(TakeTriggerID,GenericTrapDisappearCompletionInitialization)
 	#define Examine2ID 42 
 	SetTrapEventInit(Examine2ID,GenericTrapDisappearInitialization)
-	SetTrapEventInit(Placeholder43ID,GenericTrapDisappearInitialization)
+	#define StrengthMewID 43 
+	SetTrapEventInit(StrengthMewID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(Placeholder44ID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(Placeholder45ID,GenericTrapDisappearInitialization)
 	SetTrapEventInit(Placeholder46ID,GenericTrapDisappearInitialization)
@@ -132,7 +133,7 @@ SetImpassableTrap(CompletionObstacleID)
 	//#define FlowerTrapID 65 
 	// Display only 
 #define Flower(XX,YY) "BYTE FlowerTrapID XX YY 0x0 FlowerSMS 0x0"
-
+#define HealingSprite(XX,YY) "BYTE FlowerTrapID XX YY 0x0 HealingTileSMS 0x0"
 
 
 

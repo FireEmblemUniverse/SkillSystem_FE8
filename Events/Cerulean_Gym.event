@@ -70,7 +70,7 @@ DisableFreeMovement
 #endif
 EVBIT_MODIFY 4 
 CHECK_EVENTID CascadebadgeObtained
-BNE 0x63 rC r0 
+BNE 10 rC r0 
 ENUT TrainerBattleActiveFlag
 MUSC 0x7FFF // Mute 
 CAM1 [7,0] 
@@ -96,6 +96,7 @@ SilentGiveItemWithDurability(0xA3, Berry,0x81)
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(MistyChallengeText)
 
 
@@ -104,7 +105,41 @@ ASMC 0x80160D1 // Return to map BGM
 
 CAM1 [7,12] 
 
+GOTO 99 
 
+LABEL 10 // Rematch 
+ENUT TrainerBattleActiveFlag
+MUSC 0x7FFF // Mute 
+CAM1 [7,0] 
+
+
+LOAD1 0x1 EnemyTrainersB
+ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(RematchLevel, True, 0x90EF) // Trainers given +5 visible levels 
+CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+
+SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+// 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
+SilentGiveSkillAccessory(StarmieRenewalUnitID, CounterMagicID) // Starmie 
+SilentGiveSkillAccessory(0xA1, DazzleID) // Golduck 
+SilentGiveSkillAccessory(0xA0, WaryFighterID) // Dewgong 
+//SilentGiveItemWithDurability(0xD0, SteelShield_BoostIndex|0x80)
+SilentGiveItemWithDurability(0xA3, StatAccessory, MuscleBandT3_BoostIndex|0x80) // Seaking 
+SilentGiveItemWithDurability(0xA2, StatAccessory, StuddedShield_BoostIndex|0x80) // Seadra  
+SilentGiveItemWithDurability(0xA4, StatAccessory, EnergyBandT3_BoostIndex|0x80) // Dragonair 
+
+
+MUSCFAST IntroBGM 
+ShowMap
+EVBIT_MODIFY 4 
+Text(MistyRematchText)
+
+
+
+ASMC 0x80160D1 // Return to map BGM 
+
+CAM1 [7,12] 
 
 LABEL 0x63
 NoFade
@@ -115,7 +150,7 @@ ENDA
 
 EndingScene: 
 CHECK_EVENTID CascadebadgeObtained 
-BNE 0x63 rC r0 
+BNE 10 rC r0 
 EVBIT_MODIFY 4 
 MUSC 0x7FFF // Mute 
 #ifdef UnsetAllDangerRadius
@@ -124,9 +159,11 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(MistyDefeatText)
 GiveItemWithDurability(0, SpellScroll, BubbleBeam)
 ENUT CascadebadgeObtained 
+ENUT CeruleanGymClosedFlag
 SVAL r3 4500 
 GIVETOMAIN 0 
 TEXTSHOW MistyWaitText
@@ -139,7 +176,28 @@ TEXTEND
 FADI 4 
 REMA 
 ForcedChapterTransition(CeruleanCh, 24, 20)
-LABEL 0x63 
+GOTO 99 
+
+LABEL 10 // Rematch 
+EVBIT_MODIFY 4 
+MUSC 0x7FFF // Mute 
+#ifdef UnsetAllDangerRadius
+UnsetAllDangerRadius
+#endif 
+UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
+Text(MistyRematchDefeatText)
+GiveItemWithDurability(0, SpellScroll, HydroPump)
+ENUT CeruleanGymRematchedFlag 
+SVAL r3 5000 
+GIVETOMAIN 0 
+//GiveSkillAccessory(0, RenewalID)
+FADI 4 
+ForcedChapterTransition(CeruleanCh, 24, 20)
+
+LABEL 99
 NoFade
 ENDA
 
@@ -159,7 +217,6 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
-
 EnemyTrainersA:
 UNIT 0xD0 StarmieID 0x0 Level(0, Enemy, 1) [10,6]  0b 0x0	0x1 REDA10R6 		[BubbleBeam,Confusion,Leer,0x0] ZoningHeal80GroupOneAI
 UNIT 0xA0 SeelID 0xD0 Level(0, Enemy, 1) [5,7]  0b 0x0	0x1 REDA5R7 	[AuroraBeam,WaterGun,Tackle,0x0] ZoningHeal50GroupOneAI
@@ -167,6 +224,15 @@ UNIT 0xA1 PsyduckID 0xD0 Level(0, Enemy, 1) [14,4]  0b 0x0	0x1 REDA14R4 	[WaterG
 UNIT 0xA2 HorseaID 0xD0 Level(0, Enemy, 1) [15,8]  0b 0x0 0x1 REDA15R8 [Bubble,Leer,Tackle,0x0] ZoningHeal50GroupOneAI
 UNIT 0xA3 GoldeenID 0xD0 Level(0, Enemy, 1) [12,10]  0b 0x0	0x1 REDA12R10 	[Headbutt,WaterGun,0x0,0x0] ZoningHeal50GroupOneAI
 UNIT 0xA4 DratiniID 0xD0 Level(0, Enemy, 1) [7,10]  0b 0x0	0x1 REDA7R10 	[Leer,Constrict,0x0,0x0] ZoningHeal50GroupOneAI
+UNIT 
+
+EnemyTrainersB:
+UNIT StarmieRenewalUnitID StarmieID 0x0 Level(0, Enemy, 1) [10,6]  0b 0x0	0x1 REDA10R6 		[HydroPump, Psychic, Thunderbolt,0x0] PursueWithoutHeedAI
+UNIT 0xA0 DewgongID StarmieRenewalUnitID Level(0, Enemy, 1) [5,7]  0b 0x0	0x1 REDA5R7 	[IceBeam,Surf,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA1 GolduckID StarmieRenewalUnitID Level(0, Enemy, 1) [14,4]  0b 0x0	0x1 REDA14R4 	[Waterfall,BodySlam,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA2 SeadraID StarmieRenewalUnitID Level(0, Enemy, 1) [15,8]  0b 0x0 0x1 REDA15R8 [Surf,Outrage,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA3 SeakingID StarmieRenewalUnitID Level(0, Enemy, 1) [12,10]  0b 0x0	0x1 REDA12R10 	[HornDrill,Waterfall,0x0,0x0] PursueWithoutHeedAI
+UNIT 0xA4 DragonairID StarmieRenewalUnitID Level(0, Enemy, 1) [7,10]  0b 0x0	0x1 REDA7R10 	[ThunderWave,Screech,0x0,0x0] PursueWithoutHeedAI
 UNIT
 
 

@@ -59,6 +59,7 @@ House(RockSmashFlag, RockSmashEvent, 8,7)
 END_MAIN
 
 RockSmashEvent:
+EVBIT_MODIFY 4 
 WallText(SafariWHouse_BText)
 TutText(SafariWHouse_CText)
 NoFade 

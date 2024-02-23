@@ -31,6 +31,8 @@ StatusEntry(FirePunch, BurnStatusID_Def, 10)
 StatusEntry(FlameWheel, BurnStatusID_Def, 10)
 StatusEntry(Scorch, BurnStatusID_Def, 10)
 StatusEntry(Flamethrower, BurnStatusID_Def, 10)
+//StatusEntry(WillOWisp, BurnStatusID_Def, 100)
+
 
 StatusEntry(FireBlast, BurnStatusID_Def, 10)
 StatusEntry(SacredFire, BurnStatusID_Def, 50)
@@ -40,6 +42,7 @@ StatusEntry(ThunderMove, ParalyzeStatusID_Def, 30)
 StatusEntry(Thunderbolt, ParalyzeStatusID_Def, 10)
 StatusEntry(VoltTackle, ParalyzeStatusID_Def, 10)
 StatusEntry(ThunderWave, ParalyzeStatusID_Def, 100)
+StatusEntry(Spark, ParalyzeStatusID_Def, 30)
 
 // Need to figure out freeze mechanics / icon 
 //StatusEntry(AuroraBeam, FreezeStatusID_Def, 5)
@@ -51,12 +54,14 @@ StatusEntry(ThunderWave, ParalyzeStatusID_Def, 100)
 StatusEntry(Acid, PoisonStatusID_Def, 5)
 StatusEntry(PoisonGas, PoisonStatusID_Def, 100)
 StatusEntry(PoisonPowder, PoisonStatusID_Def, 100)
-StatusEntry(PoisonSting, PoisonStatusID_Def, 20)
-StatusEntry(Sludge, PoisonStatusID_Def, 20)
-StatusEntry(Smog, PoisonStatusID_Def, 20)
-StatusEntry(PoisonJab, PoisonStatusID_Def, 20)
+StatusEntry(PoisonSting, PoisonStatusID_Def, 30)
+StatusEntry(Sludge, PoisonStatusID_Def, 30)
+StatusEntry(Smog, PoisonStatusID_Def, 40)
+StatusEntry(PoisonJab, PoisonStatusID_Def, 30)
 StatusEntry(Toxic, PoisonStatusID_Def, 100)
 
+StatusEntry(ConfuseRay, BerserkStatusID, 50)
+StatusEntry(Hurricane, BerserkStatusID, 10)
 //StatusEntry(Hypnosis, SleepStatusID_Def, 30)
 
 

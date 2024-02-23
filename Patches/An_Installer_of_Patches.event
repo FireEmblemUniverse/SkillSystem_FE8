@@ -1,4 +1,10 @@
 
+#include "RandomizerConfigMenu/Installer.event" 
+#include "Effectiveness/Installer.event" 
+#include "Skills/Installer.event" 
+#include "RelearnMoves/Installer.event" 
+#include "MultiTransformManims/Installer.event" 
+#include "Telephone/LiteralTelephone.event" 
 #include "ItemEffects/Installer.event" 
 #include "Speedup/Installer.event" 
 #include "bmidoten/Installer.event" // range stuff 

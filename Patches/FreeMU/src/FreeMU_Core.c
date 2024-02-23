@@ -235,6 +235,7 @@ void pFMU_MainLoop(struct FMUProc* proc){
 		if (pFMU_HandleKeyMisc(proc, iKeyUse) == yield) { 
 			proc->countdown = 3; 
 			proc->yield = true; 
+			proc->startTime = GetGameClock(); 
 			return; 
 		}
 	} 
@@ -284,6 +285,11 @@ void pFMU_MainLoop(struct FMUProc* proc){
 				} 
 			} 
 		}
+	} 
+	if (!(iKeyCur & 0xF0)) { 
+		//if (!(gKeyState.prevKeys & 0xF0)) { 
+			proc->startTime = GetGameClock(); // no keys held down this frame or previous frame, so reset speed 
+		//} 
 	} 
 
 	if (proc->end_after_movement) { // after any scripted movement is done 
@@ -468,6 +474,7 @@ void FMU_InitVariables(struct FMUProc* proc) {
 	pFMU_OnInit(proc);
 	FMU_ResetLCDIO();
 	MU_EndAll();
+	proc->startTime = GetGameClock(); 
 	//UnpackChapterMapGraphics(gChapterData.chapterIndex);
 	//InitBaseTilesBmMap();
 	//RenderBmMap();
@@ -1165,6 +1172,9 @@ extern u8 gGenericBuffer2[0x1000];
 // u8 EWRAM_DATA gSMSGfxBuffer[3][8*0x20*0x20] = {};
 void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing) { 
 
+	
+	if (!unit->pMapSpriteHandle) { return; } 
+	//asm("mov r11, r11"); 
 	u32 tileIndex = (unit->pMapSpriteHandle->oam2Base & 0x3FF) - 0x80;
 
   u16 size = NewStandingMapSpriteTable[smsID].size;
@@ -1172,7 +1182,7 @@ void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing) {
   u8 height = size > 0 ? 32 : 16;
   u32 srcOffs[3] = {0, 0, 0};
   int frame = GetGameClock() % 72;
-  
+  //return; 
   srcOffs[0] = (srcOffs[0] << (7 + size)) * 3;
   srcOffs[1] = (srcOffs[0] << ((7 + size)) * 3*2);
   srcOffs[2] = (srcOffs[0] << ((7 + size)) * 3*4);
@@ -1180,7 +1190,7 @@ void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing) {
    // Do nothing if no different-direction facing idle sprites exist.
   if (FMU_idleSMSGfxTable_left[smsID] == NULL)
     return;
-// I've had issue with using this at the same time as the map is being updated, which also uses gGenericBuffer, so I moved it 0x1000 in. 
+// I've had issue with using this at the same time as the map is being updated, which also uses gGenericBuffer, so I moved it 0x1500 in. 
   if (facing == MU_FACING_LEFT) {
 	Decompress(FMU_idleSMSGfxTable_left[smsID]+srcOffs[0], gGenericBuffer2);  
 	//Decompress(FMU_idleSMSGfxTable_left[smsID]+srcOffs[0], gGenericBuffer);
@@ -1217,6 +1227,9 @@ void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing) {
   srcOffs[1] = srcOffs[0] + (0x80 << (size << 2));
   srcOffs[2] = srcOffs[1] + (0x80 << (size << 2));
   */
+  
+    // src, dst, width, height 
+//asm("mov r11, r11"); 
   CopyTileGfxForObj((void*)gGenericBuffer2+srcOffs[0], (void*)gSMSGfxBuffer_Frame1+(tileIndex<<5), width>>3, height>>3);
   CopyTileGfxForObj((void*)gGenericBuffer2+srcOffs[1], (void*)gSMSGfxBuffer_Frame2+(tileIndex<<5), width>>3, height>>3);
   CopyTileGfxForObj((void*)gGenericBuffer2+srcOffs[2], (void*)gSMSGfxBuffer_Frame3+(tileIndex<<5), width>>3, height>>3);
@@ -1232,6 +1245,7 @@ void UpdateSMSDir(struct Unit* unit, u8 smsID, int facing) {
   else
     RegisterTileGraphics(gSMSGfxBuffer_Frame2, (void*)0x06011000, sizeof(gSMSGfxBuffer_Frame2));
   return;
+  
 } 
 
 void UpdateSMSDir_All(void) { 

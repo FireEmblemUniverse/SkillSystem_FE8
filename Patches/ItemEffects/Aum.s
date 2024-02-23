@@ -86,6 +86,18 @@ bx r1
 
 
 AumUsability:
+
+@ trainer cannot use revives because it doesn't work 
+ldr r3,=#0x03004E50
+ldr r3,[r3]
+ldr r3,[r3] 
+ldrb r3,[r3, #4] 
+ldr r1, =ProtagID_Link 
+ldr r1, [r1] 
+mov r0, #0 @ default false 
+cmp r3, r1 
+beq Usability_GoBack 
+
 bl FindDeadUnit @see if there are any dead player units
 cmp r0,#0 
 beq Usability_GoBack @if not, return this return which is false

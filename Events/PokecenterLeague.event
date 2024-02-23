@@ -127,7 +127,7 @@ BYTE StatAccessory StuddedShield_BoostIndex
 BYTE StatAccessory SteelShield_BoostIndex 
 BYTE StatAccessory EnhancedWard_BoostIndex 
 BYTE StatAccessory VintageBoots_BoostIndex 
-BYTE StatAccessory SilphScope_BoostIndex 
+//BYTE StatAccessory SilphScope_BoostIndex 
 BYTE StatAccessory LuckyBracerT3_BoostIndex
 BYTE $0 0; ALIGN 4
 
@@ -140,6 +140,7 @@ BYTE SkillAccShop(WaryFighterID)
 BYTE SkillAccShop(RenewalID)
 //SealSpdAccessory 
 BYTE SkillAccShop(PoisonStrikeID)
+BYTE SkillAccShop(GrislyWoundID)
 BYTE SkillAccShop(SavageBlowID)
 BYTE SkillAccShop(VantagePlusID)
 BYTE SkillAccShop(DazzleID)
@@ -149,7 +150,7 @@ BYTE SkillAccShop(CounterMagicID)
 BYTE SkillAccShop(CounterID)
 BYTE SkillAccShop(AmaterasuID)
 BYTE SkillAccShop(BlossomID)
-BYTE SkillAccShop(VoiceOfPeaceID)
+//BYTE SkillAccShop(SilphScopeID)
 BYTE HoplonShield 1 
 BYTE $0 0; ALIGN 4
 

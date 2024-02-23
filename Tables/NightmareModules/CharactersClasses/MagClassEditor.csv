@@ -77,7 +77,7 @@ Bellsprout,6,35,35,1
 Weepinbell,8,50,40,2
 Victreebel,11,60,45,3
 Tentacool,6,35,35,0
-Tentacruel,11,60,50,5
+Tentacruel,11,65,50,5
 Geodude,1,10,15,0
 Graveller,2,20,20,1
 Phantom,1,5,15,0
@@ -91,8 +91,8 @@ Magneton,16,70,50,10
 Farfetchd,4,30,30,0
 Doduo,2,15,20,0
 Dodrio,4,30,25,2
-Seel,6,40,35,2
-Dewgong,8,50,45,2
+Seel,7,45,40,3
+Dewgong,10,55,45,3
 Grimer,4,30,35,0
 Unused5,1,5,15,0
 Unused6,1,5,15,0
@@ -147,15 +147,15 @@ Marowak,4,30,30,1
 Hitmonlee,1,15,15,0
 Hitmonchan,1,15,15,0
 Lickitung,6,40,35,5
-Koffing,6,40,40,0
-Weezing,11,60,45,5
+Koffing,8,45,40,2
+Weezing,12,65,50,4
 Rhyhorn,1,15,15,0
 Rhydon,3,25,20,2
 Chansey,6,40,40,3
 Tangela,12,65,50,6
 Kangaskhan,2,20,15,0
-Horsea,6,35,35,4
-Seadra,11,60,45,5
+Horsea,7,45,40,5
+Seadra,11,60,45,4
 Goldeen,3,25,30,0
 Seaking,6,45,40,3
 Staryu,6,35,35,0
@@ -188,7 +188,7 @@ Moltres,18,85,60,0
 Dratini,5,35,35,0
 Dragonair,8,50,40,3
 Dragonite,11,75,55,3
-Mewtwo,27,115,60,16
+Mewtwo,27,115,63,16
 Mew,11,75,55,0
 balding_manID,0,0,0,0
 battle_girlID,0,0,0,0
@@ -243,7 +243,7 @@ MegaVenusaurID,23,110,60,2
 MegaCharizardXID,22,110,60,0
 MegaBlastoiseID,27,115,60,5
 Unused69ID,0,0,0,0
-Unused70ID,0,0,0,0
+Unused70ID,1,20,15,1
 Unused71ID,0,0,0,0
 Unused72ID,0,0,0,0
 Unused73ID,0,0,0,0

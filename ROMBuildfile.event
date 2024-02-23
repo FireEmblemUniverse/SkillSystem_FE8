@@ -65,8 +65,6 @@ POP
 		#include "Patches/ModularSupply/ModularSupplyInstaller.event" 
 	#endif 
 	
-
-	
     //Events
 	#include "Events/EventsInstaller.event"
 	#include "A_Debug_Command.event"

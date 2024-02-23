@@ -55,31 +55,35 @@ PlayerInRange
 CHECK_EVENTID 0x10 
 BNE 0 sC s0 
 TutText(MagicFeelsDrained)
-//DebuffUnit(0x7FFF, 0x09876543) // -9 mag, -8 luk, -7 res, -6 def, -5 spd, -4 skill, -3 str 
-DebuffUnit(0x7FFF, 0x0A5A0A00) // -10 mag/res/spd, -5 luk 
+DebuffUnit(0x7FFF, MagResSpdDebuff) // -10 mag/res/spd, -5 luk 
 LABEL 0 
 NoFade 
 ENDA 
+
+
 
 DebuffUnitEvent_B:
 PlayerInRange
 CHECK_EVENTID 0x11 
 BNE 0 sC s0 
 TutText(StrFeelsSapped)
-DebuffUnit(0x7FFF, 0x0050A0AA) // -10 str/def/skl, -5 luk LABEL 0 
+DebuffUnit(0x7FFF, StrSklDefDebuff) // -10 str/def/skl, -5 luk LABEL 0 
 LABEL 0 
 NoFade 
 ENDA 
+
+
 
 DebuffUnitEvent_C:
 PlayerInRange
 CHECK_EVENTID 0x12 
 BNE 0 sC s0 
 TutText(StatsSapped)
-DebuffUnit(0x7FFF, 0x0AAAAAAA) // -10 str/def/skl, -5 luk LABEL 0 
+DebuffUnit(0x7FFF, StatsDebuffBy10) // -10 str/def/skl, -5 luk LABEL 0 
 LABEL 0 
 NoFade 
 ENDA 
+
 
 
 
@@ -158,7 +162,7 @@ ENUT 0x10 // if yes, set flag 0x10 so no debuffs
 GOTO 99 
 LABEL 0 // if not yes, do stuff here 
 TutText(StatsSapped)
-DebuffUnit(0x7FFF, 0x0AAAAAAA)
+DebuffUnit(0x7FFF, MagResSpdDebuff)
 LABEL 99 
 NoFade 
 ENDA 
@@ -182,7 +186,7 @@ ENUT 0x11 // if yes, set flag 0x10 so no debuffs
 GOTO 99 
 LABEL 0 // if not yes, do stuff here 
 TutText(StatsSapped)
-DebuffUnit(0x7FFF, 0x0AAAAAAA)
+DebuffUnit(0x7FFF, StrSklDefDebuff)
 LABEL 99 
 NoFade 
 ENDA 
@@ -211,7 +215,8 @@ ENUT 0x12 // if no, set flag so no debuffs
 GOTO 99 
 LABEL 0 // if yes, do stuff here 
 TutText(StatsSapped)
-DebuffUnit(0x7FFF, 0x0AAAAAAA)
+DebuffUnit(0x7FFF, StatsDebuffBy10)
+TileChange 0 
 LABEL 99 
 ENUF RefreshEvenInTrainerBattleFlag
 NoFade 
@@ -225,7 +230,7 @@ CALL LoadAndPlacePlayers
 DisableFreeMovement
 #endif
 CHECK_EVENTID VolcanobadgeObtained
-BNE 0x63 rC r0 
+BNE 10 rC r0 
 ENUT TrainerBattleActiveFlag
 ENUT RefreshEvenInTrainerBattleFlag
 MUSC 0x7FFF // Mute 
@@ -261,7 +266,84 @@ SilentGiveItemWithDurability(0xA4, HyperPotion,0x1)
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(BlaineChallengeText)
+
+
+
+ASMC 0x80160D1 // Return to map BGM 
+
+CAM1 [7,12] 
+GOTO 99 
+
+LABEL 10 
+ENUT TrainerBattleActiveFlag
+MUSC 0x7FFF // Mute 
+CAM1 [8,6] 
+
+
+LOAD1 0x1 EnemyTrainersB
+ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(RematchLevel, True, 0x90EF) // Trainers given +5 visible levels 
+//AutoLevelUnits(3, False, 0x90EF) 
+CALL GenericAutolevelEvent // Trainers given invisible levels based on difficulty 
+
+SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+// 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
+
+SilentGiveSkillAccessory(0xD0, GuardBreakerID) // Arcanine 
+SilentGiveItemWithDurability(0xA0, StatAccessory, StuddedShield_BoostIndex|0x80) // Ninetales 
+SilentGiveItemWithDurability(0xA1, StatAccessory, VintageBoots_BoostIndex|0x80) // Rapidash  
+SilentGiveItemWithDurability(0xA2, StatAccessory, EnergyBandT3_BoostIndex|0x80) // Magmar   
+SilentGiveSkillAccessory(0xA3, DazzleID) // Flareon 
+SilentGiveSkillAccessory(0xA4, WaryFighterID) // Venusaur 
+
+
+SilentGiveItemWithDurability(0xD0, StatAccessory, 0x80|EnergyBandT3_BoostIndex)
+
+RemoveTrap(26,7)
+RemoveTrap(26,8)
+RemoveTrap(27,7)
+RemoveTrap(27,8)
+RemoveTrap(26,7)
+RemoveTrap(26,8)
+RemoveTrap(27,7)
+RemoveTrap(27,8)
+
+RemoveTrap(17,8)
+RemoveTrap(17,9)
+RemoveTrap(18,8)
+RemoveTrap(18,9)
+RemoveTrap(17,8)
+RemoveTrap(17,9)
+RemoveTrap(18,8)
+RemoveTrap(18,9)
+
+RemoveTrap(10,13)
+RemoveTrap(10,14)
+RemoveTrap(11,13)
+RemoveTrap(11,14)
+RemoveTrap(12,13)
+RemoveTrap(12,14)
+RemoveTrap(10,13)
+RemoveTrap(10,14)
+RemoveTrap(11,13)
+RemoveTrap(11,14)
+RemoveTrap(12,13)
+RemoveTrap(12,14)
+ASMC 0x801A1F9 // RefreshHiddenStates 
+TILECHANGE 0 
+TILECHANGE 1 
+ENUT 0x10
+ENUT 0x11
+ENUT 0x12 // So no debuffs from squares that normally have mines 
+
+
+MUSCFAST IntroBGM 
+ShowMap
+EVBIT_MODIFY 4 
+Text(BlaineRematchText)
 
 
 
@@ -271,7 +353,7 @@ CAM1 [7,12]
 
 
 
-LABEL 0x63
+LABEL 99
 NoFade
 ENDA
 
@@ -280,7 +362,7 @@ ENDA
 
 EndingScene: 
 CHECK_EVENTID VolcanobadgeObtained
-BNE 0x63 rC r0 
+BNE 10 rC r0 
 EVBIT_MODIFY 4 
 MUSC 0x7FFF // Mute 
 #ifdef UnsetAllDangerRadius
@@ -289,6 +371,7 @@ UnsetAllDangerRadius
 UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
 ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
 Text(BlaineDefeatText)
 GiveItemWithDurability(0, SpellScroll, FireBlast)
 ENUT VolcanobadgeObtained
@@ -305,6 +388,30 @@ TEXTEND
 FADI 4 
 REMA 
 ForcedChapterTransition(CinnabarCh, 20,12)
+GOTO 99 
+
+LABEL 10 // Rematch 
+EVBIT_MODIFY 4 
+MUSC 0x7FFF // Mute 
+#ifdef UnsetAllDangerRadius
+UnsetAllDangerRadius
+#endif 
+UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
+Text(BlaineRematchDefeatText)
+GiveItemWithDurability(0, SpellScroll, SacredFire)
+ENUT CinnabarGymRematchedFlag
+SVAL r3 5000 
+GIVETOMAIN 0 
+FADI 4 
+REMA 
+ForcedChapterTransition(CinnabarCh, 20,12)
+
+
+
+
 LABEL 0x63 
 NoFade
 ENDA
@@ -336,12 +443,12 @@ UNIT 0xA3 FlareonID 0xD0 Level(0, Enemy, 1) 	[7,6]  0b 0x0	0 0	[FlameWheel, Doub
 UNIT
 
 EnemyTrainersB: // rematch 
-UNIT 0xD0 ArcanineID 0x0 Level(0, Enemy, 1) 	[5,5]  0b 0x0	0 0	[TakeDown,FireBlast,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA2 MagmarID 0xD0 Level(0, Enemy, 1) 	[3,6]  0b 0x0 	0 0	[Flamethrower, BodySlam,0x0,0x0] 	ZoningHeal50GroupOneAI
-UNIT 0xA4 VenusaurID 0xD0 Level(0, Enemy, 1) 	[5,7]  0b 0x0	0 0	[PetalDance, BodySlam,0x0,0x0] 		ZoningHeal50GroupOneAI
-UNIT 0xA0 NinetalesID 0xD0 Level(0, Enemy, 1) [2,4]  0b 0x0	0 0 [TailWhip, Flamethrower,0x0,0x0] 	[0,0,8,1]
-UNIT 0xA1 RapidashID 0xD0 Level(0, Enemy, 1) 	[8,4]  0b 0x0	0 0	[BodySlam, FlameWheel,0x0,0x0] 		[0,0,8,1]
-UNIT 0xA3 FlareonID 0xD0 Level(0, Enemy, 1) 	[7,6]  0b 0x0	0 0	[FlameWheel, DoubleEdge, 0x0 ,0x0] 		[0,0,8,1] // pursue 
+UNIT 0xD0 ArcanineID 0x0 Level(0, Enemy, 1) 	[5,5]  0b 0x0	0 0	[SacredFire,FireBlast,Outrage,0x0] 		PursueWithoutHeedAI
+UNIT 0xA0 NinetalesID 0xD0 Level(0, Enemy, 1) [2,4]  0b 0x0	0 0 [Psychic, Flamethrower,SolarBeam,0x0] 	PursueWithoutHeedAI
+UNIT 0xA1 RapidashID 0xD0 Level(0, Enemy, 1) 	[8,4]  0b 0x0	0 0	[TakeDown, SacredFire,SolarBeam,0x0] 		PursueWithoutHeedAI
+UNIT 0xA2 MagmarID 0xD0 Level(0, Enemy, 1) 	[3,6]  0b 0x0 	0 0	[Flamethrower, Psychic, ThunderPunch,0x0] 	PursueWithoutHeedAI
+UNIT 0xA3 FlareonID 0xD0 Level(0, Enemy, 1) 	[7,6]  0b 0x0	0 0	[SacredFire, DoubleEdge, DoubleKick ,0x0] 		PursueWithoutHeedAI
+UNIT 0xA4 VenusaurID 0xD0 Level(0, Enemy, 1) 	[5,7]  0b 0x0	0 0	[PetalDance, Sludge,Earthquake,0x0] 		PursueWithoutHeedAI
 UNIT
 	
 

@@ -237,7 +237,7 @@ UNIT
 EnemyUnits:
 //UNIT 0x50 ClassRoute2NWildA 0x0 Level(0, Enemy, 1)   [12,16] 001b	0x0 0x01 REDA12R16 [0x0,0x0,0x0,0x0] [28,0,0,0] //ApproachEnemySummonAI //RunAwayAI
 //UNIT 0x50 ParasectID 0x0 Level(0, Enemy, 1)   [13,11] 0b	0x0 0x01 REDA17R11 [SandAttack,0x0,0x0,0x0] [0,0,0,32] //ApproachEnemySummonAI //RunAwayAI
-UNIT 0x50 EeveeID 0x0 Level(0, Enemy, 1)   [13,9] 0b	0x0 0x01 REDA13R9 [SolarBeam,0x0,0x0,0x0] [0,0,0,0x21] //ApproachEnemySummonAI //RunAwayAI
+UNIT 0x50 MissingnoID 0x0 Level(0, Enemy, 1)   [13,9] 0b	0x0 0x01 REDA13R9 [Tackle,FlameWheel, 0,0x0] [0,0,0,0x21] //ApproachEnemySummonAI //RunAwayAI
 UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
 //UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
 //UNIT 0xA0 KakunaID 0x0 Level(0, Enemy, 1)   [12,11] 0b	0x0 0x01 REDA14R11 [0x0,0x0,0x0,0x0] DoNothing
@@ -356,7 +356,8 @@ SetUnitStatus(4, 0x29, SevenRangeWep)
 SetUnitStatus(4, 0x2A, Bolting)
 SetUnitStatus(0x50, MaxHP, 99)
 SetUnitStatus(0x50, CurrentHP, 99)
-SetUnitStatus(0x50, Defence, 45)
+SetUnitStatus(0x50, Strength, 20)
+SetUnitStatus(0x50, Defence, 15)
 SetUnitStatus(0x50, Resistance, 15)
 
 SetUnitStatus(0x50, 0x8, 60)

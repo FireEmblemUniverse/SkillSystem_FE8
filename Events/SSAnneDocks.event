@@ -1,0 +1,223 @@
+#define ChapterID SSAnneDocksCh
+#define GenericB UnitCeruleanTrainer
+#define WildLvl 10 
+#define TrainerL 16 
+
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+
+END_MAIN
+
+//Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
+//{ ; ReinforceEntry(ChapterID)
+//}
+
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+END_MAIN
+
+
+
+LocationBasedEvents:
+House(0,ToSSAnne,21,15) //
+//Vendor(ShopItems,27,11)
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+AFEV 0 GlobalAfev 0
+//AFEV 0 CityAfev 0
+//AFEV 0 RefreshIfNotInDanger 0 
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+AREA 0 ToVermilion [20,0] [22,0] 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(21,15) 
+EscapeTileEntry(21,0)  
+EscapeTileTerminator ; } 
+#endif 
+
+ToVermilion:
+ChapterTransition(VermilionCh, 21,33)
+NoFade 
+ENDA 
+
+ToSSAnne:
+DigChapterTransition(ChapterID, SSAnneCh, 19,3)
+
+
+GenericDisappearEffect(16, MewTruckEvent) 
+MewTruckEvent:
+ENUT MewFledFlag 
+ENUT HideUnitIconsFlag
+EVBIT_MODIFY 1 // cannot scene skip 
+CAM1 [36,6]
+EVBIT_T 9 // follow moving units 
+LOAD1 1 MewUnitGroup 
+ENUN 
+CURSOR_FLASHING [36,6] 
+STAL 45 
+CURE
+Emoticon(QuestionmarkEmoticon, Coord(36,6)) 
+STAL 45
+
+MOVE 8 0xD0 [39,5]
+ENUN
+STAL 10 
+EVBIT_MODIFY 4 
+Text(MewAlertedText)
+SCOORD sB [39,5] 
+CALL MyWarpOutEvent
+DISA 0xD0 
+ENUF HideUnitIconsFlag
+NoFade 
+ENDA 
+
+// Allocated 2 traps per chapter, in most cases 
+// Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
+// Traps that do not reference ram do not have this limit 
+// Eg. flowers are not obtained once, so you can spam them 
+Traps1:
+CoinsTrap(38,19,ChapterID*2,4000)
+//CoinsTrap(43,13,(ChapterID*2)+1,400)
+
+//CutBush(17,22)
+//BYTE 0x3D 36 6 0x0 BlankSMS 10 // 0x3D trap id, "Strength" menu option at 36x 6y truck does generic event 10 
+BYTE StrengthMewID 36 6 0x0 BlankSMS 16 // 0x3D trap id, "Strength" menu option at 36x 6y truck does generic event 16
+
+
+SaveCost(20,9) 
+
+//RockSmash(3,2)
+//StrengthBoulder(4,3)
+//StatAccessoryTrap(30,18, ChapterID*2, WiseGlasses_BoostIndex)
+//SkillAccessoryTrap(8,20, ChapterID*2, PoisonStrikeID)
+//SkillAccessoryTrap(32,8, (ChapterID*2)+1, CantoPlusID)
+
+//GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
+
+//SignBTrap(36,18, ChapterID, 0x0) //no extra text 
+//SignATrap(18,5, ChapterID, 0x0) // Can use ChapterID as the flagID if only using 1 per chapter 
+
+//SkillScrollTrap(15,11, ChapterID*2, AcrobatID)
+//SpellScrollTrap(17,11, (ChapterID*2)+1, Ember)
+//OpenPokeball(8,3)
+
+//BlankExamineTrap(8,22,VermilionGymSignText)
+//SignTrap(8,15, VermilionFanClubSignText) // Wooden 
+
+
+
+//EnterWallTrap(7,4, VermilionNWHouseText) // 
+//EnterWallTrap(10,15, FanClubText) // 
+
+//EnterWallTrap(17,15, VermilionMidHouseText) // 
+//EnterWallTrap(23,18, VermilionSEHouseText)
+
+//EnterWallTrap(23,18, DoorLockedText) //   
+
+
+//Flower(10,6)
+
+
+
+
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+
+CALL CityBeginningScene 
+
+CHECK_EVENTID MewFledFlag 
+BEQ 99 sC s0 
+RemoveTrap(36,6)
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+
+ALIGN 4
+ShopItems:
+BYTE $00; ALIGN 4
+
+
+
+
+
+
+ArmoryItems:
+SHLI 0
+ALIGN 4
+
+EndingScene: //Unused but must exist 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+MewUnitGroup:
+UNIT 0xD0 MewID 0x0 Level(LVFACEDOWN, Enemy, 1) [36,6]  0b 0x0	1 REDA36R6 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+
+{ ; TQ_ChEntry(ChapterID) // Trainer's quotes when they spot you 
+SHORT DebugText // 0xE0 
+TDQ_TableTerminator
+
+TD_ChEntry(ChapterID) // Trainer's quotes when they're defeated  
+BD((OaksAide-0xE0), VermilionOaksAideBD, 1) 
+SHORT PewterCheckGymText // 0xE0 
+SHORT 600 
+TDQ_TableTerminator ; } 
+
+
+	
+#undef GenericB 
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

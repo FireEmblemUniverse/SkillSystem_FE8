@@ -2,6 +2,7 @@
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
 
 //@ Vanilla function declarations:
+SET_DATA gStatScreen, 0x2003BFC 
 
 SET_DATA gHelpBox_RMenu, 0x203E784
 SET_DATA gText_HelpBox, 0x203E794

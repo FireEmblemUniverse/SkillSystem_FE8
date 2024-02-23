@@ -27,6 +27,8 @@ OaksPikachuEvent:
 Text(OakJustOneText)
 LOAD1 1 OaksPikachuUnit
 ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(5, True,  OaksPikachu<<8|OaksPikachu)
 NoFade 
 ENDA 
 
@@ -306,7 +308,7 @@ UNIT
 
 
 OaksPikachuUnit:
-UNIT OaksPikachu PikachuID 0x0 Level(5, NPC, 1)   [8,3] 0b 0x0 0x01 REDA8R3 [Thundershock,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
+UNIT OaksPikachu PikachuID 0x0 Level(5, NPC, 1)   [8,3] 0b 0x0 0x01 REDA8R3 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT
 
 NameInputEvent:

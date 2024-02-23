@@ -12,8 +12,8 @@ cmp r1, #0
 bne Exit 
 ldrb r1, [r4, #0x15] @ skill
 add r1, #1 @ rounding 
-lsr r1, #2 @ 1/4 of skill
-add r2, r1 @ 3/4 of skill stat for players 
+lsr r1, #1 @ 1/2 of skill
+add r2, r1 @ 4/4 of skill stat for players 
 Exit: 
 bx lr 
 .ltorg 

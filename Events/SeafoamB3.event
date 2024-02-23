@@ -80,7 +80,7 @@ EscapeTileTerminator ; }
 #endif 
 
 ToSeafoamB2E:
-ChapterTransition(SeafoamB2Ch, 32,13)
+ChapterTransition(SeafoamB2Ch, 32,15)
 ToSeafoamB2S:
 ChapterTransition(SeafoamB2Ch, 24,19)
 ToSeafoamB2M:

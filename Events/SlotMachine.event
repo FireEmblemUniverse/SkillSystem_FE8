@@ -4,6 +4,7 @@ SlotMachine_Main:
 CHECK_MONEY 
 SVAL s7 1000
 BLT 50 sC s7 // If less than 1000g, exit 
+EVBIT_MODIFY 4 
 TutText(PlaySlotsText)
 SVAL 0x7 0x1
 BNE 0x63 0xC 0x7 // If not yes, then exit 
@@ -27,6 +28,7 @@ GIVETOSLOT3 // Take s3 (1000g) from the player
 CALL SlotMachine_Start 
 
 // Play again? 
+EVBIT_MODIFY 4 
 TutText(PlaySlotsAgainText)
 SVAL 0x7 0x1
 BNE 20 0xC 0x7 // If not yes, then exit 

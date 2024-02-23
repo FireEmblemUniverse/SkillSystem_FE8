@@ -155,6 +155,7 @@ SilentGiveItemWithDurability(0xA4, MaxPotion,0x1)
 
 MUSCFAST IntroBGM 
 ShowMap
+EVBIT_MODIFY 4 
 Text(BrunoChallengeText)
 //MarkTrainerAsDefeated(0xE1)
 

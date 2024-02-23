@@ -1,4 +1,4 @@
-//PROTECT $1464150
+//PROTECT $1453161
 // 7BCA8 // ~5 extra frames than needed? nvm 
 // gProc_PopR_AnimsOnWrapper ~3 frames? 
 // post action events? 1-2 frames? 
@@ -16,14 +16,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-//#define DEBUG_MODE 
-
-// todo: bugs 
-// when fmu walking out from underneath a mon to adjacent to them, trade doesn't appear initially 
-// maybe the unit map isn't refreshed in time for the trade target list to be populated? 
-
-// player units' displayed range is sometimes shown as 1-2 range weps if they have any move eg. level 1 pidgey 
-
+#define DEBUG_MODE 
 
 #define TESTING_RANGES
 
@@ -38,7 +31,7 @@
 //#define USE_PMD_SPRITES
 
 PUSH; ORG $D74D0	//{U}
-String("V1.11.00              Dec 2023") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.14.00              Feb 2024") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 #define ProtagID 0x45 
 
@@ -81,6 +74,7 @@ String("V1.11.00              Dec 2023") ; BYTE 0; POP // this overflows into th
 #define ChapterTileAnims(chapter, anim1, anim2) "PUSH; ORG 0x8b0890 + (148* chapter) + 9; BYTE anim1 anim2; POP"
 
 #include "Enumerate/ItemListPokemon.enu.event"
+#include "Events/DefinitionsUnitAndClass.event" 
 
 #include "Enumerate/ClassIDList.enu.event"
 
@@ -402,6 +396,33 @@ String("V1.11.00              Dec 2023") ; BYTE 0; POP // this overflows into th
 // 0xED BracketedGrowths 
 // 0xEF fixed growths 
 
+// Pewter City: visit gym with flag 0x12C 
+
+#define PewterGymClosedFlag 0x12C // final flag 
+#define CeruleanGymClosedFlag 0x12B 
+#define VermilionGymClosedFlag 0x12A
+#define FuschiaGymClosedFlag 0x129 
+#define CeladonGymClosedFlag 0x128 
+#define SaffronGymClosedFlag 0x127 
+#define CinnabarGymClosedFlag 0x126 
+#define ViridianGymClosedFlag 0x125 
+
+#define PewterGymRematchedFlag 0x124 
+#define CeruleanGymRematchedFlag 0x123
+#define VermilionGymRematchedFlag 0x122
+#define FuschiaGymRematchedFlag 0x121
+#define CeladonGymRematchedFlag 0x120 
+#define SaffronGymRematchedFlag 0x11F 
+#define CinnabarGymRematchedFlag 0x11E 
+#define ViridianGymRematchedFlag 0x11D 
+#define RematchNotify1 0x11C 
+#define RematchNotify2 0x11B  
+#define ArticunoDefeatedFlag 0x11A
+#define ZapdosDefeatedFlag 0x119
+#define MoltresDefeatedFlag 0x118 
+#define MewDefeatedFlag 0x117
+#define MewtwoDefeatedFlag 0x116
+#define MissingnoFlag 0x115 
 
 // Unit IDs 
 #define OaksAide 0xEA 

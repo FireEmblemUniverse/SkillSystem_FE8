@@ -6,6 +6,7 @@
 .equ IsAccessory, SkillTester+8
 .equ HoverBoardID, SkillTester+12 
 .equ WepGroundType, SkillTester+16 
+.equ DittoID_Link, WepGroundType+4 
 
 push	{r4-r7,r14}
 mov r4, r8 
@@ -22,14 +23,45 @@ mov lr, r3
 .short 0xf800 
 mov r8, r0 @ item type 
 
+@ is attacking side Ditto? 
+ldr r2, =0x203A4EC @ atkr
+ldr r3, [r5, #4] 
+ldrb r3, [r3, #4] 
+ldr r2, DittoID_Link 
+cmp r2, r3 
+bne SkipChangingAttackersWep 
+ldr r4, =0x203A4EC @ atkr
+cmp r4, r5 
+bne UseAtkrWep
+ldr r4, =0x203A56C @ dfdr 
+UseAtkrWep: 
+add r4, #0x4A 
+ldrh r4, [r4] 
 
+SkipChangingAttackersWep: 
 mov		r0,r4
 ldr		r3,=#0x80176D0		@get effectiveness pointer
 mov		r14,r3
 .short	0xF800
 cmp		r0,#0
 beq		RetFalse			@if weapon isn't effective, end
-ldr		r1,[r5,#0x4]
+
+
+mov r1, r5 
+ldr r2, =0x203A56C @ dfdr
+@ is target side Ditto? 
+ldr r3, [r5, #4] 
+ldrb r3, [r3, #4] 
+ldr r2, DittoID_Link 
+cmp r2, r3 
+bne SkipChangingDefenderWeaknesses 
+ldr r1, =0x203A56C @ dfdr  @ use attacker's weaknesses instead 
+cmp r1, r5 
+bne SkipChangingDefenderWeaknesses 
+ldr r1, =0x203A4EC @ atkr
+SkipChangingDefenderWeaknesses: 
+
+ldr		r1,[r1,#0x4]
 mov		r6,#0x50
 ldr		r6,[r1,r6]			@class weaknesses
 cmp		r6,#0

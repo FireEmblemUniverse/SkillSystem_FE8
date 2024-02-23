@@ -27,7 +27,7 @@ POIN InitializePreBattleLoop
 POIN Lull //This is effectively a stat modifier routine, so it has to go first
 POIN Intimidate_Prebattle GuardBreaker_Prebattle Downgrade_Prebattle
 // I've decided to comment out stuff that I'm not using for the time being in order to speed up AI - Vesly 
-
+POIN TransformInit
 
 //POIN FaireCheck //HolyAura
 //POIN BreakerCheck MageSlayer
@@ -67,7 +67,7 @@ POIN StancesASM
 	//POIN ModularPreBattleSkill 
 #endif // MODULAR_PRE_BATTLE_SKILLS
 //add any new ones before here
-
+POIN SilphScopeEffect
 POIN KeenFighter SteadyBrawler // % Damage reduction if doubling goes near end 
 //tower shield plus needs to go after every other skill that may affect defender's attack
 POIN TowerShieldPlus
@@ -76,7 +76,7 @@ POIN SuperFangEffect
 POIN WeakChipDmg
 
 // Dragonskin goes after anything effecting atk or def
-POIN Dragonskin
+POIN Dragonskin MultiscaleEffect 
 // Because of how killing machine works, critical check should always be done last
 POIN CriticalCheck
 #ifdef CANNOT_CRIT
@@ -130,13 +130,15 @@ DamageModifierCalcLoop:
 POIN WeaponsThatAlwaysDouble
 POIN WeakChipDmg ScaledUp
 POIN EnemyWeightBonus
+POIN TransformFunction 
 POIN MinimumDamage // so SE moves will deal at least 2 dmg i guess 
 POIN TypeEffectiveness // also caps moves to deal max 255 
 #ifdef ENABLE_DAMAGE_REDUCTION
 	POIN LevelDamageReduction
 #endif 
 POIN DoublingDamageModifierFunc // this also occurs on weapons that cannot double if you would be able to otherwise 
-POIN ScaledBackFunc
+POIN ScaledBackFunc FlankEffect SwarmEffect
+POIN TransformFunction 
 POIN MinimumDamage
 POIN MaximumDamage // caps moves to 99 dmg 
 POIN SuperFangEffect 

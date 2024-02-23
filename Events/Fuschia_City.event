@@ -103,7 +103,7 @@ ENDA
 
 
 LocationBasedEvents:
-House(SoulbadgeObtained,EnterGym,8,29) 
+House(FuschiaGymClosedFlag,EnterGym,8,29) 
 House(0,EnterSafariZone,21,4) 
 Vendor(ShopItems,19,16)
 
@@ -111,7 +111,7 @@ Vendor(ShopItems,19,16)
 END_MAIN
 
 EnterGym:
-ENUF SoulbadgeObtained 
+ENUF FuschiaGymClosedFlag 
 ForcedChapterTransition(FuschiaGymCh, 8,21)
 NoFade 
 ENDA 

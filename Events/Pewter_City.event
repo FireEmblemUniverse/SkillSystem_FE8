@@ -102,7 +102,7 @@ ENDA
 
 
 LocationBasedEvents:
-House(BoulderbadgeObtained,EnterGym,12,16)  
+House(PewterGymClosedFlag,EnterGym,12,16)  
 House(0,OldAmberEvent,22,4)
 Vendor(ShopItems,24,20)
 END_MAIN
@@ -110,6 +110,7 @@ END_MAIN
 OldAmberEvent:
 CHECK_EVENTID OldAmberFlag 
 BNE 0 sC s0 
+EVBIT_MODIFY 4 
 BottomWallText(ObtainOldAmber)
 TutText(ObtainOldAmber2)
 ENUT OldAmberFlag 
@@ -121,7 +122,7 @@ NoFade
 ENDA 
 
 EnterGym:
-ENUF BoulderbadgeObtained 
+ENUF PewterGymClosedFlag 
 ForcedChapterTransition(PewterGymCh, 7, 15)
 NoFade 
 ENDA 

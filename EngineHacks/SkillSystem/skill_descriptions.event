@@ -398,6 +398,11 @@ SkillDescription(SurfBoardID,SD_Surf)
 SkillDescription(HoverBoardID,SD_Hover)
 SkillDescription(DowngradeID,SD_Downgrade)
 SkillDescription(GuardBreakerID,SD_GuardBreaker)
+SkillDescription(MultiscaleID,SD_Multiscale)
+SkillDescription(SilphScopeID,SD_SilphScope)
+SkillDescription(TintedLensID,SD_TintedLens)
+SkillDescription(FlankID,SD_Flank)
+SkillDescription(SwarmID,SD_Swarm)
 
 
 
@@ -787,6 +792,11 @@ SkillName(SurfBoardID,SN_Surf)
 SkillName(HoverBoardID,SN_Hover)
 SkillName(DowngradeID,SN_Downgrade)
 SkillName(GuardBreakerID,SN_GuardBreaker)
+SkillName(MultiscaleID,SN_Multiscale)
+SkillName(SilphScopeID,SN_SilphScope)
+SkillName(TintedLensID,SN_TintedLens)
+SkillName(FlankID,SN_Flank)
+SkillName(SwarmID,SN_Swarm)
 
 
 

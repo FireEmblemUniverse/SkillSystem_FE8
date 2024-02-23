@@ -69,9 +69,9 @@ CauseGameOverIfLordDies
 AFEV 0 GlobalAfev 0
 AREA 0 ToSilphCo2F_Tele [23,19][23,19] 
 AREA 0 ToSilphCo3F_Tele [12,18][12,18] 
-AREA 0 NW_StatsDrained [4,11][4,12] // nw 
+AREA 0 NW_StatsDrained [3,11][4,12] // nw 
 //AREA 0 NW_StatsDrained [3,11][4,12] // nw 
-AREA 0 NW_StatsDrained [9,17][9,18] // sw
+AREA 0 NW_StatsDrained [8,17][9,18] // sw
 //AREA 0 NW_StatsDrained [8,17][9,18] // sw
 AREA 0 NW_StatsDrained [22,8][23,8] // ne 
 //AREA 0 NW_StatsDrained [22,7][23,8] // ne 
@@ -94,7 +94,7 @@ EscapeTileTerminator ; }
 
 HealActive:
 UseVulnerary(0x7FFF, 99) // Restore health 
-DebuffUnit(0x7FFF, 0x0) // -10 str/def/skl, -5 luk 
+//DebuffUnit(0x7FFF, 0x0) // -10 str/def/skl, -5 luk 
 NoFade 
 ENDA 
 
@@ -102,8 +102,8 @@ NW_StatsDrained:
 PlayerInRange
 CHECK_EVENTID CardKeyFlag 
 BNE 99 sC s0 
-TutText(StrFeelsSapped)
-DebuffUnit(0x7FFF, 0x0050A0AA) // -10 str/def/skl, -5 luk 
+TutText(DefFeelsSapped)
+DebuffUnit(0x7FFF, DefResDebuff) // -10 str/def/skl, -5 luk 
 LABEL 99 
 NoFade 
 ENDA 
@@ -171,6 +171,7 @@ GenericDisappearEffect(15, ObtainCardKeyEvent)
 
 ObtainCardKeyEvent: 
 ENUT CardKeyFlag
+EVBIT_MODIFY 4 
 TutText(ObtainedCardKeyText) 
 ASMC RemoveAllMineTraps
 NoFade 

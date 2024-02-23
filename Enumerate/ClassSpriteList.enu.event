@@ -17,7 +17,7 @@
 #define PidgeottoSMS 0x10
 #define PidgeotSMS 0x11
 #define SuspiciousWaterSMS 0x12
-#define CrobatSMS 0x13
+#define KabutopsSkeletonSMS 0x13
 #define RedSMS 0x14
 #define TeleporterSMS 0x15
 #define RattataSMS 0x16
@@ -49,7 +49,7 @@
 #define VileplumeSMS 0x30
 #define ParasSMS 0x31
 #define ParasectSMS 0x32
-#define GorgonEggSMS 0x33
+#define AerodactylSkeletonSMS 0x33
 #define VenonatSMS 0x34
 #define VenomothSMS 0x35
 #define DiglettSMS 0x36
@@ -241,7 +241,7 @@
 #define MegaCharizardXSMS 0xF0
 #define MegaBlastoiseSMS 0xF1
 #define HealingTileSMS 0xF2
-#define Unused70SMS 0xF3
+#define MissingnoSMS 0xF3
 #define Unused71SMS 0xF4
 #define Unused72SMS 0xF5
 #define Unused73SMS 0xF6
@@ -495,7 +495,7 @@
 #define MegaCharizardXMMS 0xF1
 #define MegaBlastoiseMMS 0xF2
 #define HealingTileMMS 0xF3
-#define Unused70MMS 0xF4
+#define MissingnoMMS 0xF4
 #define Unused71MMS 0xF5
 #define Unused72MMS 0xF6
 #define Unused73MMS 0xF7

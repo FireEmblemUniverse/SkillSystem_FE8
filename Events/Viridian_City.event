@@ -97,7 +97,8 @@ ENDA
 ALIGN 4
 LocationBasedEvents:
 House(0,ViridianUpperHouseEvent, 21,11)
-House(EarthbadgeObtained,EnterGym,30,10) 
+House(0x16, OldManHouseEvent, 21,18) 
+House(ViridianGymClosedFlag,EnterGym,30,10) 
 Vendor(ShopItems,30,19)
 /*
 
@@ -111,12 +112,29 @@ END_MAIN
 ViridianUpperHouseEvent: 
 CHECK_EVENTID VolcanobadgeObtained 
 BNE 0 sC s0
+EVBIT_MODIFY 4 
 TutText(ViridianUpperHouseText)
 GOTO 99 
 LABEL 0 
 TutText(ViridianUpperHouseText_Lategame)
 LABEL 99 
 NoFade
+ENDA 
+
+OldManHouseEvent: 
+CHECK_EVENTID 0x17 
+BNE 0 sC s0 
+EVBIT_MODIFY 4 
+WallText(ViridianGrumpyManText)
+GOTO 99 
+LABEL 0 
+//EVBIT_MODIFY 
+EVBIT_MODIFY 4 
+WallText(ViridianGrumpyManText2)
+ENUT MissingnoFlag
+LABEL 99 
+ENUF 0x16 
+NoFade 
 ENDA 
 
 
@@ -156,9 +174,26 @@ ToRoute22:
 ChapterTransition(Route22Ch, 47, 8)
 
 EnterGym:
-ENUF EarthbadgeObtained 
-ForcedChapterTransition(ViridianGymCh, 15,19)
+ENUF ViridianGymClosedFlag 
+CHECK_EVENTID EarthbadgeObtained
+BEQ 10 sC s0 
+CALL CallVirGym2
+GOTO 99 
+LABEL 10
+CALL CallVirGym
+LABEL 99 
+NoFade 
+ENDA 
 
+CallVirGym: 
+ForcedChapterTransition(ViridianGymCh, 15,19)
+NoFade 
+ENDA 
+
+CallVirGym2: 
+ForcedChapterTransition(ViridianGym2Ch, 15,19)
+NoFade 
+ENDA 
 
 
 TutMsg1: 
@@ -249,7 +284,7 @@ TutSign(15,4, ChapterID*2+3,TrainerTip_CursorJump)
 BlankExamineTrap(26,10, ViridianGymText)
 //BlankExamineTrap(30,10, DoorLockedText) // Gym 
 //EnterWallTrap(21,11, ViridianUpperHouseText) 
-EnterWallTrap(21,18, ViridianGrumpyManText) 
+//EnterWallTrap(21,18, ViridianGrumpyManText) 
 Save(23,24) // 1N of Pokecenter - you can save while adjacent 
 //SaveCost(24,26)
 CutBush(13,5)
@@ -352,25 +387,60 @@ BEQ 34 sC s0
 DISA OaksAidePkmn 
 LABEL 34 
 
+CHECK_EVENTID EarthbadgeObtained
+BNE 1 sC s0 
 CHECK_EVENTID VolcanobadgeObtained // trap exists after you have marshbadge until you get volcanobadge 
 BNE 0 sC s0  // old man is visiting Cinnabar 
 CHECK_EVENTID MarshbadgeObtained
-BEQ 1 sC s0 
+BEQ 2 sC s0 
+
 LABEL 0 
-RemoveTrap(21,18)
+ENUT 0x16 //RemoveTrap(21,18)
 ENUN
-LABEL 1
+GOTO 2 
+LABEL 1 
+ENUT 0x17 // some flag 
+LABEL 2
 
 CHECK_EVENTID VolcanobadgeObtained 
-BEQ 2 sC s0  
+BEQ 3 sC s0  
 RemoveTrap(30,10) // remove the door locked trap if we have the volcanobadge 
-LABEL 2 
+LABEL 3 
 
-LABEL 0x63
+SVAL sC 0 
+SCOORD sB [30, 11] 
+CHECK_CLASS 0x7FFE // at sB coords  
+BNE 99 sC s0 // if someone is at the gym coords, do not receive phone call 
+
+CHECK_EVENTID EarthbadgeObtained 
+BEQ 99 sC s0 // if we haven't beaten all 8 gyms, do no notification 
+CHECK_EVENTID CompletedPokemonLeague
+BEQ 10 sC s0 // if we haven't beaten the league, do first notification 
+
+CHECK_EVENTID RematchNotify2
+BNE 99 sC s0 // if we already were notified the 2nd time, exit 
+ShowMap
+SVAL s2 OakNotifyRematches2Text
+CALL TelephoneEvent
+ENUT RematchNotify2 
+ENUT RematchNotify1 
+
+LABEL 10 
+
+CHECK_EVENTID RematchNotify1
+BNE 99 sC s0 // if we were notified the 1st time already, exit 
+ShowMap
+SVAL s2 OakNotifyRematchesText
+CALL TelephoneEvent
+ENUT RematchNotify1 
+
+
+LABEL 99
 
 #ifdef INSTALL_FMU 
 //ASMC UpdateSMSDir_All // make this a turn 1 thing instead ? 
 #endif 
+
 
 
 NoFade

@@ -193,3 +193,21 @@ pop {r3}
 bx r3 
 .ltorg 
 
+.global TradeUsabilityFMUFix
+.type TradeUsabilityFMUFix, %function 
+TradeUsabilityFMUFix: 
+@ when walking from underneath another unit to a free square and opening
+@ the unit menu, the trade command wasn't appearing because the unit 
+@ wasn't in the unit map 
+push {lr} 
+blh 0x8019fa0 @ RefreshUnitsOnBmMap 
+ldr r0, =0x3004E50 @ CurrentUnit 
+ldr r2, [r0] 
+ldr r0, [r2, #0xC] 
+mov r1, #0x40 
+and r0, r1 
+pop {r3} 
+ldr r3, =0x8022F41 
+bx r3 
+.ltorg 
+

@@ -56,14 +56,18 @@ House(0, SecretHouse2, 10,5)
 END_MAIN
 
 SecretHouse:
+EVBIT_MODIFY 4 
 BottomWallText(SecretHouseFlyText)
 TutText(LearnFlyText) // learn to fly 
 BottomWallText(UseFlyText)
+TutText(HowToFlyText) 
 NoFade 
 ENDA 
 
 SecretHouse2:
+EVBIT_MODIFY 4 
 BottomWallText(UseFlyText) 
+TutText(HowToFlyText)
 NoFade 
 ENDA 
 

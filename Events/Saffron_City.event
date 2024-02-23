@@ -165,7 +165,7 @@ ENDA
 
 
 LocationBasedEvents:
-House(MarshbadgeObtained,EnterGym,30,5) 
+House(SaffronGymClosedFlag,EnterGym,30,5) 
 House(DojoDefeated,EnterDojo,24,5) 
 House(0,EnterSilphCo,17,23) 
 House(PsychicObtained,ObtainPsychicEvent,27,31) 
@@ -175,6 +175,7 @@ Vendor(ShopItems,24,14)
 END_MAIN
 
 ObtainPsychicEvent:
+EVBIT_MODIFY 4 
 BottomWallText(PsychicSaffronText)
 GiveItemWithDurability(0x7fff, SpellScroll, Psychic)
 BottomWallText(PsychicSaffronText2)
@@ -182,6 +183,7 @@ NoFade
 ENDA 
 
 ObtainPsychicEvent2:
+EVBIT_MODIFY 4 
 BottomWallText(PsychicSaffronText2)
 NoFade 
 ENDA 
@@ -203,7 +205,7 @@ ENDA
 
 
 EnterGym:
-ENUF MarshbadgeObtained  
+ENUF SaffronGymClosedFlag  
 ForcedChapterTransition(SaffronGymCh, 6,17)
 NoFade 
 ENDA 

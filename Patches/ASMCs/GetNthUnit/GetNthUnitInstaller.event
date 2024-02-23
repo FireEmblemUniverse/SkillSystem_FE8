@@ -1,6 +1,8 @@
 // By Tequila, Vesly 
 
 #include "GetNthUnit.lyn.event"
+#include "GetNthUnitExceptProtag.lyn.event"
 #include "CountReinforcementUnits.lyn.event"
 
 #define GetNthUnit(UnitID) "SVAL 1 UnitID; ASMC GetNthUnit" 
+#define GetNthUnitExceptProtag(UnitID) "SVAL 1 UnitID; ASMC GetNthUnitExceptProtag" 

@@ -1,0 +1,228 @@
+#define ChapterID ViridianGym2Ch
+
+#define WildLvl 5 
+#define TrainerL ViridianGymLevel 
+
+
+
+
+
+EventPointerTable(ChapterID,ThisChapter)
+
+
+
+ALIGN 4
+ThisChapter:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN Units1 Units1  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0,GlobalTurnEvent,0,255)
+END_MAIN
+
+CharacterBasedEvents:
+CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+END_MAIN
+
+
+
+LocationBasedEvents:
+House(0,ToViridian, 15,20)
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+//AFEV 0 GlobalAfev 0
+DefeatAll(EndingScene) 
+//AFEV flagID eventOffset activationFlag
+//AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
+//AFEV 0 RefreshIfNotInDanger 0 
+//AREA 0 ToViridian [15,20][15,20] 
+END_MAIN
+#ifdef MultiTileMarker_Installer
+{ ; MultiTileEntry(ChapterID) 
+EscapeTileEntry(15,20) 
+EscapeTileTerminator ; } 
+#endif 
+
+ToViridian:
+ChapterTransition(ViridianCh, 30,11)
+
+Traps1:
+GenericCompletion(3,2,GarySMS, DebugText) // requires flag 6 to be on (defeated all enemies). Displays SMS ID and uses "Talk" option to then display text 
+
+InstantFireTrap(5,10)
+InstantFireTrap(0,11)
+InstantFireTrap(1,13)
+InstantFireTrap(14,13)
+InstantFireTrap(16,14)
+InstantFireTrap(4,17)
+InstantFireTrap(11,17)
+InstantFireTrap(11,18)
+
+FireTrap(5,10,1,1)
+FireTrap(0,11,1,1)
+FireTrap(1,13,1,1)
+FireTrap(14,13,1,1)
+FireTrap(16,14,1,1)
+FireTrap(4,17,1,1)
+FireTrap(11,17,1,1)
+FireTrap(11,18,1,1)
+
+
+
+
+HealingSprite(5,10)
+HealingSprite(0,11)
+HealingSprite(1,13)
+HealingSprite(14,13)
+HealingSprite(16,14)
+HealingSprite(4,17)
+HealingSprite(11,17)
+HealingSprite(11,18)
+
+ENDTRAP
+ALIGN 4
+
+
+BeginningScene:
+CALL GlobalBeginningScene
+CALL LoadAndPlacePlayers 
+#ifdef INSTALL_FMU
+DisableFreeMovement
+#endif
+
+ENUT TrainerBattleActiveFlag
+MUSC 0x7FFF // Mute 
+CAM1 [5,6] 
+
+
+LOAD1 0x1 EnemyTrainersB
+ENUN 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(RematchLevel, True, 0x90EF) 
+ENUT FIXED_GROWTHS_FLAG_ID
+AutoLevelUnits(ViridianGymBonus, False, 0x90EF) // 9 hidden levels regardless of difficulty 
+//AutoLevelUnits(3, False, 0x90EF) 
+CALL GenericAutolevelEvent_Earlygame // Trainers given invisible levels based on difficulty 
+
+
+SetUnitStatus(ShedinjaUnitID, MaxHP, 1) // Shedinja 
+SetUnitStatus(SableyeUnitID, MaxHP, 30) // Sableye
+SetUnitStatus(ShedinjaUnitID, CurrentHP, 1)
+SetUnitStatus(SableyeUnitID, CurrentHP, 30)
+
+SetUnitStatus(0xA6, Defence, 50)
+SetUnitStatus(0xA7, Defence, 50)
+SetUnitStatus(0xA8, Defence, 50)
+SetUnitStatus(0xA6, Resistance, 50)
+SetUnitStatus(0xA7, Resistance, 50)
+SetUnitStatus(0xA8, Resistance, 50)
+
+SetUnitStatusAll(0xA0DF, 0x24, 0x5, 0, AnyDeployed, AnyArmy, AnyClass, AnyRange, AnyItem)
+// 0x24 is Item 4 and 0x5 is type WORD, so deleting items 4-5 and their durability 
+
+SilentGiveItemWithDurability(0xA6, StatAccessory, 0x80|EnhancedWard_BoostIndex)
+SilentGiveItemWithDurability(0xA7, StatAccessory, 0x80|EnergyBandT4_BoostIndex)
+SilentGiveItemWithDurability(0xA8, StatAccessory, 0x80|SteelShield_BoostIndex)
+////SilentGiveSkillAccessory(0xD0, AmaterasuID)
+//SilentGiveItemWithDurability(0xD0, MaxPotion,0x1)
+////SilentGiveItemWithDurability(0xA0, Berry,0x8A)
+//SilentGiveItemWithDurability(0xA0, SuperPotion,0x1)
+////SilentGiveItemWithDurability(0xA1, Berry,0x8A)
+//SilentGiveItemWithDurability(0xA1, SuperPotion,0x1)
+////SilentGiveItemWithDurability(0xA2, Berry,0x8A)
+//SilentGiveItemWithDurability(0xA2, SuperPotion,0x1)
+////SilentGiveItemWithDurability(0xA3, Berry,0x8A)
+//SilentGiveItemWithDurability(0xA3, SuperPotion,0x1)
+////SilentGiveItemWithDurability(0xA4, Berry,0x8A)
+//SilentGiveItemWithDurability(0xA4, SuperPotion,0x1)
+
+
+MUSCFAST IntroBGM 
+ShowMap
+EVBIT_MODIFY 4 
+Text(GaryRematchText)
+
+
+
+ASMC 0x80160D1 // Return to map BGM 
+
+CAM1 [7,12] 
+
+
+
+LABEL 0x63
+NoFade
+ENDA
+
+
+
+
+EndingScene: 
+EVBIT_MODIFY 4 
+MUSC 0x7FFF // Mute 
+#ifdef UnsetAllDangerRadius
+UnsetAllDangerRadius
+#endif 
+UNCR(0x7FFF, 0x43) // Show SMS & Refresh 
+ASMC 0x80790a5 //MU_EndAll //deselect unit
+MUSCSLOW GymBGM
+EVBIT_MODIFY 4 
+Text(GaryRematchDefeatText)
+//GiveItemWithDurability(0, SpellScroll, Fissure)
+//GiveItemWithDurability(0, SpellScroll, Bonemerang)
+GiveItemWithDurability(0, ExoticCandy, 1)
+ENUT ViridianGymRematchedFlag
+SVAL r3 10000 
+GIVETOMAIN 0 
+
+//GiveSkillAccessory(0, BlossomID)
+FADI 4 
+ForcedChapterTransition(ViridianCh, 30,11)
+LABEL 0x63 
+NoFade
+ENDA
+
+Dunno1:
+END_MAIN
+Dunno2:
+END_MAIN
+Dunno3:
+END_MAIN
+Tutorial:
+END_MAIN
+Traps2:
+ENDTRAP
+ALIGN 4
+
+Units1: //only used for a pointless POIN at start 
+UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+
+
+
+
+EnemyTrainersB: // rematch 
+UNIT 0xA6	MegaVenusaurID 	0 Level(0, Enemy, 1)   [2,3]	0b	0x0 0 0 [SolarBeam,Screech,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA7	MegaCharizardXID 	0 Level(0, Enemy, 1)   [3,4]	0b	0x0 0 0 [FireBlast,SkyAttack,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA8	MegaBlastoiseID 	0 Level(0, Enemy, 1)   [4,3]	0b	0x0 0 0 [HydroPump,Blizzard,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xA9 	MegaPidgeotID 		0 Level(0, Enemy, 1)   [1,4] 0b	0x0 0 0 [SkyAttack,HyperBeam,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xAA 	MegaAlakazamID 	0 Level(0, Enemy, 1)   [5,4]  0b	0x0 0 0 [Psychic,ShadowBall,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xD5  	ShedinjaID 		0 Level(0, Enemy, 1)   [2,5] 0b	0x0 0 0 [Slash, BugBite,0x0,0x0] PursueWithoutHeedAI 
+UNIT 0xD6 	SableyeID 			0 Level(0, Enemy, 1)   [4,5] 0b	0x0 0 0 [ShadowBall, DarkPulse,0x0,0x0] PursueWithoutHeedAI 
+UNIT
+	
+
+#undef WildLvl
+#undef TrainerL
+#undef ChapterID

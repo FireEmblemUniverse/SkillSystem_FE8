@@ -51,7 +51,7 @@ lsl     r0, #8
 add r0, #0x4		@0x100, hp drain/update, 0x04 injured self already
 orr     r1, r0
 
-@and unset the crit flag
+@and set the crit flag
 mov r0, #1
 orr r1, r0 @ always crit 
 
@@ -73,7 +73,10 @@ bgt NoCap
 mov r1, r0 @ take damage equal to remaining health 
 NoCap: 
 
-strh r1, [r7, #4] 
+@strh r1, [r7, #4] @ Feb 18 2024 Commented this line out: 
+@ since explosion has high crit, it should always crit before we get to the proc 
+@ so there is no need to multiply damage by 1.5x twice 
+
 @sub r1, #1 
 @mov r1, #9 
 

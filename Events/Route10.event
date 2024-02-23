@@ -83,6 +83,7 @@ DigChapterTransition(ChapterID, PowerPlantCh, 5,28)
 SurfMessageEvent: 
 CHECK_EVENTID MarshbadgeObtained
 BNE 99 sC s0 
+EVBIT_MODIFY 4 
 TutText(CannotSurfYetText) 
 LABEL 99 
 NoFade 

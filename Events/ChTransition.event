@@ -122,7 +122,7 @@ SVAL r7 1
 BNE 0 rA r7 
 // They said yes 
 SVAL rC 0 
-GetNthUnit(2) 
+GetNthUnitExceptProtag(2) 
 BEQ 10 rC r0
 // And they have another unit deployed 
 TutText_B(GoodbyeReleasePokemonText)
@@ -168,6 +168,7 @@ GenericEffect(3, SaveWithoutHeal) //
 GenericEffect(8, CallSuspiciousRockEvent) // for rocks that strength boulder triggers will disappear 
 GenericEffect(9, ReviveAndSaveEvent) 
 
+
 GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(3, ObtainSecretKeyEvent) // 
 //GenericDisappearEffect(4, CinnabarGymQuiz_A) // 
@@ -182,12 +183,12 @@ GenericDisappearEffect(2, VisitPokecenter) //
 //GenericDisappearEffect(13, ObtainHelixFossilEvent) // 
 //GenericDisappearEffect(14, ObtainDomeFossilEvent) // 
 //GenericDisappearEffect(15, ObtainKeyCardEvent) // 
+//GenericDisappearEffect(16, MewTruckEvent) 
 
 CallSuspiciousRockEvent: 
 TutText_B(SuspiciousRockText)
 NoFade 
 ENDA 
-
 
 TestCase:
 GiveEXP(0x7FFF, 100)
@@ -510,11 +511,83 @@ NoFade
 ENDA 
 
 CityBeginningScene:
+CALL SetGymFlags
 SetMaxMove
 //SetUnitStatusAll(Any, MovBonus, 10, AnyDeployed, PlayerArmy, AnyClass, AnyRange, AnyItem) 
 
 NoFade 
 ENDA 
+
+SetGymFlags: // close gyms you've beaten until you defeat Giovanni 
+CHECK_EVENTID CompletedPokemonLeague // open Viridian Gym 
+BNE 20 sC s0 
+CHECK_EVENTID EarthbadgeObtained // open other gyms 
+BNE 11 sC s0 
+
+// this part is for compatibility with save files before 1.12 
+CHECK_EVENTID BoulderbadgeObtained
+BEQ 1 sC s0 
+ENUT PewterGymClosedFlag
+LABEL 1 
+CHECK_EVENTID CascadebadgeObtained
+BEQ 2 sC s0 
+ENUT CeruleanGymClosedFlag
+LABEL 2 
+CHECK_EVENTID ThunderbadgeObtained
+BEQ 3 sC s0 
+ENUT VermilionGymClosedFlag
+LABEL 3 
+CHECK_EVENTID SoulbadgeObtained
+BEQ 4 sC s0 
+ENUT FuschiaGymClosedFlag
+LABEL 4 
+CHECK_EVENTID RainbowbadgeObtained
+BEQ 5 sC s0 
+ENUT CeladonGymClosedFlag
+LABEL 5 
+CHECK_EVENTID MarshbadgeObtained
+BEQ 6 sC s0 
+ENUT SaffronGymClosedFlag
+LABEL 6 
+CHECK_EVENTID VolcanobadgeObtained
+BEQ 7 sC s0 
+ENUT CinnabarGymClosedFlag
+LABEL 7 
+GOTO 99 
+LABEL 11 
+ENUT ViridianGymClosedFlag 
+GOTO 10
+
+LABEL 20 // Defeated champion 
+ENUF ViridianGymClosedFlag 
+
+
+
+LABEL 10 // Defeated Giovanni already 
+ENUF PewterGymClosedFlag 
+ENUF CeruleanGymClosedFlag 
+ENUF VermilionGymClosedFlag
+ENUF FuschiaGymClosedFlag 
+ENUF CeladonGymClosedFlag 
+ENUF SaffronGymClosedFlag 
+ENUF CinnabarGymClosedFlag 
+
+LABEL 99 
+NoFade 
+ENDA 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ALIGN 4 
 ProtagUnitGroupMale:
@@ -1121,7 +1194,7 @@ SVAL rC 0x10000
 SDIV r2 rB rC 
 Write_Byte(YCoordTeleport) 
 Write_Byte(YCoordNewArea) 
-
+ENUF MissingnoFlag 
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
@@ -1230,6 +1303,7 @@ Write_Byte(0, DisableMenuOptionsRam)
 ENUF TrainerBattleActiveFlag
 ENUF DisableTutFlag_A
 ENUF DisableTutFlag_B
+ENUF MissingnoFlag
 LABEL 0x63 
 EVBIT_MODIFY 0
 NoFade
@@ -1259,6 +1333,7 @@ ENUF TrainerBattleActiveFlag
 ENUF RefreshEvenInTrainerBattleFlag
 ENUF DisableTutFlag_A
 ENUF DisableTutFlag_B
+ENUF MissingnoFlag
 SADD 2 9 0 
 
 MNC2 (-1) 
@@ -1289,7 +1364,7 @@ IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
 ENUF RefreshEvenInTrainerBattleFlag
-
+ENUF MissingnoFlag
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
@@ -1308,7 +1383,7 @@ IGNORE_KEYS 0
 Write_Byte(0, DisableMenuOptionsRam) 
 ENUF TrainerBattleActiveFlag
 ENUF RefreshEvenInTrainerBattleFlag
-
+ENUF MissingnoFlag
 CHECK_CHAPTER_NUMBER
 SADD r2 rC r0 
 Write_Byte(CurrentChapter)
@@ -1401,6 +1476,7 @@ RemoveTrap
 
 DISA 0xFC 
 STAL 10
+GOTO 99 
 
 LABEL 1 // Sped up version 
 CAM1 0x7FFE 
@@ -1521,35 +1597,35 @@ ENDA
 
 CheckDeployed:
 ReorderParty
-GetNthUnit(6)
+GetNthUnitExceptProtag(6)
 BEQ Try5Label rC r0 
 LOAD3 0x0 First6Players 
 SVAL r4 6
 GOTO EndLabel
 
 Label Try5Label
-GetNthUnit(5)
+GetNthUnitExceptProtag(5)
 BEQ Try4Label rC r0 
 LOAD3 0x0 First5Players 
 SVAL r4 5
 GOTO EndLabel 
 
 Label Try4Label
-GetNthUnit(4)
+GetNthUnitExceptProtag(4)
 BEQ Try3Label rC r0 
 LOAD3 0x0 First4Players 
 SVAL r4 4
 GOTO EndLabel 
 
 Label Try3Label
-GetNthUnit(3)
+GetNthUnitExceptProtag(3)
 BEQ Try2Label rC r0 
 LOAD3 0x0 First3Players 
 SVAL r4 3
 GOTO EndLabel 
 
 Label Try2Label
-GetNthUnit(2)
+GetNthUnitExceptProtag(2)
 BEQ Try1Label rC r0 
 LOAD3 0x0 First2Players 
 SVAL r4 2

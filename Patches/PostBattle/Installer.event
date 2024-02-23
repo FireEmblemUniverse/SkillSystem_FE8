@@ -40,9 +40,9 @@ FILL(8*0x100)
 
 // @ Empty Mag, Luck Res, Def Spd, Skl Str 
 //DebuffSelfEntry(mag, str, skl, spd, def, res, luk, mov)
-DebuffSelfEntry(HyperBeam, 8, 8, 0,0,0, 0,0,0)
-DebuffSelfEntry(SolarBeam, 8, 8, 0,0,0, 0,0,0)
-DebuffSelfEntry(SkyAttack, 8, 8, 0,0,0, 0,0,0)
+DebuffSelfEntry(HyperBeam, 15, 15, 0,0,0, 0,0,0)
+DebuffSelfEntry(SolarBeam, 15, 15, 0,0,0, 0,0,0)
+DebuffSelfEntry(SkyAttack, 15, 15, 0,0,0, 0,0,0)
 // WORD DebuffValue 
 
 

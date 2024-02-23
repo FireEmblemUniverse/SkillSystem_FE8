@@ -89,7 +89,7 @@ NW_StatsDrained:
 PlayerInRange
 CHECK_EVENTID CardKeyFlag 
 BNE 99 sC s0 
-DebuffUnit(0x7FFF, 0x005AA000) // -5 luk, -10 def/res
+DebuffUnit(0x7FFF, DefResDebuff) // -5 luk, -10 def/res
 TutText(DefFeelsSapped)
 LABEL 99 
 NoFade 
@@ -138,7 +138,8 @@ MineTrap(2,14)
 
 //StatAccessoryTrap(17,20, (ChapterID*2), BronzeShield_BoostIndex) 
 //GoldPokeballTrap(14,13, (ChapterID*2)+1, Gust) 
-SkillAccessoryTrap(19,4, (ChapterID*2)+1, HawkeyeID) // "silph scope" 
+//SkillAccessoryTrap(19,4, (ChapterID*2)+1, HawkeyeID) // "silph scope" 
+SkillAccessoryTrap(19,4, (ChapterID*2), SilphScopeID) // "silph scope" 
 
 //StatAccessoryTrap(14,2, (ChapterID*2)+1, OldWard_BoostIndex)
 //SkillAccessoryTrap(17,15, ChapterID*2, RockyHelmetSkillID) 
