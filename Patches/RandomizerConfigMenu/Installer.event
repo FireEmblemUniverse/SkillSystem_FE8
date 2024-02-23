@@ -1,50 +1,131 @@
-//base code epically borrowed from circles
+// By Vesly, Sme, and Circles 
 
 #include "StartingOptionsMenu.lyn.event" //reassembling will give you a bunch of warnings, you can ignore them
 #include "spin/spin.event"
 
-// This uses the last 4 bytes of global flags
-// for storing options state, which in practice means 
-// the removal of about 32 global flags on the end
-// but, this is only until the ASMC is run to set options
-// so just don't use them before then 
 
 PUSH
 ORG $a20164
 POIN NewDifficultySelectFunc
-ORG $83d20
-BYTE 0x13 //clear slightly fewer global flags on new file
+ORG $83d18 // don't clear global flags on new game except through our function 
+SHORT $4770 // bx lr 
+//ORG $83d20
+//BYTE 0x13 //clear slightly fewer global flags on new file
 POP
 
+ALIGN 4
+PAGE1MAXINDEX: 
+WORD 7 // Max is 7 (for 8 entries) 
+
+NumberOfOptionsPerEntryTable:
+BYTE 3 // 0th entry has 2 choices 
+BYTE 2 // 1st entry has 2 choices 
+BYTE 4
+BYTE 2
+BYTE 2
+BYTE 2
+BYTE 2
+BYTE 2
 
 
+// optionID, flag to set 
+#define OptionFlagsEntry(commandID, flagA) "SHORT commandID flagA 0xFFFF" 
+#define OptionFlagsEntry(commandID, flagA, flagB) "SHORT commandID flagA flagB 0xFFFF" 
+#define OptionFlagsEntry(commandID, flagA, flagB, flagC) "SHORT commandID flagA flagB flagC 0xFFFF" 
+#define OptionFlagsEntry(commandID, flagA, flagB, flagC, flagD) "SHORT commandID flagA flagB flagC flagD 0xFFFF" 
+#define OptionFlagsEntry(commandID, flagA, flagB, flagC, flagD, flagE) "SHORT commandID flagA flagB flagC flagD flagE 0xFFFF" 
+#define OptionFlagsEntry(commandID, flagA, flagB, flagC, flagD, flagE, flagF) "SHORT commandID flagA flagB flagC flagD flagE flagF 0xFFFF" 
+// if you need more than 6 entries for one option, you can add more macros as above 
+ALIGN 4 
+OptionsToFlagsList: 
+OptionFlagsEntry(0, 0, 0x90, 0x89) // option 0 sets flag 0 (none), flag 0x90, or flag 0x89 
+OptionFlagsEntry(1, 0x88, 0) // option 1 sets flag 0x88 or flag 0 (none) 
+OptionFlagsEntry(2, 0x91, 0, 0x92, 0x93) // option 2 sets flag 0x91, 0, 0x92, or 0x93 
+OptionFlagsEntry(3, 0xFB, 0) // option 3 sets flag 0xFB or flag 0 (none) 
+
+SHORT 0xFEDC // Terminator 
 
 
+ALIGN 4 ; Title_Text: ; String("Settings") ; BYTE 0 
+ALIGN 4 ; OptionsCommand0_Text: ; String("Wild Pokemon:") ; BYTE 0
+ALIGN 4 ; OptionsCommand1_Text: ; String("Trainer Pokemon:") ; BYTE 0
+ALIGN 4 ; OptionsCommand2_Text: ; String("Gyms/Bosses:") ; BYTE 0
+ALIGN 4 ; OptionsCommand3_Text: ; String("Items Found:") ; BYTE 0
+ALIGN 4 ; OptionsCommand4_Text: ; String("Move Stats:") ; BYTE 0
+ALIGN 4 ; OptionsCommand5_Text: ; String("Pokemon Stats:") ; BYTE 0
+ALIGN 4 ; OptionsCommand6_Text: ; String("Pokemon Growths:") ; BYTE 0
+ALIGN 4 ; OptionsCommand7_Text: ; String("Music:") ; BYTE 0
 
+ALIGN 4 ; Command0_Option0_Text: ; String("Normal") ; BYTE 0
+ALIGN 4 ; Command0_Option1_Text: ; String("Randomized") ; BYTE 0 
+ALIGN 4 ; Command0_Option2_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command0_Option3_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command0_Option4_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command0_Option5_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command0_Option6_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command0_Option7_Text: ; String(" ") ; BYTE 0 
 
+ALIGN 4 ; Command1_Option0_Text: ; String("Normal") ; BYTE 0
+ALIGN 4 ; Command1_Option1_Text: ; String("Randomized") ; BYTE 0 
+ALIGN 4 ; Command1_Option2_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command1_Option3_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command1_Option4_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command1_Option5_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command1_Option6_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command1_Option7_Text: ; String(" ") ; BYTE 0 
 
+ALIGN 4 ; Command2_Option0_Text: ; String("Normal") ; BYTE 0
+ALIGN 4 ; Command2_Option1_Text: ; String("Randomized") ; BYTE 0 
+ALIGN 4 ; Command2_Option2_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command2_Option3_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command2_Option4_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command2_Option5_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command2_Option6_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command2_Option7_Text: ; String(" ") ; BYTE 0 
 
+ALIGN 4 ; Command3_Option0_Text: ; String("Normal") ; BYTE 0
+ALIGN 4 ; Command3_Option1_Text: ; String("Randomized") ; BYTE 0 
+ALIGN 4 ; Command3_Option2_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command3_Option3_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command3_Option4_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command3_Option5_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command3_Option6_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command3_Option7_Text: ; String(" ") ; BYTE 0 
 
+ALIGN 4 ; Command4_Option0_Text: ; String("Normal") ; BYTE 0
+ALIGN 4 ; Command4_Option1_Text: ; String("Randomized") ; BYTE 0 
+ALIGN 4 ; Command4_Option2_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command4_Option3_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command4_Option4_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command4_Option5_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command4_Option6_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command4_Option7_Text: ; String(" ") ; BYTE 0 
 
-CasualModeFlagLink:
-BYTE $B0
-FixedGrowthsFlagLink:
-BYTE 1 //FIXED_GROWTHS_FLAG_ID
-OneRNFlagLink:
-BYTE 1 //Enable1RNFlag
-FatesRNFlagLink:
-BYTE 1 //EnableFatesRNFlag
-EvilRNFlagLink:
-BYTE 1 //EnableEvilRNFlag
-PerfectHitFlagLink:
-BYTE 1 //EnablePerfectHitFlag
-NiceRNGFlagLink:
-BYTE 1 //EnableNiceRNGFlag
-CoinTossRNGFlagLink:
-BYTE 1 //EnableCoinTossRNGFlag
-ZeroGrowthsFlagLink:
-BYTE 1 //ZeroGrowthsFlag
-PerfectGrowthsFlagLink:
-BYTE 1 //PerfectGrowthsFlag
+ALIGN 4 ; Command5_Option0_Text: ; String("Normal") ; BYTE 0
+ALIGN 4 ; Command5_Option1_Text: ; String("Randomized") ; BYTE 0 
+ALIGN 4 ; Command5_Option2_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command5_Option3_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command5_Option4_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command5_Option5_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command5_Option6_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command5_Option7_Text: ; String(" ") ; BYTE 0 
+
+ALIGN 4 ; Command6_Option0_Text: ; String("Normal") ; BYTE 0
+ALIGN 4 ; Command6_Option1_Text: ; String("Randomized") ; BYTE 0 
+ALIGN 4 ; Command6_Option2_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command6_Option3_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command6_Option4_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command6_Option5_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command6_Option6_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command6_Option7_Text: ; String(" ") ; BYTE 0 
+
+ALIGN 4 ; Command7_Option0_Text: ; String("Normal") ; BYTE 0
+ALIGN 4 ; Command7_Option1_Text: ; String("Randomized") ; BYTE 0 
+ALIGN 4 ; Command7_Option2_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command7_Option3_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command7_Option4_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command7_Option5_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command7_Option6_Text: ; String(" ") ; BYTE 0 
+ALIGN 4 ; Command7_Option7_Text: ; String(" ") ; BYTE 0 
 
 

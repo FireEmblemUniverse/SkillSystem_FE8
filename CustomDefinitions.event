@@ -1,4 +1,4 @@
-//PROTECT $1453161
+//PROTECT $144F944
 // 7BCA8 // ~5 extra frames than needed? nvm 
 // gProc_PopR_AnimsOnWrapper ~3 frames? 
 // post action events? 1-2 frames? 
@@ -16,7 +16,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-#define DEBUG_MODE 
+//#define DEBUG_MODE 
 
 #define TESTING_RANGES
 
@@ -190,7 +190,8 @@ String("V1.14.00              Feb 2024") ; BYTE 0; POP // this overflows into th
 #define BuffTableSize 0x1D8 // Pokemblem - 50 players/enemies, 15 NPCs - regular would be $21C i think 
 #define BuffTableEntrySize 4 
 
-#define FreeRamByte1 0x30017A0 // - 0x30017A9 
+#define FreeRamByte1 0x30017A0 // - 0x30017A6 
+#define FreeMoveRamByte 0x30017A7 
 
 #define TempRamWhileExpShare 0x2026E30 // used in pc boxes too 
 #define TempRamWhileExpShare2 0x2026E34 // used in pc boxes too 

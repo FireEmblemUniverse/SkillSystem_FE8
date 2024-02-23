@@ -19,12 +19,7 @@ mov r4, r0 @attacker
 mov r5, r1 @defender
 mov r6, r2 @battle buffer
 mov r7, r3 @battle data
-ldr     r0,[r2]           @r0 = battle buffer                @ 0802B40A 6800     
-lsl     r0,r0,#0xD                @ 0802B40C 0340     
-lsr     r0,r0,#0xD        @Without damage data                @ 0802B40E 0B40     
-mov r1, #2 @miss
-tst r0, r1
-bne GoBack @if we miss, don't apply effect
+
 
 
 @ check weapon effect
@@ -69,7 +64,20 @@ lsl r1, r2 @ enemies as twice as likely to be inflicted by status
 cmp r1, r0 
 blt GoBack @ No status inflicted 
 
+ldrb r1, [r7, #1] 
+cmp r1, #100 
+bge AlwaysApplyEvenIfMissed
 
+@ if less than 100% chance to cause a status, only apply status if we hit 
+ldr     r0,[r6]           @r0 = battle buffer                @ 0802B40A 6800     
+lsl     r0,r0,#0xD                @ 0802B40C 0340     
+lsr     r0,r0,#0xD        @Without damage data                @ 0802B40E 0B40     
+mov r1, #2 @miss
+tst r0, r1
+bne GoBack @if we miss, don't apply effect
+
+
+AlwaysApplyEvenIfMissed:
 @now we're ready to do our effect, but we need to do it to the unit's normal char struct
 mov r0,r5
 add r0,#0x6F

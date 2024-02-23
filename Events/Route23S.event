@@ -120,7 +120,8 @@ SignATrap(17,53, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 //BerryTree(36,11,5)
 
 //SkillScrollTrap(21,9, ChapterID*2, DartingStanceID)
-SpellScrollTrap(7,45, (ChapterID*2)+1, DoubleEdge)
+//SpellScrollTrap(7,45, (ChapterID*2)+1, DoubleEdge)
+SpellScrollTrap(7,45, (ChapterID*2), SkyAttack)
 //OpenPokeball(8,3)
 //Sign(8,4, 2)
 

@@ -67,6 +67,8 @@ Loop:
 
 @ Determine time until segment ends
 ldr   r0, =TimePerUnit
+lsl r0, #16 
+lsr r0, #16 
 mul   r7, r0                      @ 12 frames per unit
 add   r7, #0x3C                   @ At least have a second to give player time to read the title
 
