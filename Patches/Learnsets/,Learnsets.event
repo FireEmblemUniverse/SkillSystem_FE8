@@ -12,13 +12,13 @@ BYTE 6 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
-BYTE 17 RazorLeaf
+BYTE 17 AncientPower
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
 BYTE 28 PetalDance
-BYTE 32 RecoverMove //?Buff (RecoverMove)
+BYTE 32 Earthquake
 BYTE 37 EarthPower
-BYTE 40 Earthquake
+BYTE 40 RecoverMove //?Buff (RecoverMove)
 BYTE 45 SolarBeam
 BYTE 0 0// Goes at the end of each learnset 
 	
@@ -34,13 +34,13 @@ BYTE 6 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
-BYTE 17 RazorLeaf
+BYTE 17 AncientPower
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
 BYTE 28 PetalDance
-BYTE 32 RecoverMove
+BYTE 32 Earthquake
 BYTE 37 EarthPower
-BYTE 40 Earthquake
+BYTE 40 RecoverMove
 BYTE 45 SolarBeam
 BYTE 0 0
 
@@ -55,13 +55,13 @@ BYTE 6 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
-BYTE 17 RazorLeaf
+BYTE 17 AncientPower
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
 BYTE 28 PetalDance
-BYTE 32 RecoverMove
+BYTE 32 Earthquake
 BYTE 37 EarthPower
-BYTE 40 Earthquake
+BYTE 40 RecoverMove
 BYTE 45 SolarBeam
 BYTE 0 0
 
