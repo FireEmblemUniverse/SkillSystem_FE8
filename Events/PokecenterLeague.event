@@ -61,12 +61,12 @@ ShopItems_B: // TMs CDs
 //BYTE SpellScroll Psychic SpellScroll PetalDance
 //BYTE SpellScroll Screech SpellScroll SwordsDance
 //BYTE SpellScroll BugBuzz SpellScroll CalmMind
-BYTE SpellScroll SolarBeam 
+BYTE SpellScroll SolarBeam  SpellScroll SkyAttack
 BYTE SpellScroll HiJumpKick SpellScroll BulkUp
 BYTE SpellScroll ThunderMove SpellScroll HoneClaws
 BYTE SpellScroll EarthPower SpellScroll Blizzard
 BYTE SpellScroll XScissor SpellScroll HydroPump
-BYTE SpellScroll HyperBeam SpellScroll Sludge
+BYTE SpellScroll HyperBeam //SpellScroll Sludge
 BYTE SpellScroll ShadowBall SpellScroll FireBlast
 BYTE SpellScroll Earthquake SpellScroll Megahorn 
 BYTE SpellScroll DoubleEdge SpellScroll Outrage

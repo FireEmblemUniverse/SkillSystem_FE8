@@ -7,13 +7,17 @@ typedef struct {
   u8 CursorIndex;
   u8 LastCursorIndex;
   s8 Option[8];
-  u8 CasualMode;
-  u8 FixedGrowths;
-  u8 RN;
 
   //more options here
 } OptionsProc;
 
+// Temporarily save via a proc until the game starts 
+typedef struct {
+  Proc Header;
+  s16 FlagOn[20]; // so we can ignore negative / 0xFFFF flags just in case 
+} OptionsSavedProc;
+
+void SaveStartingOptionsLoop(OptionsSavedProc* CurrentProc);
 void StartingOptionsSetup(OptionsProc* CurrentProc);
 void updateOptionsPage(OptionsProc* CurrentProc);
 void StartingOptionsLoop(OptionsProc* CurrentProc);
@@ -45,8 +49,8 @@ extern void NewFadeIn();
 extern void NewFadeOut();
 extern void FadeInExists();
 extern void FadeOutExists();
-extern void SetEventId(u8 flagID);
-extern void UnsetEventId(u8 flagID);
+extern void SetEventId(u16 flagID);
+extern void UnsetEventId(u16 flagID);
 extern void Font_ResetAllocation();
 extern void LZ77UnCompVram();
 //extern const SpinProc[];

@@ -2919,7 +2919,7 @@ BYTE 12 RecoverMove
 BYTE 14 Spark
 BYTE 18 BodySlam
 BYTE 20 Bite
-BYTE 22 Shockwave
+BYTE 22 ShockWave
 BYTE 25 SignalBeam
 BYTE 28 WaterPulse
 BYTE 30 Thunderbolt
@@ -3300,7 +3300,7 @@ BYTE 0 0
 ALIGN 4
 MewLearnset:
 BYTE 1 Pound
-BYTE 5 AncientPower
+BYTE 5 Ancientpower
 BYTE 10 HealPulse
 BYTE 15 Psychic
 BYTE 20 Explosion
@@ -3309,7 +3309,7 @@ BYTE 30 SkyAttack
 BYTE 35 BugBuzz
 BYTE 45 SacredFire
 BYTE 50 Sludge
-BYTE 55 Transform
+//BYTE 55 Transform
 BYTE 60 HydroPump
 BYTE 65 Fissure
 BYTE 70 SolarBeam

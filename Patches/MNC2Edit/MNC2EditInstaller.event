@@ -32,6 +32,12 @@ ORG $9DE8 //CallActualSaveMenu GameControl_CallPostChapterSaveMenu
 callHackNew(SaveOnlyAtTheseChapters)
 SHORT $46C0 
 //save only at specified chapter 
+// 202BD3A 
+ORG $1551A // chapters to not show intro fx 
+SHORT $46C0 $46C0 $46C0 $46C0 $46C0 $46C0 $46C0 $46C0 $46C0 
+
+//https://github.com/FireEmblemUniverse/fireemblem8u/blob/bf5ea9de99a9115b74bd5db06eb12305e90f4b14/src/gamecontrol.c#L112
+// was looking at this 
 
 ORG 0x9DEF
 //BYTE 0xD1 //BEQ -> BNE (so now we only save when moving to castle frelia)
