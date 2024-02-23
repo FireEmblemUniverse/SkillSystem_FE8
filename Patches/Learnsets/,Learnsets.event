@@ -2379,11 +2379,12 @@ RhyhornLearnset:
 BYTE 1 HornAttack
 BYTE 1 TailWhip
 BYTE 5 Magnitude
-BYTE 9 RockTomb
-BYTE 11 DoubleHit // FuryAttack
-BYTE 13 RockThrow // Rock Blast
-BYTE 15 Glare // ScaryFace
-BYTE 18 Rollout
+BYTE 8 RockTomb
+BYTE 10 DoubleHit // FuryAttack
+BYTE 12 RockThrow // Rock Blast
+BYTE 14 Glare // ScaryFace
+BYTE 16 Rollout
+BYTE 18 BulkUp
 BYTE 20 TakeDown
 BYTE 23 Dig
 BYTE 27 RockSlide // Stone Edge
@@ -2399,11 +2400,12 @@ RhydonLearnset:
 BYTE 1 HornAttack
 BYTE 1 TailWhip
 BYTE 5 Magnitude
-BYTE 9 RockTomb
-BYTE 11 DoubleHit // FuryAttack
-BYTE 13 RockThrow // Rock Blast
-BYTE 15 Glare // ScaryFace
-BYTE 18 Rollout
+BYTE 8 RockTomb
+BYTE 10 DoubleHit // FuryAttack
+BYTE 12 RockThrow // Rock Blast
+BYTE 14 Glare // ScaryFace
+BYTE 16 Rollout
+BYTE 18 BulkUp
 BYTE 20 TakeDown
 BYTE 23 Dig
 BYTE 27 RockSlide // Stone Edge
@@ -2501,8 +2503,9 @@ BYTE 30 Surf // Brine
 BYTE 32 Sludge
 BYTE 35 IceBeam
 // BYTE 38 Resv DragonDance
-BYTE 40 HydroPump
-BYTE 42 Outrage // DragonPulse
+BYTE 38 HydroPump
+BYTE 42 Blizzard
+BYTE 45 Outrage // DragonPulse
 BYTE 0 0 //
 
 ALIGN 4
@@ -2524,8 +2527,9 @@ BYTE 30 Surf // Brine
 BYTE 32 Sludge
 BYTE 35 IceBeam
 // BYTE 38 Resv DragonDance
-BYTE 40 HydroPump
-BYTE 42 Outrage // DragonPulse
+BYTE 38 HydroPump
+BYTE 42 Blizzard
+BYTE 45 Outrage // DragonPulse
 BYTE 0 0 // Kingdra gets Yawn
 
 ALIGN 4
