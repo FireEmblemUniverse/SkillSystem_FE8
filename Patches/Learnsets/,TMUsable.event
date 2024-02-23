@@ -41,20 +41,20 @@
 ALIGN 4
 BulbasaurTMs:
 BYTE BodySlam DoubleEdge Flash Growl Growth Headbutt Rage AttackPulse SwordsDance Tackle TakeDown Rest FuryCutter StringShot Cut DoubleHit GuardMove
-BYTE RecoverMove EarthPower
+BYTE RecoverMove EarthPower AncientPower
 BYTE 0
 
 ALIGN 4
 IvysaurTMs:
 BYTE BodySlam DoubleEdge Flash Growl Growth Headbutt Rage AttackPulse SwordsDance Tackle TakeDown Rest FuryCutter StringShot Cut DoubleHit GuardMove
-BYTE RecoverMove EarthPower
+BYTE RecoverMove EarthPower AncientPower
 BYTE 0
 
 ALIGN 4
 VenusaurTMs:
 BYTE BodySlam DoubleEdge Flash Growl Growth Headbutt HyperBeam Rage AttackPulse SwordsDance Tackle TakeDown Earthquake Rest Outrage FuryCutter StringShot Cut Roar DoubleHit GuardMove
 BYTE Magnitude
-BYTE RecoverMove EarthPower
+BYTE RecoverMove EarthPower AncientPower
 BYTE 0
 
 ALIGN 4
