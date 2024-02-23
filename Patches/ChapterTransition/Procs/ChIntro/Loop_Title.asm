@@ -15,6 +15,10 @@ ldrb  r7, [r1, r6]                  @ AhlphaBLD EVB
 cmp   r3, #0x0
 ble   CheckBLD
 sub   r3, #0x10
+cmp r3, #0 
+bge StoreR3
+mov r3, #0 
+StoreR3: 
 strb  r3, [r1, r2]
 cmp   r7, #0x0
 ble   Return

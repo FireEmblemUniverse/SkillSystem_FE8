@@ -20,7 +20,7 @@ WORD SleepStatusID_Def
 WORD PoisonStatusID_Def
 WORD FreezeStatusID_Def
 
-
+// Enemies are twice as likely to be inflicted by status vs players 
 StatusEntry(FireSpin, TrappedStatusID, 100)
 StatusEntry(Constrict, TrappedStatusID, 100)
 StatusEntry(Clamp, TrappedStatusID, 100)
@@ -35,14 +35,14 @@ StatusEntry(Flamethrower, BurnStatusID_Def, 10)
 
 
 StatusEntry(FireBlast, BurnStatusID_Def, 10)
-StatusEntry(SacredFire, BurnStatusID_Def, 50)
+StatusEntry(SacredFire, BurnStatusID_Def, 40)
 StatusEntry(Thundershock, ParalyzeStatusID_Def, 10)
 StatusEntry(ThunderPunch, ParalyzeStatusID_Def, 10)
-StatusEntry(ThunderMove, ParalyzeStatusID_Def, 30)
+StatusEntry(ThunderMove, ParalyzeStatusID_Def, 20)
 StatusEntry(Thunderbolt, ParalyzeStatusID_Def, 10)
 StatusEntry(VoltTackle, ParalyzeStatusID_Def, 10)
 StatusEntry(ThunderWave, ParalyzeStatusID_Def, 100)
-StatusEntry(Spark, ParalyzeStatusID_Def, 30)
+StatusEntry(Spark, ParalyzeStatusID_Def, 20)
 
 // Need to figure out freeze mechanics / icon 
 //StatusEntry(AuroraBeam, FreezeStatusID_Def, 5)
@@ -54,14 +54,14 @@ StatusEntry(Spark, ParalyzeStatusID_Def, 30)
 StatusEntry(Acid, PoisonStatusID_Def, 5)
 StatusEntry(PoisonGas, PoisonStatusID_Def, 100)
 StatusEntry(PoisonPowder, PoisonStatusID_Def, 100)
-StatusEntry(PoisonSting, PoisonStatusID_Def, 30)
-StatusEntry(Sludge, PoisonStatusID_Def, 30)
+StatusEntry(PoisonSting, PoisonStatusID_Def, 20)
+StatusEntry(Sludge, PoisonStatusID_Def, 20)
 StatusEntry(Smog, PoisonStatusID_Def, 40)
-StatusEntry(PoisonJab, PoisonStatusID_Def, 30)
+StatusEntry(PoisonJab, PoisonStatusID_Def, 20)
 StatusEntry(Toxic, PoisonStatusID_Def, 100)
 
-StatusEntry(ConfuseRay, BerserkStatusID, 50)
-StatusEntry(Hurricane, BerserkStatusID, 10)
+StatusEntry(ConfuseRay, BerserkStatusID, 30)
+StatusEntry(Hurricane, BerserkStatusID, 5)
 //StatusEntry(Hypnosis, SleepStatusID_Def, 30)
 
 

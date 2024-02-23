@@ -3,7 +3,10 @@
 SET_DATA gGenericBuffer2, 0x2021188 
 @SET_DATA PCBoxUnitsBuffer, 0x2026E30	// size: 0x2028	- normally used by debug printing
 
-SET_FUNC BG_Fill, 0x08001221 
+SET_DATA gPermanentFlagBits, 0x03005250
+SET_DATA ProcScr_BmFadeOUT, 0x08A20DCC
+SET_DATA ProcScr_StdEventEngine, 0x08591AC0
+SET_FUNC BG_Fill, 0x08001221, 
 
 SET_FUNC RemoveItemFromConvoy, 0x80315cd
 SET_FUNC ProcFun_ResetCursorPosition, 0x801def1 
