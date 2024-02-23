@@ -18,7 +18,7 @@ BYTE 24 Sludge
 BYTE 28 PetalDance
 BYTE 32 RecoverMove //?Buff (RecoverMove)
 BYTE 37 EarthPower
-BYTE 40 LeafBlade
+BYTE 40 Earthquake
 BYTE 45 SolarBeam
 BYTE 0 0// Goes at the end of each learnset 
 	
@@ -26,8 +26,8 @@ BYTE 0 0// Goes at the end of each learnset
 ALIGN 4
 IvysaurLearnset:
 BYTE 1 GuardMove
-BYTE 1 Tackle 
-BYTE 3 Growl  
+BYTE 1 Tackle
+BYTE 3 Growl
 BYTE 4 Leer
 BYTE 5 AttackPulse
 BYTE 6 LeafFlurry
@@ -38,17 +38,17 @@ BYTE 17 RazorLeaf
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
 BYTE 28 PetalDance
-BYTE 32 RecoverMove 
+BYTE 32 RecoverMove
 BYTE 37 EarthPower
-BYTE 40 LeafBlade
+BYTE 40 Earthquake
 BYTE 45 SolarBeam
 BYTE 0 0
 
 ALIGN 4
 VenusaurLearnset:
 BYTE 1 GuardMove
-BYTE 1 Tackle 
-BYTE 3 Growl  
+BYTE 1 Tackle
+BYTE 3 Growl
 BYTE 4 Leer
 BYTE 5 AttackPulse
 BYTE 6 LeafFlurry
@@ -59,9 +59,9 @@ BYTE 17 RazorLeaf
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
 BYTE 28 PetalDance
-BYTE 32 RecoverMove 
+BYTE 32 RecoverMove
 BYTE 37 EarthPower
-BYTE 40 LeafBlade
+BYTE 40 Earthquake
 BYTE 45 SolarBeam
 BYTE 0 0
 
