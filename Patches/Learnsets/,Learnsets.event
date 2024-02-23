@@ -2486,51 +2486,51 @@ BYTE 0 0
 
 ALIGN 4
 HorseaLearnset:
+BYTE 1 Bubble
 BYTE 1 SandAttack // SmokeScreen
-BYTE 1 Bubble 
-BYTE 3 FocusEnergy
-BYTE 6 Twister
-BYTE 8 Leer
-BYTE 10 WaterGun
-BYTE 13 Dragonbreath
-BYTE 15 AuroraBeam
-BYTE 18 WaterPulse
-BYTE 20 PoisonJab 
+BYTE 3 Twister
+BYTE 6 WaterGun
+BYTE 9 Leer
+BYTE 11 AuroraBeam
+BYTE 13 BubbleBeam
+BYTE 15 Dragonbreath
+BYTE 17 FocusEnergy
+BYTE 20 WaterPulse
 BYTE 22 SignalBeam
 BYTE 24 Agility
 BYTE 26 Waterfall
-BYTE 30 Surf // Brine
-BYTE 32 Sludge
-BYTE 35 IceBeam
+BYTE 28 Surf // Brine
+BYTE 31 Sludge
+BYTE 34 IceBeam
 // BYTE 38 Resv DragonDance
 BYTE 38 HydroPump
 BYTE 42 Blizzard
 BYTE 45 Outrage // DragonPulse
-BYTE 0 0 //
+BYTE 0 0
 
 ALIGN 4
 SeadraLearnset:
+BYTE 1 Bubble
 BYTE 1 SandAttack // SmokeScreen
-BYTE 1 Bubble 
-BYTE 3 FocusEnergy
-BYTE 6 Twister
-BYTE 8 Leer
-BYTE 10 WaterGun
-BYTE 13 Dragonbreath
-BYTE 15 AuroraBeam
-BYTE 18 WaterPulse
-BYTE 20 PoisonJab 
+BYTE 3 Twister
+BYTE 6 WaterGun
+BYTE 9 Leer
+BYTE 11 AuroraBeam
+BYTE 13 BubbleBeam
+BYTE 15 Dragonbreath
+BYTE 17 FocusEnergy
+BYTE 20 WaterPulse
 BYTE 22 SignalBeam
 BYTE 24 Agility
 BYTE 26 Waterfall
-BYTE 30 Surf // Brine
-BYTE 32 Sludge
-BYTE 35 IceBeam
+BYTE 28 Surf // Brine
+BYTE 31 Sludge
+BYTE 34 IceBeam
 // BYTE 38 Resv DragonDance
 BYTE 38 HydroPump
 BYTE 42 Blizzard
 BYTE 45 Outrage // DragonPulse
-BYTE 0 0 // Kingdra gets Yawn
+BYTE 0 0
 
 ALIGN 4
 GoldeenLearnset:
