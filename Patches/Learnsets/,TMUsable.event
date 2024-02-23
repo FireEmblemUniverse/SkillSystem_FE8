@@ -770,14 +770,14 @@ ALIGN 4
 RhyhornTMs:
 BYTE BodySlam DoubleEdge Headbutt HornAttack HornDrill Leer Rage IronTail SwordsDance TailWhip Leer TakeDown Flamethrower FireBlast ThunderMove Thunderbolt Blizzard IceBeam PoisonJab ShockWave Rest Megahorn ThiefAtt Roar
 BYTE Ember Scorch Thundershock PinMissile IcyWind
-BYTE Glare Submission Megahorn
+BYTE Glare Submission Megahorn BulkUp
 BYTE 0
 
 ALIGN 4
 RhydonTMs:
 BYTE BodySlam DoubleEdge Headbutt HornAttack HornDrill HyperBeam Leer MegaKick MegaPunch PayDay Rage IronTail SwordsDance TailWhip Leer TakeDown FirePunch Flamethrower FireBlast WaterGun BubbleBeam Surf ThunderMove ThunderPunch Thunderbolt Blizzard IceBeam Avalanche SeismicToss Submission PoisonJab ShockWave Rest Outrage FuryCutter Megahorn ThiefAtt Cut Roar Counter
 BYTE Ember Scorch Bubble Thundershock LowKick PinMissile IcyWind
-BYTE Glare
+BYTE Glare BulkUp
 BYTE 0
 
 ALIGN 4
