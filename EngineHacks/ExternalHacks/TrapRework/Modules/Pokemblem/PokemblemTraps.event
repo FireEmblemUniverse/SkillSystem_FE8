@@ -148,7 +148,7 @@ SignTrapID_Link:
 WORD SignTrapID 
 ALIGN 4 
 HelpMsgFlagOffset_Link:
-SHORT HelpMsgFlagOffset
+WORD HelpMsgFlagOffset
 
 
 #define Sign2TrapID 81 //0x51 
@@ -285,7 +285,7 @@ SetImpassableTrap(SkillAccessoryTrapID)
 #define EnterWallTrap(XX,YY, TextID) "BYTE BlankWallEnterID XX YY 0x0; SHORT TextID"
 
 
-
+// sets flag, not newflag 
 #define SignTrap(XX,YY,CompletionFlag, TextID) "BYTE SignTrapID XX YY CompletionFlag; SHORT TextID"
 #define SignTrap(XX,YY, TextID) "BYTE SignTrapID XX YY 0x0; SHORT TextID"
 
