@@ -2286,10 +2286,10 @@ BYTE 0 0
 ALIGN 4
 HitmonchanLearnset:
 BYTE 1 KarateChop
-BYTE 1 Pound
+BYTE 1 Tackle
 // BYTE 1 Resv Revenge
-BYTE 5 GuardMove
-BYTE 9 RecoverMove // Resv Agility
+BYTE 5 BulkUp
+BYTE 9 RecoverMove
 BYTE 13 ThiefAtt // Pursuit
 BYTE 16 SeismicToss // Mach Punch
 BYTE 20 MegaPunch // Feint
