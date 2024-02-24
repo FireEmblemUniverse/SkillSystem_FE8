@@ -80,11 +80,12 @@ push {r4, lr}
 mov r4, r1 
 @ r1 as class ID 
 
-ldr r3, =RandomizeClassesFlagLabel 
-ldr r0, [r3] 
-blh CheckEventId 
+mov r0, r5 @ unit struct (contains very little right now as it is just being made) 
+bl ShouldUnitBeRandomized 
 cmp r0, #0 
-beq VanillaLoadBehaviour
+beq VanillaLoadBehaviour 
+
+
 
 mov r0, r4 @ class id 
 bl RandomizeClassNow 

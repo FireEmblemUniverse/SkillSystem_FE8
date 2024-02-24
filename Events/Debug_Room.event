@@ -305,6 +305,7 @@ ENUT GirlProtagFlag
 SetTactName(VeslyName)
 ASMC SaveGameSeed
 
+ENUT RandomizeWeaponStatsFlag
 //ASMC ClearPCBoxUnitsBuffer
 //ASMC ClearAllBoxUnitsASMC
 

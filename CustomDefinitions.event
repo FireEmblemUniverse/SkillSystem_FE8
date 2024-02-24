@@ -332,7 +332,7 @@ String("V1.14.00              Feb 2024") ; BYTE 0; POP // this overflows into th
 
 #define SilphCoDefeated 0xAC
 
-#define RandomizeClassesFlag 0xAD 
+//#define RandomizeClassesFlag 0xAD 
 //#define BracketedGrowthsFlag 0xAE 
 #define BonusUnitObtainedFlag 0xAF 
 
@@ -424,6 +424,20 @@ String("V1.14.00              Feb 2024") ; BYTE 0; POP // this overflows into th
 #define MewDefeatedFlag 0x117
 #define MewtwoDefeatedFlag 0x116
 #define MissingnoFlag 0x115 
+#define RandomizeWeaponStatsFlag 0x114 
+#define RandomizeClassesFlag 0xAD // wild pkmn 
+
+// if both on, randomize all 0xA0+ 
+//if only bosses, 0xA0+ in "boss chapters" 
+//if only trainers, 0xA0+ in non-boss chapters 
+#define RandomizeTrainerClassesFlag 0x113 // unit IDs 0xA0+  
+#define RandomizeBossClassesFlag 0x112 
+#define RandomizeGrowthsFlag 0x111 
+#define RandomizeFoundItemsFlag 0x110 
+#define RandomizeBaseStatsFlag 0x10F
+#define RandomizeMusicFlag 0x10E
+
+
 
 // Unit IDs 
 #define OaksAide 0xEA 
