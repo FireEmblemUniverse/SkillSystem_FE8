@@ -390,7 +390,7 @@ LABEL 34
 CHECK_EVENTID EarthbadgeObtained
 BNE 1 sC s0 
 CHECK_EVENTID VolcanobadgeObtained // trap exists after you have marshbadge until you get volcanobadge 
-BNE 0 sC s0  // old man is visiting Cinnabar 
+BNE 1 sC s0  // old man is visiting Cinnabar 
 CHECK_EVENTID MarshbadgeObtained
 BEQ 2 sC s0 
 
@@ -399,10 +399,12 @@ ENUT 0x16 //RemoveTrap(21,18)
 ENUN
 GOTO 2 
 LABEL 1 
-ENUT 0x17 // some flag 
+ENUT 0x17 // have volcanobadge 
 LABEL 2
 
 CHECK_EVENTID VolcanobadgeObtained 
+BEQ 3 sC s0  
+CHECK_EVENTID SoulbadgeObtained 
 BEQ 3 sC s0  
 RemoveTrap(30,10) // remove the door locked trap if we have the volcanobadge 
 LABEL 3 

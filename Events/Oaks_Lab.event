@@ -115,14 +115,13 @@ ASMC CheckSRAMWorking
 BNE 79 sC s0 
 TutText(SRAMNotWorkingText) 
 LABEL 79 
-TutText(EnableRandomizerText)
-SVAL s7 1 
-BNE 73 sC s7 
-ENUT RandomizeClassesFlag // this should only be set once tact name is set 
-LABEL 73 
+//TutText(EnableRandomizerText)
+//SVAL s7 1 
+//BNE 73 sC s7 
+//ENUT RandomizeClassesFlag // this should only be set once tact name is set 
+//LABEL 73 
 FADI 16
 #endif 
-
 CALL NameInputEvent
 SelectAvatar
 
@@ -322,7 +321,7 @@ CLEAN
 //FADI 12 
 //CLEAN 
 //FADU 12 
-
+ASMC SaveGameSeed
 
 SVAL 0x7 0x1
 CompareTactText(AName)

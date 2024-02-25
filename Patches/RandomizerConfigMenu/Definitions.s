@@ -2,6 +2,7 @@
 .include "C:/devkitPro/FE-CLib/reference/FE8U-20190316.s"
 SET_DATA gGenericBuffer2, 0x2021188 
 @SET_DATA PCBoxUnitsBuffer, 0x2026E30	// size: 0x2028	- normally used by debug printing
+SET_FUNC SetGameTime, 0x08000D35
 
 SET_DATA gPermanentFlagBits, 0x03005250
 SET_DATA ProcScr_BmFadeOUT, 0x08A20DCC

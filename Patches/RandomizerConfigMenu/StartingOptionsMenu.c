@@ -143,6 +143,7 @@ void StartingOptionsSetup(OptionsProc* CurrentProc){
 	for (int i = 0; i<21; i++) { 
 		proc->FlagOn[i] = 0; // init to 0 
 	} 
+	proc->timer = 0; // init game time as 0 
 
 	updateOptionsPage(CurrentProc);
 };
@@ -618,6 +619,7 @@ void CallResetPermanentFlags(void) {
 
 extern struct ProcCode* ProcScr_BmFadeOUT; // save screen fade out 
 void SaveStartingOptionsLoop(OptionsSavedProc* CurrentProc){
+	CurrentProc->timer++; 
 	OptionsProc* proc = (void*)ProcFind((void*)&StartingOptionsProc); 
 	if (proc) { 
 		for (int commandID = 0; commandID < PAGE1MAXINDEX; commandID++) { 
@@ -638,6 +640,7 @@ void SaveStartingOptionsLoop(OptionsSavedProc* CurrentProc){
 			flag = CurrentProc->FlagOn[i]; 
 			if (flag > 0) { SetEventId(flag); } 
 		} 
+		SetGameTime(CurrentProc->timer);
 		//int slot = gChapterData.saveSlotIndex; 
 		
 		BreakProcLoop((void*)CurrentProc); 

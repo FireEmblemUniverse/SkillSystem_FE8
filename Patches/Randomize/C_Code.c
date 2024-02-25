@@ -51,28 +51,50 @@ u8 HashByte_Global(u8 number, int max, int variance){
   return hash;
 };
 
+u16 HashShort_Simple(u8 number, int max, int variance){
+  if (max==0) return 0;
+  u32 hash = 5381;
+  hash = ((hash << 5) + hash) ^ number;
+  hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
+  hash = ((hash << 5) + hash) ^ variance; 
+  for (int i = 0; i < 9; ++i){
+    if (TacticianName[i]==0) break;
+    hash = ((hash << 5) + hash) ^ TacticianName[i];
+  };
+  hash = Mod((u16)hash, max); 
+  return hash;
+};
+
+
 int GetItemMight(int item) {
 	item &= 0xFF; 
 	int might = GetItemData(item)->might;
 	if (!CheckFlag(RandomizeWeaponStatsFlag_Link)) return might; 
-	might = HashByte_Global(might, might*2+8, item); 
-	return might; 
+	int max = ((might*3)/2)+5;
+	int newMight = HashByte_Global(might, max, item);
+	if (abs(newMight - might) < 3) { // encourage it to be at least 3 or more points different than normal 
+	newMight =  HashByte_Global(newMight, max, newMight); } 
+	return newMight; 
 	
 }
 
 int GetItemHit(int item) {
 	item &= 0xFF; 
-	int hit = GetItemData(item&0xFF)->hit;
-    return GetItemData(item&0xFF)->hit;
-	return HashByte_Global((hit / 5), (hit*2+5)/5, item) * 5; 
+	int hit = GetItemData(item)->hit;
+	if (!CheckFlag(RandomizeWeaponStatsFlag_Link)) return GetItemData(item)->hit;
+	int newHit = (HashByte_Global(hit, (hit+50)/5, item) * 5) + 20; 
+	if (newHit > 250) newHit = 250; 
+	return newHit; 
 }
 
 
 int GetItemCrit(int item) {
 	item &= 0xFF; 
-	int crit = GetItemData(item&0xFF)->crit;
-    return GetItemData(item&0xFF)->crit;
-	return HashByte_Global(((crit+15) / 5), ((crit+15)*2)/5, item) * 5; 
+	int crit = GetItemData(item)->crit;
+	if (!CheckFlag(RandomizeWeaponStatsFlag_Link)) return GetItemData(item)->crit;
+	int newCrit = HashByte_Global(crit, ((crit*2)+40)/5, item) * 5; 
+	if (newCrit > 250) newCrit = 250; 
+	return newCrit; 
 }
 
 extern u8 BossChapterTable2[]; 
