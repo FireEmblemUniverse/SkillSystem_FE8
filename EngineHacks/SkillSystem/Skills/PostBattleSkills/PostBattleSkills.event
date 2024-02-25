@@ -160,7 +160,8 @@ SHORT 0x2110
 ORG $323A0 //making dance not clear the galeforce flag
 SHORT 0xFFBD
 SHORT 0xFFFF
-ORG $39B98 //this sets 00040000 to the status bitfield thing for some reason on non-player units
-SHORT 0x46C0
-POP
 
+// If galeforce-related bugs appear, uncomment the following 2 lines:
+// ORG $39B98 //this sets 00040000 to the status bitfield thing for some reason on non-player units
+// SHORT 0x46C0
+POP
