@@ -30,7 +30,8 @@ ORG $17ad8
 callHackNew(RandomizeClassHack_Monster) //give a random class!
 ORG $17D74 
 jumpToHack(RandomizeClassHack_Load) 
-
+ORG $17E68 
+callHackNew(RandomizeStatsHook) 
 POP
 
 

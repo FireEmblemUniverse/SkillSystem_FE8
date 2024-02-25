@@ -122,12 +122,33 @@ int ShouldUnitBeRandomized(struct Unit* unit) {
 
 } 
 
+//int GetRandomizedBaseStat(
+
 // mov r2, r6 @ index in stat booster pointer of growth
 int GetRandomizedGrowth(struct Unit* unit, int growth, int id) { 
 	if (!CheckFlag(RandomizeGrowthsFlag_Link)) { return growth; } 
 	int newGrowth = HashByte_Global(growth, growth*2, unit->pClassData->number+id);
-	return (newGrowth / 5) * 5; 
+	//return (newGrowth / 5) * 5; 
+	return newGrowth; 
 } 
 
+int RandStat(int stat, int variance) { 
+	int adj = (stat * 2) + 5; 
+	int max = adj < 63 ? adj : 63 ; 
+	return HashByte_Global(stat, max, variance); 
+} 
 
+void RandomizeStats(struct Unit* unit) { 
+	if (!CheckFlag(RandomizeBaseStatsFlag_Link)) { return; } 
+	int classID = unit->pClassData->number; 
+	unit->maxHP = RandStat(unit->maxHP, classID); 
+	if (unit->maxHP < 4) { unit->maxHP = 4; } 
+	unit->pow = RandStat(unit->pow, classID); 
+	unit->skl = RandStat(unit->skl, classID); 
+	unit->spd = RandStat(unit->spd, classID); 
+	unit->def = RandStat(unit->def, classID); 
+	unit->res = RandStat(unit->res, classID); 
+	unit->lck = RandStat(unit->lck, classID); 
+	unit->_u3A = RandStat(unit->_u3A, classID); // mag 
+} 
 

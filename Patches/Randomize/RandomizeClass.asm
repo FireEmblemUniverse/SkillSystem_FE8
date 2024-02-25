@@ -147,4 +147,23 @@ mov r0, r6
 bx r3 
 .ltorg 
 
+.global RandomizeStatsHook
+.type RandomizeStatsHook, %function 
+RandomizeStatsHook:
+push {lr} 
+add r0, r2 
+strb r0, [r4, #0x18] 
+ldrb r0, [r1, #0x12] 
+strb r0, [r4, #0x19] 
+mov r0, #0 
+strb r0, [r4, #0x1A] @ con bonus 
+
+mov r0, r4 
+bl RandomizeStats 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
+
 
