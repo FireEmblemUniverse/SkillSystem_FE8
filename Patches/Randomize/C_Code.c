@@ -122,5 +122,12 @@ int ShouldUnitBeRandomized(struct Unit* unit) {
 
 } 
 
+// mov r2, r6 @ index in stat booster pointer of growth
+int GetRandomizedGrowth(struct Unit* unit, int growth, int id) { 
+	if (!CheckFlag(RandomizeGrowthsFlag_Link)) { return growth; } 
+	int newGrowth = HashByte_Global(growth, growth*2, unit->pClassData->number+id);
+	return (newGrowth / 5) * 5; 
+} 
+
 
 

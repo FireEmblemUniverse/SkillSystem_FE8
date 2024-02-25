@@ -47,7 +47,7 @@ HashByte_Global.part.0:
 @ C_Code.c:46:   for (int i = 0; i < 9; ++i){
 	ldr	r5, .L9+8	@ tmp156,
 @ C_Code.c:45:   hash = ((hash << 5) + hash) ^ variance; 
-	ldr	r3, .L9+12	@ ivtmp.31,
+	ldr	r3, .L9+12	@ ivtmp.33,
 .L3:
 @ C_Code.c:47:     if (TacticianName[i]==0) break;
 	ldrb	r0, [r3]	@ _15, *_14
@@ -57,11 +57,11 @@ HashByte_Global.part.0:
 	lsls	r4, r2, #5	@ tmp147, hash,
 	adds	r2, r4, r2	@ tmp148, tmp147, hash
 @ C_Code.c:46:   for (int i = 0; i < 9; ++i){
-	adds	r3, r3, #1	@ ivtmp.31,
+	adds	r3, r3, #1	@ ivtmp.33,
 @ C_Code.c:48:     hash = ((hash << 5) + hash) ^ TacticianName[i];
 	eors	r2, r0	@ hash, _15
 @ C_Code.c:46:   for (int i = 0; i < 9; ++i){
-	cmp	r3, r5	@ ivtmp.31, tmp156
+	cmp	r3, r5	@ ivtmp.33, tmp156
 	bne	.L3		@,
 .L2:
 @ C_Code.c:52: };
@@ -125,7 +125,7 @@ HashByte_N:
 	ldr	r5, .L21+12	@ tmp157,
 @ C_Code.c:32:   hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
 	eors	r0, r3	@ hash, *StartTimeSeedRamLabel.0_6
-	ldr	r3, .L21+16	@ ivtmp.41,
+	ldr	r3, .L21+16	@ ivtmp.43,
 .L15:
 @ C_Code.c:34:     if (TacticianName[i]==0) break;
 	ldrb	r2, [r3]	@ _10, *_9
@@ -135,11 +135,11 @@ HashByte_N:
 	lsls	r4, r0, #5	@ tmp149, hash,
 	adds	r0, r4, r0	@ tmp150, tmp149, hash
 @ C_Code.c:33:   for (int i = 0; i < 9; ++i){
-	adds	r3, r3, #1	@ ivtmp.41,
+	adds	r3, r3, #1	@ ivtmp.43,
 @ C_Code.c:35:     hash = ((hash << 5) + hash) ^ TacticianName[i];
 	eors	r0, r2	@ hash, _10
 @ C_Code.c:33:   for (int i = 0; i < 9; ++i){
-	cmp	r3, r5	@ ivtmp.41, tmp157
+	cmp	r3, r5	@ ivtmp.43, tmp157
 	bne	.L15		@,
 .L14:
 @ C_Code.c:37:   return Mod((u16)hash, max);
@@ -231,7 +231,7 @@ HashShort_Simple:
 @ C_Code.c:60:   for (int i = 0; i < 9; ++i){
 	ldr	r5, .L35+8	@ tmp155,
 @ C_Code.c:59:   hash = ((hash << 5) + hash) ^ variance; 
-	ldr	r3, .L35+12	@ ivtmp.53,
+	ldr	r3, .L35+12	@ ivtmp.55,
 .L29:
 @ C_Code.c:61:     if (TacticianName[i]==0) break;
 	ldrb	r0, [r3]	@ _9, *_8
@@ -241,11 +241,11 @@ HashShort_Simple:
 	lsls	r4, r2, #5	@ tmp147, hash,
 	adds	r2, r4, r2	@ tmp148, tmp147, hash
 @ C_Code.c:60:   for (int i = 0; i < 9; ++i){
-	adds	r3, r3, #1	@ ivtmp.53,
+	adds	r3, r3, #1	@ ivtmp.55,
 @ C_Code.c:62:     hash = ((hash << 5) + hash) ^ TacticianName[i];
 	eors	r2, r0	@ hash, _9
 @ C_Code.c:60:   for (int i = 0; i < 9; ++i){
-	cmp	r3, r5	@ ivtmp.53, tmp155
+	cmp	r3, r5	@ ivtmp.55, tmp155
 	bne	.L29		@,
 .L28:
 @ C_Code.c:64:   hash = Mod((u16)hash, max); 
@@ -678,6 +678,68 @@ ShouldUnitBeRandomized:
 	.word	gPlaySt
 	.word	BossChapterTable2
 	.size	ShouldUnitBeRandomized, .-ShouldUnitBeRandomized
+	.align	1
+	.p2align 2,,3
+	.global	GetRandomizedGrowth
+	.syntax unified
+	.code	16
+	.thumb_func
+	.fpu softvfp
+	.type	GetRandomizedGrowth, %function
+GetRandomizedGrowth:
+	@ Function supports interworking.
+	@ args = 0, pretend = 0, frame = 0
+	@ frame_needed = 0, uses_anonymous_args = 0
+@ C_Code.c:127: 	if (!CheckFlag(RandomizeGrowthsFlag_Link)) { return growth; } 
+	ldr	r3, .L114	@ tmp128,
+@ C_Code.c:126: int GetRandomizedGrowth(struct Unit* unit, int growth, int id) { 
+	push	{r4, r5, r6, lr}	@
+@ C_Code.c:126: int GetRandomizedGrowth(struct Unit* unit, int growth, int id) { 
+	movs	r5, r0	@ unit, tmp155
+@ C_Code.c:127: 	if (!CheckFlag(RandomizeGrowthsFlag_Link)) { return growth; } 
+	ldr	r0, [r3]	@ RandomizeGrowthsFlag_Link, RandomizeGrowthsFlag_Link
+	ldr	r3, .L114+4	@ tmp130,
+@ C_Code.c:126: int GetRandomizedGrowth(struct Unit* unit, int growth, int id) { 
+	movs	r4, r1	@ growth, tmp156
+	movs	r6, r2	@ id, tmp157
+@ C_Code.c:127: 	if (!CheckFlag(RandomizeGrowthsFlag_Link)) { return growth; } 
+	bl	.L11		@
+@ C_Code.c:127: 	if (!CheckFlag(RandomizeGrowthsFlag_Link)) { return growth; } 
+	cmp	r0, #0	@ tmp158,
+	beq	.L108		@,
+@ C_Code.c:41:   if (max==0) return 0;
+	cmp	r4, #0	@ <retval>,
+	beq	.L108		@,
+@ C_Code.c:128: 	int newGrowth = HashByte_Global(growth, growth*2, unit->pClassData->number+id);
+	ldr	r2, [r5, #4]	@ unit_14(D)->pClassData, unit_14(D)->pClassData
+	ldrb	r2, [r2, #4]	@ tmp134,
+	lsls	r0, r4, #24	@ tmp138, <retval>,
+@ C_Code.c:128: 	int newGrowth = HashByte_Global(growth, growth*2, unit->pClassData->number+id);
+	lsls	r1, r4, #1	@ tmp136, <retval>,
+	adds	r2, r2, r6	@ tmp135, tmp134, id
+	lsrs	r0, r0, #24	@ tmp137, tmp138,
+	bl	HashByte_Global.part.0		@
+@ C_Code.c:129: 	return (newGrowth / 5) * 5; 
+	movs	r1, #5	@,
+	ldr	r3, .L114+8	@ tmp149,
+	bl	.L11		@
+@ C_Code.c:129: 	return (newGrowth / 5) * 5; 
+	lsls	r4, r0, #2	@ tmp152, tmp160,
+	adds	r4, r4, r0	@ <retval>, tmp152, tmp160
+.L108:
+@ C_Code.c:130: } 
+	movs	r0, r4	@, <retval>
+	@ sp needed	@
+	pop	{r4, r5, r6}
+	pop	{r1}
+	bx	r1
+.L115:
+	.align	2
+.L114:
+	.word	RandomizeGrowthsFlag_Link
+	.word	CheckFlag
+	.word	__aeabi_idiv
+	.size	GetRandomizedGrowth, .-GetRandomizedGrowth
 	.global	gEkrBg2QuakeVec
 	.bss
 	.align	2

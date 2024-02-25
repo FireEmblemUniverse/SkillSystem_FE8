@@ -108,19 +108,20 @@ ENUF SkipIntroFlag
 MUSCFAST 0x16 // Intro 
 
 #ifdef ENABLE_RANDOMIZER 
+
+ASMC CheckSRAMWorking
+BNE 79 sC s0 
 FADU 44 
 EVBIT_F 7 // not scene skipping 
 EVBIT_MODIFY 4 
-ASMC CheckSRAMWorking
-BNE 79 sC s0 
 TutText(SRAMNotWorkingText) 
+FADI 16
 LABEL 79 
 //TutText(EnableRandomizerText)
 //SVAL s7 1 
 //BNE 73 sC s7 
 //ENUT RandomizeClassesFlag // this should only be set once tact name is set 
 //LABEL 73 
-FADI 16
 #endif 
 CALL NameInputEvent
 SelectAvatar
