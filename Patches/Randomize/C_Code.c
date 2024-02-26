@@ -154,7 +154,7 @@ void RandomizeStats(struct Unit* unit) {
 
 typedef struct {
     /* 00 */ PROC_HEADER;
-    /* 2C */ u32 seed;
+    /* 2C */ int seed;
 	/* 30 */ u8 digit; 
 } SeedMenuProc;
 
@@ -170,34 +170,37 @@ const struct ProcCmd SeedMenuProcCmd[] =
     PROC_END,
 };
 
-#define START_X 10 
-#define Y_HAND 0x18 
+#define START_X 17
+#define Y_HAND 11
 typedef const struct {
   u32 x;
   u32 y;
 } LocationTable;
 LocationTable CursorLocationTable[] = {
-  {START_X + 64, Y_HAND},
-  {START_X + 56, Y_HAND},
-  {START_X + 48, Y_HAND},
-  {START_X + 40, Y_HAND},
-  {START_X + 32, Y_HAND},
-  {START_X + 24, Y_HAND},
-  {START_X + 16, Y_HAND}, 
-  {START_X + 8,  Y_HAND}, 
-  {START_X + 0,  Y_HAND}, 
+  {(START_X*8) - (0 * 8), Y_HAND*8},
+  {(START_X*8) - (1 * 8), Y_HAND*8},
+  {(START_X*8) - (2 * 8), Y_HAND*8},
+  {(START_X*8) - (3 * 8), Y_HAND*8},
+  {(START_X*8) - (4 * 8), Y_HAND*8},
+  {(START_X*8) - (5 * 8), Y_HAND*8},
+  {(START_X*8) - (6 * 8), Y_HAND*8}, 
+  {(START_X*8) - (7 * 8), Y_HAND*8}, 
+  {(START_X*8) - (8 * 8), Y_HAND*8}, 
 };
 
 const u32 DigitDecimalTable[] = { 
 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000
 }; 
 
-
+extern void ChapterStatus_SetupFont(ProcPtr proc); 
 void DrawSeedMenu(SeedMenuProc* proc) { 
-	//clear bg font buffers
-	ResetText();
+
+	
+
+	//struct Text handle;
+	//InitText(&handle, 10);
 	BG_Fill(gBG0TilemapBuffer, 0);
-	BG_EnableSyncByMask(0);
+	BG_EnableSyncByMask(BG0_SYNC_BIT);
 	//Print Headings
 	//char* string = &Title_Text; 
 	
@@ -215,10 +218,14 @@ void DrawSeedMenu(SeedMenuProc* proc) {
 	Text_DrawNumber(&handle, 654);
 	PutText(&handle, gBG0TilemapBuffer + TILEMAP_INDEX(5, 5));*/
 	
-	PutNumber(gBG0TilemapBuffer + TILEMAP_INDEX(10, 7), TEXT_COLOR_SYSTEM_GOLD, proc->seed); 
+	PutNumber(gBG0TilemapBuffer + TILEMAP_INDEX(START_X, Y_HAND), TEXT_COLOR_SYSTEM_GOLD, proc->seed); 
+	BG_EnableSyncByMask(BG0_SYNC_BIT);
 	//DrawTextInline(0, BGLoc(BG0Buffer, 2, 0), 4, 0, (Text_GetStringTextWidth(string)+8)/8, string);
 
 } 
+
+#define SEED_MAX 999999999
+#define DIGIT_MAX 9 
 void StartSeedMenu(ProcPtr parent) { 
 	ClearBg0Bg1();
 	//EnableBgSyncByIndex(0);
@@ -226,15 +233,29 @@ void StartSeedMenu(ProcPtr parent) {
 	if (parent) { proc = (SeedMenuProc*)Proc_StartBlocking((ProcPtr)&SeedMenuProcCmd, parent); } 
 	else { proc = (SeedMenuProc*)Proc_Start((ProcPtr)&SeedMenuProcCmd, PROC_TREE_3); } 
 	if (proc) { 
-		proc->seed = 987654; 
+		proc->seed = *StartTimeSeedRamLabel; 
+		while (proc->seed > SEED_MAX) { proc->seed = proc->seed / 2; } 
+		while (proc->seed < 0) { proc->seed = proc->seed * 2; } 
 		proc->digit = 0; 
+		ResetText();
+		ResetTextFont();
+		//PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string);
+		struct Text handle;
+		handle.chr_position = 0; 
+		handle.x = 12;
+		handle.colorId = 0;
+		handle.tile_width = 8;
+		handle.db_enabled = 0;
+		handle.db_id = 0;
+		handle.is_printing = 0;
+		PutDrawText(&handle, TILEMAP_INDEX(0,0), 2, 0, 8, "Edit your game seed");
+		ChapterStatus_SetupFont((void*)proc); 
 		DrawSeedMenu(proc);
 	} 
+	
 } 
 
 
-#define SEED_MAX 999999999
-#define DIGIT_MAX 9 
 
 extern struct KeyStatusBuffer sKeyStatusBuffer;
 void SeedMenuLoop(SeedMenuProc* proc) { 
@@ -243,6 +264,7 @@ void SeedMenuLoop(SeedMenuProc* proc) {
 	u16 keys = sKeyStatusBuffer.newKeys; 
 	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
+		*StartTimeSeedRamLabel = proc->seed; 
 		Proc_Break((ProcPtr)proc);
 		m4aSongNumStart(0x6B); 
 	};
@@ -259,13 +281,21 @@ void SeedMenuLoop(SeedMenuProc* proc) {
     }
 	
     if (keys & DPAD_UP) {
-		proc->seed += DigitDecimalTable[proc->digit]; 
-		if (proc->seed > SEED_MAX) { proc->seed = 0; } 
+		if (proc->seed == SEED_MAX) { proc->seed = 0; } 
+		else { 
+			proc->seed += DigitDecimalTable[proc->digit]; 
+			if (proc->seed > SEED_MAX) { proc->seed = SEED_MAX; } 
+		} 
 		DrawSeedMenu(proc); 
 	}
     if (keys & DPAD_DOWN) {
-		proc->seed -= DigitDecimalTable[proc->digit]; 
-		if (proc->seed < 0) { proc->seed = SEED_MAX; } 
+		
+		if (proc->seed == 0) { proc->seed = SEED_MAX; } 
+		else { 
+			proc->seed -= DigitDecimalTable[proc->digit]; 
+			if (proc->seed < 0) { proc->seed = 0; } 
+		} 
+		
 		DrawSeedMenu(proc); 
 	}
 } 
