@@ -162,15 +162,17 @@ void SeedMenuLoop(SeedMenuProc* proc);
 const struct ProcCmd SeedMenuProcCmd[] =
 {
     PROC_CALL(LockGame),
+    PROC_CALL(BMapDispSuspend),
 
     PROC_YIELD,
 	PROC_REPEAT(SeedMenuLoop), 
 
     PROC_CALL(UnlockGame),
+    PROC_CALL(BMapDispResume),
     PROC_END,
 };
 
-#define START_X 17
+#define START_X 19
 #define Y_HAND 11
 typedef const struct {
   u32 x;
@@ -201,26 +203,19 @@ void DrawSeedMenu(SeedMenuProc* proc) {
 	//InitText(&handle, 10);
 	BG_Fill(gBG0TilemapBuffer, 0);
 	BG_EnableSyncByMask(BG0_SYNC_BIT);
-	//Print Headings
-	//char* string = &Title_Text; 
-	
-	/*
-	struct Text handle;
-	handle.chr_position = 0; 
-	handle.x = 12;
-	handle.colorId = 0;
-	handle.tile_width = 8;
-	handle.db_enabled = 0;
-	handle.db_id = 0;
-	handle.is_printing = 0;
-	
-	//Text_DrawNumber(&handle, proc->seed);
-	Text_DrawNumber(&handle, 654);
-	PutText(&handle, gBG0TilemapBuffer + TILEMAP_INDEX(5, 5));*/
-	
+	ResetTextFont();
+	SetTextFontGlyphs(0);
 	PutNumber(gBG0TilemapBuffer + TILEMAP_INDEX(START_X, Y_HAND), TEXT_COLOR_SYSTEM_GOLD, proc->seed); 
+	char* string = "Game Seed"; 
+	PutDrawText(NULL, gBG0TilemapBuffer + TILEMAP_INDEX(12,1), TEXT_COLOR_SYSTEM_GREEN, 0, (GetStringTextLen(string)+8)/8, string);
+	string = "Match with a friend for the"; 
+	PutDrawText(NULL, gBG0TilemapBuffer + TILEMAP_INDEX(8,4), TEXT_COLOR_SYSTEM_WHITE, 0, (GetStringTextLen(string)+8)/8, string);
+	string = "same randomizer settings.";
+	PutDrawText(NULL, gBG0TilemapBuffer + TILEMAP_INDEX(8,6), TEXT_COLOR_SYSTEM_WHITE, 2, (GetStringTextLen(string)+8)/8, string);
 	BG_EnableSyncByMask(BG0_SYNC_BIT);
-	//DrawTextInline(0, BGLoc(BG0Buffer, 2, 0), 4, 0, (Text_GetStringTextWidth(string)+8)/8, string);
+	BG_EnableSyncByMask(BG0_SYNC_BIT);
+
+	//DrawTextInline(0, BGLoc(BG0Buffer, 2, 0), 4, 0, , string);
 
 } 
 
@@ -237,19 +232,12 @@ void StartSeedMenu(ProcPtr parent) {
 		while (proc->seed > SEED_MAX) { proc->seed = proc->seed / 2; } 
 		while (proc->seed < 0) { proc->seed = proc->seed * 2; } 
 		proc->digit = 0; 
-		ResetText();
+		//ResetText();
 		ResetTextFont();
-		//PutDrawText(struct Text* text, u16* dest, int colorId, int x, int tileWidth, const char* string);
-		struct Text handle;
-		handle.chr_position = 0; 
-		handle.x = 12;
-		handle.colorId = 0;
-		handle.tile_width = 8;
-		handle.db_enabled = 0;
-		handle.db_id = 0;
-		handle.is_printing = 0;
-		PutDrawText(&handle, TILEMAP_INDEX(0,0), 2, 0, 8, "Edit your game seed");
-		ChapterStatus_SetupFont((void*)proc); 
+		SetTextFontGlyphs(0);
+//		ChapterStatus_SetupFont((void*)proc);
+
+
 		DrawSeedMenu(proc);
 	} 
 	
@@ -260,7 +248,7 @@ void StartSeedMenu(ProcPtr parent) {
 extern struct KeyStatusBuffer sKeyStatusBuffer;
 void SeedMenuLoop(SeedMenuProc* proc) { 
 
-	DisplayUiHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y);	
+	DisplayUiHand_unused(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y); // 6 is the tile of the downwards hand 	
 	u16 keys = sKeyStatusBuffer.newKeys; 
 	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue

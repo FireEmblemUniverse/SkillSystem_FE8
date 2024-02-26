@@ -323,9 +323,13 @@ CLEAN
 //CLEAN 
 //FADU 12 
 ASMC SaveGameSeed
+
+BACG 0x35 // black bg 
 FADU 12 
+
 ASMC StartSeedMenu
 FADI 12 
+CLEAN
 
 SVAL 0x7 0x1
 CompareTactText(AName)
