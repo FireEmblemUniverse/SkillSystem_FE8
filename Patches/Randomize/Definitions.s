@@ -20,5 +20,6 @@ SET_FUNC Mod, 0x80D1685
 SET_FUNC __aeabi_idiv,    __divsi3
 SET_FUNC __aeabi_idivmod, __modsi3
 
+SET_DATA TacticianName, 0x202bd10
 SET_DATA classTablePoin, 0x8017AB8 
 

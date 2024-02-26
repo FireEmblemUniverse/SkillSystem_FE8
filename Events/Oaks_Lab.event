@@ -323,6 +323,9 @@ CLEAN
 //CLEAN 
 //FADU 12 
 ASMC SaveGameSeed
+FADU 12 
+ASMC StartSeedMenu
+FADI 12 
 
 SVAL 0x7 0x1
 CompareTactText(AName)

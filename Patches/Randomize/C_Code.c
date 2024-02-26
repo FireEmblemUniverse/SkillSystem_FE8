@@ -19,7 +19,7 @@ extern int RandomizeGrowthsFlag_Link;
 extern int RandomizeFoundItemsFlag_Link;
 extern int RandomizeBaseStatsFlag_Link;
 
-static char* const TacticianName = (char* const) (0x202bd10); //8 bytes long
+extern char* TacticianName; //8 bytes long
 extern u32* StartTimeSeedRamLabel; 
 
 //extern int Div(int, int); 
@@ -151,4 +151,126 @@ void RandomizeStats(struct Unit* unit) {
 	unit->lck = RandStat(unit->lck, classID); 
 	unit->_u3A = RandStat(unit->_u3A, classID); // mag 
 } 
+
+typedef struct {
+    /* 00 */ PROC_HEADER;
+    /* 2C */ u32 seed;
+	/* 30 */ u8 digit; 
+} SeedMenuProc;
+
+void SeedMenuLoop(SeedMenuProc* proc); 
+const struct ProcCmd SeedMenuProcCmd[] =
+{
+    PROC_CALL(LockGame),
+
+    PROC_YIELD,
+	PROC_REPEAT(SeedMenuLoop), 
+
+    PROC_CALL(UnlockGame),
+    PROC_END,
+};
+
+#define START_X 10 
+#define Y_HAND 0x18 
+typedef const struct {
+  u32 x;
+  u32 y;
+} LocationTable;
+LocationTable CursorLocationTable[] = {
+  {START_X + 64, Y_HAND},
+  {START_X + 56, Y_HAND},
+  {START_X + 48, Y_HAND},
+  {START_X + 40, Y_HAND},
+  {START_X + 32, Y_HAND},
+  {START_X + 24, Y_HAND},
+  {START_X + 16, Y_HAND}, 
+  {START_X + 8,  Y_HAND}, 
+  {START_X + 0,  Y_HAND}, 
+};
+
+const u32 DigitDecimalTable[] = { 
+1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000
+}; 
+
+
+void DrawSeedMenu(SeedMenuProc* proc) { 
+	//clear bg font buffers
+	ResetText();
+	BG_Fill(gBG0TilemapBuffer, 0);
+	BG_EnableSyncByMask(0);
+	//Print Headings
+	//char* string = &Title_Text; 
+	
+	/*
+	struct Text handle;
+	handle.chr_position = 0; 
+	handle.x = 12;
+	handle.colorId = 0;
+	handle.tile_width = 8;
+	handle.db_enabled = 0;
+	handle.db_id = 0;
+	handle.is_printing = 0;
+	
+	//Text_DrawNumber(&handle, proc->seed);
+	Text_DrawNumber(&handle, 654);
+	PutText(&handle, gBG0TilemapBuffer + TILEMAP_INDEX(5, 5));*/
+	
+	PutNumber(gBG0TilemapBuffer + TILEMAP_INDEX(10, 7), TEXT_COLOR_SYSTEM_GOLD, proc->seed); 
+	//DrawTextInline(0, BGLoc(BG0Buffer, 2, 0), 4, 0, (Text_GetStringTextWidth(string)+8)/8, string);
+
+} 
+void StartSeedMenu(ProcPtr parent) { 
+	ClearBg0Bg1();
+	//EnableBgSyncByIndex(0);
+	SeedMenuProc* proc; 
+	if (parent) { proc = (SeedMenuProc*)Proc_StartBlocking((ProcPtr)&SeedMenuProcCmd, parent); } 
+	else { proc = (SeedMenuProc*)Proc_Start((ProcPtr)&SeedMenuProcCmd, PROC_TREE_3); } 
+	if (proc) { 
+		proc->seed = 987654; 
+		proc->digit = 0; 
+		DrawSeedMenu(proc);
+	} 
+} 
+
+
+#define SEED_MAX 999999999
+#define DIGIT_MAX 9 
+
+extern struct KeyStatusBuffer sKeyStatusBuffer;
+void SeedMenuLoop(SeedMenuProc* proc) { 
+
+	DisplayUiHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y);	
+	u16 keys = sKeyStatusBuffer.newKeys; 
+	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
+	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
+		Proc_Break((ProcPtr)proc);
+		m4aSongNumStart(0x6B); 
+	};
+	
+    if (keys & DPAD_RIGHT) {
+      if (proc->digit > 0) { proc->digit--; }
+      else { proc->digit = DIGIT_MAX - 1; } 
+	  DrawSeedMenu(proc);
+    }
+    if (keys & DPAD_LEFT) {
+      if (proc->digit < (DIGIT_MAX-1)) { proc->digit++; }
+      else { proc->digit = 0; } 
+	  DrawSeedMenu(proc);
+    }
+	
+    if (keys & DPAD_UP) {
+		proc->seed += DigitDecimalTable[proc->digit]; 
+		if (proc->seed > SEED_MAX) { proc->seed = 0; } 
+		DrawSeedMenu(proc); 
+	}
+    if (keys & DPAD_DOWN) {
+		proc->seed -= DigitDecimalTable[proc->digit]; 
+		if (proc->seed < 0) { proc->seed = SEED_MAX; } 
+		DrawSeedMenu(proc); 
+	}
+} 
+
+
+
+
 
