@@ -8,6 +8,7 @@
 
 #include "RandomizeClass.lyn.event" 
 #include "C_Code.lyn.event" 
+#include "NumberEntry.lyn.event" 
 
 ALIGN 4 
 RandomizeWeaponStatsFlag_Link: 

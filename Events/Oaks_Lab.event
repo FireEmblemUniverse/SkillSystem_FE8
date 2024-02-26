@@ -325,9 +325,15 @@ CLEAN
 ASMC SaveGameSeed
 
 BACG 0x35 // black bg 
-FADU 12 
-
-ASMC StartSeedMenu
+///FADU 12 
+SVAL s1 12345 // initial value of number if not pokemblem version of C code 
+SVAL s2 15 // min 
+SVAL s3 123469 // max 
+SVAL s4 GameSeedText
+SVAL s5 GameSeedDesc
+SVAL s6 GameSeedDesc2
+SVAL s7 GameSeedDesc3
+ASMC StartSeedMenu2
 FADI 12 
 CLEAN
 
