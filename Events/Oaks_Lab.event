@@ -331,9 +331,8 @@ SVAL s2 15 // min
 SVAL s3 123469 // max 
 SVAL s4 GameSeedText
 SVAL s5 GameSeedDesc
-SVAL s6 GameSeedDesc2
-SVAL s7 GameSeedDesc3
-ASMC StartSeedMenu2
+SVAL s6 MoreTextHere
+ASMC StartNumberEntry
 FADI 12 
 CLEAN
 

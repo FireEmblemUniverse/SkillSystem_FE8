@@ -8,7 +8,14 @@
 
 #include "RandomizeClass.lyn.event" 
 #include "C_Code.lyn.event" 
-#include "NumberEntry.lyn.event" 
+//#include "NumberEntry.lyn.event" 
+
+ALIGN 4 
+bg_table:
+WORD 0x02022CA8
+WORD 0x020234A8
+WORD 0x02023CA8
+WORD 0x020244A8
 
 ALIGN 4 
 RandomizeWeaponStatsFlag_Link: 
