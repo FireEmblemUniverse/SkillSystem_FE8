@@ -18,15 +18,15 @@ typedef struct {
 	/* 30 */ u8 digit; 
 } SeedMenuProc;
 
-void SeedMenuLoop2(SeedMenuProc* proc); 
-const struct ProcCmd SeedMenuProcCmd2[] =
+void SeedMenuLoop(SeedMenuProc* proc); 
+const struct ProcCmd SeedMenuProcCmd[] =
 {
     PROC_CALL(LockGame),
     PROC_CALL(BMapDispSuspend),
 	PROC_CALL(StartFadeFromBlack), 
 
     PROC_YIELD,
-	PROC_REPEAT(SeedMenuLoop2), 
+	PROC_REPEAT(SeedMenuLoop), 
 
     PROC_CALL(UnlockGame),
     PROC_CALL(BMapDispResume),
@@ -39,7 +39,7 @@ typedef const struct {
   u32 x;
   u32 y;
 } LocationTable;
-LocationTable CursorLocationTable2[] = {
+LocationTable CursorLocationTable[] = {
   {(START_X*8) - (0 * 8) - 4, Y_HAND*8},
   {(START_X*8) - (1 * 8) - 4, Y_HAND*8},
   {(START_X*8) - (2 * 8) - 4, Y_HAND*8},
@@ -51,14 +51,14 @@ LocationTable CursorLocationTable2[] = {
   {(START_X*8) - (8 * 8) - 4, Y_HAND*8}, 
 };
 
-const u32 DigitDecimalTable2[] = { 
+const u32 DigitDecimalTable[] = { 
 1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000
 }; 
 
-int GetMaxDigits2(int number) { 
+int GetMaxDigits(int number) { 
 
 	int result = 1; 
-	while (number > DigitDecimalTable2[result]) { result++; } 
+	while (number > DigitDecimalTable[result]) { result++; } 
 	//result++; // table is 0 indexed, but we count digits from 1 
 	if (result > 9) { result = 9; } 
 	return result; 
@@ -66,7 +66,7 @@ int GetMaxDigits2(int number) {
 } 
 
 extern void ChapterStatus_SetupFont(ProcPtr proc); 
-void DrawSeedMenu2(SeedMenuProc* proc) { 
+void DrawSeedMenu(SeedMenuProc* proc) { 
 
 	
 
@@ -86,12 +86,12 @@ void DrawSeedMenu2(SeedMenuProc* proc) {
 extern char NumberTitle_Text; 
 extern char NumberDesc_Text;
 
-void StartSeedMenu2(ProcPtr parent) { 
+void StartSeedMenu(ProcPtr parent) { 
 	ClearBg0Bg1();
 	//EnableBgSyncByIndex(0);
 	SeedMenuProc* proc; 
-	if (parent) { proc = (SeedMenuProc*)Proc_StartBlocking((ProcPtr)&SeedMenuProcCmd2, parent); } 
-	else { proc = (SeedMenuProc*)Proc_Start((ProcPtr)&SeedMenuProcCmd2, PROC_TREE_3); } 
+	if (parent) { proc = (SeedMenuProc*)Proc_StartBlocking((ProcPtr)&SeedMenuProcCmd, parent); } 
+	else { proc = (SeedMenuProc*)Proc_Start((ProcPtr)&SeedMenuProcCmd, PROC_TREE_3); } 
 	if (proc) { 
 		#ifdef POKEMBLEM_VERSION 
 		proc->seed = *StartTimeSeedRamLabel; 
@@ -112,7 +112,7 @@ void StartSeedMenu2(ProcPtr parent) {
 		ResetTextFont();
 		SetTextFontGlyphs(0);
 		SetTextFont(0);
-		DrawSeedMenu2(proc);
+		DrawSeedMenu(proc);
 		
 		#ifdef HARDCODE_TEXT
 		char* string = "Game Seed"; 
@@ -140,18 +140,18 @@ void StartSeedMenu2(ProcPtr parent) {
 	
 } 
 
-const u16 sSprite_VertHand2[] = {
+const u16 sSprite_VertHand[] = {
     1,
     0x0002, 0x4000, 0x0006
 };
-const u8 sHandVOffsetLookup2[] = {
+const u8 sHandVOffsetLookup[] = {
     0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3,
     4, 4, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 1, 1, 1, 1,
 };
 extern int sPrevHandClockFrame; 
 extern struct Vec2 sPrevHandScreenPosition; 
 extern int sPrevHandClockFrame; 
-void DisplayVertUiHand2(int x, int y)
+void DisplayVertUiHand(int x, int y)
 {
     if ((GetGameClock() - 1) == sPrevHandClockFrame)
     {
@@ -163,14 +163,14 @@ void DisplayVertUiHand2(int x, int y)
     sPrevHandScreenPosition.y = y;
     sPrevHandClockFrame = GetGameClock();
 
-    y += (sHandVOffsetLookup2[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup2))] - 14);
-    PutSprite(2, x, y, sSprite_VertHand2, 0);
+    y += (sHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup))] - 14);
+    PutSprite(2, x, y, sSprite_VertHand, 0);
 }
 
 extern struct KeyStatusBuffer sKeyStatusBuffer;
-void SeedMenuLoop2(SeedMenuProc* proc) { 
+void SeedMenuLoop(SeedMenuProc* proc) { 
 
-	DisplayVertUiHand2(CursorLocationTable2[proc->digit].x, CursorLocationTable2[proc->digit].y); // 6 is the tile of the downwards hand 	
+	DisplayVertUiHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y); // 6 is the tile of the downwards hand 	
 	u16 keys = sKeyStatusBuffer.newKeys; 
 	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
@@ -183,35 +183,35 @@ void SeedMenuLoop2(SeedMenuProc* proc) {
 	};
 	int max = gEventSlots[3]; 
 	int min = gEventSlots[2]; 
-	int max_digits = GetMaxDigits2(max); 
+	int max_digits = GetMaxDigits(max); 
 	
     if (keys & DPAD_RIGHT) {
       if (proc->digit > 0) { proc->digit--; }
       else { proc->digit = max_digits - 1; } 
-	  DrawSeedMenu2(proc);
+	  DrawSeedMenu(proc);
     }
     if (keys & DPAD_LEFT) {
       if (proc->digit < (max_digits-1)) { proc->digit++; }
       else { proc->digit = 0; } 
-	  DrawSeedMenu2(proc);
+	  DrawSeedMenu(proc);
     }
 	
     if (keys & DPAD_UP) {
 		if (proc->seed == max) { proc->seed = min; } 
 		else { 
-			proc->seed += DigitDecimalTable2[proc->digit]; 
+			proc->seed += DigitDecimalTable[proc->digit]; 
 			if (proc->seed > max) { proc->seed = max; } 
 		} 
-		DrawSeedMenu2(proc); 
+		DrawSeedMenu(proc); 
 	}
     if (keys & DPAD_DOWN) {
 		
 		if (proc->seed == min) { proc->seed = max; } 
 		else { 
-			proc->seed -= DigitDecimalTable2[proc->digit]; 
+			proc->seed -= DigitDecimalTable[proc->digit]; 
 			if (proc->seed < min) { proc->seed = min; } 
 		} 
 		
-		DrawSeedMenu2(proc); 
+		DrawSeedMenu(proc); 
 	}
 } 
