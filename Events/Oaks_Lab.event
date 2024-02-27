@@ -325,6 +325,11 @@ CLEAN
 ASMC SaveGameSeed
 
 BACG 0x35 // black bg 
+SVAL s1 0x2001000 
+ASMC StartHexEditor
+
+
+BACG 0x35 
 ///FADU 12 
 SVAL s1 12345 // initial value of number if not pokemblem version of C code 
 SVAL s2 15 // min 

@@ -1,0 +1,60 @@
+#include "HexEditor.lyn.event"
+
+ALIGN 4 
+hexadecimalTable:
+POIN Label0 Label1 Label2 Label3 Label4 Label5 Label6 Label7 Label8 
+POIN Label9 LabelA LabelB LabelC LabelD LabelE LabelF 
+
+
+ALIGN 4
+Label0: 
+String("0") ; BYTE 0 
+ALIGN 4
+Label1: 
+String("1") ; BYTE 0  
+ALIGN 4
+Label2: 
+String("2") ; BYTE 0  
+ALIGN 4
+Label3: 
+String("3") ; BYTE 0  
+ALIGN 4
+Label4: 
+String("4") ; BYTE 0  
+ALIGN 4
+Label5: 
+String("5") ; BYTE 0  
+ALIGN 4
+Label6: 
+String("6") ; BYTE 0  
+ALIGN 4
+Label7: 
+String("7") ; BYTE 0  
+ALIGN 4
+Label8: 
+String("8") ; BYTE 0  
+ALIGN 4
+Label9: 
+String("9") ; BYTE 0  
+ALIGN 4
+LabelA: 
+String("A") ; BYTE 0  
+ALIGN 4
+LabelB: 
+String("B") ; BYTE 0  
+ALIGN 4
+LabelC: 
+String("C") ; BYTE 0  
+ALIGN 4
+LabelD: 
+String("D") ; BYTE 0  
+ALIGN 4
+LabelE: 
+String("E") ; BYTE 0  
+ALIGN 4
+LabelF: 
+String("F") ; BYTE 0  
+
+
+
+
