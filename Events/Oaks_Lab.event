@@ -332,8 +332,8 @@ ASMC SaveGameSeed
 BACG 0x35 
 ///FADU 12 
 SVAL s1 12345 // initial value of number if not pokemblem version of C code 
-SVAL s2 15 // min 
-SVAL s3 123469 // max 
+SVAL s2 0 // min 
+SVAL s3 999999999 // max 
 SVAL s4 GameSeedText
 SVAL s5 GameSeedDesc
 SVAL s6 MoreTextHere

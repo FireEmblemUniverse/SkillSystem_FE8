@@ -149,6 +149,7 @@ FADU 10
 GOTO 0x63 
 
 LABEL 23 // Vesly unit 0xED before league 
+ENUF PlayableCutsceneFlag 
 SVAL 0xB 0x0000FFFF; SOLOTEXTBOXSTART; TEXTSHOW (-1); TEXTEND 
 FADI 8 
 DISA 0xED 

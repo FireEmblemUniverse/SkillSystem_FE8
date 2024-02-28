@@ -2458,13 +2458,10 @@ Game Seed[X]
 
 ## GameSeedDesc
 Match with a friend for the[N]
-same randomizer settings.[N]
-Enjoy![X]
+ same randomized effects.[X]
 
 ## MoreTextHere 
-Oh, you found me![N]
-I thought my home was[N]
-a perfect hiding spot...[X]
+ [X]
 
 ## GameSeedDesc2
 same randomizer settings.[X]
@@ -2973,7 +2970,8 @@ Fwaaa![A][X]
 
 ## KiyoDefeatText
 Hwa![N]
-Arrgh! Beaten![A][X]
+Arrgh! Beaten![A][N]
+Spar with me anytime.[A][X]
 
 ## KiyoTalkText
 Never lose focus![N]

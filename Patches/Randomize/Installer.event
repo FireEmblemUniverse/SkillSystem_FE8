@@ -62,8 +62,7 @@ POIN RandomItemTier3List
 #define Tm(ID) "ID<<8|SpellScrollID"
 #define Skl(ID) "ID<<8|SkillScrollID"
 #define Acc(ID) "ID<<8|SkillAccOne+((ID&0xC0)>>6)"
-
-
+#define StatAcc(ID) "ID<<8|StatAccessory"
 
 
 ALIGN 4 
@@ -73,24 +72,53 @@ SHORT Tm(Doubleslap) Tm(DoubleHit) Tm(Harden) Tm(Flash)
 SHORT Tm(Growl) 
 SHORT Skl(Intimidate2ID) // not tier 0, but an example (skill scroll) 
 SHORT Acc(CounterID)  // not tier 0, but an example (accessory) 
+SHORT StatAcc(MuscleBand_BoostIndex) StatAcc(WiseGlasses_BoostIndex) StatAcc(LuckyBracer_BoostIndex) StatAcc(LeatherShield_BoostIndex) StatAcc(BronzeShield_BoostIndex)
+SHORT StatAcc(OldWard_BoostIndex) StatAcc(WornBoots_BoostIndex) StatAcc(OldScope_BoostIndex) StatAcc(EnergyBand_BoostIndex)
 SHORT 0 // Terminator 
 
 ALIGN 4 
 RandomItemTier1List: // if durability is 0, give as full durability 
 SHORT SuperPotion
 SHORT Tm(Constrict) Tm(Glare) Tm(RecoverMove) Tm(BodySlam)
+SHORT StatAcc(MuscleBandT2_BoostIndex) StatAcc(WiseGlassesT2_BoostIndex) StatAcc(EnergyBandT2_BoostIndex) StatAcc(PaddedShield_BoostIndex) StatAcc(IronShield_BoostIndex)
+SHORT StatAcc(MagicWard_BoostIndex) StatAcc(QuickBoots_BoostIndex) StatAcc(SightScope_BoostIndex)
+
 SHORT 0 // Terminator 
 
 ALIGN 4 
 RandomItemTier2List: // if durability is 0, give as full durability 
 SHORT HyperPotion MaxPotion
 SHORT Tm(CalmMind) Tm(BulkUp) Tm(Screech) Tm(Agility) 
+
+// muscler / wiser glasses are in tier 1 and tier 2 
+SHORT StatAcc(MuscleBandT2_BoostIndex) StatAcc(WiseGlassesT2_BoostIndex) StatAcc(StuddedShield_BoostIndex) StatAcc(SteelShield_BoostIndex) 
+SHORT StatAcc(EnhancedWard_BoostIndex) StatAcc(SilphScope_BoostIndex) StatAcc(LuckyBracerT3_BoostIndex) 
+
 SHORT 0 // Terminator 
 
 ALIGN 4 
 RandomItemTier3List: // if durability is 0, give as full durability 
 SHORT Tm(Amnesia) Tm(DoubleEdge) Tm(Explosion) 
+SHORT StatAcc(MuscleBandT3_BoostIndex) StatAcc(WiseGlassesT3_BoostIndex) StatAcc(VintageBoots_BoostIndex) StatAcc(EnergyBandT3_BoostIndex) StatAcc(EnergyBandT4_BoostIndex) 
 SHORT 0 // Terminator 
+
+
+
+
+// Tier 2 
+
+
+
+// Tier 3 
+
+
+
+
+/* ALIGN 4 
+DoNotRandomizeItemList:
+// maybe make this? 
+SHORT */ 
+
 
 #define CB_Entry(ClassID, Tier) "BYTE Tier" 
 

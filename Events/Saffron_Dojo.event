@@ -173,6 +173,7 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 CAM1 [8,6] 
 EVBIT_MODIFY 4 
 BottomWallText(KiyoDefeatText)
+ENUF TrainerBattleActiveFlag
 SVAL r3 1000 
 GIVETOMAIN 0 
 NoFade

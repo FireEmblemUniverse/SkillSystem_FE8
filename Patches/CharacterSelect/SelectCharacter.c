@@ -272,7 +272,7 @@ void CharacterSelectDrawUIBox(Struct_SelectCharacterProc* proc)
 {
 	//BgMap_ApplyTsa(u16* target, const void* source, u16 tileBase)
 	// Menu BG 
-	BgMap_ApplyTsa(&gBG1MapBuffer[0][19], &gPortraitUIBoxTSA, 0); //20*8 as X, 0*0 as Y 
+	//BgMap_ApplyTsa(&gBG1MapBuffer[0][19], &gPortraitUIBoxTSA, 0); //20*8 as X, 0*0 as Y 
 	
 	
 	BgMap_ApplyTsa(&gBG1MapBuffer[0][0], &gTopStatsUIBoxTSA, 0);
@@ -280,7 +280,7 @@ void CharacterSelectDrawUIBox(Struct_SelectCharacterProc* proc)
 	// Portrait BG  
 	//BgMap_ApplyTsa(&gBG1MapBuffer[0][20], &gPortraitUIBoxTSA, 0); //20*8 as X, 0*0 as Y 
 
-	BgMap_ApplyTsa(&gBG1MapBuffer[0][13], &gSkillsRanksUIBoxTSA, 0); //20*8 as X, 0*0 as Y 
+	//BgMap_ApplyTsa(&gBG1MapBuffer[0][13], &gSkillsRanksUIBoxTSA, 0); //20*8 as X, 0*0 as Y 
 	
 	
 	int i = proc->currOptionIndex;
@@ -415,6 +415,9 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 	ClearIcons();
 	Font_ResetAllocation(); // 0x08003D20
 	
+	// Initialize font. 
+	Text_SetFont(0);
+    Text_SetFontStandardGlyphSet(0);
 
 	
 	
@@ -513,11 +516,11 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 	}
 	LoadIconPalettes(0xD);
 	
-	EndFaceById(0);
+	//EndFaceById(0);
 	
-	FaceProc* faceProc = StartFace(0, GetUnitPortraitId(unit), 200, 8, 2);
 	//FaceProc* faceProc = StartFace(0, GetUnitPortraitId(unit), 200, 8, 2);
-	faceProc->tileData &= ~(3 << 10); // Clear bits 10 and 11 (priority) such that they are 0 (highest priority) and appear above the background 
+	///FaceProc* faceProc = StartFace(0, GetUnitPortraitId(unit), 200, 8, 2);
+	//faceProc->tileData &= ~(3 << 10); // Clear bits 10 and 11 (priority) such that they are 0 (highest priority) and appear above the background 
 	
 	int tile = 40; // Why ??????????????? 
 	
@@ -559,9 +562,6 @@ void SwitchInCharacter(void) // Whenever you scroll or exit / confirm the charac
 	DrawUiNumber(&gBG0MapBuffer[15][10],TEXT_COLOR_GOLD,MakeThumb(Get_Def_Growth, unit));
 	DrawUiNumber(&gBG0MapBuffer[17][10],TEXT_COLOR_GOLD,MakeThumb(Get_Res_Growth, unit));
 
-	// Initialize font. Probably unnecessary vast majority of the time (if not always) 
-	Text_SetFont(0);
-    Text_SetFontStandardGlyphSet(0);
 
 
 
@@ -1066,7 +1066,7 @@ void SelectCharacterMenuEnd(void)
 	//MU_AllEnable();
 	
 	
-    EndFaceById(0);
+    //EndFaceById(0);
 	
 	
 

@@ -53,7 +53,7 @@ LocationTable CursorLocationTable[] = {
 };
 
 const u32 DigitDecimalTable[] = { 
-1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000
+1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000, 1000000000
 }; 
 
 static int GetMaxDigits(int number) { 
@@ -110,9 +110,14 @@ void StartNumberEntry(ProcPtr parent) {
 		#else 
 		proc->seed = gEventSlots[1]; // initial seed 
 		#endif 
+		
+		#ifdef POKEMBLEM_VERSION 
+		proc->seed &= 0x2FFFFFFF;
+		#else 
 		while (proc->seed > gEventSlots[3]) { proc->seed = proc->seed / 2; } // s3 as max 
 		while (proc->seed < 0) { proc->seed = (proc->seed * 2)+1; } 
 		if (proc->seed < gEventSlots[2]) { proc->seed = gEventSlots[2]; } // s2 as min 
+		#endif 
 		proc->digit = 0; 
 		//ResetText();
 		ResetTextFont();
@@ -300,6 +305,7 @@ static void SeedMenuLoop(SeedMenuProc* proc) {
 	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
 		#ifdef POKEMBLEM_VERSION 
+		if (!proc->seed) { proc->seed = 12345; } // don't use 0 
 		*StartTimeSeedRamLabel = proc->seed; 
 		#endif 
 		gEventSlots[0xC] = proc->seed; 

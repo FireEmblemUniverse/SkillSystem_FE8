@@ -29,18 +29,28 @@ extern u32* StartTimeSeedRamLabel;
 
 //extern int Div(int, int); 
 //extern int Mod(int, int); 
-u8 HashByte_N(u8 number, int max){
+u8 HashByte_Ch(u8 number, int max){
   if (max==0) return 0;
   u32 hash = 5381;
   hash = ((hash << 5) + hash) ^ number;
   hash = ((hash << 5) + hash) ^ gPlaySt.chapterIndex;
   hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
+  //for (int i = 0; i < 9; ++i){
+  //  if (TacticianName[i]==0) break;
+  //  hash = ((hash << 5) + hash) ^ TacticianName[i];
+  //};
+  return Mod((u16)hash, max);
+};
+
+u32 HashSeed(u32 number) { 
+  u32 hash = 5381;
+  hash = ((hash << 5) + hash) ^ number;
   for (int i = 0; i < 9; ++i){
     if (TacticianName[i]==0) break;
     hash = ((hash << 5) + hash) ^ TacticianName[i];
   };
-  return Mod((u16)hash, max);
-};
+  return hash;
+}
 
 u8 HashByte_Global(u8 number, int max, int variance){
   if (max==0) return 0;
@@ -48,10 +58,10 @@ u8 HashByte_Global(u8 number, int max, int variance){
   hash = ((hash << 5) + hash) ^ number;
   hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
   hash = ((hash << 5) + hash) ^ variance; 
-  for (int i = 0; i < 9; ++i){
-    if (TacticianName[i]==0) break;
-    hash = ((hash << 5) + hash) ^ TacticianName[i];
-  };
+  //for (int i = 0; i < 9; ++i){
+  //  if (TacticianName[i]==0) break;
+  //  hash = ((hash << 5) + hash) ^ TacticianName[i];
+  //};
   hash = Mod((u16)hash, max); 
   return hash;
 };
@@ -62,10 +72,10 @@ u16 HashShort_Simple(u8 number, int max, int variance){
   hash = ((hash << 5) + hash) ^ number;
   hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
   hash = ((hash << 5) + hash) ^ variance; 
-  for (int i = 0; i < 9; ++i){
-    if (TacticianName[i]==0) break;
-    hash = ((hash << 5) + hash) ^ TacticianName[i];
-  };
+  //for (int i = 0; i < 9; ++i){
+  //  if (TacticianName[i]==0) break;
+  //  hash = ((hash << 5) + hash) ^ TacticianName[i];
+  //};
   hash = Mod((u16)hash, max); 
   return hash;
 };
@@ -182,7 +192,7 @@ void RandomizeItem(void) {
 	int tier = GetItemTier(item); 
 	int max = CountItems(tier); 
 	
-	gEventSlots[3] = RandomItemsTable[tier][HashByte_N(item, max)]; 
+	gEventSlots[3] = RandomItemsTable[tier][HashByte_Ch(item, max)]; 
 
 
 } 
