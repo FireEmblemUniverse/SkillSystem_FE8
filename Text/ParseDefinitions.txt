@@ -16,6 +16,8 @@
 [.7] = [.......]
 [Beat] = [ToggleMouthMove]...[.4][ToggleMouthMove]
 [Event] = [LoadOverworldFaces]
+[OpenQuote] = [0xC2][0x93]
+[CloseQuote] = [0xC2][0x94]
 
 [FarFarLeft] = [OpenFarFarLeft]
 [FarLeft] = [OpenFarLeft]
