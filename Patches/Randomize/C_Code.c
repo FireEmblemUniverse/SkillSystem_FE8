@@ -156,6 +156,34 @@ void RandomizeStats(struct Unit* unit) {
 	unit->lck = RandStat(unit->lck, classID); 
 	unit->_u3A = RandStat(unit->_u3A, classID); // mag 
 } 
+extern u16* RandomItemsTable[]; 
+int CountItems(int tier) {
+	int i = 0; 
+	while (RandomItemsTable[tier][i]) { 
+		i++; 
+	} 
+	return i; 
+}
+
+int GetItemTier(int item) { 
+	for (int tier = 0; tier < 4; tier++) { 
+		int i = 0; 
+		while (RandomItemsTable[tier][i]) { 
+			if (item == RandomItemsTable[tier][i]) { return tier; } 
+			i++; 
+		} 
+	} 
+	return 0; // if we can't find it, treat it as tier 0 
+} 
+
+void RandomizeItem(void) { 
+	if (!CheckFlag(RandomizeFoundItemsFlag_Link)) { return; } 
+	int item = gEventSlots[3]; 
+	int tier = GetItemTier(item); 
+	int max = CountItems(tier); 
+	
+	gEventSlots[3] = RandomItemsTable[tier][HashByte_N(item, max)]; 
 
 
+} 
 

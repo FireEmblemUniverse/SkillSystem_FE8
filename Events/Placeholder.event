@@ -266,9 +266,11 @@ UNIT
 
 
 Traps1:
-CoinsTrap(8,11, 1, 250)
+CoinsTrap(7,11, 1, 250)
 //SaveWithoutHeal(11,10) 
 
+SkillAccessoryTrap(8, 11, DebugCh*2, SteadyStanceID)
+SpellScrollTrap(9,11, (DebugCh*2)+1, DoubleEdge)
 //GenericDisappearCompletion(12, 5, 0, GarySMS, 0) // xx, yy, flag, sprite, effectID 
 //GenericDisappearCompletion(13, 5, 0, PidgeotSMS, 0) // xx, yy, flag, sprite, effectID 
 //GenericDisappearCompletion(16, 7, 0, SuspiciousWaterSMS, 0) // xx, yy, flag, sprite, effectID 

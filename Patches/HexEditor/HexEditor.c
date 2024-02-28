@@ -40,7 +40,7 @@ typedef const struct {
   u32 x;
   u32 y;
 } LocationTable;
-LocationTable CursorLocationTable[] = {
+LocationTable HexEditorCursorLocationTable[] = {
   {(NUMBER_X*8) - (0 * 8) - 4, Y_HAND*8},
   {(NUMBER_X*8) - (1 * 8) - 4, Y_HAND*8},
   {(NUMBER_X*8) - (2 * 8) - 4, Y_HAND*8},
@@ -52,19 +52,8 @@ LocationTable CursorLocationTable[] = {
   {(NUMBER_X*8) - (8 * 8) - 4, Y_HAND*8}, 
 };
 
-const u32 DigitDecimalTable[] = { 
-1, 10, 100, 1000, 10000, 100000, 1000000, 10000000, 100000000
-}; 
 
-static int GetMaxDigits(int number) { 
 
-	int result = 1; 
-	while (number > DigitDecimalTable[result]) { result++; } 
-	//result++; // table is 0 indexed, but we count digits from 1 
-	if (result > 9) { result = 9; } 
-	return result; 
-
-} 
 
 extern void ChapterStatus_SetupFont(ProcPtr proc); 
 extern char* hexadecimalTable[]; // = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F" }; 
@@ -143,11 +132,11 @@ void StartHexEditor(ProcPtr parent) {
 
 
 
-const u16 sSprite_VertHand[] = {
+const u16 HexEditorsSprite_VertHand[] = {
     1,
     0x0002, 0x4000, 0x0006
 };
-const u8 sHandVOffsetLookup[] = {
+const u8 HexEditorsHandVOffsetLookup[] = {
     0, 0, 0, 0, 0, 0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3,
     4, 4, 4, 4, 4, 4, 4, 3, 3, 2, 2, 2, 1, 1, 1, 1,
 };
@@ -166,15 +155,15 @@ static void DisplayVertUiHand(int x, int y)
     sPrevHandScreenPosition.y = y;
     sPrevHandClockFrame = GetGameClock();
 
-    y += (sHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(sHandVOffsetLookup))] - 14);
-    PutSprite(2, x, y, sSprite_VertHand, 0);
+    y += (HexEditorsHandVOffsetLookup[Mod(GetGameClock(), ARRAY_COUNT(HexEditorsHandVOffsetLookup))] - 14);
+    PutSprite(2, x, y, HexEditorsSprite_VertHand, 0);
 }
 
 #define DIGIT_MAX 1
 extern struct KeyStatusBuffer sKeyStatusBuffer;
 static void HexEditorLoop(HexEditorProc* proc) { 
 
-	DisplayVertUiHand(CursorLocationTable[proc->digit].x, CursorLocationTable[proc->digit].y); // 6 is the tile of the downwards hand 	
+	DisplayVertUiHand(HexEditorCursorLocationTable[proc->digit].x, HexEditorCursorLocationTable[proc->digit].y); // 6 is the tile of the downwards hand 	
 	u16 keys = sKeyStatusBuffer.newKeys; 
 	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
@@ -182,9 +171,9 @@ static void HexEditorLoop(HexEditorProc* proc) {
 		Proc_Break((ProcPtr)proc);
 		m4aSongNumStart(0x6B); 
 	};
-	int max = gEventSlots[3]; 
-	int min = gEventSlots[2]; 
-	int max_digits = GetMaxDigits(max); 
+	//int max = gEventSlots[3]; 
+	//int min = gEventSlots[2]; 
+	//int max_digits = GetMaxDigits(max); 
 	
     if (keys & DPAD_RIGHT) {
 		if (proc->digit == 0) { proc->address++; } 

@@ -597,10 +597,10 @@ Write_Byte(24, YCoordNewArea)
 //MNC2 SilphCo2FCh 
 //MNC2 Route5Ch
 //MNC2 CeladonCh
-MNC2 ViridianForestSCh
+//MNC2 ViridianForestSCh
 ENUT MissingnoFlag
 //MNC2 CinnabarCh 
-//MNC2 DebugCh
+MNC2 DebugCh
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh

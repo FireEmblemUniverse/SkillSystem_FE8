@@ -51,6 +51,47 @@ ALIGN 4
 StartTimeSeedRamLabel:
 WORD StartTimeSeedRam
 
+ALIGN 4 
+RandomItemsTable: 
+POIN RandomItemTier0List 
+POIN RandomItemTier1List 
+POIN RandomItemTier2List 
+POIN RandomItemTier3List 
+
+
+#define Tm(ID) "ID<<8|SpellScrollID"
+#define Skl(ID) "ID<<8|SkillScrollID"
+#define Acc(ID) "ID<<8|SkillAccOne+((ID&0xC0)>>6)"
+
+
+
+
+ALIGN 4 
+RandomItemTier0List: // if durability is 0, give as full durability 
+SHORT JellyDonut
+SHORT Tm(Doubleslap) Tm(DoubleHit) Tm(Harden) Tm(Flash) 
+SHORT Tm(Growl) 
+SHORT Skl(Intimidate2ID) // not tier 0, but an example (skill scroll) 
+SHORT Acc(CounterID)  // not tier 0, but an example (accessory) 
+SHORT 0 // Terminator 
+
+ALIGN 4 
+RandomItemTier1List: // if durability is 0, give as full durability 
+SHORT SuperPotion
+SHORT Tm(Constrict) Tm(Glare) Tm(RecoverMove) Tm(BodySlam)
+SHORT 0 // Terminator 
+
+ALIGN 4 
+RandomItemTier2List: // if durability is 0, give as full durability 
+SHORT HyperPotion MaxPotion
+SHORT Tm(CalmMind) Tm(BulkUp) Tm(Screech) Tm(Agility) 
+SHORT 0 // Terminator 
+
+ALIGN 4 
+RandomItemTier3List: // if durability is 0, give as full durability 
+SHORT Tm(Amnesia) Tm(DoubleEdge) Tm(Explosion) 
+SHORT 0 // Terminator 
+
 #define CB_Entry(ClassID, Tier) "BYTE Tier" 
 
 #define DoNotRandomize 0 

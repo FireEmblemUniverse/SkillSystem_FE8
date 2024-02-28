@@ -141,16 +141,16 @@ void StartNumberEntry(ProcPtr parent) {
 		textID[0] = gEventSlots[5]; 
 		textID[1] = gEventSlots[6]; 
 		
-		lines = CountTextIDLines(gEventSlots[5]); 
+		lines = CountTextIDLines(textID[0]); 
 		x = 8; 
 		y = 4; 
 		bg = 0; 
-		InitMultiline(0, lines, x, y, bg, TEXT_COLOR_SYSTEM_WHITE, gEventSlots[5]); // these functions do nothing if no text ID 
-		InitMultiline(3, 3, x, y+10, bg, TEXT_COLOR_SYSTEM_WHITE, gEventSlots[6]); 
-		PrepareMultiline(0, gEventSlots[5]); 
-		PrepareMultiline(3, gEventSlots[6]); 
+		InitMultiline(0, lines, x, y, bg, TEXT_COLOR_SYSTEM_WHITE, textID[0]); // these functions do nothing if no text ID 
+		InitMultiline(3, 3, x, y+10, bg, TEXT_COLOR_SYSTEM_WHITE, textID[1]); 
+		PrepareMultiline(0, textID[0]); 
+		PrepareMultiline(3, textID[1]); 
 		DrawMultiline(0, lines, x, y, bg);
-		lines = CountTextIDLines(gEventSlots[6]); 
+		lines = CountTextIDLines(textID[1]); 
 		DrawMultiline(3, lines, x, y+10, bg);
 		if (gEventSlots[4]) { 
 			char* string = GetStringFromIndex(gEventSlots[4]); 

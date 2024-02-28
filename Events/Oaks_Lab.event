@@ -324,9 +324,9 @@ CLEAN
 //FADU 12 
 ASMC SaveGameSeed
 
-BACG 0x35 // black bg 
-SVAL s1 0x2001000 
-ASMC StartHexEditor
+//BACG 0x35 // black bg 
+//SVAL s1 0x2001000 
+//ASMC StartHexEditor
 
 
 BACG 0x35 

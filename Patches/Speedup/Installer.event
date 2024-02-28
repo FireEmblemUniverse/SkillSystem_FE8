@@ -291,7 +291,7 @@ LevelUpCheckProcExists: // 3000108
 	#include "AiAttemptOffensiveAction.lyn.event" 
 	// 0x3D5F0 
 	ASSERT $3D6AC - CurrentOffset
-	MESSAGE CurrentOffset 
+	//MESSAGE CurrentOffset 
 
 	ORG $39B54 // Since we added RefreshEntityBmMaps(); RenderBmMap(); and RefreshUnitSprites();
 	// to CpOrderFunc_BeginDecide, we can remove them from CpDecide_Main
