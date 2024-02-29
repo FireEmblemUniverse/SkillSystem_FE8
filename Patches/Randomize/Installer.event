@@ -7,7 +7,30 @@
 // as reference
 
 #include "RandomizeClass.lyn.event" 
-#include "Hash.lyn.event" 
+#include "C_Code.lyn.event" 
+//#include "NumberEntry.lyn.event" 
+
+ALIGN 4 
+bg_table:
+WORD 0x02022CA8
+WORD 0x020234A8
+WORD 0x02023CA8
+WORD 0x020244A8
+
+ALIGN 4 
+RandomizeWeaponStatsFlag_Link: 
+WORD RandomizeWeaponStatsFlag 
+RandomizeClassesFlag_Link: ; WORD RandomizeClassesFlag // wild pkmn 
+
+// if both on, randomize all 0xA0+ 
+//if only bosses, 0xA0+ in "boss chapters" 
+//if only trainers, 0xA0+ in non-boss chapters 
+RandomizeTrainerClassesFlag_Link: ; WORD RandomizeTrainerClassesFlag // unit IDs 0xA0+  
+RandomizeBossClassesFlag_Link: ; WORD RandomizeBossClassesFlag
+RandomizeGrowthsFlag_Link: ; WORD RandomizeGrowthsFlag
+RandomizeFoundItemsFlag_Link: ; WORD RandomizeFoundItemsFlag
+RandomizeBaseStatsFlag_Link: ; WORD RandomizeBaseStatsFlag
+
 
 
 PUSH
@@ -15,7 +38,8 @@ ORG $17ad8
 callHackNew(RandomizeClassHack_Monster) //give a random class!
 ORG $17D74 
 jumpToHack(RandomizeClassHack_Load) 
-
+ORG $17E68 
+callHackNew(RandomizeStatsHook) 
 POP
 
 
@@ -26,6 +50,47 @@ WORD RandomizeClassesFlag
 ALIGN 4 
 StartTimeSeedRamLabel:
 WORD StartTimeSeedRam
+
+ALIGN 4 
+RandomItemsTable: 
+POIN RandomItemTier0List 
+POIN RandomItemTier1List 
+POIN RandomItemTier2List 
+POIN RandomItemTier3List 
+
+
+#define Tm(ID) "ID<<8|SpellScrollID"
+#define Skl(ID) "ID<<8|SkillScrollID"
+#define Acc(ID) "ID<<8|SkillAccOne+((ID&0xC0)>>6)"
+
+
+
+
+ALIGN 4 
+RandomItemTier0List: // if durability is 0, give as full durability 
+SHORT JellyDonut
+SHORT Tm(Doubleslap) Tm(DoubleHit) Tm(Harden) Tm(Flash) 
+SHORT Tm(Growl) 
+SHORT Skl(Intimidate2ID) // not tier 0, but an example (skill scroll) 
+SHORT Acc(CounterID)  // not tier 0, but an example (accessory) 
+SHORT 0 // Terminator 
+
+ALIGN 4 
+RandomItemTier1List: // if durability is 0, give as full durability 
+SHORT SuperPotion
+SHORT Tm(Constrict) Tm(Glare) Tm(RecoverMove) Tm(BodySlam)
+SHORT 0 // Terminator 
+
+ALIGN 4 
+RandomItemTier2List: // if durability is 0, give as full durability 
+SHORT HyperPotion MaxPotion
+SHORT Tm(CalmMind) Tm(BulkUp) Tm(Screech) Tm(Agility) 
+SHORT 0 // Terminator 
+
+ALIGN 4 
+RandomItemTier3List: // if durability is 0, give as full durability 
+SHORT Tm(Amnesia) Tm(DoubleEdge) Tm(Explosion) 
+SHORT 0 // Terminator 
 
 #define CB_Entry(ClassID, Tier) "BYTE Tier" 
 
@@ -45,7 +110,7 @@ POIN Stage3_List
 POIN Stage4_List 
 POIN Legendary_List 
 
-// ekans 1b -> eevee ac -> blastoise 09 
+
 ALIGN 4 
 Stage1_List: 
 BYTE BulbasaurID CharmanderID SquirtleID CaterpieID MetapodID WeedleID KakunaID PidgeyID RattataID SpearowID 
@@ -346,7 +411,30 @@ CB_Entry(Unused80ID              , DoNotRandomize      )
 
 
 
-
+ ALIGN 4 
+BossChapterTable2: 
+ FILL(256) 
+ #define BossChEntry2(id) "PUSH; ORG BossChapterTable2+id; BYTE 1; POP" 
+BossChEntry2(Route2SCh)
+BossChEntry2(PewterGymCh)
+BossChEntry2(CeruleanCh)
+BossChEntry2(CeruleanGymCh)
+BossChEntry2(VermilionGymCh)
+BossChEntry2(SSAnneCh)
+BossChEntry2(PokemonTowerF1Ch)
+BossChEntry2(FuschiaGymCh)
+BossChEntry2(CeladonGymCh)
+BossChEntry2(SaffronGymCh)
+BossChEntry2(CinnabarGymCh)
+BossChEntry2(ViridianGymCh)
+BossChEntry2(SilphCo1FCh) // gary 
+BossChEntry2(SilphCo5FCh)
+BossChEntry2(Route22Ch) // for Gary  
+BossChEntry2(LoreleiCh)
+BossChEntry2(BrunoCh)
+BossChEntry2(AgathaCh)
+BossChEntry2(LanceCh)
+BossChEntry2(ChampionCh)
 
 
 

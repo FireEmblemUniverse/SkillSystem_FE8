@@ -114,13 +114,13 @@ extern int SilphScopeID_Link;
 void SilphScopeEffect(struct BattleUnit* bunitA, struct BattleUnit* bunitB) {
 	if (gBattleStats.config & (BATTLE_CONFIG_REAL | BATTLE_CONFIG_SIMULATE)) {
 		
-		if (ShouldWeaponHaveStabBonus(bunitB->weaponBefore, bunitB->unit.pClassData->number)) { 
-			if (SkillTester(&bunitB->unit, SilphScopeID_Link)) { 
-				int effectiveness = IsItemEffectiveAgainst(bunitB->weaponBefore, &bunitA->unit); 
+		if (ShouldWeaponHaveStabBonus(bunitA->weaponBefore, bunitA->unit.pClassData->number)) { 
+			if (SkillTester(&bunitA->unit, SilphScopeID_Link)) { 
+				int effectiveness = IsItemEffectiveAgainst(bunitA->weaponBefore, &bunitB->unit); 
 				if (effectiveness) { 
 					if ((effectiveness != 1) && (effectiveness != 2) && (effectiveness != 7) && (effectiveness != 9)) { 
-						bunitB->battleEffectiveCritRate = 100; 
-						bunitB->battleCritRate = 200; 
+						bunitA->battleEffectiveCritRate = 100; 
+						bunitA->battleCritRate = 200; 
 					}
 				}				
 			}

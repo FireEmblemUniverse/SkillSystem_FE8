@@ -260,6 +260,12 @@ CALL LoadAndPlacePlayers
 ENUT IndigoPlateauArrived
 LOAD1 0x1 UnitsA
 ENUN
+ENUF LoreleiDefeatedTemp 
+ENUF BrunoDefeatedTemp 
+ENUF AgathaDefeatedTemp 
+ENUF LanceDefeatedTemp 
+ENUF ChampionDefeatedTemp 
+
 //RandomizeEnemyCoords(Grass, Range(0,0,3,3), Range(2,2,6,13)) 
 //
 //LOAD1 0x1 EnemyUnitsB

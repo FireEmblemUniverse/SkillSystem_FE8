@@ -92,7 +92,7 @@ Tutorial:
 END_MAIN
 
 Units1:
-UNIT Eirika  GolbatID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  RattataID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
 UNIT 2  BeedrillID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 4  DragoniteID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 3  MewtwoID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
@@ -305,6 +305,7 @@ ENUT GirlProtagFlag
 SetTactName(VeslyName)
 ASMC SaveGameSeed
 
+ENUT RandomizeWeaponStatsFlag
 //ASMC ClearPCBoxUnitsBuffer
 //ASMC ClearAllBoxUnitsASMC
 
@@ -582,8 +583,8 @@ ENUT MewFledFlag
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(21, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(18, YCoordNewArea)  
+Write_Byte(24, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(24, YCoordNewArea)  
 
 //Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
 //Write_Byte(18, YCoordNewArea) 
@@ -596,6 +597,7 @@ Write_Byte(18, YCoordNewArea)
 //MNC2 SilphCo2FCh 
 //MNC2 Route5Ch
 //MNC2 CeladonCh
+//MNC2 ViridianForestSCh
 ENUT MissingnoFlag
 //MNC2 CinnabarCh 
 MNC2 DebugCh

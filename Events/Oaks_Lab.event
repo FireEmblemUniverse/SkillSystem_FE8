@@ -108,21 +108,21 @@ ENUF SkipIntroFlag
 MUSCFAST 0x16 // Intro 
 
 #ifdef ENABLE_RANDOMIZER 
+
+ASMC CheckSRAMWorking
+BNE 79 sC s0 
 FADU 44 
 EVBIT_F 7 // not scene skipping 
 EVBIT_MODIFY 4 
-ASMC CheckSRAMWorking
-BNE 79 sC s0 
 TutText(SRAMNotWorkingText) 
-LABEL 79 
-TutText(EnableRandomizerText)
-SVAL s7 1 
-BNE 73 sC s7 
-ENUT RandomizeClassesFlag // this should only be set once tact name is set 
-LABEL 73 
 FADI 16
+LABEL 79 
+//TutText(EnableRandomizerText)
+//SVAL s7 1 
+//BNE 73 sC s7 
+//ENUT RandomizeClassesFlag // this should only be set once tact name is set 
+//LABEL 73 
 #endif 
-
 CALL NameInputEvent
 SelectAvatar
 
@@ -322,7 +322,24 @@ CLEAN
 //FADI 12 
 //CLEAN 
 //FADU 12 
+ASMC SaveGameSeed
 
+//BACG 0x35 // black bg 
+//SVAL s1 0x2001000 
+//ASMC StartHexEditor
+
+
+BACG 0x35 
+///FADU 12 
+SVAL s1 12345 // initial value of number if not pokemblem version of C code 
+SVAL s2 15 // min 
+SVAL s3 123469 // max 
+SVAL s4 GameSeedText
+SVAL s5 GameSeedDesc
+SVAL s6 MoreTextHere
+ASMC StartNumberEntry
+FADI 12 
+CLEAN
 
 SVAL 0x7 0x1
 CompareTactText(AName)

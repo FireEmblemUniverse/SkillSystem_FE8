@@ -19,6 +19,10 @@ extern int CheckNewFlag_No_sC(int id);
 extern int CheckEventId(int); 
 extern int GetFreeMovementState(void); 
 
+void SetFlag(int);
+void ClearFlag(int);
+bool CheckFlag(int);
+
 extern struct Trap* AddTrapExtFix(int x, int y, int type, int ext1, int ext2, int ext3, int ext4, int ext5);  //! FE8U = (0x0802E2E0+1)
 extern const void* GiveCoinsEvent; 
 extern int CoinsTrapID_Link; 
@@ -223,41 +227,50 @@ int DisplayTextUsability(int id) {
 int DisplayTextEffect0x50(void) { 
 	int id1 = SignTrapID_Link; 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id1); 
-	// for some reason these use SetNewFlag yet the initialization uses CheckEventId 
-	// the asm I wrote does this so whatever, I'm leaving it like this for now 
-	if (trap) SetNewFlag_No_sC(trap->data[0]); // maybe should use a defined offset for the flag 
-	//SetNewFlag_No_sC(trap->data[0]<<3 | (HelpMsgFlagOffset_Link)); 
+	// the initialization uses CheckEventId 
+	// should not set any flag 
+	//if ((trap) && (trap->data[0])) SetFlag(trap->data[0]); 
+	// above line in case you want to make a version that does set the event id later 
 	return DisplayTextEffect(trap); 
 } 
 
 int DisplayTextEffect0x51(void) { 
 	int id1 = Sign2TrapID_Link; 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id1); 
-	if (trap) SetNewFlag_No_sC(trap->data[0]); 
+	// the initialization uses CheckEventId 
+	// should not set any flag 
+	//if ((trap) && (trap->data[0])) SetFlag(trap->data[0]); 
+	// above line in case you want to make a version that does set the event id later 
 	return DisplayTextEffect(trap); 
 } 
 
 int DisplayTextEffect0x52(void) { 
 	int id1 = BlankExamineID_Link; 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id1); 
-	if (trap) SetNewFlag_No_sC(trap->data[0]); 
+	// the initialization uses CheckEventId 
+	// should not set any flag 
+	//if ((trap) && (trap->data[0])) SetFlag(trap->data[0]); 
+	// above line in case you want to make a version that does set the event id later 
 	return DisplayTextEffect(trap); 
 } 
 
 int DisplayTextEffect0x53(void) { 
 	int id1 = BlankTalkID_Link; 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id1); 
-	if (trap) SetNewFlag_No_sC(trap->data[0]); 
+	// the initialization uses CheckEventId 
+	// should not set any flag 
+	//if ((trap) && (trap->data[0])) SetFlag(trap->data[0]); 
+	// above line in case you want to make a version that does set the event id later 
 	return DisplayTextEffect(trap); 
 } 
 
-// sets a different flag 
+// sets a different flag - uses NewFlag 
 int DisplayTextEffect0x54(void) { 
 	int id1 = TutSignID_Link; 
 	struct Trap* trap = NewGetAdjacentTrapID(gActiveUnit, id1); 
-	//if (trap) SetNewFlag_No_sC(trap->data[0]<<3 | (HelpMsgFlagOffset_Link)); 
+	//if (trap) SetNewFlag_No_sC(trap->data[0] | (HelpMsgFlagOffset_Link<<3)); 
 	if (trap) { 
-	SetNewFlag_No_sC(trap->data[0] | (HelpMsgFlagOffset_Link)); } 
+	SetNewFlag_No_sC(trap->data[0] | (HelpMsgFlagOffset_Link<<3)); } 
 	return DisplayTextEffect(trap); 
 } 
 

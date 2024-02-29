@@ -2,7 +2,7 @@ ALIGN 4
 GiveItemEvent:
 CAM1 0xFFFF
 EVBIT_F 0x2 
-
+ASMC RandomizeItem
 GIVEITEMTO 0x7FFF
 Label 0x63 
 NoFade
@@ -11,6 +11,7 @@ ENDA
 ALIGN 4
 GiveCoinsEvent:
 CAM1 0xFFFF
+//ASMC RandomizeCoins
 GIVEITEMTOMAIN 0x0
 NoFade
 ENDA
@@ -37,13 +38,13 @@ ENDA
 ALIGN 4
 GiveStatBoostAccessoryEvent:
 // SVAL r4 StatBoost_Index
-SVAL r3 StatAccessory; GiveItemWithDurability(0x7FFF)
+SVAL r3 StatAccessory; GiveItemWithDurability_Rand(0x7FFF)
 NoFade 
 ENDA 
 
 ALIGN 4
 GiveSkillAccessoryEvent:
 // SVAL r5 SkillID 
-GiveSkillAccessory(0x7FFF)
+GiveSkillAccessory_Rand(0x7FFF)
 NoFade 
 ENDA

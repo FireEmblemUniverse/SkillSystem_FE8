@@ -5,6 +5,12 @@
 .thumb
 push {r7, r14}
 
+mov r0, r4 @ unit 
+mov r1, r5 @ growth 
+mov r2, r6 @ index in stat booster pointer of growth
+bl GetRandomizedGrowth
+mov r5, r0 
+
 ldr r7,Growth_Options
 ScrollCheck:
 mov		r3,#0

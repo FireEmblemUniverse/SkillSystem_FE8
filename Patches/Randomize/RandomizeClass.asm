@@ -80,11 +80,12 @@ push {r4, lr}
 mov r4, r1 
 @ r1 as class ID 
 
-ldr r3, =RandomizeClassesFlagLabel 
-ldr r0, [r3] 
-blh CheckEventId 
+mov r0, r5 @ unit struct (contains very little right now as it is just being made) 
+bl ShouldUnitBeRandomized 
 cmp r0, #0 
-beq VanillaLoadBehaviour
+beq VanillaLoadBehaviour 
+
+
 
 mov r0, r4 @ class id 
 bl RandomizeClassNow 
@@ -145,5 +146,24 @@ mov r1, sp
 mov r0, r6 
 bx r3 
 .ltorg 
+
+.global RandomizeStatsHook
+.type RandomizeStatsHook, %function 
+RandomizeStatsHook:
+push {lr} 
+add r0, r2 
+strb r0, [r4, #0x18] 
+ldrb r0, [r1, #0x12] 
+strb r0, [r4, #0x19] 
+mov r0, #0 
+strb r0, [r4, #0x1A] @ con bonus 
+
+mov r0, r4 
+bl RandomizeStats 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
 
 

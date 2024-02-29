@@ -157,8 +157,13 @@ bx r3
 .type HookInitSave, %function 
 HookInitSave:
 push {lr} 
+ldr r0, =Pokemblem_Label
+ldr r0, [r0] 
+cmp r0, #0 
+bne SkipSettingTime
 mov r0, #0 
 blh SetGameClock 
+SkipSettingTime: 
 
 mov r0, r10 @ slot 
 bl ClearAllBoxUnits @ Added 

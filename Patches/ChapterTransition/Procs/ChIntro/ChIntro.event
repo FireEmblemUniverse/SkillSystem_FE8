@@ -1,6 +1,6 @@
 // ChIntro
 // Copy 0859B1B0
-MESSAGE Currentoffset
+//MESSAGE Currentoffset
 PROC_CALL_ROUTINE(0x30185)
 PROC_SLEEP(0x1)
 PROC_CALL_ROUTINE(ChIntroInitValues)

@@ -14,9 +14,11 @@ typedef struct {
 // Temporarily save via a proc until the game starts 
 typedef struct {
   Proc Header;
+  u32 timer; 
   s16 FlagOn[20]; // so we can ignore negative / 0xFFFF flags just in case 
 } OptionsSavedProc;
 
+extern void SetGameTime(int newTime);
 void SaveStartingOptionsLoop(OptionsSavedProc* CurrentProc);
 void StartingOptionsSetup(OptionsProc* CurrentProc);
 void updateOptionsPage(OptionsProc* CurrentProc);
