@@ -179,18 +179,18 @@ void InitMultiline(struct Text th[], int lines, int x, int y, int bg, int color,
 	if (!lines) { return; } 
     int i;
     for (i = 0; i < lines; i++) { 
-        ClearText(&gPrepMainMenuTexts[i]);
+        ClearText(&th[i]);
 	} 
 	
 	char *str = GetStringFromIndex(textID);
 	
 	int width = 0; 
 	int max_width = 0; 
-	int height = 2 * (lines - 1) + y; 
+	int height = 2 * lines; 
 
 
 
-    BG_EnableSyncByMask(BG_SYNC_BIT(bg));
+
 	for (i = 0; i < lines; i++) { 
 		width = (GetStringTextLen(str)+8)/8; 
         InitText(&th[i], width);
@@ -206,7 +206,7 @@ void InitMultiline(struct Text th[], int lines, int x, int y, int bg, int color,
     TileMap_FillRect(
         TILEMAP_LOCATED(bg_table[bg], x, y),
         max_width+x, height+y, 0);
-	
+    BG_EnableSyncByMask(BG_SYNC_BIT(bg));
 }
 
 int CountStrLines(char *str) {

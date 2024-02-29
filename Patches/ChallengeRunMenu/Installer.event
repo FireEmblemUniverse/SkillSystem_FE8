@@ -1,0 +1,23 @@
+#include "ChallengeRunMenu.lyn.event"
+
+
+
+ALIGN 4
+CR_PAGE1MAXINDEX: 
+WORD 7 // Max is 7 (for 8 entries) 
+
+CR_NumberOfOptionsPerEntryTable:
+BYTE 2 // 0th entry has 2 choices 
+BYTE 2 // 1st entry has 2 choices 
+BYTE 2
+BYTE 2
+BYTE 2
+BYTE 2
+BYTE 2
+BYTE 2
+
+
+
+
+
+
