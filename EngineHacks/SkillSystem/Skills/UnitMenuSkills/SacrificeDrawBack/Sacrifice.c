@@ -35,10 +35,62 @@ extern const struct TargetSelectionDefinition gReciprocalAidTargetSelection;
 extern const struct TargetSelectionDefinition gDrawBackTargetSelection; 
  
  // vanilla 
-extern void MakeTargetListForAdjacentHeal(struct Unit* unit); 
-extern struct Unit* gSubjectUnit;
-s8 AreAllegiancesAllied(int left, int right);
-void StartUnitHpInfoWindow(struct Proc*);
+//extern void MakeTargetListForAdjacentHeal(struct Unit* unit); 
+//extern struct Unit* gSubjectUnit;
+//s8 AreUnitsAllied(int left, int right);
+//void StartUnitHpInfoWindow(struct Proc*);
+extern void ForEachAdjacentUnit(int x, int y, void(*)(struct Unit*));
+extern int CanUnitCrossTerrain(const struct Unit*, u8 terrain);
+
+struct TargetSelectionProc;
+
+typedef struct TargetEntry TargetEntry;
+typedef struct TargetSelectionDefinition TargetSelectionDefinition;
+typedef struct TargetSelectionProc TargetSelectionProc;
+
+struct TargetEntry {
+	/* 00 */ u8 x, y;
+	/* 02 */ u8 unitIndex;
+	/* 03 */ u8 trapIndex;
+
+	/* 04 */ TargetEntry* next;
+	/* 08 */ TargetEntry* prev;
+};
+
+struct TargetSelectionDefinition {
+	/* 00 */ void(*onInit)(struct TargetSelectionProc*);
+	/* 04 */ void(*onEnd)(struct TargetSelectionProc*);
+
+	/* 08 */ void(*onInitTarget)(struct TargetSelectionProc*, struct TargetEntry*);
+
+	/* 0C */ void(*onSwitchIn)(struct TargetSelectionProc*, struct TargetEntry*);
+	/* 10 */ void(*onSwitchOut)(struct TargetSelectionProc*, struct TargetEntry*);
+
+	/* 14 */ int(*onAPress)(struct TargetSelectionProc*, struct TargetEntry*);
+	/* 18 */ int(*onBPress)(struct TargetSelectionProc*, struct TargetEntry*);
+	/* 1C */ int(*onRPress)(struct TargetSelectionProc*, struct TargetEntry*);
+};
+
+struct TargetSelectionProc {
+	PROC_HEADER;
+
+	/* 2C */ const TargetSelectionDefinition* pDefinition;
+	/* 30 */ TargetEntry* pCurrentEntry;
+	
+	/* 34 */ u8 stateBits;
+
+	/* 38 */ int(*onAPressOverride)(TargetSelectionProc*, TargetEntry*);
+};
+enum _TargetSelectionEffect {
+	TSE_NONE = 0x00,
+
+	TSE_DISABLE = 0x01, // (for one frame, probably useful for blocking)
+	TSE_END = 0x02,
+	TSE_PLAY_BEEP = 0x04,
+	TSE_PLAY_BOOP = 0x08,
+	TSE_CLEAR_GFX = 0x10,
+	TSE_END_FACE0 = 0x20
+};
 
 // headers 
 void TryAddToReciprocalAidTargetList(struct Unit* unit);
@@ -63,7 +115,7 @@ int Sacrifice_Usability(struct MenuProc* menu) {
 		return 3; // false 
 	}
 	MakeSacrificeTargetList(gActiveUnit); 
-	if (GetTargetListSize()) { 
+	if (GetSelectTargetCount()) { 
 		return 1; // usable 
 	} 
 	return 3; // not usable 
@@ -92,13 +144,13 @@ int SacrificeAction(struct Proc* proc) {
 		}			
 	}
 	//gActiveUnit->curHP -= amountToHeal; // if not showing anim
-	gEventSlot[1] = gActiveUnit->pCharacterData->number; 
-	gEventSlot[2] = targetUnit->pCharacterData->number; 
-	gEventSlot[6] = amountToHeal;
+	gEventSlots[1] = gActiveUnit->pCharacterData->number; 
+	gEventSlots[2] = targetUnit->pCharacterData->number; 
+	gEventSlots[6] = amountToHeal;
 	//gActiveUnit->state = gActiveUnit->state & ~US_HIDDEN; 
 	//SMS_UpdateFromGameData();
 	//MU_EndAll();
-	CallMapEventEngine(&HarmAndHealEvent, 1); 
+	CallEvent(&HarmAndHealEvent, 1); 
 	return 0; // parent proc yields 
 } 
 
@@ -117,13 +169,13 @@ int ArdentSacrificeAction(struct Proc* proc) {
 		amountToHeal = 10; 
 	} 
 	//gActiveUnit->curHP -= amountToHeal; // if not showing anim
-	gEventSlot[1] = gActiveUnit->pCharacterData->number; 
-	gEventSlot[2] = targetUnit->pCharacterData->number; 
-	gEventSlot[6] = amountToHeal;
+	gEventSlots[1] = gActiveUnit->pCharacterData->number; 
+	gEventSlots[2] = targetUnit->pCharacterData->number; 
+	gEventSlots[6] = amountToHeal;
 	//gActiveUnit->state = gActiveUnit->state & ~US_HIDDEN; 
 	//SMS_UpdateFromGameData();
 	//MU_EndAll();
-	CallMapEventEngine(&HarmAndHealEvent, 1); 
+	CallEvent(&HarmAndHealEvent, 1); 
 	return 0; // parent proc yields 
 } 
 
@@ -144,16 +196,16 @@ int ReciprocalAidAction(struct Proc* proc) {
 	if (targetHP < actorHP) { 
 		amountToHeal = actorHP - targetHP; 
 		//gActiveUnit->curHP -= amountToHeal; // if not showing anim 
-		gEventSlot[1] = gActiveUnit->pCharacterData->number; // unit to harm 
-		gEventSlot[2] = targetUnit->pCharacterData->number; 
-		gEventSlot[6] = amountToHeal;
+		gEventSlots[1] = gActiveUnit->pCharacterData->number; // unit to harm 
+		gEventSlots[2] = targetUnit->pCharacterData->number; 
+		gEventSlots[6] = amountToHeal;
 	} 
 	else { // if you're lower or equal hp vs target, heal yourself 
 		amountToHeal = targetHP - actorHP; 
 		//targetUnit->curHP -= amountToHeal; 
-		gEventSlot[1] = targetUnit->pCharacterData->number; // unit to harm 
-		gEventSlot[2] = gActiveUnit->pCharacterData->number; 
-		gEventSlot[6] = amountToHeal;
+		gEventSlots[1] = targetUnit->pCharacterData->number; // unit to harm 
+		gEventSlots[2] = gActiveUnit->pCharacterData->number; 
+		gEventSlots[6] = amountToHeal;
 	} 
 	
 	
@@ -161,7 +213,7 @@ int ReciprocalAidAction(struct Proc* proc) {
 	//SMS_UpdateFromGameData();
 	//MU_EndAll();
 	if (amountToHeal) { 
-		CallMapEventEngine(&HarmAndHealEvent, 1); 
+		CallEvent(&HarmAndHealEvent, 1); 
 	} 
 	return 0; // parent proc yields 
 } 
@@ -169,7 +221,7 @@ int ReciprocalAidAction(struct Proc* proc) {
 
 void HealTargetInit(struct TargetSelectionProc* targetProc) { 
 	StartUnitHpInfoWindow((struct Proc*) targetProc);  
-	StartBottomHelpText((struct Proc*)targetProc, GetStringFromIndex(HealTargetBottomText_Link));
+	StartSubtitleHelp((struct Proc*)targetProc, GetStringFromIndex(HealTargetBottomText_Link));
 } 
 
 int SacrificeTargetAPress(struct TargetSelectionProc* targetProc, struct TargetEntry* entry) { 
@@ -199,17 +251,17 @@ int DrawBackTargetAPress(struct TargetSelectionProc* targetProc, struct TargetEn
 
 int Sacrifice_Effect(struct MenuProc* menu) { 
 	MakeSacrificeTargetList(gActiveUnit); 
-	StartTargetSelection(&gSacrificeTargetSelection); // returns TargetSelectionProc* 
+	NewTargetSelection(&gSacrificeTargetSelection); // returns TargetSelectionProc* 
 	return 7; // close menu and such 
 } 
 int ArdentSacrifice_Effect(struct MenuProc* menu) { 
 	MakeTargetListForAdjacentHeal(gActiveUnit); 
-	StartTargetSelection(&gArdentSacrificeTargetSelection); // returns TargetSelectionProc* 
+	NewTargetSelection(&gArdentSacrificeTargetSelection); // returns TargetSelectionProc* 
 	return 7; // close menu and such 
 } 
 int ReciprocalAid_Effect(struct MenuProc* menu) { 
 	MakeReciprocalAidTargetList(gActiveUnit); 
-	StartTargetSelection(&gReciprocalAidTargetSelection); // returns TargetSelectionProc* 
+	NewTargetSelection(&gReciprocalAidTargetSelection); // returns TargetSelectionProc* 
 	return 7; // close menu and such 
 } 
 
@@ -224,7 +276,7 @@ int ArdentSacrifice_Usability(struct MenuProc* menu) {
 		return 3; // false 
 	}
 	MakeTargetListForAdjacentHeal(gActiveUnit); 
-	if (GetTargetListSize()) { 
+	if (GetSelectTargetCount()) { 
 		return 1; // usable 
 	} 
 	return 3; // not usable 
@@ -238,7 +290,7 @@ int ReciprocalAid_Usability(struct MenuProc* menu) {
 		return 3; // false 
 	}
 	MakeReciprocalAidTargetList(gActiveUnit); // calls InitTargets 
-	if (GetTargetListSize()) { 
+	if (GetSelectTargetCount()) { 
 		return 1; // usable 
 	} 
 	return 3; // not usable 
@@ -253,7 +305,7 @@ int ReciprocalAid_Usability(struct MenuProc* menu) {
  
  void TryAddToSacrificeTargetList(struct Unit* unit) {
 
-    if (!AreAllegiancesAllied(gSubjectUnit->index, unit->index)) {
+    if (!AreUnitsAllied(gSubjectUnit->index, unit->index)) {
         return;
     }
 
@@ -276,7 +328,7 @@ void MakeSacrificeTargetList(struct Unit* unit) {
 
     gSubjectUnit = unit;
 
-    BmMapFill(gMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddToSacrificeTargetList);
 
@@ -287,7 +339,7 @@ void MakeSacrificeTargetList(struct Unit* unit) {
   
 void TryAddToReciprocalAidTargetList(struct Unit* unit) {
 
-    if (!AreAllegiancesAllied(gSubjectUnit->index, unit->index)) {
+    if (!AreUnitsAllied(gSubjectUnit->index, unit->index)) {
         return;
     }
 
@@ -313,7 +365,7 @@ void MakeReciprocalAidTargetList(struct Unit* unit) {
 
     gSubjectUnit = unit;
 
-    BmMapFill(gMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryAddToReciprocalAidTargetList);
 
@@ -321,7 +373,7 @@ void MakeReciprocalAidTargetList(struct Unit* unit) {
 }
 
 static inline bool IsPosInvaild(s8 x, s8 y){
-	return( (x<0) & (x>gMapSize.x) & (y<0) & (y>gMapSize.y) );
+	return( (x<0) & (x>gBmMapSize.x) & (y<0) & (y>gBmMapSize.y) );
 }
 
 
@@ -335,7 +387,7 @@ int DrawBack_Usability(struct MenuProc* menu) {
 	
 	//ForEachAdjacentUnit(int x, int y, void(*)(struct Unit*))
 	MakeDrawBackTargetListForAdjacentAlly(gActiveUnit); // calls InitTargets 
-	if (GetTargetListSize()) { 
+	if (GetSelectTargetCount()) { 
 		return 1; // usable 
 	} 
 	return 3; // not usable 
@@ -344,14 +396,14 @@ int DrawBack_Usability(struct MenuProc* menu) {
 int DrawBack_Effect(struct MenuProc* menu) { 
 	MakeDrawBackTargetListForAdjacentAlly(gActiveUnit); 
 	//TryDrawBackAllyToTargetList(gActiveUnit); 
-	StartTargetSelection(&gDrawBackTargetSelection); // returns TargetSelectionProc* 
+	NewTargetSelection(&gDrawBackTargetSelection); // returns TargetSelectionProc* 
 	return 7; // close menu and such 
 	
 } 
 
 void DrawBackTargetInit(struct TargetSelectionProc* targetProc) { 
 	StartUnitHpInfoWindow((struct Proc*) targetProc);  
-	StartBottomHelpText((struct Proc*)targetProc, GetStringFromIndex(DrawBackTargetBottomText_Link));
+	StartSubtitleHelp((struct Proc*)targetProc, GetStringFromIndex(DrawBackTargetBottomText_Link));
 } 
 
 
@@ -410,7 +462,7 @@ struct Vec2u GetDrawBackCoord(int x1, int x2, int y1, int y2) {
 
 void TryDrawBackAllyToTargetList(struct Unit* unit) {
 
-    if (!AreAllegiancesAllied(gSubjectUnit->index, unit->index)) {
+    if (!AreUnitsAllied(gSubjectUnit->index, unit->index)) {
         return;
     }
 
@@ -433,15 +485,15 @@ void TryDrawBackAllyToTargetList(struct Unit* unit) {
 		return; 
 	}
 	
-	//if (gMapMovement[dest.y][dest.x] < 0xF) { // can we actually move there 
-	if (gMapUnit[dest.y][dest.x]) { 
+	//if (gBmMapMovement[dest.y][dest.x] < 0xF) { // can we actually move there 
+	if (gBmMapUnit[dest.y][dest.x]) { 
 		return; // dest sq is occupied 
 	} 
-	if (gMapHidden[dest.y][dest.x] & 1) { 
+	if (gBmMapHidden[dest.y][dest.x] & 1) { 
 		return; // hidden unit here 
 	} 
-	if (CanUnitCrossTerrain(gSubjectUnit, gMapTerrain[dest.y][dest.x])) { // can we actually move there 
-		if (CanUnitCrossTerrain(unit, gMapTerrain[y1][x1])) { // can target be pulled onto here? 
+	if (CanUnitCrossTerrain(gSubjectUnit, gBmMapTerrain[dest.y][dest.x])) { // can we actually move there 
+		if (CanUnitCrossTerrain(unit, gBmMapTerrain[y1][x1])) { // can target be pulled onto here? 
 			AddTarget(unit->xPos, unit->yPos, unit->index, 0);
 		} 
 	} 
@@ -457,7 +509,7 @@ void MakeDrawBackTargetListForAdjacentAlly(struct Unit* unit) {
 
     gSubjectUnit = unit;
 
-    BmMapFill(gMapRange, 0);
+    BmMapFill(gBmMapRange, 0);
 
     ForEachAdjacentUnit(x, y, TryDrawBackAllyToTargetList);
 

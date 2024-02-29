@@ -8,7 +8,7 @@ static bool IsBattleReal() {
 }
 
 //Checks if given unit is on the field
-static bool IsUnitOnField(Unit* unit) {
+static bool IsUnitOnField(struct Unit* unit) {
     if (!unit || !unit->pCharacterData)
         return FALSE;
 
@@ -34,7 +34,7 @@ bool IsSkillInBuffer(SkillBuffer* buffer, u8 skillID) {
 
 //Checks if the given skillID is negated by Nihil
 //If it is, the unit's opponent's skill buffer is searched through for nihil
-bool NihilTester(Unit* unit, u8 skillID) {
+bool NihilTester(struct Unit* unit, u8 skillID) {
     //Check if in battle and if the skill in question can be negated
     if ((gBattleStats.config & 3) && NegatedSkills[skillID]) {
         SkillBuffer* buffer = &gDefenderSkillBuffer;
@@ -49,10 +49,15 @@ bool NihilTester(Unit* unit, u8 skillID) {
     return FALSE;
 }
 
+ItemDataExt* GetItemDataExt(u16 item) {
+	ItemDataExt* e = (ItemDataExt*)GetItemData(item);
+	return e;
+}
+
 /*Main functions*/
 
 //Makes skill buffer at a given location.
-SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
+SkillBuffer* MakeSkillBuffer(struct Unit* unit, SkillBuffer* buffer) {
     int unitNum = unit->pCharacterData->number;
     int count = 0, temp = 0;
     buffer->lastUnitChecked = unit->index;
@@ -70,7 +75,7 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
     }
 
     //Learned skills (In BWL data)
-    BWLData* unitBWL = BWL_GetEntry(unitNum);
+    BWLData* unitBWL = (BWLData*)GetPidStats(unitNum);
     if (unitBWL) {
         for (int i = 0; i < 4; ++i) {
             if (!IsSkillIDValid(unitBWL->skills[i])) {
@@ -95,8 +100,8 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
     for (int i = 0; i < 5 && unit->items[i]; ++i) {
         temp = unit->items[i];
         if ((GetItemAttributes(temp) & PassiveSkillBit)) {
-            if (IsSkillIDValid(GetItemData(temp & 0xFF)->skill)) {
-                buffer->skills[count++] = GetItemData(temp & 0xFF)->skill;
+            if (IsSkillIDValid(GetItemDataExt(temp & 0xFF)->skill)) {
+                buffer->skills[count++] = GetItemDataExt(temp & 0xFF)->skill;
                 //If passive skills don't stack, stop looping
                 if (!gSkillTestConfig.passiveSkillStack) {
                     break;
@@ -108,14 +113,14 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
     //Equipped weapon skills
     //If unit is in combat, use the equipped weapon short
     if (unit->index == gBattleActor.unit.index && IsBattleReal()) {
-        temp = GetItemData(gBattleActor.weaponBefore & 0xFF)->skill;
+        temp = GetItemDataExt(gBattleActor.weaponBefore & 0xFF)->skill;
     }
     else if (unit->index == gBattleTarget.unit.index && IsBattleReal()) {
-        temp = GetItemData(gBattleTarget.weaponBefore & 0xFF)->skill;
+        temp = GetItemDataExt(gBattleTarget.weaponBefore & 0xFF)->skill;
     }
     //Otherwise, get the equipped weapon via a vanilla function
     else {
-        temp = GetItemData(GetUnitEquippedWeapon(unit) & 0xFF)->skill;
+        temp = GetItemDataExt(GetUnitEquippedWeapon(unit) & 0xFF)->skill;
     }
 
     //Check if equipped weapon skill is valid
@@ -130,14 +135,14 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
 }
 
 //Creates an aura skill buffer with skill coordinates relative to a unit
-AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
+AuraSkillBuffer* MakeAuraSkillBuffer(struct Unit* unit) {
     SkillBuffer* buffer = &gAttackerSkillBuffer;
     AuraSkillBuffer* auraBuffer = gAuraSkillBuffer;
     int count = 0;
     int distance = 0;
 
     for (int i = 0; i < 0x100; ++i) {
-        Unit* other = gUnitLookup[i];
+        struct Unit* other = gUnitLookup[i];
 
         if (!IsUnitOnField(other) || unit->index == i) {
             continue;
@@ -176,7 +181,7 @@ AuraSkillBuffer* MakeAuraSkillBuffer(Unit* unit) {
 
 //Checks for skills in an in progress buffer
 //Used by the weapon usability calc loop
-bool CheckSkillBuffer(Unit* unit, u8 skillID) {
+bool CheckSkillBuffer(struct Unit* unit, u8 skillID) {
     if (skillID == 0)   {return TRUE;}
     if (skillID == 255) {return FALSE;}
 
@@ -192,7 +197,7 @@ bool CheckSkillBuffer(Unit* unit, u8 skillID) {
 
 //Checks unit for a given skill.
 //If the unit tested is the same as last time, uses the previous skill buffer
-bool SkillTester(Unit* unit, u8 skillID) {
+bool SkillTester(struct Unit* unit, u8 skillID) {
     if (skillID == 0)   {return TRUE;}
     if (skillID == 255) {return FALSE;}
 
@@ -219,9 +224,11 @@ bool SkillTester(Unit* unit, u8 skillID) {
     return FALSE;
 }
 
+
+
 //Loops through premade aura skill buffer to find matching aura skills within range
-bool NewAuraSkillCheck(Unit* unit, u8 skillID, int allyOption, int maxRange) {
-    const s8(*pAllegianceChecker)(int, int) = ((allyOption & 1) ? AreAllegiancesAllied : AreAllegiancesEqual);
+bool NewAuraSkillCheck(struct Unit* unit, u8 skillID, int allyOption, int maxRange) {
+    s8(*pAllegianceChecker)(int, int) = ((allyOption & 1) ? AreUnitsAllied : IsSameAllegiance);
 
     if (skillID == 0)   {return TRUE;}
     if (skillID == 255) {return FALSE;}
@@ -245,7 +252,7 @@ bool NewAuraSkillCheck(Unit* unit, u8 skillID, int allyOption, int maxRange) {
 }
 
 //Prepares buffers for prebattle loop
-void InitializePreBattleLoop(Unit* attacker, Unit* defender) {
+void InitializePreBattleLoop(struct Unit* attacker, struct Unit* defender) {
     MakeAuraSkillBuffer(attacker);
     MakeSkillBuffer(attacker, &gAttackerSkillBuffer);
     gDefenderSkillBuffer.lastUnitChecked = 0;
@@ -262,14 +269,14 @@ void InitSkillBuffers() {
 }
 
 //Finds units in a radius and returns a list of matching unit's indexes
-u8* GetUnitsInRange(Unit* unit, int allyOption, int range) {
-    const s8(*pAllegianceChecker)(int, int) = ((allyOption & 1) ? AreAllegiancesAllied : AreAllegiancesEqual);
+u8* GetUnitsInRange(struct Unit* unit, int allyOption, int range) {
+    s8(*pAllegianceChecker)(int, int) = ((allyOption & 1) ? AreUnitsAllied : IsSameAllegiance);
 
     int count = 0;
     int check = 0;
 
     for (int i = 0; i < 0x100; ++i) {
-        Unit* other = gUnitLookup[i];
+        struct Unit* other = gUnitLookup[i];
 
         if (!IsUnitOnField(other) || unit->index == i) {
             continue;

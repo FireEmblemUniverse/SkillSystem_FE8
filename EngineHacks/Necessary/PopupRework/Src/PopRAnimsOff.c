@@ -39,7 +39,7 @@ void PopR_AnimsOffDisplay(struct PopupReworkProc* proc) {
 
 	// Make background tilemap
 
-	MakeUIWindowTileMap_BG0BG1(
+	DrawUiFrame2(
 		xTile,       yTile,
 		xTileSize+2, 4,
 
@@ -48,11 +48,11 @@ void PopR_AnimsOffDisplay(struct PopupReworkProc* proc) {
 
 	// Prepare text
 
-	struct TextHandle text;
-	Text_InitClear(&text, xTileSize);
+	struct Text text;
+	InitText(&text, xTileSize);
 
-	Text_SetColorId(&text, proc->pop.textColorId);
-	Text_SetXCursor(&text, xStartOffset);
+	Text_SetColor(&text, proc->pop.textColorId);
+	Text_SetCursor(&text, xStartOffset);
 
 	// Draw components
 
@@ -60,11 +60,11 @@ void PopR_AnimsOffDisplay(struct PopupReworkProc* proc) {
 
 	// Display text
 
-	Text_Display(&text, BG_LOCATED_TILE(gBg0MapBuffer, xTile+1, yTile+1));
+	PutText(&text, BG_LOCATED_TILE(gBG0TilemapBuffer, xTile+1, yTile+1));
 
 	// Reset font
 
-	Text_InitFont();
+	ResetText();
 
 	// Play sound
 
@@ -87,8 +87,8 @@ struct PopRAnimsOffIconUpdater {
 
 static void PopR_AnimsOffIconUpdaterLoop(struct PopRAnimsOffIconUpdater* proc);
 
-static const struct ProcInstruction sProc_PopRAnimsOffIconUpdater[] = {
-	PROC_LOOP_ROUTINE(PopR_AnimsOffIconUpdaterLoop),
+static const struct ProcCmd sProc_PopRAnimsOffIconUpdater[] = {
+	PROC_REPEAT(PopR_AnimsOffIconUpdaterLoop),
 	PROC_END
 };
 
@@ -98,7 +98,7 @@ static void PopR_AnimsOffAddIcon(struct PopupReworkProc* proc, unsigned iconId, 
 	// Make updater proc if it has not already
 
 	if (!pproc->pIconUpdater) {
-		pproc->pIconUpdater = (struct PopRAnimsOffIconUpdater*) ProcStart(sProc_PopRAnimsOffIconUpdater, (struct Proc*)(pproc));
+		pproc->pIconUpdater = (struct PopRAnimsOffIconUpdater*) Proc_Start(sProc_PopRAnimsOffIconUpdater, (struct Proc*)(pproc));
 
 		pproc->pIconUpdater->entries[0].iconId = -1;
 	}
@@ -136,7 +136,7 @@ static void PopR_AnimsOffAddIcon(struct PopupReworkProc* proc, unsigned iconId, 
 
 static void PopR_AnimsOffIconUpdaterLoop(struct PopRAnimsOffIconUpdater* proc) {
 	for (struct PopRIconEntry* entry = proc->entries; entry->iconId >= 0; ++entry)
-		PushToHiOAM(entry->xBase, entry->yBase, &gObj_16x16, entry->tileBase);
+		CallARM_PushToSecondaryOAM(entry->xBase, entry->yBase, &gObject_16x16, entry->tileBase);
 }
 
 struct AnimsOffWrapperProc {
@@ -148,11 +148,11 @@ struct AnimsOffWrapperProc {
 static void PopR_AnimsOffWrapperInit(struct AnimsOffWrapperProc* proc);
 static void PopR_AnimsOffWrapperLoop(struct AnimsOffWrapperProc* proc);
 
-const struct ProcInstruction gProc_PopR_AnimsOnWrapper[] = {
-	PROC_CALL_ROUTINE(PopR_AnimsOffWrapperInit),
+const struct ProcCmd gProc_PopR_AnimsOnWrapper[] = {
+	PROC_CALL(PopR_AnimsOffWrapperInit),
 
 PROC_LABEL(0),
-	PROC_LOOP_ROUTINE(PopR_AnimsOffWrapperLoop),
+	PROC_REPEAT(PopR_AnimsOffWrapperLoop),
 	PROC_SLEEP(8),
 
 	PROC_GOTO(0),
@@ -169,15 +169,15 @@ static void PopR_AnimsOffWrapperLoop(struct AnimsOffWrapperProc* proc) {
 	const struct BattlePopupType type = *proc->itPop++;
 
 	if (!type.tryInit) {
-		ProcGoto((struct Proc*) (proc), 1);
+		Proc_Goto((struct Proc*) (proc), 1);
 		return;
 	}
 
 	if (!type.tryInit()) {
-		ProcGoto((struct Proc*) (proc), 0);
+		Proc_Goto((struct Proc*) (proc), 0);
 		return;
 	}
 
-	Popup_Create(type.definition, type.time, 0, (struct Proc*) (proc));
-	BreakProcLoop((struct Proc*) (proc));
+	NewPopup_Simple(type.definition, type.time, 0, (struct Proc*) (proc));
+	Proc_Break((struct Proc*) (proc));
 }

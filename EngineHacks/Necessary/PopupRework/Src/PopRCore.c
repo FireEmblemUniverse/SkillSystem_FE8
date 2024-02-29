@@ -19,7 +19,7 @@ unsigned PopR_GetLength(struct PopupReworkProc* proc) {
 	return result;
 }
 
-void PopR_DisplayComponents(struct PopupReworkProc* proc, struct TextHandle* text) {
+void PopR_DisplayComponents(struct PopupReworkProc* proc, struct Text* text) {
 	const u32* defintion = proc->pop.pDefinition;
 
 	if (defintion) {

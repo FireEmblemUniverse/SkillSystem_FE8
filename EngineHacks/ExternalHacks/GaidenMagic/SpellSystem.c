@@ -8,7 +8,7 @@ u8* SpellsGetterForLevel(Unit* unit, int level, int type)  // Same as SpellsGett
 {
 	// Treat level = -1 as any level equal to or below the unit's current level.
 	int unitLevel = unit->level;
-	if ( UNIT_ATTRIBUTES(unit) & CA_PROMOTED ) { unitLevel += 80; } // Treat promoted as top bit set.
+	if ( UNIT_CATTRIBUTES(unit) & CA_PROMOTED ) { unitLevel += 80; } // Treat promoted as top bit set.
 	u8* currBuffer = SpellsBuffer;
 	SpellList* ROMList = SpellListTable[unit->pCharacterData->number];
 	if ( ROMList )
@@ -44,7 +44,7 @@ u8* SpellsGetterForLevel(Unit* unit, int level, int type)  // Same as SpellsGett
 int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 {
 	int vanillaEquipped = GetVanillaEquipped(unit);
-	if ( gChapterData.currentPhase == ( unit->index & 0xC0 ) )
+	if ( gPlaySt.faction == ( unit->index & 0xC0 ) )
 	{
 		// It is our phase.
 		if ( !UsingSpellMenu ) { return vanillaEquipped; }
@@ -210,7 +210,7 @@ int CanCastSpellNow(Unit* unit, int spell)
 		if ( !CanUnitUseWeaponNow(gActiveUnit,spell) ) { return 0; }
 		// Next, we can initialize a "dummy" target list and check if it's empty. If not, then there's a valid target we can attack.
 		MakeTargetListForWeapon(gActiveUnit,spell);
-		return GetTargetListSize() != 0;
+		return GetSelectTargetCount() != 0;
 	}
 	else
 	{
@@ -226,7 +226,7 @@ int CanCastSpell(Unit* unit, int spell) // Same as CanCastSpellNow but calls the
 		if ( !CanUnitUseWeapon(gActiveUnit,spell) ) { return 0; }
 		// Next, we can initialize a "dummy" target list and check if it's empty. If not, then there's a valid target we can attack.
 		MakeTargetListForWeapon(gActiveUnit,spell);
-		return GetTargetListSize() != 0;
+		return GetSelectTargetCount() != 0;
 	}
 	else
 	{

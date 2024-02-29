@@ -10,6 +10,7 @@
 #include "fontgrp.h"
 #include "ekrbattle.h"
 #include "efxbattle.h"
+#include "sysutil.h"
 #include "classdisplayfont.h"
 #include "bmunit.h"
 #include "bmitem.h"
