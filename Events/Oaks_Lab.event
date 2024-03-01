@@ -364,16 +364,16 @@ CompareTactText(DarkName)BNE 2 rC r7CALL PlaytesterCommonMessageSVAL r2 Units
 CompareTactText(HiroName)BNE 3 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsHiro|IsPointerGOTO 200Label 3
 CompareTactText(N426Name)BNE 4 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsN426|IsPointerGOTO 200Label 4
 CompareTactText(ZoramineName)BNE 5 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsZoramine|IsPointerGOTO 200Label 5
-CompareTactText(PandanName)BNE 6 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsPandan|IsPointerGOTO 200Label 6
-CompareTactText(DerName)BNE 7 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsDer|IsPointerGOTO 200Label 7
-CompareTactText(AshName)BNE 8 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsAsh|IsPointerGOTO 200Label 8
+CompareTactText(OakName)BNE 6 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsOak|IsPointerGOTO 200Label 6
+CompareTactText(BillName)BNE 7 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsBill|IsPointerGOTO 200Label 7
+CompareTactText(AshName)BNE 8 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsAsh|IsPointerGOTO 200Label 8
 CompareTactText(RedName)BNE 9 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsRed|IsPointerGOTO 200Label 9
 CompareTactText(LanceName)BNE 10 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsLance|IsPointerGOTO 200Label 10
 CompareTactText(BrockName)BNE 11 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsBrock|IsPointerGOTO 200Label 11
 CompareTactText(MistyName)BNE 12 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsMisty|IsPointerGOTO 200Label 12
-CompareTactText(GaryName)BNE 13 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsGary|IsPointerGOTO 200Label 13
+CompareTactText(GaryName)BNE 13 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsGary|IsPointerGOTO 200Label 13
 CompareTactText(bpatName)BNE 14 rC r7CALL PlaytesterCommonMessageSVAL r2 Unitsbpat|IsPointerGOTO 200Label 14
-CompareTactText(VeslyName)BNE 15 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsVesly|IsPointerGOTO 200Label 15
+CompareTactText(VeslyName)BNE 15 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsVesly|IsPointerGOTO 200Label 15
 CompareTactText(ZaimName)BNE 16 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsZaim|IsPointerGOTO 200Label 16
 CompareTactText(AriadnaName)BNE 17 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsAriadna|IsPointerGOTO 200Label 17
 CompareTactText(ScubName)
@@ -728,11 +728,6 @@ UNIT 0x02  ZubatID BonusUnitParameters
 UNIT
 
 ALIGN 4 
-UnitsVesly: 
-UNIT 0x02  GrimerID BonusUnitParameters
-UNIT
-
-ALIGN 4 
 UnitsZaim: 
 UNIT 0x02  SlowpokeID BonusUnitParameters
 UNIT
@@ -868,11 +863,6 @@ UNIT 0x02 EeveeID BonusUnitParameters
 UNIT 
 
 ALIGN 4 
-UnitsAsh: 
-UNIT 0x02  PikachuID BonusUnitParameters
-UNIT
-
-ALIGN 4 
 UnitsRed: 
 UNIT 0x02  PikachuID BonusUnitParameters
 UNIT
@@ -883,11 +873,8 @@ UNIT 0x02  EeveeID BonusUnitParameters
 UNIT
 
 ALIGN 4 
-UnitsGary: 
-UNIT 0x02  MagikarpID BonusUnitParameters
-UNIT
-
-
+UnitsNone:
+UNIT 
 
 ALIGN 4 
 UnitsBrock: 
@@ -1027,6 +1014,51 @@ UNIT
 
 
 
+ALIGN 4 ; UnitsAsh:
+UNIT 0x02 PikachuID BonusUnitParameters
+UNIT 0x06 BulbasaurID BonusUnitParameters 
+UNIT 0x07 CharmanderID BonusUnitParameters 
+UNIT 0x08 SquirtleID BonusUnitParameters 
+UNIT 0x09 SnorlaxID BonusUnitParameters 
+UNIT 0x0A LaprasID BonusUnitParameters 
+UNIT
+ALIGN 4 
+UnitsGary: 
+UNIT 0x02 GrowlitheID BonusUnitParameters
+UNIT 0x06 ExeggcuteID BonusUnitParameters 
+UNIT 0x07 MagikarpID BonusUnitParameters 
+UNIT 0x08 PidgeyID BonusUnitParameters 
+UNIT 0x09 AbraID BonusUnitParameters 
+UNIT 0x0A NidoranMID BonusUnitParameters 
+UNIT
+
+
+
+ALIGN 4 ; UnitsOak:
+UNIT 0x02 PikachuID BonusUnitParameters
+UNIT 0x06 BulbasaurID BonusUnitParameters 
+UNIT 0x07 CharmanderID BonusUnitParameters 
+UNIT 0x08 SquirtleID BonusUnitParameters 
+UNIT 0x09 EeveeID BonusUnitParameters 
+UNIT 0x0A TaurosID BonusUnitParameters 
+UNIT
+ALIGN 4 ; UnitsBill:
+UNIT 0x02 VaporeonID BonusUnitParameters
+UNIT 0x06 JolteonID BonusUnitParameters 
+UNIT 0x07 FlareonID BonusUnitParameters 
+UNIT 0x08 ClefairyID BonusUnitParameters 
+UNIT 0x09 PorygonID BonusUnitParameters 
+UNIT 0x0A JigglypuffID BonusUnitParameters 
+UNIT
+
+ALIGN 4 ; UnitsVesly:
+UNIT 0x02 MagikarpID BonusUnitParameters
+UNIT 0x06 CaterpieID BonusUnitParameters 
+UNIT 0x07 WeedleID BonusUnitParameters 
+UNIT 0x08 RattataID BonusUnitParameters 
+UNIT 0x09 PidgeyID BonusUnitParameters 
+UNIT 0x0A ZubatID BonusUnitParameters 
+UNIT
 
 
 
