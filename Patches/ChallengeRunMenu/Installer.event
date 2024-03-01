@@ -3,8 +3,11 @@
 
 
 ALIGN 4
-CR_PAGE1MAXINDEX: 
+CR_TotalOptions: 
+WORD 21 // number of options to scroll through 
+CR_MaxDisplayed:
 WORD 7 // Max is 7 (for 8 entries) 
+
 
 CR_NumberOfOptionsPerEntryTable:
 BYTE 2 // 0th entry has 2 choices 

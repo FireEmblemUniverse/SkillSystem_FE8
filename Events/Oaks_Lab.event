@@ -313,8 +313,13 @@ UNIT
 
 NameInputEvent:
 
+//BACG 0x35 // black bg 
+//ASMC StartChallengeRun
+//BNE 9123 sC s0 
+//FADI 16 
+
 // Name input screen 
-REMOVEPORTRAITS
+REMOVEPORTRAITS // New Name 
 ASMC 0x48281
 //ASMC2 0x48281
 CLEAN
@@ -322,10 +327,14 @@ CLEAN
 //FADI 12 
 //CLEAN 
 //FADU 12 
-ASMC SaveGameSeed
 
 BACG 0x35 // black bg 
 ASMC StartChallengeRun
+
+LABEL 9123 // Specific name chosen 
+ASMC SaveGameSeed
+
+
 //SVAL s1 0x2001000 
 //ASMC StartHexEditor
 
