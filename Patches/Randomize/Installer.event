@@ -69,27 +69,41 @@ POIN RandomItemTier3List
 ALIGN 4 
 RandomItemTier0List: // if durability is 0, give as full durability 
 SHORT JellyDonut
-SHORT Tm(Doubleslap) Tm(DoubleHit) Tm(Harden) Tm(Flash) 
-SHORT Tm(Growl) 
-SHORT Skl(Intimidate2ID) // not tier 0, but an example (skill scroll) 
-SHORT Acc(CounterID)  // not tier 0, but an example (accessory) 
+SHORT Tm(Doubleslap) Tm(DoubleHit) Tm(Harden) Tm(Flash) Tm(Leer) Tm(ThunderWave) Tm(PoisonPowder) Tm(PoisonGas) Tm(AttackPulse) Tm(RockThrow) Tm(RockTomb) Tm(IcyWind) Tm(Confusion) Tm(Magnitude) Tm(Gust) Tm(Bite) 
+SHORT Tm(Growl) Tm(LeafFlurry) Tm(Ember) Tm(MudShot) Tm(WaterGun) Tm(Bubble) Tm(Clamp) Tm(KarateChop) Tm(Snarl) Tm(Acid) Tm(HornAttack) Tm(PayDay) Tm(Pound) Tm(QuickAttack) Tm(Rage) Tm(SandAttack) Tm(Scratch) 
+SHORT Tm(Tackle) Tm(TailWhip) Tm(Splash) Tm(Absorb) Tm(GuardMove) Tm(ThunderShock) Tm(VineWhip) Tm(RazorLeaf) Tm(DoubleKick) Tm(Peck) Tm(FocusEnergy) Tm(PoisonSting) Tm(Smog) Tm(StringShot) Tm(Twister) 
+SHORT Tm(PinMissile) Tm(FuryCutter) Tm(ThiefAtt) Tm(ConfuseRay) Tm(Lick) 
+SHORT Skl(ReliefID) Skl(FocusID) Skl(PatienceID) Skl(ParagonID) Skl(PrescienceID) Skl(StrongRiposteID) // not tier 0, but an example (skill scroll) 
+SHORT // not tier 0, but an example (accessory) 
 SHORT 0 // Terminator 
 
 ALIGN 4 
 RandomItemTier1List: // if durability is 0, give as full durability 
 SHORT SuperPotion
-SHORT Tm(Constrict) Tm(Glare) Tm(RecoverMove) Tm(BodySlam)
+SHORT Tm(Constrict) Tm(Glare) Tm(RecoverMove) Tm(BodySlam) Tm(Headbutt) Tm(MegaPunch) Tm(MegaKick) Tm(LeechLife) Tm(BugBite) Tm(SignalBeam) Tm(BubbleBeam) Tm(WaterPulse) Tm(AirSlash) Tm(WingAttack) Tm(Fly) 
+SHORT Tm(AuroraBeam) Tm(Scorch) Tm(MagicalLeaf) Tm(GrassKnot) Tm(Dragonbreath) Tm(MudBomb) Tm(Dig) Tm(MetalClaw) Tm(MirrorShot) Tm(Slam) Tm(Slash) Tm(Swift) Tm(FlameWheel) Tm(FireSpin) Tm(HoneClaws) 
+SHORT Tm(ShockWave) Tm(Spark) Tm(Avalanche) Tm(RollingKick) Tm(LowKick) Tm(Rollout) Tm(DragonRage) Tm(UTurn) Tm(NightShade) Tm(HexAtt) Tm(NightDaze)
+SHORT Skl(OpportunistID) Skl(VigilanceID) Skl(PragmaticID) Skl(InsightID) Skl(PerfectionistID) Skl(ChivalryID) Skl(WindDiscipleID) 
+SHORT Acc(WaryFighterID) Acc(RockyHelmetSkillID) Acc(RenewalID) Acc(PoisonStrikeID) Acc(DazzleID) Acc(CounterID) Acc(CounterMagicID) Acc(ShellBellID) Acc(Intimidate2ID) Acc(GuardBreakerID) Acc(DowngradeID)
+SHORT Acc(LifeAndDeathID) Acc(CantoPlusID) Acc(SteadyStanceID) Acc(WardingStanceID) Acc(ExpShareID) Acc(FuryPlusID) 
 SHORT 0 // Terminator 
 
 ALIGN 4 
 RandomItemTier2List: // if durability is 0, give as full durability 
 SHORT HyperPotion MaxPotion
-SHORT Tm(CalmMind) Tm(BulkUp) Tm(Screech) Tm(Agility) 
+SHORT Tm(CalmMind) Tm(BulkUp) Tm(Screech) Tm(Agility) Tm(PetalDance) Tm(LeafBlade) Tm(Surf) Tm(Flamethrower) Tm(IceBeam) Tm(ShadowBall) Tm(DarkPulse) Tm(NightSlash) Tm(EarthPower) Tm(Earthquake)  
+SHORT Tm(PoisonJab) Tm(Sludge) Tm(Thunderbolt) Tm(RockSlide) Tm(AncientPower) Tm(X-Scissor) Tm(BugBuzz) Tm(FirePunch) Tm(ThunderPunch) Tm(IcePunch) Tm(DrillPeck) Tm(TriAttack) 
+SHORT Tm(IronTail) Tm(JumpKick) Tm(HyperFang) Tm(FlashCannon) Tm(MetalSound) Tm(SuperFang) Tm(TakeDown) Tm(Thrash) Tm(Waterfall) Tm(Submission) Tm(SeismicToss) Tm(DragonClaw)
+SHORT Skl(RenewalID) Skl(FieryBloodID) Skl(DartingStanceID) Skl(FierceStanceID) Skl(SilentPrideID) Skl(QuickDrawID) Skl(WrathID) Skl(AnathemaID) Skl(ChargeID)
+SHORT Acc(FuryID) Acc(CleatsID) Acc(SurfBoardID) Acc(SilphScopeID) Acc(SavageBlowID) Acc(GrislyWoundID) Acc(MiracleID) Acc(AmaterasuID) Acc(SurfBoardID) Acc(SilphScopeID) Acc(SavageBlowID) Acc(GrislyWoundID) Acc(HoverBoardID)
 SHORT 0 // Terminator 
 
 ALIGN 4 
 RandomItemTier3List: // if durability is 0, give as full durability 
-SHORT Tm(Amnesia) Tm(DoubleEdge) Tm(Explosion) 
+SHORT Tm(Amnesia) Tm(DoubleEdge) Tm(Explosion) Tm(FireBlast) Tm(SacredFire) Tm(Blizzard) Tm(SolarBeam) Tm(SkyAttack) Tm(ThunderMove) Tm(VoltTackle) Tm(Fissure) Tm(Psychic) Tm(HiJumpKick)
+SHORT Tm(HyperBeam) Tm(HydroPump) Tm(MegaHorn) Tm(Outrage) Tm(MeteorMash) Tm(SwordsDance) Tm(Guillotine) Tm(HornDrill) Tm(Crabhammer)
+SHORT Skl(SavageBlowID) Skl(GrislyWoundID) Skl(FuryID)
+SHORT Acc(GaleforceID) Acc(BlossomID)
 SHORT 0 // Terminator 
 
 #define CB_Entry(ClassID, Tier) "BYTE Tier" 
