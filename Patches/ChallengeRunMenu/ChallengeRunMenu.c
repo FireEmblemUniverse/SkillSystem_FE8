@@ -111,7 +111,7 @@ void SetPkmn(ChallengeRunProc* proc) {
 void DrawCR_Sprites(ChallengeRunProc* proc, int bg) { 
 	int i; 
 	
-	SetPkmn(proc); 
+	//SetPkmn(proc); 
 	if (proc->offset) {
         DisplayUiVArrow(MENU_X+8, MENU_Y-8, 0x3240, 1); // up arrow 
     }
@@ -121,6 +121,12 @@ void DrawCR_Sprites(ChallengeRunProc* proc, int bg) {
 	}
 	DisplayUiHand(CR_CursorLocationTable[proc->id].x, CR_CursorLocationTable[proc->id].y); 	
 	
+	if (proc->updateSMS) { 
+	SetPkmn(proc); 
+	if (!proc->pkmn[0]) { return; } 
+		ResetUnitSprites();
+		
+	} 
     for (i = 0; i < 6; i++) {
         u32 yOff = ((i >> 1) << 4) + 16;///proc->yDiff_cur;
         //if((yOff + 0xF) < 0x60 )
@@ -129,6 +135,12 @@ void DrawCR_Sprites(ChallengeRunProc* proc, int bg) {
 			if (!proc->pkmn[i]) { break; } 
 			PutUnitSpriteForClassId(bg, (i & 1) * 56 + 0x70, yOff + 0x18, 0xc800, proc->pkmn[i]);
     }
+	if (proc->updateSMS) { 
+		proc->updateSMS = false; 
+		if (!proc->pkmn[0]) { return; } 
+		ForceSyncUnitSpriteSheet(); 
+		return; 
+	}
 	SyncUnitSpriteSheet();
 } 
 void ClearLine(int); 
@@ -251,6 +263,7 @@ void DrawChallengeRun(ChallengeRunProc* proc) {
 	DrawLine(i, x, y+12, bg); i++; 
 	DrawLine(i, x, y+14, bg); i++; 
 	DrawLine(i, 12,   1, bg); i++; 
+	DrawAdditionalRulesText(proc); 
 	BG_EnableSyncByMask(BG_SYNC_BIT(bg));
 
 
@@ -273,12 +286,17 @@ void StartChallengeRun(ProcPtr parent) {
 		proc->redraw = false; 
 		proc->cannotCatch = false; 
 		proc->cannotEvolve = false; 
+		proc->updateSMS = true; 
+		proc->handleID = 0; 
+		proc->pkmn[0] = 0; 
 		//ResetText();
 		UnpackUiVArrowGfx(0x240, 3);
 		SetTextFontGlyphs(0);
 		SetTextFont(0);
 		ResetTextFont();
-		CR_EraseText(proc);
+		SetupMapSpritesPalettes();
+		//CR_EraseText(proc);
+		DrawChallengeRun(proc);
 		DrawChallengeRun(proc);
 		//BG_EnableSyncByMask(BG0_SYNC_BIT);
 		StartGreenText(proc); 
