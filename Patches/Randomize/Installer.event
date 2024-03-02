@@ -85,7 +85,7 @@ SHORT Tm(AuroraBeam) Tm(Scorch) Tm(MagicalLeaf) Tm(GrassKnot) Tm(Dragonbreath) T
 SHORT Tm(ShockWave) Tm(Spark) Tm(Avalanche) Tm(RollingKick) Tm(LowKick) Tm(Rollout) Tm(DragonRage) Tm(UTurn) Tm(NightShade) Tm(HexAtt) Tm(NightDaze)
 SHORT Skl(OpportunistID) Skl(VigilanceID) Skl(PragmaticID) Skl(InsightID) Skl(PerfectionistID) Skl(ChivalryID) Skl(WindDiscipleID) 
 SHORT Acc(WaryFighterID) Acc(RockyHelmetSkillID) Acc(RenewalID) Acc(PoisonStrikeID) Acc(DazzleID) Acc(CounterID) Acc(CounterMagicID) Acc(ShellBellID) Acc(Intimidate2ID) Acc(GuardBreakerID) Acc(DowngradeID)
-SHORT Acc(LifeAndDeathID) Acc(CantoPlusID) Acc(SteadyStanceID) Acc(WardingStanceID) Acc(ExpShareID) Acc(FuryPlusID) 
+SHORT Acc(LifeAndDeathID) Acc(CantoPlusID) Acc(SteadyStanceID) Acc(WardingStanceID) Acc(ExpShareID) Acc(VantagePlusID) 
 SHORT 0 // Terminator 
 
 ALIGN 4 
