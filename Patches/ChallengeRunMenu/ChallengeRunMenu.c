@@ -88,7 +88,7 @@ void CR_EraseText(ChallengeRunProc* proc) {
 	//BG_EnableSyncByMask(BG0_SYNC_BIT);
 	//ResetTextFont();
 	DrawChallengeRun(proc);
-	DrawAdditionalRulesText(proc);
+	//DrawAdditionalRulesText(proc);
 }
 
 
@@ -110,7 +110,6 @@ void SetPkmn(ChallengeRunProc* proc) {
 
 void DrawCR_Sprites(ChallengeRunProc* proc, int bg) { 
 	int i; 
-	
 	//SetPkmn(proc); 
 	if (proc->offset) {
         DisplayUiVArrow(MENU_X+8, MENU_Y-8, 0x3240, 1); // up arrow 
@@ -133,7 +132,9 @@ void DrawCR_Sprites(ChallengeRunProc* proc, int bg) {
             //PutUnitSprite(0, (i & 1) * 56 + 0x70, yOff + 0x18,
                         //GetUnit(1));
 			if (!proc->pkmn[i]) { break; } 
-			PutUnitSpriteForClassId(bg, (i & 1) * 56 + 0x70, yOff + 0x18, 0xc800, proc->pkmn[i]);
+			u32 xOff = (i & 1) * 56 + 0x70;
+			if ((i == 2) || (i == 3)) xOff += 28; 
+			PutUnitSpriteForClassId(bg, xOff, yOff + 0x18, 0xc800, proc->pkmn[i]);
     }
 	if (proc->updateSMS) { 
 		proc->updateSMS = false; 
@@ -147,25 +148,48 @@ void ClearLine(int);
 void DrawAdditionalRulesText(ChallengeRunProc* proc) { 
 	//char* str2[4];
 	int i = 0; 
-	ResetUnitSprites();
+	//ResetUnitSprites();
 	proc->cannotCatch = false; 
 	proc->cannotEvolve = false; 
-	if ((proc->id == 1) && (proc->offset == 0)) { proc->cannotEvolve = true; } 
-	if (proc->id+proc->offset > 1) { proc->cannotCatch = true; } 
+	int redraw = false; 
+	int opt = proc->id+proc->offset;
+	if (opt == 1) { proc->cannotEvolve = true; redraw = true; } 
+	if ((opt >= (CR_TotalOptions))) { proc->cannotCatch = true; proc->cannotEvolve = true; redraw = true; } // Vesly 
+	if ((opt == 2) || (opt == (CR_TotalOptions - 1)) || (!opt)) { redraw = true; } 
+	if (!redraw) { return; } 
+	if (opt > 1) { proc->cannotCatch = true; } 
 
-
+    TileMap_FillRect(
+        TILEMAP_LOCATED(bg_table[0], 0xC, 0xC),
+        18, 6, 0);
+    BG_EnableSyncByMask(BG_SYNC_BIT(0));
 	
 	i = 1; 
+	for (i = 1; i<6; i++) { 
+		//ClearLine(i+proc->handleID); 
+	} 
+	i = 1; 
 	DrawLine(i+proc->handleID, 12,   12, 0); i++; 
-	ClearLine(i+proc->handleID); 
-	if (proc->cannotEvolve) { 
-		DrawLine(i+proc->handleID, 12,   12+2, 0); 
-	} i++; ClearLine(i+proc->handleID); 
-	if (proc->cannotCatch) { 
-		DrawLine(i+proc->handleID, 12,   12+4, 0); 
-	} i++; ClearLine(i+proc->handleID); 
+	
+
 	if ((!proc->cannotEvolve) && (!proc->cannotCatch)) { 
-	DrawLine(i+proc->handleID, 12,   12+2, 0); } i++; 
+	DrawLine(i+proc->handleID, 12,   12+2, 0); } i++; // None 
+	if ((proc->cannotCatch) && (proc->cannotEvolve)) { 
+		DrawLine(i+proc->handleID, 12,   12+2, 0); i++; i++;  // Cannot evolve 
+		DrawLine(i+proc->handleID, 12,   12+4, 0); i++; // Cannot catch pokemon 
+		BG_EnableSyncByMask(BG_SYNC_BIT(0));
+		return; 
+	} 
+	if (proc->cannotEvolve) { 
+	DrawLine(i+proc->handleID, 12,   12+2, 0); i++; // Cannot evolve 
+	DrawLine(i+proc->handleID, 12,   12+4, 0); // Cannot catch certain pokemon 
+	} i++; i++; 
+	if (proc->cannotCatch) { 
+		DrawLine(i+proc->handleID, 12,   12+2, 0); // Cannot catch 
+	} i++; 
+	
+
+
 	BG_EnableSyncByMask(BG_SYNC_BIT(0));
 	
 	
@@ -208,13 +232,16 @@ void DrawChallengeRun(ChallengeRunProc* proc) {
 	str[i] = "Lance"; i++; 
 	str[i] = "Vesly"; i++; 
 	
-	char* str2[5];
+	char* str2[6];
 	i = 0; 
 	str2[i] = "Challenge Runs"; i++; 
 	str2[i] = "Additional Rules"; i++; 
-	str2[i] = "Cannot evolve Pokemon"; i++; 
-	str2[i] = "Cannot capture Pokemon"; i++; // extra rules 
 	str2[i] = "None"; i++;
+	str2[i] = "Cannot evolve Pokémon"; i++; 
+	str2[i] = "Cannot capture certain Pokémon"; i++; // extra rules 
+	str2[i] = "Cannot capture Pokémon"; i++; // extra rules 
+
+
 	
 	ResetText();
 	i = 0; 
@@ -229,11 +256,12 @@ void DrawChallengeRun(ChallengeRunProc* proc) {
 	InitLine(i, x, y+14, white, 0, str[i+proc->offset]); i++; 
 	proc->handleID = i; 
 	i = 0; 
-	InitLine(i+proc->handleID, 12, 1,    green, 0, str2[i]); i++; 
-	InitLine(i+proc->handleID, 13, 12,   white, 0, str2[i]); i++;
-	InitLine(i+proc->handleID, 12, 12+2, white, 14, str2[i]); i++;
-	InitLine(i+proc->handleID, 12, 12+4, white, 14, str2[i]); i++;
-	InitLine(i+proc->handleID, 12, 12+2, white, 0, str2[i]); i++;
+	InitLine(i+proc->handleID, 12, 1,    green, (GetStringTextLen(str2[i])+8)/8, str2[i]); i++; 
+	InitLine(i+proc->handleID, 12, 12,   white, (GetStringTextLen(str2[i])+8)/8, str2[i]); i++;
+	InitLine(i+proc->handleID, 12, 12+2, white, 0, str2[i]); i++; // None 
+	InitLine(i+proc->handleID, 12, 12+2, white, (GetStringTextLen(str2[i])+8)/8, str2[i]); i++; // Cannot evolve Pkmn 
+	InitLine(i+proc->handleID, 12, 12+4, white, (GetStringTextLen(str2[i])+8)/8, str2[i]); i++; // Cannot capture certain 
+	InitLine(i+proc->handleID, 12, 12+2, white, (GetStringTextLen(str2[i])+8)/8, str2[i]); i++; // Cannot capture 
 	
 	
 	i = 0; 
@@ -247,6 +275,7 @@ void DrawChallengeRun(ChallengeRunProc* proc) {
 	PrepareLine(i, str[i+proc->offset]); i++;
 	
 	i = 0; 
+	PrepareLine(i+proc->handleID, str2[i]); i++;
 	PrepareLine(i+proc->handleID, str2[i]); i++;
 	PrepareLine(i+proc->handleID, str2[i]); i++;
 	PrepareLine(i+proc->handleID, str2[i]); i++;
@@ -291,13 +320,13 @@ void StartChallengeRun(ProcPtr parent) {
 		proc->pkmn[0] = 0; 
 		//ResetText();
 		UnpackUiVArrowGfx(0x240, 3);
-		SetTextFontGlyphs(0);
-		SetTextFont(0);
-		ResetTextFont();
+		//SetTextFontGlyphs(0);
+		//SetTextFont(0);
+		//ResetTextFont();
 		SetupMapSpritesPalettes();
 		//CR_EraseText(proc);
 		DrawChallengeRun(proc);
-		DrawChallengeRun(proc);
+		//DrawChallengeRun(proc);
 		//BG_EnableSyncByMask(BG0_SYNC_BIT);
 		StartGreenText(proc); 
 	} 
@@ -374,15 +403,15 @@ void InitLine(int handleID, int x, int y, int color, int width, char* str)
 	//struct Text* th = &gPrepMainMenuTexts[handleID]; // max 10 
 	struct Text* th = &gStatScreen.text[handleID]; // max 34 
 	ClearText(th);
-	if (!width) { width = 9; } //(GetStringTextLen(str)+8)/8;  
-	
-    th->chr_position = gActiveFont->chr_counter;
-    th->tile_width = width;
-    th->db_id = 0;
-    th->db_enabled = false;
-    th->is_printing = false;
-    gActiveFont->chr_counter += width;
-	//InitText(th, width); // calls ClearText(th);
+	if (!width) { width = 6; } //(GetStringTextLen(str)+8)/8;  
+	// cleartext goes before and after to definitively erase the text ? 
+    //th->chr_position = gActiveFont->chr_counter;
+    //th->tile_width = width;
+    //th->db_id = 0;
+    //th->db_enabled = false;
+    //th->is_printing = false;
+    //gActiveFont->chr_counter += width;
+	InitText(th, width); // calls ClearText(th);
 	Text_SetColor(th, color);
 
     //TileMap_FillRect(
