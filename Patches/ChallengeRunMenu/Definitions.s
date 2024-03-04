@@ -22,4 +22,4 @@ SET_FUNC __aeabi_idivmod, __modsi3
 
 SET_DATA TacticianName, 0x202bd10
 SET_DATA classTablePoin, 0x8017AB8 
-
+SET_DATA gPromoJidLutPoin, 0x80CC7D0

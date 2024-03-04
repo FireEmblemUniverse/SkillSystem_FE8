@@ -23,19 +23,20 @@ const struct ProcCmd SeedMenuProcCmd[] =
 {
     PROC_CALL(LockGame),
     PROC_CALL(BMapDispSuspend),
-	PROC_CALL(StartFadeFromBlack), 
-
+	PROC_CALL(StartFastFadeFromBlack), 
+	PROC_REPEAT(WaitForFade), 
     PROC_YIELD,
 	PROC_REPEAT(SeedMenuLoop), 
-
+	PROC_CALL(StartFastFadeToBlack), 
+	PROC_REPEAT(WaitForFade), 
     PROC_CALL(UnlockGame),
     PROC_CALL(BMapDispResume),
     PROC_END,
 };
 
-#define START_X 19
+#define START_X 21
 #define Y_HAND 11
-#define NUMBER_X 17
+#define NUMBER_X 19
 typedef const struct {
   u32 x;
   u32 y;
@@ -113,6 +114,10 @@ void StartNumberEntry(ProcPtr parent) {
 		
 		#ifdef POKEMBLEM_VERSION 
 		proc->seed &= 0x2FFFFFFF;
+		BG_Fill(gBG3TilemapBuffer, 0);
+		BG_Fill(gBG2TilemapBuffer, 0);
+		BG_EnableSyncByMask(BG3_SYNC_BIT);
+		BG_EnableSyncByMask(BG2_SYNC_BIT);
 		#else 
 		while (proc->seed > gEventSlots[3]) { proc->seed = proc->seed / 2; } // s3 as max 
 		while (proc->seed < 0) { proc->seed = (proc->seed * 2)+1; } 

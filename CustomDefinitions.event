@@ -436,6 +436,8 @@ String("V1.13.03 DEBUG BUILD  Feb 2024") ; BYTE 0; POP // this overflows into th
 #define RandomizeFoundItemsFlag 0x110 
 #define RandomizeBaseStatsFlag 0x10F
 #define RandomizeMusicFlag 0x10E
+//#define CannotCaptureFlag 0xE8 
+#define CannotEvolveFlag 0x10D 
 
 
 

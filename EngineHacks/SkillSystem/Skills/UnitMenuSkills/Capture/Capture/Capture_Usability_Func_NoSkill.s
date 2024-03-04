@@ -18,6 +18,8 @@
 Capture_Usability:
 push	{r4-r6,r14}
 
+
+
 ldr r0, =CannotCaptureFlag
 lsl r0, #16 
 lsr r0, #16 

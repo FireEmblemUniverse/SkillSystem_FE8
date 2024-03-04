@@ -22,6 +22,7 @@ int CaptureGaidenBlackMagicUMUsability(void) // It's kinda weird that usability 
 //0801acbc FillMapAttackRangeForUnit
 	if (*DisableMenuOptionsRam & 2) return 3; 
 	
+	
 	if (!(Capture_Usability())) { return 3; }
 
 	return GaidenMagicUMUsabilityExt(SpellsGetter(gActiveUnit,BLACK_MAGIC)); // This is a 0-terminated list of spells this character has learned.

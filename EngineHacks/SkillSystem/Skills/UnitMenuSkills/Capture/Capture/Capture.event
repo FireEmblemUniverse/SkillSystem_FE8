@@ -94,7 +94,7 @@
 	
 	ALIGN 4
 	Capture_Target_Check:
-	#incbin "Capture_Target_Check.dmp"
+	#include "Capture_Target_Check.lyn.event" 
 	POIN SkillTester
 	WORD WatchfulID
 	

@@ -9,12 +9,13 @@ int DivArm(int b, int a) PUREFUNC;
 extern int CR_MaxDisplayed;
 extern int CR_TotalOptions;
 extern const u8 CR_NumberOfOptionsPerEntryTable[]; 
-
+extern char* TacticianName; //8 bytes long
+extern int CannotCaptureFlag_Link; 
+extern int CannotEvolveFlag_Link; 
 
 typedef struct {
     /* 00 */ PROC_HEADER;
-    /* 2C */ u32 address;
-	/* 30 */ u8 id; // menu id 
+	/* 2c */ u8 id; // menu id 
 	u8 offset; 
 	u8 handleID; 
 	u8 redraw; 
@@ -25,16 +26,18 @@ typedef struct {
 	//s8 Option[15];
 } ChallengeRunProc;
 
+
 static void ChallengeRunLoop(ChallengeRunProc* proc); 
 const struct ProcCmd ChallengeRunProcCmd[] =
 {
     PROC_CALL(LockGame),
     PROC_CALL(BMapDispSuspend),
-	PROC_CALL(StartFadeFromBlack), 
-
+	PROC_CALL(StartFastFadeFromBlack), 
+	PROC_REPEAT(WaitForFade), 
     PROC_YIELD,
 	PROC_REPEAT(ChallengeRunLoop), 
-
+	PROC_CALL(StartFastFadeToBlack), 
+	PROC_REPEAT(WaitForFade), 
     PROC_CALL(UnlockGame),
     PROC_CALL(BMapDispResume),
     PROC_END,
@@ -69,7 +72,7 @@ extern u16* bg_table[4]; // = {gBG0TilemapBuffer, gBG1TilemapBuffer, gBG2Tilemap
 //static int CountTextIDLines(int textID); 
 //static char *GetStrNextLine(char *str); 
 
-void InitLine(int handleID, int x, int y, int color, int width, char* str);
+void InitLine(int handleID, int x, int y, int color, int width, const char* str);
 void PrepareLine(int handleID, const char* str);
 void DrawLine(int handleID, int x, int y, int bg);
 void DrawChallengeRun(ChallengeRunProc* proc);
@@ -195,19 +198,48 @@ void DrawAdditionalRulesText(ChallengeRunProc* proc) {
 	
 } 
 
+
+const char SpecialNames[25][10] = { 
+"New Name",
+"LittleCup",
+"Ash",
+"Gary",
+//"UnderUsed",
+//"OverUsed",
+//"Red",
+//"Blue",
+//"Green",
+//"Yellow",
+"Oak",
+"Bill",
+"Brock",
+"Misty",
+"Lt. Surge",
+"Erika",
+"Koga",
+"Sabrina",
+"Blaine",
+"Giovanni",
+"Lorelei",
+"Bruno",
+"Agatha",
+"Lance",
+"Vesly",
+}; 
+
 void DrawChallengeRun(ChallengeRunProc* proc) { 
 
 
 	int i, x, y, bg; 
-	char* str[25]; 
+	const char* str[25]; 
 	
 	x = (MENU_X/8)+1; 
 	y = (MENU_Y / 8); 
 	bg = 0; 
 	
 	i = 0; 
-	str[i] = "New Name"; i++; 
-	str[i] = "LittleCup"; i++; 
+	str[i] = SpecialNames[i]; i++; 
+	str[i] = SpecialNames[i]; i++; 
 	//str[i] = "UnderUsed"; i++; 
 	//str[i] = "OverUsed"; i++; 
 	str[i] = "Ash"; i++; 
@@ -309,7 +341,6 @@ void StartChallengeRun(ProcPtr parent) {
 	if (parent) { proc = (ChallengeRunProc*)Proc_StartBlocking((ProcPtr)&ChallengeRunProcCmd, parent); } 
 	else { proc = (ChallengeRunProc*)Proc_Start((ProcPtr)&ChallengeRunProcCmd, PROC_TREE_3); } 
 	if (proc) { 
-		proc->address = 0; 
 		proc->id = 0; 
 		proc->offset = 0; 
 		proc->redraw = false; 
@@ -319,6 +350,9 @@ void StartChallengeRun(ProcPtr parent) {
 		proc->handleID = 0; 
 		proc->pkmn[0] = 0; 
 		//ResetText();
+		BG_Fill(gBG3TilemapBuffer, 0);
+		BG_Fill(gBG2TilemapBuffer, 0);
+
 		UnpackUiVArrowGfx(0x240, 3);
 		//SetTextFontGlyphs(0);
 		//SetTextFont(0);
@@ -329,7 +363,16 @@ void StartChallengeRun(ProcPtr parent) {
 		//DrawChallengeRun(proc);
 		//BG_EnableSyncByMask(BG0_SYNC_BIT);
 		StartGreenText(proc); 
+		BG_EnableSyncByMask(BG3_SYNC_BIT);
+		BG_EnableSyncByMask(BG2_SYNC_BIT);
 	} 
+} 
+
+
+
+
+void SetTactNameFromCase(int id) { 
+	SetTacticianName(SpecialNames[id]); 
 } 
 
 extern struct KeyStatusBuffer sKeyStatusBuffer;
@@ -348,7 +391,17 @@ static void ChallengeRunLoop(ChallengeRunProc* proc) {
 	u16 keys = sKeyStatusBuffer.newKeys; 
 	if (!keys) { keys = sKeyStatusBuffer.repeatedKeys; } 
 	if ((keys & START_BUTTON)||(keys & A_BUTTON)) { //press A or Start to continue
-		gEventSlots[0xC] = proc->address; 
+		gEventSlots[0xC] = 0; 
+		
+		int opt = proc->id+proc->offset;
+		if (opt) { gEventSlots[0xC] = 1; } 
+		if (opt == 1) { SetFlag(CannotEvolveFlag_Link); } 
+		if (opt > 1) { SetFlag(CannotCaptureFlag_Link); } 
+		if (opt >= CR_TotalOptions) { SetFlag(CannotEvolveFlag_Link); } 
+		asm("mov r11, r11"); 
+		SetTactNameFromCase(opt); 
+		
+		
 		Proc_Break((ProcPtr)proc);
 		m4aSongNumStart(0x6B); 
 	};
@@ -397,7 +450,21 @@ void ClearLine(int handleID) {
 
 } 
 
-void InitLine(int handleID, int x, int y, int color, int width, char* str)
+extern u8* gPromoJidLutPoin[][2];
+extern u32 AutolevelTable[256]; 
+
+int IsTargetEvolved(struct Unit* unit) { 
+	int classID = unit->pClassData->number; 
+	// if no possible promotions, they are evolved or single stage 
+	if (!(*gPromoJidLutPoin[classID][0]) && (!(*gPromoJidLutPoin[classID][1]))) { return true; } 
+	if (AutolevelTable[classID]) { return true; } // evolves from something 
+	
+	return false; 
+
+
+} 
+
+void InitLine(int handleID, int x, int y, int color, int width, const char* str)
 {
 	if (handleID > 34) return;
 	//struct Text* th = &gPrepMainMenuTexts[handleID]; // max 10 

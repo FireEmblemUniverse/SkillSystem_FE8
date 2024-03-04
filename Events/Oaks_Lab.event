@@ -313,10 +313,11 @@ UNIT
 
 NameInputEvent:
 
+//FADI 16
 //BACG 0x35 // black bg 
-//ASMC StartChallengeRun
-//BNE 9123 sC s0 
-//FADI 16 
+//REMOVEPORTRAITS // New Name 
+ASMC StartChallengeRun
+BNE 9123 sC s0 
 
 // Name input screen 
 REMOVEPORTRAITS // New Name 
@@ -328,8 +329,8 @@ CLEAN
 //CLEAN 
 //FADU 12 
 
-BACG 0x35 // black bg 
-ASMC StartChallengeRun
+//BACG 0x35 // black bg 
+//ASMC StartChallengeRun
 
 LABEL 9123 // Specific name chosen 
 ASMC SaveGameSeed
@@ -337,9 +338,9 @@ ASMC SaveGameSeed
 
 //SVAL s1 0x2001000 
 //ASMC StartHexEditor
+//TutText(DebugText)
 
-
-BACG 0x35 
+//BACG 0x35 
 ///FADU 12 
 SVAL s1 12345 // initial value of number if not pokemblem version of C code 
 SVAL s2 0 // min 
@@ -348,7 +349,7 @@ SVAL s4 GameSeedText
 SVAL s5 GameSeedDesc
 SVAL s6 MoreTextHere
 ASMC StartNumberEntry
-FADI 12 
+//FADI 12 
 CLEAN
 
 SVAL 0x7 0x1
@@ -373,6 +374,7 @@ CompareTactText(BrockName)BNE 11 rC r7CALL ChallengeRunMessageEventSVAL r2 Un
 CompareTactText(MistyName)BNE 12 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsMisty|IsPointerGOTO 200Label 12
 CompareTactText(GaryName)BNE 13 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsGary|IsPointerGOTO 200Label 13
 CompareTactText(bpatName)BNE 14 rC r7CALL PlaytesterCommonMessageSVAL r2 Unitsbpat|IsPointerGOTO 200Label 14
+GOTO 15 
 CompareTactText(VeslyName)BNE 15 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsVesly|IsPointerGOTO 200Label 15
 CompareTactText(ZaimName)BNE 16 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsZaim|IsPointerGOTO 200Label 16
 CompareTactText(AriadnaName)BNE 17 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsAriadna|IsPointerGOTO 200Label 17
@@ -599,6 +601,24 @@ GOTO 200
 
 Label 48
 
+
+
+
+LABEL 60 
+CompareTactText(LittleCupName)
+BNE 61 sC s7 
+CALL LittleCupMessage 
+GOTO 99
+
+LABEL 61 
+CompareTactText(VeslyName)
+BNE 62 sC s7 
+CALL VeslyMessage 
+SVAL r2 UnitsVesly|IsPointer
+GOTO 200
+
+
+Label 62
 Label 199
 
 
@@ -612,6 +632,18 @@ LOAD_S2 1
 ENUN 
 
 Label 0x63 
+NoFade 
+ENDA 
+
+LittleCupMessage:
+Text(LittleCupMessageText)
+ENUT Route1Tutorial_A
+NoFade 
+ENDA 
+
+VeslyMessage:
+Text(VeslyMessageText)
+ENUT Route1Tutorial_A
 NoFade 
 ENDA 
 

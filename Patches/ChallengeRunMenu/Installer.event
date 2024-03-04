@@ -1,6 +1,10 @@
 #include "ChallengeRunMenu.lyn.event"
 
-
+ALIGN 4 
+CannotEvolveFlag_Link:
+WORD CannotEvolveFlag
+CannotCaptureFlag_Link:
+WORD CannotCaptureFlag
 
 ALIGN 4
 CR_TotalOptions: 
