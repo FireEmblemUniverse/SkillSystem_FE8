@@ -12,13 +12,13 @@ BYTE 6 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
-BYTE 17 RazorLeaf
+BYTE 17 AncientPower
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
 BYTE 28 PetalDance
-BYTE 32 RecoverMove //?Buff (RecoverMove)
+BYTE 32 Earthquake
 BYTE 37 EarthPower
-BYTE 40 LeafBlade
+BYTE 40 RecoverMove //?Buff (RecoverMove)
 BYTE 45 SolarBeam
 BYTE 0 0// Goes at the end of each learnset 
 	
@@ -26,42 +26,42 @@ BYTE 0 0// Goes at the end of each learnset
 ALIGN 4
 IvysaurLearnset:
 BYTE 1 GuardMove
-BYTE 1 Tackle 
-BYTE 3 Growl  
+BYTE 1 Tackle
+BYTE 3 Growl
 BYTE 4 Leer
 BYTE 5 AttackPulse
 BYTE 6 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
-BYTE 17 RazorLeaf
+BYTE 17 AncientPower
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
 BYTE 28 PetalDance
-BYTE 32 RecoverMove 
+BYTE 32 Earthquake
 BYTE 37 EarthPower
-BYTE 40 LeafBlade
+BYTE 40 RecoverMove
 BYTE 45 SolarBeam
 BYTE 0 0
 
 ALIGN 4
 VenusaurLearnset:
 BYTE 1 GuardMove
-BYTE 1 Tackle 
-BYTE 3 Growl  
+BYTE 1 Tackle
+BYTE 3 Growl
 BYTE 4 Leer
 BYTE 5 AttackPulse
 BYTE 6 LeafFlurry
 BYTE 9 PoisonPowder
 BYTE 13 Growth
 BYTE 15 MegaDrain
-BYTE 17 RazorLeaf
+BYTE 17 AncientPower
 BYTE 20 DoubleEdge
 BYTE 24 Sludge
 BYTE 28 PetalDance
-BYTE 32 RecoverMove 
+BYTE 32 Earthquake
 BYTE 37 EarthPower
-BYTE 40 LeafBlade
+BYTE 40 RecoverMove
 BYTE 45 SolarBeam
 BYTE 0 0
 
@@ -279,10 +279,10 @@ BYTE 22 Agility
 BYTE 24 UTurn
 BYTE 26 PoisonJab
 BYTE 28 XScissor
-BYTE 33 HornDrill
+BYTE 33 DrillPeck
 BYTE 36 SwordsDance
 BYTE 40 NightSlash
-BYTE 42 DrillPeck
+BYTE 42 HornDrill
 BYTE 0 0
 
 ALIGN 4
@@ -301,10 +301,10 @@ BYTE 22 Agility
 BYTE 24 UTurn
 BYTE 26 PoisonJab
 BYTE 28 XScissor
-BYTE 33 HornDrill
+BYTE 33 DrillPeck
 BYTE 36 SwordsDance
 BYTE 40 NightSlash
-BYTE 42 DrillPeck
+BYTE 42 HornDrill
 BYTE 0 0
 
 ALIGN 4
@@ -323,10 +323,10 @@ BYTE 22 Agility
 BYTE 24 UTurn
 BYTE 26 PoisonJab
 BYTE 28 XScissor
-BYTE 33 HornDrill
+BYTE 33 DrillPeck
 BYTE 36 SwordsDance
 BYTE 40 NightSlash
-BYTE 42 DrillPeck
+BYTE 42 HornDrill
 BYTE 0 0
 
 ALIGN 4
@@ -1447,17 +1447,19 @@ BYTE 0 0
 ALIGN 4
 BellsproutLearnset:
 BYTE 1 VineWhip 
-BYTE 4 Constrict
-BYTE 7 Acid
-BYTE 8 LeafFlurry
-BYTE 10 Bite
+BYTE 1 Constrict
+BYTE 5 Acid
+BYTE 7 LeafFlurry
+BYTE 9 RazorLeaf
+BYTE 11 Bite
 BYTE 13 PoisonPowder
-BYTE 15 RazorLeaf
+BYTE 15 GrassKnot
 BYTE 17 LeechLife
 BYTE 19 Growth
 BYTE 21 Sludge
-BYTE 24 LeafBlade
-BYTE 27 PoisonJab
+BYTE 23 LeafBlade
+BYTE 25 PoisonJab
+BYTE 27 PetalDance
 BYTE 29 RecoverMove //?Support SweetScent
 BYTE 32 SwordsDance
 BYTE 35 NightSlash
@@ -1468,17 +1470,19 @@ BYTE 0 0
 ALIGN 4
 WeepinbellLearnset:
 BYTE 1 VineWhip 
-BYTE 4 Constrict
-BYTE 7 Acid
-BYTE 8 LeafFlurry
-BYTE 10 Bite
+BYTE 1 Constrict
+BYTE 5 Acid
+BYTE 7 LeafFlurry
+BYTE 9 RazorLeaf
+BYTE 11 Bite
 BYTE 13 PoisonPowder
-BYTE 15 RazorLeaf
+BYTE 15 GrassKnot
 BYTE 17 LeechLife
 BYTE 19 Growth
 BYTE 21 Sludge
-BYTE 24 LeafBlade
-BYTE 27 PoisonJab
+BYTE 23 LeafBlade
+BYTE 25 PoisonJab
+BYTE 27 PetalDance
 BYTE 29 RecoverMove //?Support SweetScent
 BYTE 32 SwordsDance
 BYTE 35 NightSlash
@@ -1489,17 +1493,19 @@ BYTE 0 0
 ALIGN 4
 VictreebelLearnset:
 BYTE 1 VineWhip 
-BYTE 4 Constrict
-BYTE 7 Acid
-BYTE 8 LeafFlurry
-BYTE 10 Bite
+BYTE 1 Constrict
+BYTE 5 Acid
+BYTE 7 LeafFlurry
+BYTE 9 RazorLeaf
+BYTE 11 Bite
 BYTE 13 PoisonPowder
-BYTE 15 RazorLeaf
+BYTE 15 GrassKnot
 BYTE 17 LeechLife
 BYTE 19 Growth
 BYTE 21 Sludge
-BYTE 24 LeafBlade
-BYTE 27 PoisonJab
+BYTE 23 LeafBlade
+BYTE 25 PoisonJab
+BYTE 27 PetalDance
 BYTE 29 RecoverMove //?Support SweetScent
 BYTE 32 SwordsDance
 BYTE 35 NightSlash
@@ -2280,10 +2286,10 @@ BYTE 0 0
 ALIGN 4
 HitmonchanLearnset:
 BYTE 1 KarateChop
-BYTE 1 Pound
+BYTE 1 Tackle
 // BYTE 1 Resv Revenge
-BYTE 5 GuardMove
-BYTE 9 RecoverMove // Resv Agility
+BYTE 5 BulkUp
+BYTE 9 RecoverMove
 BYTE 13 ThiefAtt // Pursuit
 BYTE 16 SeismicToss // Mach Punch
 BYTE 20 MegaPunch // Feint
@@ -2373,16 +2379,17 @@ RhyhornLearnset:
 BYTE 1 HornAttack
 BYTE 1 TailWhip
 BYTE 5 Magnitude
-BYTE 9 RockTomb
-BYTE 11 DoubleHit // FuryAttack
-BYTE 13 RockThrow // Rock Blast
-BYTE 15 Glare // ScaryFace
-BYTE 20 Rollout
-BYTE 23 TakeDown
-BYTE 25 Dig
-BYTE 28 RockSlide // Stone Edge
-BYTE 30 DoubleEdge 
-BYTE 35 Earthquake
+BYTE 8 RockTomb
+BYTE 10 DoubleHit // FuryAttack
+BYTE 12 RockThrow // Rock Blast
+BYTE 14 Glare // ScaryFace
+BYTE 16 Rollout
+BYTE 18 BulkUp
+BYTE 20 TakeDown
+BYTE 23 Dig
+BYTE 27 RockSlide // Stone Edge
+BYTE 30 Earthquake
+BYTE 35 DoubleEdge 
 BYTE 38 HornDrill
 BYTE 40 Submission // Hammer Arm
 BYTE 45 Megahorn
@@ -2393,16 +2400,17 @@ RhydonLearnset:
 BYTE 1 HornAttack
 BYTE 1 TailWhip
 BYTE 5 Magnitude
-BYTE 9 RockTomb
-BYTE 11 DoubleHit // FuryAttack
-BYTE 13 RockThrow // Rock Blast
-BYTE 15 Glare // ScaryFace
-BYTE 20 Rollout
-BYTE 23 TakeDown
-BYTE 25 Dig
-BYTE 28 RockSlide // Stone Edge
-BYTE 30 DoubleEdge 
-BYTE 35 Earthquake
+BYTE 8 RockTomb
+BYTE 10 DoubleHit // FuryAttack
+BYTE 12 RockThrow // Rock Blast
+BYTE 14 Glare // ScaryFace
+BYTE 16 Rollout
+BYTE 18 BulkUp
+BYTE 20 TakeDown
+BYTE 23 Dig
+BYTE 27 RockSlide // Stone Edge
+BYTE 30 Earthquake
+BYTE 35 DoubleEdge 
 BYTE 38 HornDrill
 BYTE 40 Submission // Hammer Arm
 BYTE 45 Megahorn
@@ -2478,49 +2486,51 @@ BYTE 0 0
 
 ALIGN 4
 HorseaLearnset:
+BYTE 1 Bubble
 BYTE 1 SandAttack // SmokeScreen
-BYTE 1 Bubble 
-BYTE 3 FocusEnergy
-BYTE 6 Twister
-BYTE 8 Leer
-BYTE 10 WaterGun
-BYTE 13 Dragonbreath
-BYTE 15 AuroraBeam
-BYTE 18 WaterPulse
-BYTE 22 PoisonJab 
+BYTE 3 Twister
+BYTE 6 WaterGun
+BYTE 9 Leer
+BYTE 11 AuroraBeam
+BYTE 13 BubbleBeam
+BYTE 15 Dragonbreath
+BYTE 17 FocusEnergy
+BYTE 20 WaterPulse
+BYTE 22 SignalBeam
 BYTE 24 Agility
 BYTE 26 Waterfall
-BYTE 30 Surf // Brine
-BYTE 32 Sludge
-BYTE 35 IceBeam
-BYTE 37 SignalBeam
+BYTE 28 Surf // Brine
+BYTE 31 Sludge
+BYTE 34 IceBeam
 // BYTE 38 Resv DragonDance
-BYTE 40 HydroPump
-BYTE 42 Outrage // DragonPulse
-BYTE 0 0 //
+BYTE 38 HydroPump
+BYTE 42 Blizzard
+BYTE 45 Outrage // DragonPulse
+BYTE 0 0
 
 ALIGN 4
 SeadraLearnset:
+BYTE 1 Bubble
 BYTE 1 SandAttack // SmokeScreen
-BYTE 1 Bubble 
-BYTE 3 FocusEnergy
-BYTE 6 Twister
-BYTE 8 Leer
-BYTE 10 WaterGun
-BYTE 13 Dragonbreath
-BYTE 15 AuroraBeam
-BYTE 18 WaterPulse
-BYTE 22 PoisonJab 
+BYTE 3 Twister
+BYTE 6 WaterGun
+BYTE 9 Leer
+BYTE 11 AuroraBeam
+BYTE 13 BubbleBeam
+BYTE 15 Dragonbreath
+BYTE 17 FocusEnergy
+BYTE 20 WaterPulse
+BYTE 22 SignalBeam
 BYTE 24 Agility
 BYTE 26 Waterfall
-BYTE 30 Surf // Brine
-BYTE 32 Sludge
-BYTE 35 IceBeam
-BYTE 37 SignalBeam
+BYTE 28 Surf // Brine
+BYTE 31 Sludge
+BYTE 34 IceBeam
 // BYTE 38 Resv DragonDance
-BYTE 40 HydroPump
-BYTE 42 Outrage // DragonPulse
-BYTE 0 0 // Kingdra gets Yawn
+BYTE 38 HydroPump
+BYTE 42 Blizzard
+BYTE 45 Outrage // DragonPulse
+BYTE 0 0
 
 ALIGN 4
 GoldeenLearnset:
@@ -2700,7 +2710,8 @@ BYTE 21 SeismicToss
 //BYTE 25 LightScreen
 BYTE 24 Thunderbolt
 BYTE 28 ThunderPunch
-BYTE 32 Screech
+BYTE 30 Screech
+BYTE 32 IcePunch
 BYTE 35 Submission
 BYTE 38 Psychic
 BYTE 40 VoltTackle
@@ -2716,16 +2727,17 @@ BYTE 3 SandAttack // SmokeScreen
 BYTE 5 FlameWheel
 BYTE 8 Scorch
 BYTE 10 ConfuseRay
-BYTE 13 FireSpin
+BYTE 13 Confusion
 BYTE 15 RollingKick
-BYTE 18 Confusion
+BYTE 18 FireSpin
 BYTE 21 PoisonJab
 BYTE 24 Flamethrower
 BYTE 28 FirePunch
-BYTE 32 NightDaze // FaintAttack
-BYTE 35 Sludge
-BYTE 38 Psychic
-BYTE 40 SacredFire
+BYTE 30 Sludge
+BYTE 32 DarkPulse // FaintAttack
+BYTE 35 Psychic
+BYTE 38 SacredFire
+BYTE 40 SolarBeam
 BYTE 45 FireBlast
 // BYTE 49 Resv SunnyDay
 BYTE 0 0
