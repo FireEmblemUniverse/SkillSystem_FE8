@@ -306,6 +306,8 @@ SetTactName(VeslyName)
 ASMC SaveGameSeed
 
 ENUT RandomizeWeaponStatsFlag
+ENUT RandomizeFoundItemsFlag
+ENUT CannotEvolveFlag
 //ASMC ClearPCBoxUnitsBuffer
 //ASMC ClearAllBoxUnitsASMC
 

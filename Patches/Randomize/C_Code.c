@@ -39,7 +39,20 @@ u8 HashByte_Ch(u8 number, int max){
   //  if (TacticianName[i]==0) break;
   //  hash = ((hash << 5) + hash) ^ TacticianName[i];
   //};
-  return Mod((u16)hash, max);
+  return Mod((hash & 0x2FFFFFFF), max);
+};
+
+u16 HashShort_Ch(u16 number, int max){
+  if (max==0) return 0;
+  u32 hash = 5381;
+  hash = ((hash << 5) + hash) ^ number;
+  hash = ((hash << 5) + hash) ^ gPlaySt.chapterIndex;
+  hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
+  //for (int i = 0; i < 9; ++i){
+  //  if (TacticianName[i]==0) break;
+  //  hash = ((hash << 5) + hash) ^ TacticianName[i];
+  //};
+  return Mod((hash & 0x2FFFFFFF), max);
 };
 
 u32 HashSeed(u32 number) { 
@@ -62,7 +75,7 @@ u8 HashByte_Global(u8 number, int max, int variance){
   //  if (TacticianName[i]==0) break;
   //  hash = ((hash << 5) + hash) ^ TacticianName[i];
   //};
-  hash = Mod((u16)hash, max); 
+  hash = Mod((hash & 0x2FFFFFFF), max);
   return hash;
 };
 
@@ -76,7 +89,7 @@ u16 HashShort_Simple(u8 number, int max, int variance){
   //  if (TacticianName[i]==0) break;
   //  hash = ((hash << 5) + hash) ^ TacticianName[i];
   //};
-  hash = Mod((u16)hash, max); 
+  hash = Mod((hash & 0x2FFFFFFF), max);
   return hash;
 };
 
@@ -185,15 +198,81 @@ int GetItemTier(int item) {
 	} 
 	return 0; // if we can't find it, treat it as tier 0 
 } 
+int RandomizeItem(int item) { 
+	if (!item) { return item; } 
+	int tier = GetItemTier(item); 
+	int max = CountItems(tier); 
+	return RandomItemsTable[tier][HashShort_Ch(item, max)]; 
+} 
 
-void RandomizeItem(void) { 
+void RandomizeItem_ASMC(void) { 
 	if (!CheckFlag(RandomizeFoundItemsFlag_Link)) { return; } 
 	int item = gEventSlots[3]; 
 	int tier = GetItemTier(item); 
 	int max = CountItems(tier); 
-	
-	gEventSlots[3] = RandomItemsTable[tier][HashByte_Ch(item, max)]; 
-
-
+	gEventSlots[3] = RandomItemsTable[tier][HashShort_Ch(item, max)]; 
+} 
+void RandomizeCoins_ASMC(void) { 
+	if (!CheckFlag(RandomizeFoundItemsFlag_Link)) { return; } 
+	int coins = gEventSlots[3]; 
+	int max = coins * 2; 
+	if (max > 65000) { max = 65000; } 
+	gEventSlots[3] = HashShort_Ch(coins, max); 
 } 
 
+
+u16 const gDefaultShopInventory[] = {
+    ITEM_SWORD_IRON,
+    ITEM_LANCE_IRON,
+    ITEM_AXE_IRON,
+    ITEM_BOW_IRON,
+    ITEM_ANIMA_FIRE,
+    ITEM_STAFF_HEAL,
+    ITEM_NONE,
+    ITEM_NONE,
+};
+
+void StartShopScreen(struct Unit* unit, u16* inventory, u8 shopType, ProcPtr parent) {
+    struct BmShopProc* proc;
+    u16* shopItems;
+    int i;
+
+    EndPlayerPhaseSideWindows();
+
+    if (parent != 0) {
+        proc = Proc_StartBlocking(gProcScr_Shop, parent);
+    } else {
+        proc = Proc_Start(gProcScr_Shop, PROC_TREE_3);
+    }
+
+    proc->shopType = shopType;
+    proc->unit = unit;
+
+    shopItems = gDefaultShopInventory;
+    if (inventory != 0) {
+        shopItems = inventory;
+    }
+
+	int rand = CheckFlag(RandomizeFoundItemsFlag_Link);
+	if (rand) { 
+		for (i = 0; i < 20; i++) {
+			u16 itemId = *shopItems++;
+			//asm("mov r11, r11"); 
+			itemId = RandomizeItem(itemId);
+			if (!(itemId & 0xFF00) && (itemId)) { itemId |= 0x100; } // 1 durability 
+			proc->shopItems[i] = itemId; 
+		}
+
+	} 
+	else {
+		for (i = 0; i < 20; i++) {
+			u16 itemId = *shopItems++;
+
+			proc->shopItems[i] = MakeNewItem(itemId);
+		}
+	} 
+
+    UpdateShopItemCounts(proc);
+
+    return;
+}

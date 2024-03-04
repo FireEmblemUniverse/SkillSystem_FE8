@@ -163,6 +163,7 @@ strb r0, [r4, #0x1A] @ con bonus
 
 mov r0, r4 
 bl RandomizeStats 
+mov r1, #0 @ vanilla expects this 
 pop {r0} 
 bx r0 
 .ltorg 

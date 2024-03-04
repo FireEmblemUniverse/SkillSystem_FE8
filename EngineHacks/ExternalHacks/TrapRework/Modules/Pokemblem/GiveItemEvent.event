@@ -2,7 +2,7 @@ ALIGN 4
 GiveItemEvent:
 CAM1 0xFFFF
 EVBIT_F 0x2 
-ASMC RandomizeItem
+ASMC RandomizeItem_ASMC
 GIVEITEMTO 0x7FFF
 Label 0x63 
 NoFade
@@ -11,7 +11,7 @@ ENDA
 ALIGN 4
 GiveCoinsEvent:
 CAM1 0xFFFF
-//ASMC RandomizeCoins
+ASMC RandomizeCoins_ASMC
 GIVEITEMTOMAIN 0x0
 NoFade
 ENDA

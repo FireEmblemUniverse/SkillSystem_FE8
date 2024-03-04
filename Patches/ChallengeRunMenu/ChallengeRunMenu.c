@@ -372,7 +372,9 @@ void StartChallengeRun(ProcPtr parent) {
 
 
 void SetTactNameFromCase(int id) { 
-	SetTacticianName(SpecialNames[id]); 
+	if (id > 1) { 
+		SetTacticianName(SpecialNames[id]); 
+	} 
 } 
 
 extern struct KeyStatusBuffer sKeyStatusBuffer;
@@ -394,11 +396,11 @@ static void ChallengeRunLoop(ChallengeRunProc* proc) {
 		gEventSlots[0xC] = 0; 
 		
 		int opt = proc->id+proc->offset;
-		if (opt) { gEventSlots[0xC] = 1; } 
+		if (opt > 1) { gEventSlots[0xC] = 1; } 
 		if (opt == 1) { SetFlag(CannotEvolveFlag_Link); } 
 		if (opt > 1) { SetFlag(CannotCaptureFlag_Link); } 
 		if (opt >= CR_TotalOptions) { SetFlag(CannotEvolveFlag_Link); } 
-		asm("mov r11, r11"); 
+		//asm("mov r11, r11"); 
 		SetTactNameFromCase(opt); 
 		
 		
@@ -450,13 +452,14 @@ void ClearLine(int handleID) {
 
 } 
 
-extern u8* gPromoJidLutPoin[][2];
+//extern u8* gPromoJidLutPoin[][2];
 extern u32 AutolevelTable[256]; 
+extern u16* gPromoJidLutPoin[];  
 
 int IsTargetEvolved(struct Unit* unit) { 
 	int classID = unit->pClassData->number; 
 	// if no possible promotions, they are evolved or single stage 
-	if (!(*gPromoJidLutPoin[classID][0]) && (!(*gPromoJidLutPoin[classID][1]))) { return true; } 
+	if (!*gPromoJidLutPoin[classID]) { return true; } 
 	if (AutolevelTable[classID]) { return true; } // evolves from something 
 	
 	return false; 

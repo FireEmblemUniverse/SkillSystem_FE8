@@ -365,7 +365,7 @@ CompareTactText(DarkName)BNE 2 rC r7CALL PlaytesterCommonMessageSVAL r2 Units
 CompareTactText(HiroName)BNE 3 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsHiro|IsPointerGOTO 200Label 3
 CompareTactText(N426Name)BNE 4 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsN426|IsPointerGOTO 200Label 4
 CompareTactText(ZoramineName)BNE 5 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsZoramine|IsPointerGOTO 200Label 5
-CompareTactText(OakName)BNE 6 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsOak|IsPointerGOTO 200Label 6
+CompareTactText(OakName)BNE 6 rC r7CALL OakMessageEventSVAL r2 UnitsOak|IsPointerGOTO 200Label 6
 CompareTactText(BillName)BNE 7 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsBill|IsPointerGOTO 200Label 7
 CompareTactText(AshName)BNE 8 rC r7CALL ChallengeRunMessageEventSVAL r2 UnitsAsh|IsPointerGOTO 200Label 8
 CompareTactText(RedName)BNE 9 rC r7CALL PlaytesterCommonMessageSVAL r2 UnitsRed|IsPointerGOTO 200Label 9
@@ -632,6 +632,12 @@ LOAD_S2 1
 ENUN 
 
 Label 0x63 
+NoFade 
+ENDA 
+
+OakMessageEvent: 
+Text(OakMessageText)
+ENUT Route1Tutorial_A
 NoFade 
 ENDA 
 

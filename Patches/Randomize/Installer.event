@@ -64,7 +64,6 @@ POIN RandomItemTier3List
 #define Acc(ID) "ID<<8|SkillAccOne+((ID&0xC0)>>6)"
 #define StatAcc(ID) "ID<<8|StatAccessory"
 
-
 ALIGN 4 
 RandomItemTier0List: // if durability is 0, give as full durability 
 SHORT JellyDonut
@@ -72,6 +71,7 @@ SHORT JellyDonut
 //SHORT Tm(ConfuseRay) Tm(Lick) Tm(Doubleslap) Tm(DoubleHit) Tm(Harden) Tm(RockThrow) Tm(StringShot) Tm(Peck) Tm(DoubleKick) Tm(Growl) Tm(PoisonGas) 
 //SHORT Tm(Tackle) Tm(GuardMove) Tm(Absorb) Tm(Snarl) Tm(Acid) Tm(HornAttack) Tm(Bubble) Tm(Pound) Tm(Rage) Tm(Scratch) Tm(PoisonSting) Tm(Smog) 
 SHORT Tm(Splash) // Keeping this because lol 
+SHORT SuperRepel EscapeRope 
 SHORT Tm(Flash) Tm(Leer) Tm(ThunderWave) Tm(PoisonPowder) Tm(AttackPulse) Tm(RockTomb) Tm(IcyWind) Tm(Confusion) Tm(Magnitude) Tm(Gust) Tm(Bite) 
 SHORT Tm(LeafFlurry) Tm(Ember) Tm(MudShot) Tm(WaterGun) Tm(KarateChop) Tm(PayDay) Tm(QuickAttack) Tm(SandAttack) 
 SHORT Tm(TailWhip) Tm(Thundershock) Tm(VineWhip) Tm(RazorLeaf) Tm(FocusEnergy) Tm(Twister) 
@@ -83,11 +83,12 @@ SHORT 0 // Terminator
 
 ALIGN 4 
 RandomItemTier1List: // if durability is 0, give as full durability 
-SHORT SuperPotion
+SHORT SuperPotion Revive 
 SHORT Tm(Clamp) Tm(Constrict) Tm(Glare) Tm(RecoverMove) Tm(BodySlam) Tm(Headbutt) Tm(MegaPunch) Tm(MegaKick) Tm(LeechLife) Tm(BugBite) Tm(SignalBeam) Tm(BubbleBeam) Tm(WaterPulse) Tm(AirSlash) Tm(WingAttack) Tm(Fly) 
 SHORT Tm(AuroraBeam) Tm(Scorch) Tm(MagicalLeaf) Tm(GrassKnot) Tm(Dragonbreath) Tm(MudBomb) Tm(Dig) Tm(MetalClaw) Tm(MirrorShot) Tm(Slam) Tm(Slash) Tm(Swift) Tm(FlameWheel) Tm(FireSpin) Tm(HoneClaws) 
 SHORT Tm(ShockWave) Tm(Spark) Tm(Avalanche) Tm(RollingKick) Tm(LowKick) Tm(Rollout) Tm(DragonRage) Tm(UTurn) Tm(NightShade) Tm(HexAtt) Tm(NightDaze)
 SHORT Skl(OpportunistID) Skl(VigilanceID) Skl(PragmaticID) Skl(InsightID) Skl(PerfectionistID) Skl(ChivalryID) Skl(WindDiscipleID) 
+SHORT MoonStone LinkStone ThunderStone LeafStone WaterStone FireStone 
 SHORT Acc(WaryFighterID) Acc(RockyHelmetSkillID) Acc(RenewalID) Acc(PoisonStrikeID) Acc(DazzleID) Acc(CounterID) Acc(CounterMagicID) Acc(LifetakerID) Acc(Intimidate2ID) Acc(GuardBreakerID) Acc(DowngradeID)
 SHORT Acc(LifeAndDeathID) Acc(CantoPlusID) Acc(SteadyStanceID) Acc(WardingStanceID) Acc(ExpShareID) Acc(VantagePlusID) 
 SHORT 0 // Terminator 
@@ -100,6 +101,7 @@ SHORT Tm(PoisonJab) Tm(Sludge) Tm(Thunderbolt) Tm(RockSlide) Tm(Ancientpower) Tm
 SHORT Tm(IronTail) Tm(JumpKick) Tm(HyperFang) Tm(FlashCannon) Tm(MetalSound) Tm(SuperFang) Tm(TakeDown) Tm(Thrash) Tm(Waterfall) Tm(Submission) Tm(SeismicToss) Tm(DragonClaw)
 SHORT Skl(RenewalID) Skl(FieryBloodID) Skl(DartingStanceID) Skl(FierceStanceID) Skl(SilentPrideID) Skl(QuickDrawID) Skl(WrathID) Skl(AnathemaID) Skl(ChargeID)
 SHORT Acc(FuryID) Acc(CleatsID) Acc(SurfBoardID) Acc(SilphScopeID) Acc(SavageBlowID) Acc(GrislyWoundID) Acc(MiracleID) Acc(AmaterasuID) Acc(SurfBoardID) Acc(SilphScopeID) Acc(SavageBlowID) Acc(GrislyWoundID) Acc(HoverBoardID)
+SHORT HPUp Protein Carbos Iron Zinc Calcium HoplonGuard2 SacredStone
 SHORT StatAcc(MuscleBandT2_BoostIndex) StatAcc(WiseGlassesT2_BoostIndex) StatAcc(StuddedShield_BoostIndex) StatAcc(SteelShield_BoostIndex) 
 SHORT StatAcc(EnhancedWard_BoostIndex) StatAcc(SilphScope_BoostIndex) StatAcc(LuckyBracerT3_BoostIndex) 
 SHORT 0 // Terminator 
@@ -109,18 +111,10 @@ RandomItemTier3List: // if durability is 0, give as full durability
 SHORT Tm(Amnesia) Tm(DoubleEdge) Tm(Explosion) Tm(FireBlast) Tm(SacredFire) Tm(Blizzard) Tm(SolarBeam) Tm(SkyAttack) Tm(ThunderMove) Tm(VoltTackle) Tm(Fissure) Tm(Psychic) Tm(HiJumpKick)
 SHORT Tm(HyperBeam) Tm(HydroPump) Tm(Megahorn) Tm(Outrage) Tm(MeteorMash) Tm(SwordsDance) Tm(Guillotine) Tm(HornDrill) Tm(Crabhammer)
 SHORT Skl(SavageBlowID) Skl(GrislyWoundID) Skl(FuryID) Skl(PoisonStrikeID) Skl(MiracleID)
-SHORT Acc(GaleforceID) Acc(BlossomID)
+SHORT Acc(GaleforceID) Acc(BlossomID) ExoticCandy 
 SHORT StatAcc(MuscleBandT3_BoostIndex) StatAcc(WiseGlassesT3_BoostIndex) StatAcc(VintageBoots_BoostIndex) StatAcc(EnergyBandT3_BoostIndex) StatAcc(EnergyBandT4_BoostIndex) 
 SHORT 0 // Terminator 
 
-
-
-
-// Tier 2 
-
-
-
-// Tier 3 
 
 
 

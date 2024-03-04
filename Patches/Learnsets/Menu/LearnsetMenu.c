@@ -98,8 +98,9 @@ struct ViewLearnsetProc
     /* 30 */ u8 movesUpdated;
 			u8 ListSize;
 			u8 hover_move_Updated; 
-			u8 move_hovering; // 
-			u16 offset; // 0x34 
+			s8 move_hovering; // 
+			s8 offset; // 0x34 
+			s8 id; 
 			u16 tileNext; 
 			struct TextHandle handle[3]; // 0x38 - 0x4F 
 };
@@ -202,7 +203,8 @@ int ViewLearnsetCommand_OnSelect(struct MenuProc* menu, struct MenuCommandProc* 
 	proc->hover_move_Updated = FALSE; 
 	proc->move_hovering = 0;
 	proc->offset = 0;
-	proc->tileNext = 0; 
+	proc->tileNext = 0;
+	proc->id = 0; 	
 	
 	//struct TextHandle handle[3]; // 0x38 - 0x4F 
 	
@@ -594,74 +596,58 @@ static int List_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
 	u16 keys = gKeyState.pressedKeys;
 	if (!keys) { keys = gKeyState.repeatedKeys; } 
 	//if (proc->move_hovering != menu->commandIndex) {
+		int index = menu->commandIndex;
 		if (keys & KEY_DPAD_DOWN) { 
-			if (menu->commandIndex == 5) {
-				if (proc->offset < proc->ListSize) {
-				proc->offset++; 
-				UpdateThings(proc, menu, command); 
-
-				}
-				else { proc->offset = 0; menu->commandIndex = 0; 
-				UpdateItemInfo_Learnset(menu, command, proc); } 
-				return ME_NONE;
-			}
+			proc->id++; 
+			proc->move_hovering++; 
+			if (proc->move_hovering > 5) { proc->move_hovering = 5; proc->offset++; } 
+			menu->commandIndex = proc->move_hovering; 
 			
-			if (proc->offset < proc->ListSize) {
-				//proc->offset++; 
-				proc->hover_move_Updated = TRUE;
-				//menu->commandIndex = 5; 
-				//menu->prevCommandIndex = 4; 
-				proc->move_hovering = menu->commandIndex;
-				UpdateItemInfo_Learnset(menu, command, proc); 
-
-				return ME_NONE; 
-			}
-			//else if ((menu->commandIndex == 0) && (proc->offset)) { 
-			//proc->offset = 0; menu->commandIndex = 0; 
-			//UpdateItemInfo_Learnset(menu, command, proc); } 
-		
-			//if (menu->commandIndex == 0) { // we looped back to the start 
+			if (proc->offset > proc->ListSize) {
+				proc->offset = 0; menu->commandIndex = 0; 
+				proc->id = 0; proc->move_hovering = 0; 
+			} 
+			
+			//if (index == 0) { // wrapped around 
+			//	if (proc->id >= 5) { proc->offset = proc->id - 5; } 
 			//	menu->commandIndex = 5; 
-			//	menu->prevCommandIndex = 4; 
-			//	if (proc->offset < proc->ListSize) {
-			//	proc->offset = proc->offset + 1; 
-			//	proc->hover_move_Updated = TRUE;
-			//	proc->move_hovering = menu->commandIndex;
-			//	UpdateItemInfo_Learnset(menu, command, proc); 
-			//	}
 			//}
-			//else { 
-			//	proc->hover_move_Updated = TRUE;
-			//	proc->move_hovering = menu->commandIndex;
-			//	UpdateItemInfo_Learnset(menu, command, proc); 
-			//}
+			//if (index == 5) { 
+			//	//menu->commandIndex = 4; 
+			//	menu->prevCommandIndex = 4;
+			//} 
+			//if (proc->offset >= proc->ListSize) {
+			//	proc->offset = 0; menu->commandIndex = 0; 
+			//	proc->id = 0; 
+			//} 	
+			UpdateThings(proc, menu, command); 
+			return ME_NONE; 
 		} 
 		if (keys & KEY_DPAD_UP) { 
-			if (menu->commandIndex == 5) {
-				if (proc->offset > 0) {
-				proc->offset--; 
-				proc->hover_move_Updated = TRUE;
-				proc->move_hovering = menu->commandIndex;
-				UpdateItemInfo_Learnset(menu, command, proc); 
-				}
-				else { proc->offset = 0; menu->commandIndex = 0; 
-				UpdateItemInfo_Learnset(menu, command, proc); } 
-				return ME_NONE;; 
-			}
+			proc->id--;  
+			proc->move_hovering--; 
+			if (proc->move_hovering < 0) { proc->move_hovering = 0; proc->offset--; } 
+			menu->commandIndex = proc->move_hovering; 
+			if ((proc->offset < 0)) {
+				proc->id = proc->ListSize; proc->offset = proc->ListSize; 
+				menu->commandIndex = 5; proc->move_hovering = 5;
+			} 
 			
-			if ((menu->commandIndex == 0) && (proc->offset > 0)) {
-				proc->offset--; 
-				proc->hover_move_Updated = TRUE;
-				menu->commandIndex = 5; 
-				menu->prevCommandIndex = 4; 
-				proc->move_hovering = menu->commandIndex;
-				UpdateItemInfo_Learnset(menu, command, proc); 
-
-				return ME_NONE; 
-			}
-			else if ((menu->commandIndex == 0) && (proc->offset == 0)) { 
-			proc->offset = proc->ListSize; menu->commandIndex = 5; 
-			UpdateItemInfo_Learnset(menu, command, proc); } 
+			//if (index == 5) { // wrapped around 
+			//	if (proc->id >= 5) { proc->offset = proc->id - 5; } 
+			//	menu->commandIndex = 0; 
+			//}
+			//if (index == 0) { 
+			//	//menu->commandIndex = 4; 
+			//	menu->prevCommandIndex = 1;
+			//} 
+			//if (proc->id < 0) {
+			//	proc->id = proc->ListSize; 
+			//	proc->offset = proc->id; menu->commandIndex = 5; 
+			//} 	
+			UpdateThings(proc, menu, command); 
+			return ME_NONE; 
+		} 
 		
 		
 		
@@ -680,8 +666,6 @@ static int List_Idle(struct MenuProc* menu, struct MenuCommandProc* command)
 			//	proc->move_hovering = menu->commandIndex;
 			//	UpdateItemInfo_Learnset(menu, command, proc); 
 			//}
-		} 
- 
 		
 		
 		
