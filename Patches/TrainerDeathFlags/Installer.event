@@ -129,6 +129,7 @@ LABEL 35
 SVAL rC 16 
 SLSL r3 r3 rC
 SLSR r3 r3 rC // so never over 65535  
+ASMC RandomizeCoins_ASMC
 GIVETOMAIN 0
 GOTO 0x63 
 

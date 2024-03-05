@@ -142,14 +142,14 @@ b skipliterals
 .ltorg
 
 ShowStats3:
-draw_str_bar_at 16, 3
-draw_mag_bar_at 16, 5
+draw_str_bar_at_getter 16, 3
+draw_mag_bar_at_getter 16, 5
 
-draw_def_bar_at 16, 7
-draw_res_bar_at 16, 9
+draw_def_bar_at_getter 16, 7
+draw_res_bar_at_getter 16, 9
 
-draw_spd_bar_at 24, 5
-draw_skl_bar_at 24, 7
+draw_spd_bar_at_getter 24, 5
+draw_skl_bar_at_getter 24, 7
 draw_luck_bar_at 24, 9
 
 draw_textID_at 21, 3, 0x4f6 @move

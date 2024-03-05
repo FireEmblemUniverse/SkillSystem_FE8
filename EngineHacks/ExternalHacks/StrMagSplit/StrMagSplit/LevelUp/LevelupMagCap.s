@@ -19,11 +19,24 @@ ldr r3, [r3, #0x4]
 ldrb r3, [r3, #0x4]  @BattleUnit->Class->ID
 lsl r3, #0x2 @ ClassID * 4
 
-ldr r1, MagClassTable
-add r3, r1
+mov r1, r0 
+ldr r0, MagClassTable
+add r3, r0
 
-ldrb r1, [r3, #0x2] @MagClassTable[ClassID].MagicCap
-cmp r0 ,r1
+ldrb r0, [r3, #0x2] @MagClassTable[ClassID].MagicCap
+push {r1} 
+push {r2} 
+push {lr} 
+mov r1, r12 @ bunit 
+@mov r2, @ unit 
+mov r11, r11 
+bl RandomizeStatCaps
+mov r1, r0 
+pop {r3} 
+pop {r2} 
+pop {r0} 
+
+cmp r0, r1
 ble Exit
     mov r0, #0x3A
     ldrb r0, [r2, r0] @RAMUnit->Mag

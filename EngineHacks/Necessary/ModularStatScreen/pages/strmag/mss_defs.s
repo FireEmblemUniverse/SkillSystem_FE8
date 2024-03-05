@@ -289,6 +289,73 @@
   blh     DrawBar, r4
 .endm
 
+.macro draw_bar_at_with_getter bar_x, bar_y, statgetter, capgetter, offset, bar_id  
+  mov     r0, r8
+  blh     \statgetter 
+  str     r0, [sp]     
+mov r0, r8 @ unit 
+  blh     \capgetter
+  lsl     r0, r0, #0x18    
+  asr     r0, r0, #0x18    
+  str     r0, [sp, #0x4]    
+  mov     r0, #(\bar_id) 
+  mov     r1, r8  
+  mov     r3, #\offset
+  ldsb    r3, [r1, r3]    
+  
+  mov     r1, #(\bar_x-11)
+  mov     r2, #(\bar_y-2)
+  blh     DrawBar, r4
+.endm
+
+
+
+.macro draw_mag_bar_at_getter, bar_x, bar_y
+  mov     r0, r8
+  blh     MagGetter
+ 
+  str     r0, [sp]     
+  ldr     r0, [r1, #0x4]  @class
+  ldrb    r0, [r0, #0x4]  @class id
+  lsl     r0, #0x2
+  ldr     r1, =MagClassTable
+  add     r0, r1
+  ldrb    r0, [r0, #0x2]
+  lsl     r0, r0, #0x18    
+  asr     r0, r0, #0x18
+  mov r1, r8 @ unit 
+  blh GetMaxMag 
+  str     r0, [sp, #0x4]    
+  mov     r0, #0x1  
+  mov     r1, r8  
+  mov     r3, #0x3A
+  ldsb    r3, [r1, r3]  
+  
+  mov     r1, #(\bar_x-11)
+  mov     r2, #(\bar_y-2)
+  
+  blh     DrawBar, r4
+.endm
+
+.macro draw_str_bar_at_getter, bar_x, bar_y
+  draw_bar_at_with_getter \bar_x, \bar_y, StrGetter, GetMaxStr, 0x14, 0
+.endm
+.macro draw_skl_bar_at_getter, bar_x, bar_y
+  draw_bar_at_with_getter \bar_x, \bar_y, SklGetter, GetMaxSkl, 0x15, 2
+.endm
+
+.macro draw_spd_bar_at_getter, bar_x, bar_y
+  draw_bar_at_with_getter \bar_x, \bar_y, SpdGetter, GetMaxSpd, 0x16, 3
+.endm
+
+.macro draw_def_bar_at_getter, bar_x, bar_y
+  draw_bar_at_with_getter \bar_x, \bar_y, DefGetter, GetMaxDef, 0x17, 4
+.endm
+
+.macro draw_res_bar_at_getter, bar_x, bar_y
+  draw_bar_at_with_getter \bar_x, \bar_y, ResGetter, GetMaxRes, 0x18, 5
+.endm
+
 .macro draw_halved_bar_at bar_x, bar_y, getter, offset, bar_id
   mov     r0, r8
   blh     \getter

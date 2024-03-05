@@ -1,4 +1,4 @@
-//PROTECT $291AC $291B4
+//PROTECT $1450F7D
 //PROTECT $144F944
 // 7BCA8 // ~5 extra frames than needed? nvm 
 // gProc_PopR_AnimsOnWrapper ~3 frames? 
@@ -436,7 +436,7 @@ String("V1.13.03 DEBUG BUILD  Feb 2024") ; BYTE 0; POP // this overflows into th
 #define RandomizeGrowthsFlag 0x111 
 #define RandomizeFoundItemsFlag 0x110 
 #define RandomizeBaseStatsFlag 0x10F
-#define RandomizeMusicFlag 0x10E
+#define RandomizeSkillsFlag 0x10E
 //#define CannotCaptureFlag 0xE8 
 #define CannotEvolveFlag 0x10D 
 

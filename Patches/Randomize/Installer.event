@@ -30,6 +30,7 @@ RandomizeBossClassesFlag_Link: ; WORD RandomizeBossClassesFlag
 RandomizeGrowthsFlag_Link: ; WORD RandomizeGrowthsFlag
 RandomizeFoundItemsFlag_Link: ; WORD RandomizeFoundItemsFlag
 RandomizeBaseStatsFlag_Link: ; WORD RandomizeBaseStatsFlag
+RandomizeSkillsFlag_Link: ; WORD RandomizeSkillsFlag
 
 
 
@@ -63,6 +64,17 @@ POIN RandomItemTier3List
 #define Skl(ID) "ID<<8|SkillScrollID"
 #define Acc(ID) "ID<<8|SkillAccOne+((ID&0xC0)>>6)"
 #define StatAcc(ID) "ID<<8|StatAccessory"
+
+ALIGN 4 
+RandomSkillsTable:
+BYTE ReliefID FocusID PatienceID ParagonID PrescienceID StrongRiposteID OpportunistID VigilanceID PragmaticID 
+BYTE InsightID PerfectionistID ChivalryID WindDiscipleID WaryFighterID RenewalID PoisonStrikeID 
+BYTE DazzleID CounterID CounterMagicID LifetakerID Intimidate2ID GuardBreakerID DowngradeID LifeAndDeathID CantoPlusID 
+BYTE SteadyStanceID WardingStanceID ExpShareID VantagePlusID FuryID SilphScopeID SavageBlowID 
+BYTE GrislyWoundID MiracleID AmaterasuID HoverBoardID FieryBloodID DartingStanceID FierceStanceID SilentPrideID QuickDrawID 
+BYTE WrathID AnathemaID ChargeID GaleforceID BlossomID
+// CleatsID SurfBoardID RockyHelmetSkillID 
+BYTE 0 // Terminator 
 
 ALIGN 4 
 RandomItemTier0List: // if durability is 0, give as full durability 

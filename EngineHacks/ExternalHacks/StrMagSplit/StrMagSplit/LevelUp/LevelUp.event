@@ -224,7 +224,7 @@ ALIGN 4
 
 ALIGN 4
 Add_Promotion_Bonuses:
-#incbin "AddPromotionBonuses.dmp"
+#include "AddPromotionBonuses.lyn.event"
 POIN MagClassTable
 
 #ifdef ExpandedLevelUpScreen
@@ -284,5 +284,15 @@ LevelUpWriteBackMag:
 
 ALIGN 4
 LevelupMagCap:
-#incbin "LevelupMagCap.dmp"
+#include "LevelupMagCap.lyn.event"
 POIN MagClassTable
+
+PUSH // Vesly added 
+ORG $2BF6E 
+FILL(0x9A) // until $2C008 where we hook 
+ORG $181F8
+FILL(0x54)
+// until $1824C
+POP 
+
+

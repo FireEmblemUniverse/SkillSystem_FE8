@@ -45,7 +45,7 @@ OptionFlagsEntry(3, 0, RandomizeFoundItemsFlag)
 OptionFlagsEntry(4, 0, RandomizeWeaponStatsFlag) 
 OptionFlagsEntry(5, 0, RandomizeBaseStatsFlag) 
 OptionFlagsEntry(6, 0, RandomizeGrowthsFlag) 
-OptionFlagsEntry(7, 0, 0) // music 
+OptionFlagsEntry(7, 0, RandomizeSkillsFlag) // music 
 
 SHORT 0xFEDC // Terminator 
 
@@ -58,7 +58,7 @@ ALIGN 4 ; OptionsCommand3_Text: ; String("Items Found:") ; BYTE 0
 ALIGN 4 ; OptionsCommand4_Text: ; String("Move Stats:") ; BYTE 0
 ALIGN 4 ; OptionsCommand5_Text: ; String("Pokemon Stats:") ; BYTE 0
 ALIGN 4 ; OptionsCommand6_Text: ; String("Pokemon Growths:") ; BYTE 0
-ALIGN 4 ; OptionsCommand7_Text: ; String("Music:") ; BYTE 0
+ALIGN 4 ; OptionsCommand7_Text: ; String("Skills:") ; BYTE 0
 
 ALIGN 4 ; Command0_Option0_Text: ; String("Normal") ; BYTE 0
 ALIGN 4 ; Command0_Option1_Text: ; String("Randomized") ; BYTE 0 

@@ -18,6 +18,7 @@ extern int RandomizeBossClassesFlag_Link;
 extern int RandomizeGrowthsFlag_Link;
 extern int RandomizeFoundItemsFlag_Link;
 extern int RandomizeBaseStatsFlag_Link;
+extern int RandomizeSkillsFlag_Link; 
 
 extern char* TacticianName; //8 bytes long
 
@@ -170,7 +171,7 @@ void RandomizeStats(struct Unit* unit) {
 	if (!CheckFlag(RandomizeBaseStatsFlag_Link)) { return; } 
 	int classID = unit->pClassData->number; 
 	unit->maxHP = RandStat(unit->maxHP, classID); 
-	if (unit->maxHP < 4) { unit->maxHP = 4; } 
+	if (unit->maxHP < 10) { unit->maxHP = 10; } 
 	unit->pow = RandStat(unit->pow, classID); 
 	unit->skl = RandStat(unit->skl, classID); 
 	unit->spd = RandStat(unit->spd, classID); 
@@ -179,6 +180,115 @@ void RandomizeStats(struct Unit* unit) {
 	unit->lck = RandStat(unit->lck, classID); 
 	unit->_u3A = RandStat(unit->_u3A, classID); // mag 
 } 
+
+
+int RandomizeStatCap(int statCap, struct Unit* unit, int variance) { 
+	int min = (statCap / 5); 
+	int max = 60; //((statCap+10)* 5) / 4; 
+	int classID = unit->pClassData->number + variance; 
+	max = HashByte_Global(statCap, max, classID) + min;
+	if (max > 60) { max = 60; } 
+	return max; 
+
+} 
+
+int GetMaxStr(struct Unit* unit) { 
+	int rand = CheckFlag(RandomizeBaseStatsFlag_Link);
+	int num = UNIT_POW_MAX(unit); 
+	if (!rand) { return num; } 
+	return RandomizeStatCap(num, unit, 0); // extra variance variable so stats with same max will differ 
+} 
+int GetMaxSkl(struct Unit* unit) { 
+	int rand = CheckFlag(RandomizeBaseStatsFlag_Link);
+	int num = UNIT_SKL_MAX(unit); 
+	if (!rand) { return num; } 
+	return RandomizeStatCap(num, unit, 1); 
+} 
+int GetMaxSpd(struct Unit* unit) { 
+	int rand = CheckFlag(RandomizeBaseStatsFlag_Link);
+	int num = UNIT_SPD_MAX(unit); 
+	if (!rand) { return num; } 
+	return RandomizeStatCap(num, unit, 2); 
+} 
+int GetMaxDef(struct Unit* unit) { 
+	int rand = CheckFlag(RandomizeBaseStatsFlag_Link);
+	int num = UNIT_DEF_MAX(unit); 
+	if (!rand) { return num; } 
+	return RandomizeStatCap(num, unit, 3); 
+} 
+int GetMaxRes(struct Unit* unit) { 
+	int rand = CheckFlag(RandomizeBaseStatsFlag_Link);
+	int num = UNIT_RES_MAX(unit); 
+	if (!rand) { return num; } 
+	return RandomizeStatCap(num, unit, 4); 
+} 
+
+int GetMaxMag(int magCap, struct Unit* unit) { // takes original cap as input lol 
+	int rand = CheckFlag(RandomizeBaseStatsFlag_Link);
+	if (!rand) { return magCap; } 
+	return RandomizeStatCap(magCap, unit, 5); 
+} 
+
+int RandomizeStatCaps(int magCap, struct BattleUnit* bu, struct Unit* unit) { 
+	
+	int max = GetMaxStr(unit);
+    if ((unit->pow + bu->changePow) > max ) { 
+	bu->changePow = max - unit->pow; } 
+
+	max = GetMaxSkl(unit);
+    if ((unit->skl + bu->changeSkl) > max) { 
+	bu->changeSkl = max - unit->skl; }
+
+	max = GetMaxSpd(unit);
+    if ((unit->spd + bu->changeSpd) > max) { 
+	bu->changeSpd = max - unit->spd; }
+
+	max = GetMaxDef(unit);
+    if ((unit->def + bu->changeDef) > max) { 
+	bu->changeDef = max - unit->def; } 
+
+	max = GetMaxRes(unit);
+    if ((unit->res + bu->changeRes) > max) { 
+	bu->changeRes = max - unit->res; } 
+	
+	return GetMaxMag(magCap, unit); 
+
+} 
+
+int UnitRandomizeStatCaps(int magCap, struct Unit* unit) { 
+	
+	int max = GetMaxStr(unit);
+    if (unit->pow > max ) { 
+	unit->pow = max; } 
+
+	max = GetMaxSkl(unit);
+    if (unit->skl > max) { 
+	unit->skl = max; }
+
+	max = GetMaxSpd(unit);
+    if (unit->spd > max) { 
+	unit->spd = max; }
+
+	max = GetMaxDef(unit);
+    if (unit->def > max) { 
+	unit->def = max; } 
+
+	max = GetMaxRes(unit);
+    if (unit->res > max) { 
+	unit->res = max; } 
+	
+	return GetMaxMag(magCap, unit); 
+
+} 
+
+
+int RandomizeLuckCap(int lukcap) {
+	
+	
+	return lukcap; 
+}
+
+
 extern u16* RandomItemsTable[]; 
 int CountItems(int tier) {
 	int i = 0; 
@@ -219,6 +329,20 @@ void RandomizeCoins_ASMC(void) {
 	if (max > 65000) { max = 65000; } 
 	gEventSlots[3] = HashShort_Ch(coins, max); 
 } 
+
+extern u8 RandomSkillsTable[]; 
+int CountSkills() {
+	int i = 0; 
+	while (RandomSkillsTable[i]) { 
+		i++; 
+	} 
+	return i; 
+}
+int RandomizeSkill(int id, int classID) {
+	if (!CheckFlag(RandomizeSkillsFlag_Link)) { return id; } 
+	int max = CountSkills(); 
+	return RandomSkillsTable[HashByte_Global(id, max, classID)]; 
+}
 
 
 u16 const gDefaultShopInventory[] = {

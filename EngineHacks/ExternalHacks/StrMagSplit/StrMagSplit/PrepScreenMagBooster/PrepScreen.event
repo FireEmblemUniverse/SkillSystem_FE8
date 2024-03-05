@@ -255,7 +255,7 @@
 	
 	ALIGN 4
 	Mag_Stat_Booster_Cap_Check:
-	#incbin "MagStatBoosterCapCheck.dmp"
+	#include "MagStatBoosterCapCheck.lyn.event"
 	POIN MagClassTable
 	
 	ALIGN 4
