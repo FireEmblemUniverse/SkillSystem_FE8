@@ -313,6 +313,22 @@ UNIT
 
 NameInputEvent:
 
+ASMC SaveGameSeed
+
+
+//SVAL s1 0x2001000 
+//ASMC StartHexEditor
+//TutText(DebugText)
+
+//BACG 0x35 
+///FADU 12 
+SVAL s1 12345 // initial value of number if not pokemblem version of C code 
+SVAL s2 0 // min 
+SVAL s3 999999999 // max 
+SVAL s4 GameSeedText
+SVAL s5 GameSeedDesc
+SVAL s6 MoreTextHere
+ASMC StartNumberEntry
 //FADI 16
 //BACG 0x35 // black bg 
 //REMOVEPORTRAITS // New Name 
@@ -333,22 +349,7 @@ CLEAN
 //ASMC StartChallengeRun
 
 LABEL 9123 // Specific name chosen 
-ASMC SaveGameSeed
 
-
-//SVAL s1 0x2001000 
-//ASMC StartHexEditor
-//TutText(DebugText)
-
-//BACG 0x35 
-///FADU 12 
-SVAL s1 12345 // initial value of number if not pokemblem version of C code 
-SVAL s2 0 // min 
-SVAL s3 999999999 // max 
-SVAL s4 GameSeedText
-SVAL s5 GameSeedDesc
-SVAL s6 MoreTextHere
-ASMC StartNumberEntry
 //FADI 12 
 CLEAN
 

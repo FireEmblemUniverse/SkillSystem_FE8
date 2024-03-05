@@ -24,6 +24,7 @@ const struct ProcCmd SeedMenuProcCmd[] =
     PROC_CALL(LockGame),
     PROC_CALL(BMapDispSuspend),
 	PROC_CALL(StartFastFadeFromBlack), 
+	//PROC_REPEAT(CheckInputForRandomSeed),
 	PROC_REPEAT(WaitForFade), 
     PROC_YIELD,
 	PROC_REPEAT(SeedMenuLoop), 

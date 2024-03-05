@@ -58,10 +58,10 @@ u16 HashShort_Ch(u16 number, int max){
 u32 HashSeed(u32 number) { 
   u32 hash = 5381;
   hash = ((hash << 5) + hash) ^ number;
-  for (int i = 0; i < 9; ++i){
-    if (TacticianName[i]==0) break;
-    hash = ((hash << 5) + hash) ^ TacticianName[i];
-  };
+  //for (int i = 0; i < 9; ++i){
+  //  if (TacticianName[i]==0) break;
+  //  hash = ((hash << 5) + hash) ^ TacticianName[i];
+  //};
   return hash;
 }
 

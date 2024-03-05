@@ -93,8 +93,8 @@ void CR_EraseText(ChallengeRunProc* proc) {
 	DrawChallengeRun(proc);
 	//DrawAdditionalRulesText(proc);
 }
-
-
+extern int RandomizeClassNow(int classID); 
+extern int RandomizeClassesFlag_Link;
 extern const struct UnitDefinition* ChallengeRunUnitsTable[]; 
 void SetPkmn(ChallengeRunProc* proc) { 
 	const struct UnitDefinition* uDef = ChallengeRunUnitsTable[proc->id+proc->offset]; 
@@ -104,8 +104,11 @@ void SetPkmn(ChallengeRunProc* proc) {
 	} 
 	
 	count = 0; 
+	int rand = CheckFlag(RandomizeClassesFlag_Link); 
+	
     while ((uDef->classIndex) && (count < 6)) {
-		proc->pkmn[count] = uDef->classIndex; 
+		if (rand) { proc->pkmn[count] = RandomizeClassNow(uDef->classIndex); } 
+		else { proc->pkmn[count] = uDef->classIndex; } 
         uDef++;
         count++;
     }
@@ -459,7 +462,7 @@ extern u16* gPromoJidLutPoin[];
 int IsTargetEvolved(struct Unit* unit) { 
 	int classID = unit->pClassData->number; 
 	// if no possible promotions, they are evolved or single stage 
-	if (!*gPromoJidLutPoin[classID]) { return true; } 
+	if (!(*gPromoJidLutPoin)[classID]) { return true; } 
 	if (AutolevelTable[classID]) { return true; } // evolves from something 
 	
 	return false; 

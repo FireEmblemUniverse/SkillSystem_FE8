@@ -11,6 +11,13 @@
 Promote this unit.[X]
 */
 
+#ifdef POKEMBLEM
+PUSH 
+ORG $291AC // hooks non vanilla code!
+callHackNew(IsEvolvingAllowed)
+POP 
+
+#include "IsNoEvolvingFlagOn_Hook.lyn.event" 
 
 
 
@@ -22,6 +29,7 @@ PromoteUsability:
 POP
 #incbin "PromoteUsability.dmp"
 POIN PromoteLevelTable
+POIN CannotEvolveFlag_Link
 
 ALIGN 4
 PUSH 
