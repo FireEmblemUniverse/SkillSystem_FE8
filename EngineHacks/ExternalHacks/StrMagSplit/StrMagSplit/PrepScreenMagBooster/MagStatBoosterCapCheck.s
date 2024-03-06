@@ -11,7 +11,6 @@ ldr		r3,MagClassCap
 add		r0,r3
 ldrb	r0,[r0,#0x2]
 
-mov r11, r11 
 push {r1} 
 push {r2} 
 mov r1, r4 @ unit 

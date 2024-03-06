@@ -30,7 +30,7 @@ extern u32* StartTimeSeedRamLabel;
 
 //extern int Div(int, int); 
 //extern int Mod(int, int); 
-u8 HashByte_Ch(u8 number, int max){
+u8 HashByte_Ch(int number, int max){
   if (max==0) return 0;
   u32 hash = 5381;
   hash = ((hash << 5) + hash) ^ number;
@@ -43,7 +43,7 @@ u8 HashByte_Ch(u8 number, int max){
   return Mod((hash & 0x2FFFFFFF), max);
 };
 
-u16 HashShort_Ch(u16 number, int max){
+u16 HashShort_Ch(int number, int max){
   if (max==0) return 0;
   u32 hash = 5381;
   hash = ((hash << 5) + hash) ^ number;
@@ -66,7 +66,7 @@ u32 HashSeed(u32 number) {
   return hash;
 }
 
-u8 HashByte_Global(u8 number, int max, int variance){
+u8 HashByte_Global(int number, int max, int variance){
   if (max==0) return 0;
   u32 hash = 5381;
   hash = ((hash << 5) + hash) ^ number;
@@ -80,19 +80,6 @@ u8 HashByte_Global(u8 number, int max, int variance){
   return hash;
 };
 
-u16 HashShort_Simple(u8 number, int max, int variance){
-  if (max==0) return 0;
-  u32 hash = 5381;
-  hash = ((hash << 5) + hash) ^ number;
-  hash = ((hash << 5) + hash) ^ *StartTimeSeedRamLabel;
-  hash = ((hash << 5) + hash) ^ variance; 
-  //for (int i = 0; i < 9; ++i){
-  //  if (TacticianName[i]==0) break;
-  //  hash = ((hash << 5) + hash) ^ TacticianName[i];
-  //};
-  hash = Mod((hash & 0x2FFFFFFF), max);
-  return hash;
-};
 
 
 int GetItemMight(int item) {
@@ -156,7 +143,12 @@ int ShouldUnitBeRandomized(struct Unit* unit) {
 // mov r2, r6 @ index in stat booster pointer of growth
 int GetRandomizedGrowth(struct Unit* unit, int growth, int id) { 
 	if (!CheckFlag(RandomizeGrowthsFlag_Link)) { return growth; } 
-	int newGrowth = HashByte_Global(growth, growth*2, unit->pClassData->number+id);
+	int uid = unit->pCharacterData->number;
+	int newGrowth = growth; 
+	if ((uid >= 0x50) && (uid<0x87)) { newGrowth += 10; } // so wilds match players 
+	if ((uid > 0x8C) && (uid<0xA0)) { newGrowth += 10; } 
+	
+	newGrowth = HashByte_Global(newGrowth, newGrowth*2, unit->pClassData->number+id);
 	//return (newGrowth / 5) * 5; 
 	return newGrowth; 
 } 
@@ -184,10 +176,10 @@ void RandomizeStats(struct Unit* unit) {
 
 int RandomizeStatCap(int statCap, struct Unit* unit, int variance) { 
 	int min = (statCap / 5); 
-	int max = 60; //((statCap+10)* 5) / 4; 
+	int max = 60 - min; //((statCap+10)* 5) / 4; 
 	int classID = unit->pClassData->number + variance; 
 	max = HashByte_Global(statCap, max, classID) + min;
-	if (max > 60) { max = 60; } 
+	if (max > 60) { max = 60; } // probably unnecessary 
 	return max; 
 
 } 

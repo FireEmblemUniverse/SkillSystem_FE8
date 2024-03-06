@@ -162,7 +162,7 @@ skipliterals:
 
 .set NoAltIconDraw, 1 @this is the piece that makes them use a separate sheet
 
-mov r0, r8
+mov r0, r8 @ [2026bb0..2026bb3]!!
 ldr r1, =Skill_Getter
 mov lr, r1
 .short 0xf800 @skills now stored in the skills buffer

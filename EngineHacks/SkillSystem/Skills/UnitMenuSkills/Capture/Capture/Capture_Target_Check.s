@@ -33,8 +33,7 @@ ldr r0, [r4] @ Unit Struct
 ldrb r0, [r0, #4] @ Unit ID 
 cmp r0, #0xA0 
 bge GoBack @ Never allow capturing for unit IDs 0xA0 and greater 
-
-mov r11, r11 
+ 
 ldr r0, =CannotEvolveFlag
 lsl r0, #16 
 lsr r0, #16 

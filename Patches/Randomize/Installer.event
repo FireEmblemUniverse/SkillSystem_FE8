@@ -71,9 +71,9 @@ BYTE ReliefID FocusID PatienceID ParagonID PrescienceID StrongRiposteID Opportun
 BYTE InsightID PerfectionistID ChivalryID WindDiscipleID WaryFighterID RenewalID PoisonStrikeID 
 BYTE DazzleID CounterID CounterMagicID LifetakerID Intimidate2ID GuardBreakerID DowngradeID LifeAndDeathID CantoPlusID 
 BYTE SteadyStanceID WardingStanceID ExpShareID VantagePlusID FuryID SilphScopeID SavageBlowID 
-BYTE GrislyWoundID MiracleID AmaterasuID HoverBoardID FieryBloodID DartingStanceID FierceStanceID SilentPrideID QuickDrawID 
+BYTE GrislyWoundID MiracleID AmaterasuID FieryBloodID DartingStanceID FierceStanceID SilentPrideID QuickDrawID 
 BYTE WrathID AnathemaID ChargeID GaleforceID BlossomID
-// CleatsID SurfBoardID RockyHelmetSkillID 
+// CleatsID SurfBoardID RockyHelmetSkillID  HoverBoardID
 BYTE 0 // Terminator 
 
 ALIGN 4 

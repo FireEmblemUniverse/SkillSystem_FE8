@@ -266,6 +266,7 @@ cmp r0, #0
 beq MaybeAddToParty @no 6th deployed unit, so add to party 
 b SendToPCBox 
 MaybeAddToParty: 
+b AddToParty 
 mov r0, r5 @ new unit 
 ldrb	r1, [r4,#0x10]		@load x coordinate of character
 ldrb	r2, [r4,#0x11]		@load y coordinate of character

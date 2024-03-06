@@ -313,8 +313,8 @@ mov r0, r8 @ unit
 .macro draw_mag_bar_at_getter, bar_x, bar_y
   mov     r0, r8
   blh     MagGetter
- 
-  str     r0, [sp]     
+  str     r0, [sp]  
+  mov     r1, r8   
   ldr     r0, [r1, #0x4]  @class
   ldrb    r0, [r0, #0x4]  @class id
   lsl     r0, #0x2

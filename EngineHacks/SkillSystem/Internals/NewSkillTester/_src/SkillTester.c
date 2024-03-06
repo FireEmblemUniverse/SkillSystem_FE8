@@ -208,7 +208,7 @@ bool CheckSkillBuffer(Unit* unit, u8 skillID) {
 bool SkillTester(Unit* unit, u8 skillID) {
     if (skillID == 0)   {return TRUE;}
     if (skillID == 255) {return FALSE;}
-	if (!unit) { asm("mov r11, r11"); } 
+	if (!unit) { asm("mov r11, r11"); return false; } 
 	if (!(unit->pCharacterData)) { return false; } 
 
     int index = unit->index;

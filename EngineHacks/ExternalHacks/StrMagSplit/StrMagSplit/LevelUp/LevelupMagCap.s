@@ -28,8 +28,7 @@ push {r1}
 push {r2} 
 push {lr} 
 mov r1, r12 @ bunit 
-@mov r2, @ unit 
-mov r11, r11 
+@mov r2, @ unit  
 bl RandomizeStatCaps
 mov r1, r0 
 pop {r3} 
