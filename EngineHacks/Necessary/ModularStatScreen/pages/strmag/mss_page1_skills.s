@@ -150,7 +150,7 @@ draw_res_bar_at_getter 16, 9
 
 draw_spd_bar_at_getter 24, 5
 draw_skl_bar_at_getter 24, 7
-draw_luck_bar_at 24, 9
+draw_lck_bar_at_getter 24, 9
 
 draw_textID_at 21, 3, 0x4f6 @move
 draw_move_bar_with_getter_at 24, 3

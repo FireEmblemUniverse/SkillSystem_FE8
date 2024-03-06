@@ -290,9 +290,13 @@ POIN MagClassTable
 PUSH // Vesly added 
 ORG $2BF6E 
 FILL(0x9A) // until $2C008 where we hook 
+ORG $2C020 
+SHORT $46C0 // no luck cap here 
 ORG $181F8
 FILL(0x54)
 // until $1824C
+ORG $18256 
+SHORT $46C0 // no luck cap here 
 POP 
 
 

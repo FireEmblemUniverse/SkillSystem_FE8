@@ -337,6 +337,7 @@ mov r0, r8 @ unit
   blh     DrawBar, r4
 .endm
 
+
 .macro draw_str_bar_at_getter, bar_x, bar_y
   draw_bar_at_with_getter \bar_x, \bar_y, StrGetter, GetMaxStr, 0x14, 0
 .endm
@@ -354,6 +355,10 @@ mov r0, r8 @ unit
 
 .macro draw_res_bar_at_getter, bar_x, bar_y
   draw_bar_at_with_getter \bar_x, \bar_y, ResGetter, GetMaxRes, 0x18, 5
+.endm
+
+.macro draw_lck_bar_at_getter, bar_x, bar_y
+  draw_bar_at_with_getter \bar_x, \bar_y, LuckGetter, GetMaxLck, 0x19, 5
 .endm
 
 .macro draw_halved_bar_at bar_x, bar_y, getter, offset, bar_id
