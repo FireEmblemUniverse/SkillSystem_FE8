@@ -180,7 +180,7 @@ EVBIT_MODIFY 4
 Text(GaryRematchDefeatText)
 //GiveItemWithDurability(0, SpellScroll, Fissure)
 //GiveItemWithDurability(0, SpellScroll, Bonemerang)
-GiveItemWithDurability(0, ExoticCandy, 1)
+GiveItemWithDurability_Rand(0, ExoticCandy, 1)
 ENUT ViridianGymRematchedFlag
 SVAL r3 10000 
 GIVETOMAIN 0 

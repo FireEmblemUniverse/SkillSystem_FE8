@@ -68,11 +68,14 @@ POIN RandomItemTier3List
 ALIGN 4 
 RandomSkillsTable:
 BYTE ReliefID FocusID PatienceID ParagonID PrescienceID StrongRiposteID OpportunistID VigilanceID PragmaticID 
-BYTE InsightID PerfectionistID ChivalryID WindDiscipleID WaryFighterID RenewalID PoisonStrikeID 
-BYTE DazzleID CounterID CounterMagicID LifetakerID Intimidate2ID GuardBreakerID DowngradeID LifeAndDeathID CantoPlusID 
-BYTE SteadyStanceID WardingStanceID ExpShareID VantagePlusID FuryID SilphScopeID SavageBlowID 
-BYTE GrislyWoundID MiracleID AmaterasuID FieryBloodID DartingStanceID FierceStanceID SilentPrideID QuickDrawID 
-BYTE WrathID AnathemaID ChargeID GaleforceID BlossomID
+BYTE InsightID PerfectionistID ChivalryID WindDiscipleID WaryFighterID RenewalID 
+BYTE DazzleID LifetakerID LifeAndDeathID CantoPlusID 
+BYTE SteadyStanceID WardingStanceID ExpShareID VantagePlusID 
+BYTE MiracleID AmaterasuID FieryBloodID DartingStanceID FierceStanceID SilentPrideID QuickDrawID 
+BYTE WrathID AnathemaID ChargeID 
+BYTE Intimidate2ID GuardBreakerID DowngradeID SilphScopeID 
+BYTE CounterID CounterMagicID PoisonStrikeID GrislyWoundID 
+// GaleforceID BlossomID FuryID SavageBlowID 
 // CleatsID SurfBoardID RockyHelmetSkillID  HoverBoardID
 BYTE 0 // Terminator 
 

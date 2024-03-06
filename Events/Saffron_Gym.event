@@ -246,15 +246,15 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 EVBIT_MODIFY 4 
 Text(SabrinaDefeatText)
-GiveItemWithDurability(0, SpellScroll, CalmMind)
+GiveItemWithDurability_Rand(0, SpellScroll, CalmMind)
 ENUT MarshbadgeObtained // unlocks surf 
 SVAL r3 8000 
 GIVETOMAIN 0 
 TEXTSHOW SabrinaWaitText
 TEXTEND 
 REMA
-GiveSkillAccessory(0, HoverBoardID)
-GiveItemWithDurability(0, HoplonGuard2, 1)
+GiveSkillAccessory(0, HoverBoardID) // always air balloon 
+GiveItemWithDurability_Rand(0, HoplonGuard2, 1)
 TEXTSTART
 TEXTSHOW SabrinaRewardText
 TEXTEND 
@@ -275,13 +275,13 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 EVBIT_MODIFY 4 
 Text(SabrinaRematchDefeatText)
-GiveItemWithDurability(0, SpellScroll, Amnesia)
+GiveItemWithDurability_Rand(0, SpellScroll, Amnesia)
 ENUT SaffronGymRematchedFlag
 SVAL r3 5000 
 GIVETOMAIN 0 
 
 //GiveSkillAccessory(0, HoverBoardID)
-//GiveItemWithDurability(0, HoplonGuard2, 1)
+//GiveItemWithDurability_Rand(0, HoplonGuard2, 1)
 FADI 4 
 ForcedChapterTransition(SaffronCh, 30, 6)
 

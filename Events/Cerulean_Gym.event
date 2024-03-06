@@ -161,7 +161,7 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 EVBIT_MODIFY 4 
 Text(MistyDefeatText)
-GiveItemWithDurability(0, SpellScroll, BubbleBeam)
+GiveItemWithDurability_Rand(0, SpellScroll, BubbleBeam)
 ENUT CascadebadgeObtained 
 ENUT CeruleanGymClosedFlag
 SVAL r3 4500 
@@ -169,7 +169,7 @@ GIVETOMAIN 0
 TEXTSHOW MistyWaitText
 TEXTEND 
 REMA
-GiveSkillAccessory(0, RenewalID)
+GiveSkillAccessory_Rand(0, RenewalID)
 TEXTSTART
 TEXTSHOW MistyRewardText
 TEXTEND 
@@ -189,7 +189,7 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 EVBIT_MODIFY 4 
 Text(MistyRematchDefeatText)
-GiveItemWithDurability(0, SpellScroll, HydroPump)
+GiveItemWithDurability_Rand(0, SpellScroll, HydroPump)
 ENUT CeruleanGymRematchedFlag 
 SVAL r3 5000 
 GIVETOMAIN 0 

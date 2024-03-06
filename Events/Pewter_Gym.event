@@ -208,7 +208,7 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 EVBIT_MODIFY 4 
 Text(BrockDefeatText)
-GiveItemWithDurability(0, SpellScroll, RockTomb)
+GiveItemWithDurability_Rand(0, SpellScroll, RockTomb)
 //GiveItemWithDurability(0, SpellScroll, RockTomb)
 ENUT BoulderbadgeObtained 
 ENUT PewterGymClosedFlag
@@ -238,7 +238,7 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 EVBIT_MODIFY 4 
 Text(BrockRematchDefeatText)
-GiveItemWithDurability(0, SpellScroll, BulkUp)
+GiveItemWithDurability_Rand(0, SpellScroll, BulkUp)
 ENUT PewterGymRematchedFlag 
 //GiveItemWithDurability(0, SpellScroll, RockTomb)
 SVAL r3 5000 
