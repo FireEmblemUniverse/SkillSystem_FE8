@@ -314,16 +314,7 @@ mov r0, r8 @ unit
   mov     r0, r8
   blh     MagGetter
   str     r0, [sp]  
-  mov     r1, r8   
-  ldr     r0, [r1, #0x4]  @class
-  ldrb    r0, [r0, #0x4]  @class id
-  lsl     r0, #0x2
-  ldr     r1, =MagClassTable
-  add     r0, r1
-  ldrb    r0, [r0, #0x2]
-  lsl     r0, r0, #0x18    
-  asr     r0, r0, #0x18
-  mov r1, r8 @ unit 
+  mov r0, r8 @ unit 
   blh GetMaxMag 
   str     r0, [sp, #0x4]    
   mov     r0, #0x1  
@@ -358,7 +349,7 @@ mov r0, r8 @ unit
 .endm
 
 .macro draw_lck_bar_at_getter, bar_x, bar_y
-  draw_bar_at_with_getter \bar_x, \bar_y, LuckGetter, GetMaxLck, 0x19, 5
+  draw_bar_at_with_getter \bar_x, \bar_y, LuckGetter, GetMaxLck, 0x19, 6
 .endm
 
 .macro draw_halved_bar_at bar_x, bar_y, getter, offset, bar_id

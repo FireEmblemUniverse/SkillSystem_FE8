@@ -13,11 +13,13 @@ add		r1,#0x3A
 ldrb	r7,[r1]			@char mag
 add		r7,r0,r7
 ldrb	r0,[r2,#0x2]	@mag cap
-mov r1, r5 
+mov r0, r5 
 bl GetMaxMag 
 cmp		r7,r0
 ble		NotCapped
 mov		r7,r0
+
+@ put stuff for leveling up 
 NotCapped:
 mov		r1,r5
 add		r1,#0x3A

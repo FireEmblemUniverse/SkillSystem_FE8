@@ -24,28 +24,16 @@ ldr r0, MagClassTable
 add r3, r0
 
 ldrb r0, [r3, #0x2] @MagClassTable[ClassID].MagicCap
-push {r1} 
 push {r2} 
 push {lr} 
-mov r1, r12 @ bunit 
+mov r0, r12 @ bunit 
+mov r1, r2 @ unit 
 @mov r2, @ unit  
 bl RandomizeStatCaps
-mov r1, r0 
 pop {r3} 
 pop {r2} 
-pop {r0} 
 
-cmp r0, r1
-ble Exit
-    mov r0, #0x3A
-    ldrb r0, [r2, r0] @RAMUnit->Mag
-    sub r0 ,r1, r0    @MagCap - RAMUnit->Mag
 
-    mov r3, r12
-    add r3, #0x7A
-    strb r0, [r3, #0x0]
-
-Exit:
 
 @Resend breaking code
 mov r0, #0x19

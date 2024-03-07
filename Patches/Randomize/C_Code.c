@@ -144,133 +144,232 @@ int GetMaxSkl(struct Unit* unit);
 int GetMaxSpd(struct Unit* unit);
 int GetMaxDef(struct Unit* unit);
 int GetMaxRes(struct Unit* unit);
-int GetMaxMag(int magCap, struct Unit* unit);
+int GetMaxMag(struct Unit* unit);
 int GetMaxLck(struct Unit* unit); 
-
-// mov r2, r6 @ index in stat booster pointer of growth
-int GetRandomizedGrowth(struct Unit* unit, int growth, int id) { // index in stat booster pointer of growth
-	if (!CheckFlag(RandomizeGrowthsFlag_Link)) { return growth; } 
-	int uid = unit->pCharacterData->number;
-	int newGrowth = growth; 
-	if ((uid >= 0x50) && (uid<0x87)) { newGrowth += 10; } // so wilds match players 
-	if ((uid > 0x8C) && (uid<0xA0)) { newGrowth += 10; } 
-	
-	newGrowth = HashByte_Global(newGrowth, ((newGrowth*2)/3) + 30, unit->pClassData->number+id);
-	if (abs(newGrowth - ((growth * 2) / 3)) < 15) { newGrowth = HashByte_Global(newGrowth, ((growth*2)/3) + 30, unit->pClassData->number+id); } // reroll if too similar 
-	
-	// HP 
-	if (id == 10) { return newGrowth; } 
-	
-	// average random + half of the cap 
-	// STR 
-	if (id == 11) { newGrowth = ((GetMaxStr(unit)*9)/4) + (newGrowth/5); } 
-	// SKL 
-	if (id == 12) { newGrowth = ((GetMaxSkl(unit)*9)/4) + (newGrowth/5); } 
-	// SPD 
-	if (id == 13) { newGrowth = ((GetMaxSpd(unit)*9)/4) + (newGrowth/5); } 
-	// DEF
-	if (id == 14) { newGrowth = ((GetMaxDef(unit)*9)/4) + (newGrowth/5); } 
-	// RES 
-	if (id == 15) { newGrowth = ((GetMaxRes(unit)*9)/4) + (newGrowth/5); } 
-	// LCK 
-	if (id == 16) { newGrowth = ((GetMaxLck(unit)*9)/4) + (newGrowth/5); } 
-	// MAG 
-	if (id == 17) { newGrowth = ((GetMaxMag(0, unit)*9)/4) + (newGrowth/5); } 
-	return newGrowth; 
-} 
-
-int RandStat(int stat, int variance) { 
-	int adj = ((stat * 3)/2) + 10; 
-	int max = adj < 63 ? adj : 63 ; 
-	return HashByte_Global(stat, max, variance); 
-} 
-
-void RandomizeStats(struct Unit* unit) { 
-	if (!CheckFlag(RandomizeBaseStatsFlag_Link)) { return; } 
-	int classID = unit->pClassData->number; 
-	unit->maxHP = RandStat(unit->maxHP, classID); 
-	if (unit->maxHP < 10) { unit->maxHP += 10; } 
-	unit->pow = RandStat(unit->pow, classID); 
-	unit->skl = RandStat(unit->skl, classID); 
-	unit->spd = RandStat(unit->spd, classID); 
-	unit->def = RandStat(unit->def, classID); 
-	unit->res = RandStat(unit->res, classID); 
-	unit->lck = RandStat(unit->lck, classID); 
-	unit->_u3A = RandStat(unit->_u3A, classID); // mag 
-} 
-
-
-int RandomizeStatCap(int statCap, struct Unit* unit, int variance) { 
-	int min = (statCap / 5); 
-	int max = 60 - min; //((statCap+10)* 5) / 4; 
-	int classID = unit->pClassData->number + variance; 
-	max = HashByte_Global(statCap, max, classID) + min;
-	if (abs(max - statCap) < 15) { max = HashByte_Global(max, 60-min, classID) + min; } // reroll if too similar 
-	if (max > 60) { max = 60; } // probably unnecessary 
-	return max; 
-
-} 
-
-
-int GetMaxStr(struct Unit* unit) { 
-	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
-	int num = UNIT_POW_MAX(unit); 
-	if (!rand) { return num; } 
-	return RandomizeStatCap(num, unit, 0); // extra variance variable so stats with same max will differ 
-} 
-int GetMaxSkl(struct Unit* unit) { 
-	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
-	int num = UNIT_SKL_MAX(unit); 
-	if (!rand) { return num; } 
-	return RandomizeStatCap(num, unit, 1); 
-} 
-int GetMaxSpd(struct Unit* unit) { 
-	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
-	int num = UNIT_SPD_MAX(unit); 
-	if (!rand) { return num; } 
-	return RandomizeStatCap(num, unit, 2); 
-} 
-int GetMaxDef(struct Unit* unit) { 
-	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
-	int num = UNIT_DEF_MAX(unit); 
-	if (!rand) { return num; } 
-	return RandomizeStatCap(num, unit, 3); 
-} 
-int GetMaxRes(struct Unit* unit) { 
-	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
-	int num = UNIT_RES_MAX(unit); 
-	if (!rand) { return num; } 
-	return RandomizeStatCap(num, unit, 4); 
-} 
+int GetMaxStrV(struct Unit* unit, int variance);
+int GetMaxSklV(struct Unit* unit, int variance);
+int GetMaxSpdV(struct Unit* unit, int variance);
+int GetMaxDefV(struct Unit* unit, int variance);
+int GetMaxResV(struct Unit* unit, int variance);
+int GetMaxMagV(struct Unit* unit, int variance);
+int GetMaxLckV(struct Unit* unit, int variance); 
 struct magClassTable { 
 u8 base; 
 u8 growth; 
 u8 cap; 
 u8 promo; 
 }; 
-extern struct magClassTable MagClassTable[]; 
-int GetMaxMag(int magCap, struct Unit* unit) { // takes original cap as input lol 
-	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
-	if (!rand) { return magCap; }
-	magCap = MagClassTable[unit->pClassData->number].cap; 
-	return RandomizeStatCap(magCap, unit, 5); 
-} 
 struct classLuckTable { 
-u8 cap; 
 u8 unk1;
 u8 unk2;
 u8 unk3;
+u8 cap; 
 }; 
 extern struct classLuckTable ClassLuckTable[]; 
-int GetMaxLck(struct Unit* unit) { 
-	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
-	int num = ClassLuckTable[((unit)->pClassData->number)].cap; 
-	if (!rand) { return num; } 
-	return RandomizeStatCap(num, unit, 6); 
+extern struct magClassTable MagClassTable[]; 
+
+int GetAverageCap(struct Unit* unit) { 
+	int classID = unit->pClassData->number; 
+	int i = 0; 
+	int result = UNIT_POW_MAX(unit); i++; 
+	result += UNIT_SKL_MAX(unit); i++; 
+	result += UNIT_SPD_MAX(unit); i++; 
+	result += UNIT_DEF_MAX(unit); i++; 
+	result += UNIT_RES_MAX(unit); i++; 
+	result += MagClassTable[classID].cap; i++; 
+	//result += ClassLuckTable[classID].cap; 
+	//result += ClassMaxHPTable[classID].cap; 
+	return (result / i); 
+} 
+int GetAverageGrowth(struct Unit* unit) { 
+	int classID = unit->pClassData->number; 
+	int i = 0; 
+	int result = unit->pClassData->growthPow + 10; i++; 
+	result += unit->pClassData->growthSkl + 10; i++; 
+	result += unit->pClassData->growthSpd + 10; i++; 
+	result += unit->pClassData->growthDef + 10; i++; 
+	result += unit->pClassData->growthRes + 10; i++; 
+	result += MagClassTable[classID].growth + 10; i++; 
+	//result += ClassLuckTable[classID].growth; 
+	//result += ClassMaxHPTable[classID].growth; 
+	return (result / i); 
+} 
+
+// mov r2, r6 @ index in stat booster pointer of growth
+int GetRandomizedGrowth(struct Unit* unit, int growth, int id) { // index in stat booster pointer of growth
+	if (!CheckFlag(RandomizeGrowthsFlag_Link)) { return growth; } 
+	int uid = unit->pCharacterData->number;
+
+	int avgCap = GetAverageCap(unit); 
+	if ((uid >= 0x50) && (uid<0x87)) { growth += 10; } // so wilds match players 
+	if ((uid > 0x8C) && (uid<0xA0)) { growth += 10; } 
+	int newGrowth = growth; 
+	
+	int cid = id + unit->pClassData->number;
+	newGrowth = HashByte_Global(newGrowth, (newGrowth/10) + avgCap, cid) + (avgCap / 3);
+	//if (abs(newGrowth - ((growth * 2) / 3)) < 15) { newGrowth = HashByte_Global(newGrowth, ((growth*2)/3) + 30, cid); } // reroll if too similar 
+	
+	// HP 
+	if (id == 10) { return newGrowth; } 
+	
+	// average random + half of the cap 
+	typedef int (*func_unit_int)(struct Unit*, int);
+	//void func ( int (*f)(int) ) = GetMaxStr(); 
+	func_unit_int func = &GetMaxStrV; 
+	
+	// STR 
+	if (id == 11) { func = &GetMaxStrV; } 
+	// SKL 
+	if (id == 12) { func = &GetMaxSklV; } 
+	// SPD 
+	if (id == 13) { func = &GetMaxSpdV; } 
+	// DEF
+	if (id == 14) { func = &GetMaxDefV; } 
+	// RES 
+	if (id == 15) { func = &GetMaxResV; } 
+	// LCK 
+	if (id == 16) { func = &GetMaxLckV; } 
+	// MAG 
+	if (id == 17) { func = &GetMaxMagV; } 
+	
+	int statCap = func(unit, 0);
+	
+	int result = (statCap*5)/2; //((statCap*3)/2); // + (newGrowth/5);
+	newGrowth = HashByte_Global(statCap, avgCap/4, cid);
+	result -= newGrowth; 
+	if (result < 0) { result = 0; } 
+	int max = (GetAverageGrowth(unit) * 3)/2; 
+	if (result > max) { newGrowth = max; } 
+	
+	//if (abs(result - growth) < 20) { result = ((func(unit, result)*3)/2) + (result/5); } 
+	//if (abs(result - growth) < 20) { result = ((func(unit, result)*3)/2) + (result/5); } 
+	//if (abs(result - growth) < 20) { result = ((func(unit, result)*3)/2) + (result/5); } 
+	//if (abs(result - growth) < 20) { result = ((func(unit, result)*3)/2) + (result/5); } 
+	
+	if ((result - growth) > 99) { result = 99; } // more than +99 growth looks bad on stat screen 
+	if ((growth - result) > 99) { result = growth - 99; } // more than +99 growth looks bad on stat screen 
+	return result; 
+} 
+
+int RandStat(int stat, int variance, int avgCap) { 
+	int max = (stat/3) + (avgCap/5); 
+	int min = avgCap / 10; 
+	max -= min; 
+	max = max < 63 ? max : 63 ; // cap at 63 
+	return HashByte_Global(stat, max, variance) + min; 
+} 
+
+void RandomizeStats(struct Unit* unit) { 
+	if (!CheckFlag(RandomizeBaseStatsFlag_Link)) { return; } 
+	int classID = unit->pClassData->number; 
+	int avgCap = GetAverageCap(unit); 
+	unit->maxHP = RandStat(unit->maxHP, classID, avgCap); 
+	if (unit->maxHP < 10) { unit->maxHP += 10; } 
+	unit->pow = RandStat(unit->pow, classID, avgCap); 
+	unit->skl = RandStat(unit->skl, classID, avgCap); 
+	unit->spd = RandStat(unit->spd, classID, avgCap); 
+	unit->def = RandStat(unit->def, classID, avgCap); 
+	unit->res = RandStat(unit->res, classID, avgCap); 
+	unit->lck = RandStat(unit->lck, classID, avgCap); 
+	unit->_u3A = RandStat(unit->_u3A, classID, avgCap); // mag 
 } 
 
 
-int RandomizeStatCaps(int magCap, struct BattleUnit* bu, struct Unit* unit) { 
+int RandomizeStatCap(int statCap, struct Unit* unit, int variance) { 
+	int avgCap = GetAverageCap(unit); 
+	int min = (avgCap / 3); // eg. 10 - 20 
+	int max = ((avgCap * 3)/2) - min; // eg. 45 - 90 
+	if ((avgCap - statCap) > 10) { max = (max*3)/2; } 
+	int classID = unit->pClassData->number + variance; 
+	int result = HashByte_Global(statCap, max, classID) + min;
+	
+	
+	
+	if (abs(result - statCap) < (avgCap/2)) { result = HashByte_Global(result, max, classID) + min; } // reroll if too similar 
+	if (abs(result - statCap) < (avgCap/2)) { result = HashByte_Global(result, max, classID) + min; } // reroll if too similar 
+	if (abs(result - statCap) < 16) { result = HashByte_Global(result, max, classID) + min; } // reroll if too similar 
+	if (abs(result - statCap) < 11) { result = HashByte_Global(result, max + min, classID); } // reroll if too similar 
+	if (abs(result - statCap) < 6) { result = HashByte_Global(result, max + min, classID); } // reroll if too similar 
+	
+	
+	
+	if (result > 60) { result = 60; } // probably unnecessary 
+	return result; 
+
+} 
+
+int GetMaxStrV(struct Unit* unit, int variance) { 
+	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
+	int num = UNIT_POW_MAX(unit); 
+	if (!rand) { return num; } 
+	return RandomizeStatCap(num, unit, 0+variance); // extra variance variable so stats with same max will differ 
+} 
+int GetMaxStr(struct Unit* unit) { 
+	return GetMaxStrV(unit, 0); 
+} 
+
+int GetMaxSklV(struct Unit* unit, int variance) { 
+	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
+	int num = UNIT_SKL_MAX(unit); 
+	if (!rand) { return num; } 
+	return RandomizeStatCap(num, unit, 1+variance); 
+} 
+int GetMaxSkl(struct Unit* unit) { 
+	return GetMaxSklV(unit, 0); 
+} 
+
+int GetMaxSpdV(struct Unit* unit, int variance) { 
+	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
+	int num = UNIT_SPD_MAX(unit); 
+	if (!rand) { return num; } 
+	return RandomizeStatCap(num, unit, 2+variance); 
+} 
+int GetMaxSpd(struct Unit* unit) { 
+	return GetMaxSpdV(unit, 0);
+} 
+
+int GetMaxDefV(struct Unit* unit, int variance) { 
+	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
+	int num = UNIT_DEF_MAX(unit); 
+	if (!rand) { return num; } 
+	return RandomizeStatCap(num, unit, 3+variance); 
+} 
+int GetMaxDef(struct Unit* unit) { 
+	return GetMaxDefV(unit, 0);
+} 
+
+int GetMaxResV(struct Unit* unit, int variance) { 
+	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
+	int num = UNIT_RES_MAX(unit); 
+	if (!rand) { return num; } 
+	return RandomizeStatCap(num, unit, 4+variance); 
+} 
+int GetMaxRes(struct Unit* unit) { 
+	return GetMaxResV(unit, 0); 
+} 
+
+int GetMaxMagV(struct Unit* unit, int variance) { 
+	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
+	int magCap = MagClassTable[unit->pClassData->number].cap; 
+	if (!rand) { return magCap; }
+	return RandomizeStatCap(magCap, unit, 5+variance); 
+} 
+int GetMaxMag(struct Unit* unit) { 
+	return GetMaxMagV(unit, 0); 
+} 
+
+int GetMaxLckV(struct Unit* unit, int variance) { 
+	int rand = CheckFlag(RandomizeGrowthsFlag_Link);
+	int num = ClassLuckTable[((unit)->pClassData->number)].cap; 
+	if (!rand) { return num; } 
+	return RandomizeStatCap(num, unit, 6+variance); 
+} 
+int GetMaxLck(struct Unit* unit) { 
+	return GetMaxLckV(unit, 0); 
+} 
+
+
+void RandomizeStatCaps(struct BattleUnit* bu, struct Unit* unit) { 
 	
 	int max = GetMaxStr(unit);
     if ((unit->pow + bu->changePow) > max ) { 
@@ -296,11 +395,13 @@ int RandomizeStatCaps(int magCap, struct BattleUnit* bu, struct Unit* unit) {
     if ((unit->lck + bu->changeLck) > max) { 
 	bu->changeLck = max - unit->lck; } 
 	
-	return GetMaxMag(magCap, unit); 
+	max = GetMaxMag(unit);
+    if ((unit->_u3A + bu->changeCon) > max) { 
+	bu->changeCon = max - unit->_u3A; } 
 
 } 
 
-int UnitRandomizeStatCaps(int magCap, struct Unit* unit) { 
+void UnitRandomizeStatCaps(struct Unit* unit) { 
 	
 	int max = GetMaxStr(unit);
     if (unit->pow > max ) { 
@@ -326,8 +427,9 @@ int UnitRandomizeStatCaps(int magCap, struct Unit* unit) {
     if (unit->lck > max) { 
 	unit->lck = max; } 
 	
-	return GetMaxMag(magCap, unit); 
-
+	max = GetMaxMag(unit);
+    if (unit->_u3A  > max) { 
+	unit->_u3A = max; } 
 } 
 
 

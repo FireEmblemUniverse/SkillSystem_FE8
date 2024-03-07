@@ -453,14 +453,6 @@ CB_Entry(SnagID                  , DoNotRandomize      )
 CB_Entry(Unused80ID              , DoNotRandomize      )
 
 
-#define LuckEntry(cap) "PUSH; ORG ClassLuckTable + (cap * 4); BYTE cap; POP" 
-// missing promo gains & base stat 
-// class already has luck growth 
-
-ALIGN 4 
-ClassLuckTable: 
-FILL(256*4) 60 // everyone has a cap of 60 by default atm 
-
 
 
  ALIGN 4 
