@@ -58,6 +58,8 @@ POIN RandomItemTier0List
 POIN RandomItemTier1List 
 POIN RandomItemTier2List 
 POIN RandomItemTier3List 
+POIN RandomItemTier3List // It returns 1 tier higher half the time, so this is necessary 
+POIN RandomItemTier3List // unnecessary probably 
 
 
 #define Tm(ID) "ID<<8|SpellScrollID"

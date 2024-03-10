@@ -100,7 +100,7 @@ int GetItemHit(int item) {
 	item &= 0xFF; 
 	int hit = GetItemData(item)->hit;
 	if (!CheckFlag(RandomizeWeaponStatsFlag_Link)) return GetItemData(item)->hit;
-	int newHit = (HashByte_Global(hit, (hit+50)/5, item) * 5) + 20; 
+	int newHit = (HashByte_Global(hit, (hit+40)/5, item) * 5) + 35; 
 	if (newHit > 250) newHit = 250; 
 	return newHit; 
 }
@@ -314,8 +314,8 @@ int GetRandomizedGrowth(struct Unit* unit, int growth, int id) { // index in sta
 	return result; 
 } 
 
-int RandStat(int stat, int variance, int avgCap) { 
-	int max = (stat/3) + (avgCap/5); 
+int RandStat(int stat, int variance, int avgCap, int statCap) { 
+	int max = (statCap/6) + (avgCap/6) + (stat / 6); 
 	int min = avgCap / 10; 
 	max -= min; 
 	max = max < 63 ? max : 63 ; // cap at 63 
@@ -326,15 +326,16 @@ void RandomizeStats(struct Unit* unit) {
 	if (!CheckFlag(RandomizeBaseStatsFlag_Link)) { return; } 
 	int classID = unit->pClassData->number; 
 	int avgCap = GetAverageCap(unit); 
-	unit->maxHP = RandStat(unit->maxHP, classID, avgCap); 
+	
+	unit->maxHP = RandStat(unit->maxHP, classID, avgCap, unit->maxHP*3); 
 	if (unit->maxHP < 10) { unit->maxHP += 10; } 
-	unit->pow = RandStat(unit->pow, classID, avgCap); 
-	unit->skl = RandStat(unit->skl, classID, avgCap); 
-	unit->spd = RandStat(unit->spd, classID, avgCap); 
-	unit->def = RandStat(unit->def, classID, avgCap); 
-	unit->res = RandStat(unit->res, classID, avgCap); 
-	unit->lck = RandStat(unit->lck, classID, avgCap); 
-	unit->_u3A = RandStat(unit->_u3A, classID, avgCap); // mag 
+	unit->pow = RandStat(unit->pow, classID, avgCap, GetMaxStr(unit)); 
+	unit->skl = RandStat(unit->skl, classID, avgCap, GetMaxSkl(unit)); 
+	unit->spd = RandStat(unit->spd, classID, avgCap, GetMaxSpd(unit)); 
+	unit->def = RandStat(unit->def, classID, avgCap, GetMaxDef(unit)); 
+	unit->res = RandStat(unit->res, classID, avgCap, GetMaxRes(unit)); 
+	unit->lck = RandStat(unit->lck, classID, avgCap, GetMaxLck(unit)); 
+	unit->_u3A = RandStat(unit->_u3A, classID, avgCap, GetMaxMag(unit)); // mag 
 } 
 
 
@@ -345,9 +346,9 @@ int RandomizeStatCap(int statCap, struct Unit* unit, int variance) {
 	int low = Get2ndLowestCap(unit); 
 	int high = Get2ndHighestCap(unit); 
 	max -= min;
-	if (statCap >= high) { max = (max*13)/10; } // encourage best 2 stats to be lower  
+	if (statCap >= high) { max = (max*15)/10; } // encourage best 2 stats to be lower  
 	if (statCap <= low) { max = (max*22)/10; } // encourage worst 2 stats to be higher 
-	if ((statCap > low) && (statCap < high)) { max = ((avgCap * 17)/10); } // eg. 45 - 90 
+	if ((statCap > low) && (statCap < high)) { max = ((avgCap * 18)/10); } // eg. 45 - 90 
 	 
 	
 	int classID = unit->pClassData->number + variance; 
@@ -516,7 +517,20 @@ int GetItemTier(int item) {
 	for (int tier = 0; tier < 4; tier++) { 
 		int i = 0; 
 		while (RandomItemsTable[tier][i]) { 
-			if (item == RandomItemsTable[tier][i]) { return tier; } 
+			if (item == RandomItemsTable[tier][i]) { 
+				return HashByte_Ch(item, 2) + tier; // return 1 tier higher half the time for fun I guess 
+				// (Mod 2 means max 1) 
+			} 
+			i++; 
+		} 
+	} 
+	int itemID_only = item & 0xFF; 
+	for (int tier = 0; tier < 4; tier++) { 
+		int i = 0; 
+		while (RandomItemsTable[tier][i]) { 
+			if (itemID_only == RandomItemsTable[tier][i]) { 
+				return HashByte_Ch(item, 2) + tier; // return 1 tier higher half the time for fun I guess 
+			} 
 			i++; 
 		} 
 	} 

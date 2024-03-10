@@ -178,11 +178,11 @@ SkillAccessoryIcons(SealMagID)
 #incbin "dmp/SealMag.dmp"
 
 SkillAccessoryIcons(Intimidate2ID)
-#incbin "dmp/SealStr.dmp"
+#incbin "dmp/YellowScarf.dmp"
 SkillAccessoryIcons(GuardBreakerID)
-#incbin "dmp/SealDef.dmp"
+#incbin "dmp/YellowScarf.dmp"
 SkillAccessoryIcons(DowngradeID)
-#incbin "dmp/SealSpd.dmp"
+#incbin "dmp/YellowScarf.dmp"
 
 SkillAccessoryIcons(SteadyStanceID)
 #incbin "dmp/BronzeShield.dmp"
