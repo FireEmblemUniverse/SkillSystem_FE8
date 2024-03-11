@@ -25,7 +25,8 @@
 [MidRight] = [OpenMidRight]
 [FarRight] = [OpenFarRight]
 [FarFarRight] = [OpenFarFarRight]
-
+[OpenQuote] = [0xC2][0x93]
+[CloseQuote] = [0xC2][0x94]
 
 
 

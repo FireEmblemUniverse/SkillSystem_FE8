@@ -102,8 +102,8 @@ SPD_ProcDisplayTiles:
 #incbin "Graphics/ProcDisplayTiles.dmp"    // Uncompressed image.
 
 ALIGN 4
-Skill_Getter: // gets a list of skills
-	#incbin "asm/GetSkills.dmp"
+Skill_Getter: // gets a list of skills for stat page 
+	#include "asm/GetSkills.lyn.event"
 	POIN PersonalSkillTable
 	POIN ClassSkillTable
 	POIN (GetInitialSkillList|1)

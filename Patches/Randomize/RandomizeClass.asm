@@ -13,6 +13,9 @@ push {lr}
 blh GetGameClock 
 ldr r3, =StartTimeSeedRamLabel
 ldr r3, [r3] 
+bl HashSeed
+ldr r3, =StartTimeSeedRamLabel
+ldr r3, [r3] 
 str r0, [r3] 
 pop {r0} 
 bx r0 
@@ -42,7 +45,7 @@ bl CountListSize_Byte
 mov r1, r0 @ max 
 mov r0, r4 @ class id 
 
-bl HashByte_N 
+bl HashByte_Ch 
 @(u8 number, int max)
 lsl r0, #24 
 lsr r0, #24 @ byte only 
@@ -80,11 +83,12 @@ push {r4, lr}
 mov r4, r1 
 @ r1 as class ID 
 
-ldr r3, =RandomizeClassesFlagLabel 
-ldr r0, [r3] 
-blh CheckEventId 
+mov r0, r5 @ unit struct (contains very little right now as it is just being made) 
+bl ShouldUnitBeRandomized 
 cmp r0, #0 
-beq VanillaLoadBehaviour
+beq VanillaLoadBehaviour 
+
+
 
 mov r0, r4 @ class id 
 bl RandomizeClassNow 
@@ -145,5 +149,25 @@ mov r1, sp
 mov r0, r6 
 bx r3 
 .ltorg 
+
+.global RandomizeStatsHook
+.type RandomizeStatsHook, %function 
+RandomizeStatsHook:
+push {lr} 
+add r0, r2 
+strb r0, [r4, #0x18] 
+ldrb r0, [r1, #0x12] 
+strb r0, [r4, #0x19] 
+mov r0, #0 
+strb r0, [r4, #0x1A] @ con bonus 
+
+mov r0, r4 
+bl RandomizeStats 
+mov r1, #0 @ vanilla expects this 
+pop {r0} 
+bx r0 
+.ltorg 
+
+
 
 

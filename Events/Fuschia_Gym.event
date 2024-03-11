@@ -163,14 +163,14 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 EVBIT_MODIFY 4 
 Text(KogaDefeatText)
-GiveItemWithDurability(0, SpellScroll, PoisonJab)
+GiveItemWithDurability_Rand(0, SpellScroll, PoisonJab)
 ENUT SoulbadgeObtained 
 SVAL r3 6000 
 GIVETOMAIN 0 
 TEXTSHOW KogaWaitText
 TEXTEND 
 REMA
-GiveSkillAccessory(0, SavageBlowID)
+GiveSkillAccessory_Rand(0, SavageBlowID)
 TEXTSTART
 TEXTSHOW KogaRewardText
 TEXTEND 
@@ -190,7 +190,7 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 EVBIT_MODIFY 4 
 Text(KogaRematchDefeatText)
-GiveItemWithDurability(0, SpellScroll, SwordsDance)
+GiveItemWithDurability_Rand(0, SpellScroll, SwordsDance)
 ENUT FuschiaGymRematchedFlag
 SVAL r3 5000 
 GIVETOMAIN 0 

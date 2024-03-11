@@ -12,9 +12,17 @@
 .equ CurrentUnitFateData, 0x203A958 
 .equ CheckEventId, 0x8083da8
 .equ gChapterData, 0x202BCF0
+.equ CannotEvolveFlag_Link, PromotionLevelTable+4 
 push {r4-r6, lr}
 
 mov r6, #3 @ False. Default - Menu false usability is 3 
+
+ldr r0, CannotEvolveFlag_Link
+ldr r0, [r0] 
+blh CheckEventId 
+cmp r0, #0 
+bne ReturnValue  
+
 
 ldr r4, =CurrentUnit 
 ldr r4, [r4] 

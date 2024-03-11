@@ -3,7 +3,7 @@ MetisTomeCheck:
 WORD Growth_Options
 
 ScrollsCheck:
-#incbin "ScrollsCheck/ScrollsCheck.dmp"
+#include "ScrollsCheck/ScrollsCheck.lyn.event"
 WORD Growth_Options
 POIN ItemTable
 WORD PASSIVE_ITEM_BOOSTS_ATTR

@@ -241,6 +241,8 @@ MU_GetSpeed_FixForFreeMU:
 	sub r0, r1 
 	cmp r0, #40
 	bge NoSlowStart
+	cmp r3, #0x20 
+	ble NoSlowStart 
 	lsr r3, #1 
 	NoSlowStart: 
 	mov r0, r3 

@@ -53,6 +53,7 @@ bool NihilTester(Unit* unit, u8 skillID) {
 /*Main functions*/
 
 //Makes skill buffer at a given location.
+extern int RandomizeSkill(int id, int classID); 
 SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
 	
 	if (!unit) { asm("mov r11, r11"); } 
@@ -70,6 +71,7 @@ SkillBuffer* MakeSkillBuffer(Unit* unit, SkillBuffer* buffer) {
 
     //Class skill
     temp = ClassSkillTable[unit->pClassData->number];
+	temp = RandomizeSkill(temp, unit->pClassData->number);
     if (IsSkillIDValid(temp)) {
         buffer->skills[count++] = temp;
     }
@@ -206,7 +208,7 @@ bool CheckSkillBuffer(Unit* unit, u8 skillID) {
 bool SkillTester(Unit* unit, u8 skillID) {
     if (skillID == 0)   {return TRUE;}
     if (skillID == 255) {return FALSE;}
-	if (!unit) { asm("mov r11, r11"); } 
+	if (!unit) { asm("mov r11, r11"); return false; } 
 	if (!(unit->pCharacterData)) { return false; } 
 
     int index = unit->index;

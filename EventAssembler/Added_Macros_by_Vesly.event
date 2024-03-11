@@ -49,6 +49,9 @@
 #define GiveItemWithDurability(UnitID, Item, Durability) "CALL $591F40; SMOV 0x3 (Durability<<8)|Item ; GIVEITEMTO UnitID"
 #define GiveItemWithDurability(UnitID) "SVAL r1 8; SLSL r4 r4 r1; SADD r3 r3 r4; CALL $591F40; GIVEITEMTO UnitID" // s3 as item, s4 as durability 
 
+#define GiveItemWithDurability_Rand(UnitID, Item, Durability) "CALL $591F40; SMOV 0x3 (Durability<<8)|Item ; ASMC RandomizeItem_ASMC; GIVEITEMTO UnitID"
+#define GiveItemWithDurability_Rand(UnitID) "SVAL r1 8; SLSL r4 r4 r1; SADD r3 r3 r4; CALL $591F40; ASMC RandomizeItem_ASMC; GIVEITEMTO UnitID" // s3 as item, s4 as durability 
+
 
 // this is at |2 addresses, not align-4. Needs to add +7 to lr at end. 
 #define jumpToHackNew(offset) "BYTE $FE $46 $00 $4B $18 $47; POIN (offset|0x1)" // requires you add +7 to your return address after you pop lr into a lo register 
@@ -65,6 +68,8 @@
 #define GiveSkillAccessory(UnitID, SkillID) "SVAL r1 0xC0; SVAL r3 SkillID; SAND r1 r1 r3; SVAL r3 6; SLSR r1 r1 r3; SVAL r3 Ves_SkillBlockOne_ItemID; SADD r1 r3 r1; SVAL r4 0x3F; SVAL r3 SkillID; SAND r3 r4 r3; SVAL r4 8; SLSL r3 r3 r4; SADD r3 r3 r1; CALL $591F40; GIVEITEMTO UnitID"
 // SVAL r5 *SkillID of accessory to give* 
 #define GiveSkillAccessory(UnitID) "SVAL r1 0xC0; SADD r3 r5 r0; SAND r1 r1 r3; SVAL r3 6; SLSR r1 r1 r3; SVAL r3 Ves_SkillBlockOne_ItemID; SADD r1 r3 r1; SVAL r4 0x3F; SADD r3 r5 r0; SAND r3 r4 r3; SVAL r4 8; SLSL r3 r3 r4; SADD r3 r3 r1; CALL $591F40; GIVEITEMTO UnitID"
+#define GiveSkillAccessory_Rand(UnitID, SkillID) "SVAL r1 0xC0; SVAL r3 SkillID; SAND r1 r1 r3; SVAL r3 6; SLSR r1 r1 r3; SVAL r3 Ves_SkillBlockOne_ItemID; SADD r1 r3 r1; SVAL r4 0x3F; SVAL r3 SkillID; SAND r3 r4 r3; SVAL r4 8; SLSL r3 r3 r4; SADD r3 r3 r1; CALL $591F40; ASMC RandomizeItem_ASMC; GIVEITEMTO UnitID"
+#define GiveSkillAccessory_Rand(UnitID) "SVAL r1 0xC0; SADD r3 r5 r0; SAND r1 r1 r3; SVAL r3 6; SLSR r1 r1 r3; SVAL r3 Ves_SkillBlockOne_ItemID; SADD r1 r3 r1; SVAL r4 0x3F; SADD r3 r5 r0; SAND r3 r4 r3; SVAL r4 8; SLSL r3 r3 r4; SADD r3 r3 r1; CALL $591F40; ASMC RandomizeItem_ASMC; GIVEITEMTO UnitID"
 
 // Silent give skill accessory also equips it 
 #define SilentGiveSkillAccessory(UnitID, SkillID) "SVAL r1 0xC0; SVAL r3 SkillID; SAND r1 r1 r3; SVAL r3 6; SLSR r1 r1 r3; SVAL r3 Ves_SkillBlockOne_ItemID; SADD r1 r3 r1; SVAL r4 0x3F; SVAL r3 SkillID; SAND r4 r4 r3; SVAL r5 0x80; SADD r4 r4 r5; SADD r3 r1 r0; SVAL r1 UnitID; ASMC SilentGiveItemWithDurability" 

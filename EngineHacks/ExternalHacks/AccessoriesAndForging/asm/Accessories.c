@@ -143,13 +143,18 @@ int EquippedAccessoryDurabilityGetter(struct Unit *unit) {
 	return 0; // if no equipped item return nothing
 }
 
+
+inline int Accessory_GetItemMight(int item) { 
+	return GetItemData(item&0xFF)->might;
+} 
+
 int EquippedShieldAccessoryDurabilityGetter(struct Unit *unit) {
 		//int itemId;
 
 	if(!unit) return 0; // if no unit return no accessory effect
 	for(int i = 0; i < 5; i++) {
 		int isItemAnAccessory = GetItemAttributes(unit->items[i]) & IA_ACCESSORY;
-		if (GetItemMight(unit->items[i]) == AE_NormalShield_Link) { 
+		if (Accessory_GetItemMight(unit->items[i]) == AE_NormalShield_Link) { 
 			if (isItemAnAccessory) {
 				if(ITEM_EQUIPPED(unit->items[i])) return ITEM_USES(unit->items[i]); // & isItemAnAccessory
 			}
@@ -182,7 +187,7 @@ void DepleteEquippedAccessoryUse(struct Unit *unit) {
 int AccessoryEffectGetter(struct Unit *unit) {
 	int item = EquippedAccessoryGetter(unit);
 	if (!item) return 0;
-	return GetItemMight(item);// item effect id uses the might byte
+	return Accessory_GetItemMight(item);// item effect id uses the might byte
 	
 	//return GetItemData(ITEM_INDEX(item))->might; // item effect id uses the might byte
 }

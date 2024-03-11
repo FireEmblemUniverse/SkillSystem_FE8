@@ -1543,7 +1543,7 @@ BYTE 0 0 0 Constrict // Always usable by anyone
 BYTE 0 FriendlyFireBool|FixedDamageBool
 BYTE 3 T1AoE_Var // variance range of 0 - 2 
 BYTE 1 2 // Attack range
-BYTE SmallTriangle debuffAnimationID // Index of RangeMask, AnimationALL,
+BYTE SmallestLine debuffAnimationID // Index of RangeMask, AnimationALL,
 BYTE 100 0x28 // DamagePercent, Status trapped 2 turns 
 BYTE 0 0 // DebuffID, EventIndex
 BYTE 0xFF 0 // Weapon Type and WEXP to use this. 

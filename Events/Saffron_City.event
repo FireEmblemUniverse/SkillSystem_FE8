@@ -177,7 +177,7 @@ END_MAIN
 ObtainPsychicEvent:
 EVBIT_MODIFY 4 
 BottomWallText(PsychicSaffronText)
-GiveItemWithDurability(0x7fff, SpellScroll, Psychic)
+GiveItemWithDurability_Rand(0x7fff, SpellScroll, Psychic)
 BottomWallText(PsychicSaffronText2)
 NoFade
 ENDA 
@@ -197,7 +197,7 @@ SetGameOption(TextSpeedOption, 1)
 TutText_M(SaffronEHouseText)
 SADD s3 sA s0 
 SetGameOption(TextSpeedOption)
-//GiveItemWithDurability(0, SpellScroll, Sleep2)
+//GiveItemWithDurability_Rand(0, SpellScroll, Sleep2)
 LABEL 99 
 ASMC 0x80160D1 // Return to map BGM 
 NoFade 

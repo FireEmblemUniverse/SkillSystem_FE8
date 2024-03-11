@@ -67,11 +67,15 @@ no_personal:
 
 	ldr  r2, lClassSkillTable
 	ldrb r2, [r2, r0] @ skill byte
+mov r1, r0 @ class id 
+mov r0, r2 @ skill 
 
-	cmp r2, #0
+bl RandomizeSkill 
+
+	cmp r0, #0
 	beq no_class
 
-	strb r2, [r5]
+	strb r0, [r5]
 	add  r5, #1
 
 no_class:
@@ -147,8 +151,8 @@ lop_move_to_end:
 	b lop_move_to_end
 
 	.pool
-	.align
-
+.ltorg 
+.align 
 EALiterals:
 	@ POIN lPersonalSkillTable
 	@ POIN lClassSkillTable

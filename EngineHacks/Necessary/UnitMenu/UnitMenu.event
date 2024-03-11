@@ -94,7 +94,8 @@ UnitMenuTable:
 
 // Modular Summon 
   //MenuCommand(0x693,0x6DD,NormalText,ModularSummonUsability,ModularSummonEffect)
-	
+MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
+
   UM_Visit
   
   MenuCommand(0x67A, 0x6CC, BlueText, $22FDC, $23020)
@@ -392,7 +393,6 @@ MenuCommand(UM_FocusEnergyName, UM_FocusEnergyDesc, BlueText, FocusEnergyCommand
   //UM_Supply
   MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,NewSupplyEffect)
   MenuCommand(0x68F,0x6D5,NormalText,NewSupplyUsability2,NewSupplyEffect)
-MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
 
 
 

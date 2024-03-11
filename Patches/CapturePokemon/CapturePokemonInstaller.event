@@ -15,8 +15,8 @@ CHECK_COORDS (-1) // active unit coords
 SADD sB sC s0 
 CUSA 0x7FFD //enemy to player 
 CAM1 0xFFFF
-WARP_IN
-StalVar(20, 50)
+WARP_OUT
+StalVar(25, 50)
 Text(PokemonCapturedText)
 SVAL r3 300 
 GIVETOSLOT3 // Take 300 gold from the player 

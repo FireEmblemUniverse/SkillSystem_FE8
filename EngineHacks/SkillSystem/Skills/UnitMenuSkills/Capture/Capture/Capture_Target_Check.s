@@ -1,6 +1,11 @@
 .thumb
 .org 0x0
-
+.macro blh to, reg=r3
+  ldr \reg, =\to
+  mov lr, \reg
+  .short 0xf800
+.endm
+	.equ CheckEventId,0x8083da8
 .equ WatchfulID, SkillTester+4
 
 @checks if target unit is an enemy and can be rescued
@@ -28,6 +33,17 @@ ldr r0, [r4] @ Unit Struct
 ldrb r0, [r0, #4] @ Unit ID 
 cmp r0, #0xA0 
 bge GoBack @ Never allow capturing for unit IDs 0xA0 and greater 
+ 
+ldr r0, =CannotEvolveFlag
+lsl r0, #16 
+lsr r0, #16 
+blh CheckEventId 
+cmp r0, #0 
+beq CanCapture 
+mov r0, r4 
+bl IsTargetEvolved
+cmp r0, #0 
+bne GoBack 
 
 @ Vesly commented out so con is ignored 
 @mov		r0,r5
@@ -37,6 +53,8 @@ bge GoBack @ Never allow capturing for unit IDs 0xA0 and greater
 @.short	0xF800
 @cmp		r0,#0x0
 @beq		GoBack				@can't capture if you can't rescue
+
+CanCapture: 
 ldr		r0,Fill_Target_Queue
 mov		r14,r0
 ldrb	r0,[r4,#0x10]
@@ -58,5 +76,7 @@ Can_Rescue_Check:
 .long 0x0801831C
 Fill_Target_Queue:
 .long 0x0804F8BC
+.ltorg 
+.align 4 
 SkillTester:
 @

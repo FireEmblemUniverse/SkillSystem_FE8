@@ -1,0 +1,248 @@
+#include "ChallengeRunMenu.lyn.event"
+
+ALIGN 4 
+CannotEvolveFlag_Link:
+WORD CannotEvolveFlag
+CannotCaptureFlag_Link:
+WORD CannotCaptureFlag
+
+ALIGN 4
+CR_TotalOptions: 
+WORD 18 // number of options to scroll through 
+CR_MaxDisplayed:
+WORD 7 // Max is 7 (for 8 entries) 
+
+
+CR_NumberOfOptionsPerEntryTable:
+BYTE 2 // 0th entry has 2 choices 
+BYTE 2 // 1st entry has 2 choices 
+BYTE 2
+BYTE 2
+BYTE 2
+BYTE 2
+BYTE 2
+BYTE 2
+
+
+#define BonusUnitParameters "0x1 Level(3,Ally,True) [7,7] 0b 0x1 REDA7R10 [Berry,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]"
+ALIGN 4 
+ChallengeRunUnitsTable: 
+POIN UnitsNone 
+POIN UnitsNone // Little Cup 
+POIN UnitsAsh
+POIN UnitsGary
+//POIN UnitsRed
+//POIN UnitsBlue
+//POIN UnitsGreen
+//POIN UnitsYellow
+POIN UnitsOak
+POIN UnitsBill
+POIN UnitsBrock
+POIN UnitsMisty
+POIN UnitsLtSurge
+POIN UnitsErika
+POIN UnitsKoga
+POIN UnitsSabrina
+POIN UnitsBlaine
+POIN UnitsGiovanni
+POIN UnitsLorelei
+POIN UnitsBruno
+POIN UnitsAgatha
+POIN UnitsLance
+POIN UnitsVesly
+
+ALIGN 4 
+UnitsNone: 
+UNIT 
+
+
+ALIGN 4 ; UnitsRed:
+ALIGN 4 ; UnitsBlue:
+ALIGN 4 ; UnitsGreen:
+ALIGN 4 ; UnitsYellow:
+
+ALIGN 4 ; UnitsAsh:
+UNIT 0x02 PikachuID BonusUnitParameters
+UNIT 0x06 BulbasaurID BonusUnitParameters 
+UNIT 0x07 CharmanderID BonusUnitParameters 
+UNIT 0x08 SquirtleID BonusUnitParameters 
+UNIT 0x09 SnorlaxID BonusUnitParameters 
+UNIT 0x0A LaprasID BonusUnitParameters 
+UNIT
+ALIGN 4 
+UnitsGary: 
+UNIT 0x02 GrowlitheID BonusUnitParameters
+UNIT 0x06 ExeggcuteID BonusUnitParameters 
+UNIT 0x07 MagikarpID BonusUnitParameters 
+UNIT 0x08 PidgeyID BonusUnitParameters 
+UNIT 0x09 AbraID BonusUnitParameters 
+UNIT 0x0A NidoranMID BonusUnitParameters 
+UNIT
+
+
+
+ALIGN 4 ; UnitsOak:
+UNIT 0x02 PikachuID BonusUnitParameters
+UNIT 0x06 BulbasaurID BonusUnitParameters 
+UNIT 0x07 CharmanderID BonusUnitParameters 
+UNIT 0x08 SquirtleID BonusUnitParameters 
+UNIT 0x09 EeveeID BonusUnitParameters 
+UNIT 0x0A TaurosID BonusUnitParameters 
+UNIT
+ALIGN 4 ; UnitsBill:
+UNIT 0x02 VaporeonID BonusUnitParameters
+UNIT 0x06 JolteonID BonusUnitParameters 
+UNIT 0x07 FlareonID BonusUnitParameters 
+UNIT 0x08 ClefairyID BonusUnitParameters 
+UNIT 0x09 PorygonID BonusUnitParameters 
+UNIT 0x0A JigglypuffID BonusUnitParameters 
+UNIT
+
+ALIGN 4 ; UnitsVesly:
+UNIT 0x02 MagikarpID BonusUnitParameters
+UNIT 0x06 CaterpieID BonusUnitParameters 
+UNIT 0x07 WeedleID BonusUnitParameters 
+UNIT 0x08 RattataID BonusUnitParameters 
+UNIT 0x09 PidgeyID BonusUnitParameters 
+UNIT 0x0A ZubatID BonusUnitParameters 
+UNIT
+
+ALIGN 4 
+UnitsBrock: 
+UNIT 0x02 OnixID BonusUnitParameters
+UNIT 0x06 DiglettID BonusUnitParameters 
+UNIT 0x07 GeodudeID BonusUnitParameters 
+UNIT 0x08 VulpixID BonusUnitParameters 
+UNIT 0x09 SandshrewID BonusUnitParameters 
+UNIT 0x0A RhyhornID BonusUnitParameters 
+//UNIT 0x0B OmanyteID BonusUnitParameters 
+//UNIT 0x0C KabutoID BonusUnitParameters 
+UNIT
+
+
+
+ALIGN 4 
+UnitsMisty: 
+UNIT 0x02 StaryuID BonusUnitParameters
+UNIT 0x06 SeelID BonusUnitParameters 
+UNIT 0x07 PsyduckID BonusUnitParameters 
+UNIT 0x08 HorseaID BonusUnitParameters 
+UNIT 0x09 GoldeenID BonusUnitParameters 
+UNIT 0x0A DratiniID BonusUnitParameters 
+UNIT
+
+
+
+ALIGN 4 
+UnitsLtSurge: 
+UNIT 0x02 PikachuID BonusUnitParameters
+UNIT 0x06 MagnemiteID BonusUnitParameters 
+UNIT 0x07 VoltorbID BonusUnitParameters 
+UNIT 0x08 ElectabuzzID BonusUnitParameters 
+UNIT 0x09 JolteonID BonusUnitParameters 
+UNIT 0x0A CuboneID BonusUnitParameters 
+UNIT
+
+
+ALIGN 4 
+UnitsErika: 
+UNIT 0x02 OddishID BonusUnitParameters
+UNIT 0x06 TangelaID BonusUnitParameters 
+UNIT 0x07 BellsproutID BonusUnitParameters 
+UNIT 0x08 ExeggcuteID BonusUnitParameters 
+UNIT 0x09 ParasID BonusUnitParameters 
+UNIT 0x0A OmanyteID BonusUnitParameters 
+UNIT
+
+ALIGN 4 
+UnitsKoga: 
+UNIT 0x02 VenonatID BonusUnitParameters
+UNIT 0x06 TentacoolID BonusUnitParameters 
+UNIT 0x07 GrimerID BonusUnitParameters 
+UNIT 0x08 KoffingID BonusUnitParameters 
+UNIT 0x09 ScytherID BonusUnitParameters 
+UNIT 0x0A KabutoID BonusUnitParameters 
+//UNIT 0x0B DrowzeeID BonusUnitParameters 
+UNIT
+
+
+ALIGN 4 
+UnitsSabrina: 
+UNIT 0x02 AbraID BonusUnitParameters
+UNIT 0x06 MrMimeID BonusUnitParameters 
+UNIT 0x07 DrowzeeID BonusUnitParameters 
+UNIT 0x08 JynxID BonusUnitParameters 
+UNIT 0x09 PorygonID BonusUnitParameters 
+UNIT 0x0A FarfetchdID BonusUnitParameters 
+UNIT
+
+
+ALIGN 4 
+UnitsBlaine: 
+UNIT 0x02 GrowlitheID BonusUnitParameters
+UNIT 0x06 MagmarID BonusUnitParameters
+UNIT 0x07 BulbasaurID BonusUnitParameters
+UNIT 0x08 VulpixID BonusUnitParameters
+UNIT 0x09 PonytaID BonusUnitParameters
+UNIT 0x0A FlareonID BonusUnitParameters
+UNIT
+
+ALIGN 4 
+UnitsGiovanni: 
+UNIT 0x02 NidoranMID BonusUnitParameters
+UNIT 0x06 RhyhornID BonusUnitParameters 
+UNIT 0x07 SandshrewID BonusUnitParameters 
+UNIT 0x08 PoliwagID BonusUnitParameters 
+UNIT 0x09 MeowthID BonusUnitParameters 
+UNIT 0x0A DiglettID BonusUnitParameters 
+UNIT
+
+
+
+ALIGN 4 
+UnitsLorelei: 
+UNIT 0x02 LaprasID BonusUnitParameters
+UNIT 0x06 SeelID BonusUnitParameters 
+UNIT 0x07 JynxID BonusUnitParameters 
+UNIT 0x08 VaporeonID BonusUnitParameters 
+UNIT 0x09 SlowpokeID BonusUnitParameters 
+UNIT 0x0A ShellderID BonusUnitParameters 
+UNIT
+
+
+ALIGN 4 
+UnitsBruno: 
+UNIT 0x02 MachopID BonusUnitParameters
+UNIT 0x06 HitmonchanID BonusUnitParameters 
+UNIT 0x07 HitmonleeID BonusUnitParameters 
+UNIT 0x08 OnixID BonusUnitParameters 
+UNIT 0x09 GeodudeID BonusUnitParameters 
+UNIT 0x0A KangaskhanID BonusUnitParameters 
+UNIT
+
+
+ALIGN 4 
+UnitsAgatha: 
+UNIT 0x02 GastlyID BonusUnitParameters
+UNIT 0x06 ZubatID BonusUnitParameters 
+UNIT 0x07 LickitungID BonusUnitParameters 
+UNIT 0x08 EkansID BonusUnitParameters 
+UNIT 0x09 GastlyID BonusUnitParameters 
+UNIT 0x0A GastlyID BonusUnitParameters 
+UNIT
+
+
+
+ALIGN 4 
+UnitsLance: 
+UNIT 0x02 DratiniID BonusUnitParameters
+UNIT 0x06 CharmanderID BonusUnitParameters 
+UNIT 0x07 AerodactylID BonusUnitParameters 
+UNIT 0x08 MagikarpID BonusUnitParameters 
+UNIT 0x09 DratiniID BonusUnitParameters 
+UNIT 0x0A HorseaID BonusUnitParameters 
+//UNIT 0x0B DratiniID BonusUnitParameters 
+UNIT
+
+
+#undef BonusUnitParameters 

@@ -143,6 +143,7 @@ void StartingOptionsSetup(OptionsProc* CurrentProc){
 	for (int i = 0; i<21; i++) { 
 		proc->FlagOn[i] = 0; // init to 0 
 	} 
+	proc->timer = 0; // init game time as 0 
 
 	updateOptionsPage(CurrentProc);
 };
@@ -618,9 +619,10 @@ void CallResetPermanentFlags(void) {
 
 extern struct ProcCode* ProcScr_BmFadeOUT; // save screen fade out 
 void SaveStartingOptionsLoop(OptionsSavedProc* CurrentProc){
+	CurrentProc->timer++; 
 	OptionsProc* proc = (void*)ProcFind((void*)&StartingOptionsProc); 
 	if (proc) { 
-		for (int commandID = 0; commandID < PAGE1MAXINDEX; commandID++) { 
+		for (int commandID = 0; commandID <= PAGE1MAXINDEX; commandID++) { 
 			u16* data = GetOptionsToFlagData(commandID);
 			//asm("mov r11, r11"); 
 			if (data) CurrentProc->FlagOn[commandID] = data[proc->Option[commandID]]; 
@@ -638,6 +640,7 @@ void SaveStartingOptionsLoop(OptionsSavedProc* CurrentProc){
 			flag = CurrentProc->FlagOn[i]; 
 			if (flag > 0) { SetEventId(flag); } 
 		} 
+		SetGameTime(CurrentProc->timer);
 		//int slot = gChapterData.saveSlotIndex; 
 		
 		BreakProcLoop((void*)CurrentProc); 
@@ -666,12 +669,12 @@ void StartingOptionsLoop(OptionsProc* CurrentProc){
 
 
   if (thisPage == 1) {
-    if ((newInput & InputDown) != 0) {
+    if (newInput & InputDown) {
       if (CurrentProc->CursorIndex < PAGE1MAXINDEX) { CurrentProc->CursorIndex++; }
       else { CurrentProc->CursorIndex = 0; } 
 	  updateOptionsPage(CurrentProc);
     }
-    if ((newInput & InputUp) != 0) {
+    if (newInput & InputUp) {
       if (CurrentProc->CursorIndex != 0) { CurrentProc->CursorIndex--; }
       else { CurrentProc->CursorIndex = PAGE1MAXINDEX; }
 	  updateOptionsPage(CurrentProc);

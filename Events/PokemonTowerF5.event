@@ -162,7 +162,7 @@ CheckTrainerFlag(0xE1)
 BNE 10 sC s0 
 LOAD1 0x1 HumanTrainers
 ENUN 
-ENUT PlayableCutsceneFlag
+//ENUT PlayableCutsceneFlag
 LABEL 10 
 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 

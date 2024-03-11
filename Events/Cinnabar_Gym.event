@@ -373,7 +373,7 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 EVBIT_MODIFY 4 
 Text(BlaineDefeatText)
-GiveItemWithDurability(0, SpellScroll, FireBlast)
+GiveItemWithDurability_Rand(0, SpellScroll, FireBlast)
 ENUT VolcanobadgeObtained
 SVAL r3 9000 
 GIVETOMAIN 0 
@@ -381,7 +381,7 @@ TEXTSHOW BlaineWaitText
 TEXTEND 
 REMA
 //GiveSkillAccessory(0, ?)
-GiveItemWithDurability(0, StatAccessory, EnergyBandT3_BoostIndex)
+GiveItemWithDurability_Rand(0, StatAccessory, EnergyBandT3_BoostIndex)
 TEXTSTART
 TEXTSHOW BlaineRewardText
 TEXTEND 
@@ -401,7 +401,7 @@ ASMC 0x80790a5 //MU_EndAll //deselect unit
 MUSCSLOW GymBGM
 EVBIT_MODIFY 4 
 Text(BlaineRematchDefeatText)
-GiveItemWithDurability(0, SpellScroll, SacredFire)
+GiveItemWithDurability_Rand(0, SpellScroll, SacredFire)
 ENUT CinnabarGymRematchedFlag
 SVAL r3 5000 
 GIVETOMAIN 0 

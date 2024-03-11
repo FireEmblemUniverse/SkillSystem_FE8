@@ -8,6 +8,10 @@
 // Didn't work 
 //#define ITEM_EQUIPPED(aItem) (((aItem) >> 15) & (GetItemAttributes(aItem) & IA_ACCESSORY))
 
+int Accessory_GetItemMight(int item) { 
+	return GetItemData(item&0xFF)->might;
+} 
+
 /*
 const ItemForgeBonuses *GetItemForgeBonuses(int itemIndex) {
 	for(int i = 0; gForgeBonusLookupTable[i].itemId != 0; i++) {
@@ -88,10 +92,10 @@ void DrawItemMenuLine(struct TextHandle* text, int item, s8 isUsable, u16* mapOu
 	Text_Display(text, mapOut + 2);
 	
 	
-	if ((isItemAnAccessory) && ((GetItemMight(item) == 0xFE))) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, (GetItemUses(item)&0x3F));
+	if ((isItemAnAccessory) && ((Accessory_GetItemMight(item) == 0xFE))) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, (GetItemUses(item)&0x3F));
 
 	
-	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
+	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (Accessory_GetItemMight(item) != 0xFE)) DrawUiNumberOrDoubleDashes(mapOut + 11, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
 
 	DrawIcon(mapOut, GetItemIconId(item), 0x4000);
 
@@ -132,7 +136,7 @@ void DrawItemMenuLineLong(struct TextHandle* text, int item, s8 isUsable, u16* m
 
 	Text_Display(text, mapOut + 2);
 // & is used for bits, while && is logical operand 
-	if ((isItemAnAccessory) && ((GetItemMight(item) == 0xFE))) { // Vesly 
+	if ((isItemAnAccessory) && ((Accessory_GetItemMight(item) == 0xFE))) { // Vesly 
 	//if (isItemAnAccessory) { // Vesly added 
 		DrawUiNumberOrDoubleDashes(mapOut + 10, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, (GetItemUses(item)&0x3F));
 		DrawUiNumberOrDoubleDashes(mapOut + 13, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, (GetItemMaxUses(item)&0x3F));
@@ -140,7 +144,7 @@ void DrawItemMenuLineLong(struct TextHandle* text, int item, s8 isUsable, u16* m
 	}
 
 
-	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (GetItemMight(item) != 0xFE)) {
+	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) & (Accessory_GetItemMight(item) != 0xFE)) {
 		DrawUiNumberOrDoubleDashes(mapOut + 10, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemUses(item));
 		DrawUiNumberOrDoubleDashes(mapOut + 13, isUsable ? TEXT_COLOR_BLUE : TEXT_COLOR_GRAY, GetItemMaxUses(item));
 		DrawSpecialUiChar(mapOut + 11, isUsable ? TEXT_COLOR_NORMAL : TEXT_COLOR_GRAY, 0x16); // draw special character?
@@ -158,12 +162,12 @@ void DrawItemMenuLineNoColor(struct TextHandle* text, int item, u16* mapOut) {
     Text_Display(text, mapOut + 2);
 	
 
-	if ((GetItemAttributes(item) & IA_ACCESSORY) && (GetItemMight(item) == 0xFE)) { // Vesly - berries 
+	if ((GetItemAttributes(item) & IA_ACCESSORY) && (Accessory_GetItemMight(item) == 0xFE)) { // Vesly - berries 
 		DrawSpecialUiChar(mapOut + 11, Text_GetColorId(text), (GetItemUses(item)&0x3F));
 	}
 	
 
-	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) && (GetItemMight(item) != 0xFE)) {
+	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) && (Accessory_GetItemMight(item) != 0xFE)) {
 		DrawSpecialUiChar(mapOut + 11, Text_GetColorId(text), GetItemUses(item));
 	}
 	
@@ -204,7 +208,7 @@ void DrawItemStatScreenLine(struct TextHandle* text, int item, int nameColor, u1
 	
 	//if(ITEM_FORGED(item)) Text_DrawString(text, "+");
 
-	if ((isItemAnAccessory) && ((GetItemMight(item) == 0xFE))) { // Vesly - berries 
+	if ((isItemAnAccessory) && ((Accessory_GetItemMight(item) == 0xFE))) { // Vesly - berries 
 		color = (nameColor == TEXT_COLOR_GRAY) ? TEXT_COLOR_GRAY : TEXT_COLOR_NORMAL;
 		DrawSpecialUiChar(mapOut + 12, color, 0x16);
 
@@ -215,7 +219,7 @@ void DrawItemStatScreenLine(struct TextHandle* text, int item, int nameColor, u1
 	
 	
 
-	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) && (GetItemMight(item) != 0xFE)) {
+	if ((!(GetItemAttributes(item) & IA_ACCESSORY) || (GetItemAttributes(item) & (IA_DEPLETEUSESONDEFENSE | IA_DEPLETEUSESONATTACK))) && (Accessory_GetItemMight(item) != 0xFE)) {
 		color = (nameColor == TEXT_COLOR_GRAY) ? TEXT_COLOR_GRAY : TEXT_COLOR_NORMAL;
 		DrawSpecialUiChar(mapOut + 12, color, 0x16);
 

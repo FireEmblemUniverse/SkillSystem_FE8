@@ -25,7 +25,7 @@ ldrb	r2, [r3, r2]
 add		r1, r2
 
 GetExtraGrowthBoost: 
-mov		r2,#11		@index of str boost
+mov		r2,#17		@index of str boost
 ldr		r3,Extra_Growth_Boosts
 bx		r3
 

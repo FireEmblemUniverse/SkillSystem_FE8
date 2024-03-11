@@ -41,20 +41,20 @@
 ALIGN 4
 BulbasaurTMs:
 BYTE BodySlam DoubleEdge Flash Growl Growth Headbutt Rage AttackPulse SwordsDance Tackle TakeDown Rest FuryCutter StringShot Cut DoubleHit GuardMove
-BYTE RecoverMove EarthPower
+BYTE RecoverMove EarthPower Ancientpower
 BYTE 0
 
 ALIGN 4
 IvysaurTMs:
 BYTE BodySlam DoubleEdge Flash Growl Growth Headbutt Rage AttackPulse SwordsDance Tackle TakeDown Rest FuryCutter StringShot Cut DoubleHit GuardMove
-BYTE RecoverMove EarthPower
+BYTE RecoverMove EarthPower Ancientpower
 BYTE 0
 
 ALIGN 4
 VenusaurTMs:
 BYTE BodySlam DoubleEdge Flash Growl Growth Headbutt HyperBeam Rage AttackPulse SwordsDance Tackle TakeDown Earthquake Rest Outrage FuryCutter StringShot Cut Roar DoubleHit GuardMove
 BYTE Magnitude
-BYTE RecoverMove EarthPower
+BYTE RecoverMove EarthPower Ancientpower
 BYTE 0
 
 ALIGN 4
@@ -75,7 +75,7 @@ ALIGN 4
 CharizardTMs:
 BYTE BodySlam DoubleEdge Growl Headbutt HyperBeam Leer MegaKick MegaPunch Rage Scratch MetalClaw IronTail Slash Swift SwordsDance TakeDown HoneClaws SeismicToss Submission Dig Earthquake Fissure Rest RockSlide RockTomb DragonClaw DragonRage Dragonbreath Outrage FuryCutter Twister Cut Sandstorm Roar Counter GuardMove
 BYTE LowKick Magnitude MudShot RockThrow
-BYTE AirSlash Hurricane
+BYTE AirSlash Hurricane SolarBeam
 BYTE 0
 
 ALIGN 4
@@ -115,7 +115,7 @@ ALIGN 4
 ButterfreeTMs:
 BYTE DoubleEdge Harden Flash HyperBeam Rage Swift Tackle TakeDown SolarBeam PoisonPowder Confusion Psybeam Psychic Rest Nightmare4 ShadowBall Twister ThiefAtt DreamEater Teleport SleepPowder AttackPulse DoubleHit
 BYTE Absorb HexAtt
-BYTE Harden GuardMove Confusion PoisonPowder MegaDrain Psybeam RecoverMove Psychic ConfuseRay NightShade
+BYTE Harden GuardMove Confusion PoisonPowder MegaDrain Psybeam RecoverMove ConfuseRay NightShade
 BYTE 0
 
 ALIGN 4
@@ -495,19 +495,19 @@ BYTE 0
 ALIGN 4
 BellsproutTMs:
 BYTE DoubleEdge Flash Growth Rage Slam SwordsDance TakeDown Rest ThiefAtt Cut AttackPulse XScissor
-BYTE Leer Constrict RecoverMove NightSlash 
+BYTE Leer Constrict RecoverMove NightSlash LeechLife
 BYTE 0
 
 ALIGN 4
 WeepinbellTMs:
 BYTE DoubleEdge Flash Growth Rage Slam SwordsDance TakeDown Rest ThiefAtt Cut AttackPulse XScissor
-BYTE Leer Constrict RecoverMove NightSlash 
+BYTE Leer Constrict RecoverMove NightSlash LeechLife
 BYTE 0
 
 ALIGN 4
 VictreebelTMs:
 BYTE BodySlam DoubleEdge Flash Growth HyperBeam Rage Slam SwordsDance TakeDown Rest ThiefAtt Cut AttackPulse XScissor
-BYTE Leer Constrict RecoverMove NightSlash 
+BYTE Leer Constrict RecoverMove NightSlash LeechLife
 BYTE 0
 
 ALIGN 4
@@ -770,14 +770,14 @@ ALIGN 4
 RhyhornTMs:
 BYTE BodySlam DoubleEdge Headbutt HornAttack HornDrill Leer Rage IronTail SwordsDance TailWhip Leer TakeDown Flamethrower FireBlast ThunderMove Thunderbolt Blizzard IceBeam PoisonJab ShockWave Rest Megahorn ThiefAtt Roar
 BYTE Ember Scorch Thundershock PinMissile IcyWind
-BYTE Glare Submission Megahorn
+BYTE Glare Submission Megahorn BulkUp
 BYTE 0
 
 ALIGN 4
 RhydonTMs:
 BYTE BodySlam DoubleEdge Headbutt HornAttack HornDrill HyperBeam Leer MegaKick MegaPunch PayDay Rage IronTail SwordsDance TailWhip Leer TakeDown FirePunch Flamethrower FireBlast WaterGun BubbleBeam Surf ThunderMove ThunderPunch Thunderbolt Blizzard IceBeam Avalanche SeismicToss Submission PoisonJab ShockWave Rest Outrage FuryCutter Megahorn ThiefAtt Cut Roar Counter
 BYTE Ember Scorch Bubble Thundershock LowKick PinMissile IcyWind
-BYTE Glare
+BYTE Glare BulkUp
 BYTE 0
 
 ALIGN 4
@@ -870,7 +870,7 @@ ALIGN 4
 MagmarTMs:
 BYTE BodySlam DoubleEdge Headbutt HyperBeam Leer MegaKick MegaPunch Rage IronTail TakeDown ThunderPunch SeismicToss Submission Smog Psychic Rest ConfuseRay ThiefAtt Teleport Metronome Counter LightScreen
 BYTE LowKick Confusion Sludge PoisonJab
-BYTE SandAttack Bite NightDaze
+BYTE SandAttack Bite NightDaze DarkPulse SolarBeam
 BYTE 0
 
 ALIGN 4

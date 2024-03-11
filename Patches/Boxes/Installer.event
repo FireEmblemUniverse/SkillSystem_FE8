@@ -10,6 +10,13 @@
 ALIGN 4 
 InitSRAM_Flag: 
 WORD InitSramFlag
+ALIGN 4 
+Pokemblem_Label:
+#ifdef POKEMBLEM 
+WORD True 
+#else 
+WORD False 
+#endif 
 
 #define EnsureUnitInParty(unitID) "SVAL s1 unitID; ASMC EnsureUnitInPartyASMC" 
 
