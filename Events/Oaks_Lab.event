@@ -139,8 +139,7 @@ ENUN
 //SVAL s1 ProtagID 
 //SVAL s3 3 // up
 //ASMC SetUnitFacingASMC
-
-ASMC SaveGameSeed
+LABEL 9823
 
 SCOORD sB [8,11] 
 LOMA OaksLabCh 

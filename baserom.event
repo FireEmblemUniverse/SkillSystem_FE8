@@ -11,7 +11,8 @@ PUSH
 ORG FreeSpace
 #include "Maps/MapTables.event" 
 NewChapterDataTable: // so we can see this for maps 
-MESSAGE Used free space ends at currentOffset
+MESSAGE Used free space will end at currentOffset
+MESSAGE please wait a while...
 POP 
 #endif 
 ORG FreeSpace_Low
@@ -41,7 +42,7 @@ FILL(0xD59F0) 0 // 0 out where we'll write to: 0xD59F0 bytes of space
 	#include "Graphics/GraphicsInstaller.event"
 #endif 
 	ASSERT (FreeSpace - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
-MESSAGE Used free space ends at currentOffset
+MESSAGE Chunk 2 free space ends at currentOffset
 
 
 
