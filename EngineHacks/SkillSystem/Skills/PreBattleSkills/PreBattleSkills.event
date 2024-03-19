@@ -376,6 +376,12 @@ StunningSmile:
 POIN SkillTester
 WORD StunningSmileID
 
+ALIGN 4
+LadyBlade:
+#incbin "LadyBlade/LadyBlade.dmp"
+POIN SkillTester
+WORD LadyBladeID
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 
