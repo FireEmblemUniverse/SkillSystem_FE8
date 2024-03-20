@@ -279,6 +279,10 @@ MESSAGE Please see the README.md there or ask @Vesly for help.
 //If commented, Triangle Attack will use a skill check instead of a bitflag.
 //#define VANILLA_TRIANGLE_ATTACK
 
+//If uncommented, RNG will remain consistent, but enemies will be unable to use Galeforce.
+//The current implementation of Galeforce causes RNG to change when reloading a suspend save.
+// #define GALEFORCE_RNG_FIX
+
 //If HEROES_MOVEMENT_SKILL_REQUIRED is not defined, this setting will control whether or not skills can still be used.
 #define ALSO_USE_MOVEMENT_SKILL_CHECK True
 
