@@ -14,13 +14,25 @@
 .equ CantoPlusID, CantoID+4
 
 .equ TerrainMap,0x202E4DC
+.equ GetUnit,0x08019431
 
 @the bit is being unset by armor march already
 @we just want to set it if the skills here check true
 
 push {r4-r7,r14}
-mov r4,r0 @attacker
-mov r5,r1 @defender
+mov r5,#0
+
+PreBattleLoop:
+add r5,#1
+cmp	r5,#0xB3
+bgt	AllUnitsChecked
+
+KeepUpAndFriendsLoop:
+mov r0,r5
+ldr r1,=GetUnit
+mov r14,r1
+.short 0xF800
+mov r4,r0
 
 @first, test for Keep Up on this unit
 
@@ -136,6 +148,10 @@ bl GetUnitDebuffEntry
 ldr r1, =ArmorMarchBitOffset_Link
 ldr r1, [r1] 
 bl SetBit 
+
+b PreBattleLoop
+
+AllUnitsChecked:
 
 GoBack:
 pop	{r4-r7}
