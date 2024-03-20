@@ -23,7 +23,7 @@ Loop:
   cmp   r0, #0x0
   beq   EndLoop
     ldr   r6, [r0, #0x60]
-    ldr   r3, =EndProc      @ Kill DamageMoji proc.
+    ldr   r3, =Proc_End      @ Kill DamageMoji proc.
     bl    GOTO_R3
     cmp   r6, #0x0
     beq   Loop              @ Skip if subAnimeEmulator proc* is NULL.
