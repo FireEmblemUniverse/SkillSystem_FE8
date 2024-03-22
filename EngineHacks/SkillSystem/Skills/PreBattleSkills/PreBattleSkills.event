@@ -382,6 +382,12 @@ LadyBlade:
 POIN SkillTester
 WORD LadyBladeID
 
+ALIGN 4
+NoGuard:
+#incbin "NoGuard/NoGuard.dmp"
+POIN SkillTester
+WORD NoGuardID
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 

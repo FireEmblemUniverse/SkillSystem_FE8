@@ -410,6 +410,10 @@
 
 //Pre-Battle Skills
 
+//No Guard: Both sides have a 100% hit rate.
+//By Jester
+#define NoGuardID 255
+
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
 #define AxeFaithID 165
