@@ -13,9 +13,38 @@
 .equ CheckEventId, 0x8083da8
 .equ gChapterData, 0x202BCF0
 .equ CannotEvolveFlag_Link, PromotionLevelTable+4 
-push {r4-r6, lr}
 
+.global PromoteUsability1
+.type PromoteUsability1, %function 
+PromoteUsability1: 
+push {r4-r6, lr}
 mov r6, #3 @ False. Default - Menu false usability is 3 
+
+ldr r0, =RandomizeGrowthsFlag_Link
+ldr r0, [r0] 
+blh CheckEventId 
+cmp r0, #0 
+bne ReturnValue 
+
+
+b Start 
+
+.global PromoteUsability2
+.type PromoteUsability2, %function 
+PromoteUsability2: 
+push {r4-r6, lr}
+mov r6, #3 @ False. Default - Menu false usability is 3 
+ldr r0, =RandomizeGrowthsFlag_Link
+ldr r0, [r0] 
+blh CheckEventId 
+cmp r0, #0 
+beq ReturnValue 
+
+b Start 
+
+
+Start:
+
 
 ldr r0, CannotEvolveFlag_Link
 ldr r0, [r0] 

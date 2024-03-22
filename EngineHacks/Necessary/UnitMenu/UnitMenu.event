@@ -94,7 +94,7 @@ UnitMenuTable:
 
 // Modular Summon 
   //MenuCommand(0x693,0x6DD,NormalText,ModularSummonUsability,ModularSummonEffect)
-MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability, PromoteEffect) 
+MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability1, PromoteEffect) 
 
   UM_Visit
   
@@ -394,7 +394,7 @@ MenuCommand(UM_FocusEnergyName, UM_FocusEnergyDesc, BlueText, FocusEnergyCommand
   MenuCommand(0x68F,0x6D5,GreenText,NewSupplyUsability,NewSupplyEffect)
   MenuCommand(0x68F,0x6D5,NormalText,NewSupplyUsability2,NewSupplyEffect)
 
-
+MenuCommand(UM_Promote, UM_PromoteDesc, GreenText, PromoteUsability2, PromoteEffect) 
 
 // Wait (edited to show an arrow) 
 BYTE 0x94 0x7D 0xD 0x8 0x95 0x6 0xBF 0x6 0x0 0x6B 0x0 0x0 0x49 0xF4 0x4 0x8; POIN DisplayedWaitmarkIfSubMenu+1; BYTE 0x39 0x27 0x2 0x8 0 0 0 0 0 0 0 0 0 0 0 0	//	待機 wait
