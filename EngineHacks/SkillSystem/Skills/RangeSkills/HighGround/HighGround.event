@@ -1,0 +1,13 @@
+ALIGN 4
+HighGround:
+#incbin "HighGround.dmp"
+POIN SkillTester
+WORD HighGroundID
+POIN HighGroundList
+
+
+ALIGN 4
+HighGroundList: //null terminator
+BYTE 10 //fort tiles only
+BYTE 0
+ALIGN 4
