@@ -29,3 +29,8 @@ StrongConID_Link:
 WORD StrongConstitutionID 
 GutsID_Link:
 WORD GutsID 
+
+#include "SpeedBoost/SpeedBoost.lyn.event" 
+ALIGN 4
+SpeedBoostID_Link:
+WORD SpeedBoostID

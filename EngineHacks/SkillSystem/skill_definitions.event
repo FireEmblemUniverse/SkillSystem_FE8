@@ -1043,6 +1043,10 @@
 // Author: Vesly 
 #define StrongConstitutionID 255
 
+//Speed Boost: Boost movement by +1 per turn up to 6 turns.
+//By Jester
+#define SpeedBoostID 255
+
 
 //Unit Menu Skills
 
