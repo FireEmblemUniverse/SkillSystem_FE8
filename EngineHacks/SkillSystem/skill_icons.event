@@ -1110,5 +1110,8 @@ ORG SkillIcon(LadyBladeID)
 ORG SkillIcon(HighGroundID)
 #incbin "SkillIcons/HighGround.dmp"
 
+ORG SkillIcon(NoGuardID)
+#incbin "SkillIcons/Acrobat.dmp"
+
 ORG SkillIcons+0x8000
 
