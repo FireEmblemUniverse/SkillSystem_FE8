@@ -1034,7 +1034,7 @@
 #define LullLckID 255
 #define LullDefID 255
 #define LullResID 255
-#define LullSpectrumID 155
+#define LullSpectrumID 255
 
 //Guts:  +5 Str while under any status condition. (Includes dancer rings.) 
 // Author: Vesly 
@@ -1045,7 +1045,7 @@
 
 //Speed Boost: Boost movement by +1 per turn up to 6 turns.
 //By Jester
-#define SpeedBoostID 255
+#define SpeedBoostID 155
 
 
 //Unit Menu Skills
