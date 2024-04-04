@@ -388,6 +388,12 @@ NoGuard:
 POIN SkillTester
 WORD NoGuardID
 
+ALIGN 4
+WonderGuard:
+#incbin "WonderGuard/WonderGuard.dmp"
+POIN SkillTester
+WORD WonderGuardID
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 

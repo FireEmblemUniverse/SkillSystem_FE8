@@ -414,6 +414,10 @@
 //By Jester
 #define NoGuardID 255
 
+//Wonder Guard: Cannot be damaged by the same weapon type (physical vs magic)
+//By Jester
+#define WonderGuardID 255
+
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
 #define AxeFaithID 165
