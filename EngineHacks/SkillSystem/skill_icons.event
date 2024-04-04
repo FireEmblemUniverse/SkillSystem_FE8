@@ -1107,6 +1107,11 @@ ORG SkillIcon(SwarmID)
 
 ORG SkillIcon(LadyBladeID)
 #incbin "SkillIcons/LadyBlade.dmp"
+ORG SkillIcon(HighGroundID)
+#incbin "SkillIcons/HighGround.dmp"
+
+ORG SkillIcon(NoGuardID)
+#incbin "SkillIcons/Acrobat.dmp"
 
 ORG SkillIcon(NoGuardID)
 #incbin "SkillIcons/Acrobat.dmp"
