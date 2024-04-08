@@ -288,6 +288,7 @@ lsl r1, r6, #8
 lsr r1, #24 
 @r2 is still rotation byte 
 bl AoE_CallDisplayDamageArea
+mov r0, #0
 b HandleCode
 
 End:
