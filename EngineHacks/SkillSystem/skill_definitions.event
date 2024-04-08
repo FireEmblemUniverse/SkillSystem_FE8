@@ -414,7 +414,7 @@
 //By Jester
 #define NoGuardID 255
 
-//Wonder Guard: Cannot be damaged by the same weapon type (physical vs magic)
+//Wonder Guard: Cannot be damaged by the same weapon type (e.g. sword vs sword)
 //By Jester
 #define WonderGuardID 255
 
