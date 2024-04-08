@@ -129,9 +129,6 @@ push {r4-r7, lr}
 mov r4, #0x1f 
 and r4, r0 @ wep debuff entry 
 
-mov r0, #0x7C       @damage/hit data
-ldrb r0, [r5, r0] @ always called by ApplyWeaponDebuffs 
-
 mov r5, r8 
 push {r5} 
 
@@ -141,6 +138,8 @@ mov r5, r1 @ unit
 mov r6, r2 @ unitA debuff ram 
 mov r7, r3 @ unitB debuff ram 
 
+mov r0, #0x7C       @damage/hit data
+ldrb r0, [r5, r0] @ always called by ApplyWeaponDebuffs 
 
 mov r1, #0x1
 and r0, r1

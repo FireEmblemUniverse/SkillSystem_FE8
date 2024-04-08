@@ -48,6 +48,8 @@ END_MAIN
 PurchaseHitmonchanevent:
 EVBIT_MODIFY 4 
 WallText(CatchBeforePurchaseHitmonchanText)
+CHECK_EVENTID CannotEvolveFlag
+BNE 44 sC s0 
 CheckIfCaught(ScytherID) 
 BEQ 30 sC s0 
 CheckIfCaught(PinsirID)
@@ -95,7 +97,8 @@ SVAL s1 TempAlly // Hitmonchan's UnitID
 ASMC ChangeS1UnitIntoLowestUnitID
 SET_ACTIVE 0x7ffe
 GOTO 63 
-
+LABEL 44 
+WallText(LittleCupRulesText)
 LABEL 30 // Haven't caught the pokemon 
 ENUF PurchasedHitmonchanFlag
 
@@ -106,6 +109,8 @@ ENDA
 PurchaseHitmonleeevent:
 EVBIT_MODIFY 4 
 WallText(CatchBeforePurchaseHitmonleeText)
+CHECK_EVENTID CannotEvolveFlag
+BNE 44 sC s0 
 CheckIfCaught(KangaskhanID) 
 BEQ 30 sC s0 
 CheckIfCaught(TaurosID)
@@ -153,7 +158,8 @@ SVAL s1 TempAlly // Hitmonlee's UnitID
 ASMC ChangeS1UnitIntoLowestUnitID
 SET_ACTIVE 0x7ffe
 GOTO 63 
-
+LABEL 44 
+WallText(LittleCupRulesText)
 LABEL 30 // Haven't caught the pokemon 
 ENUF PurchasedHitmonleeFlag
 

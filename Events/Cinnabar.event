@@ -182,6 +182,8 @@ ENDA
 AerodactylEvent:
 EVBIT_MODIFY 4 
 WallText(PurchaseAerodactylText)
+CHECK_EVENTID CannotEvolveFlag
+BNE 44 sC s0 
 LOAD1 1 AerodactylUnitGroup  
 ENUN 
 ENUT FIXED_GROWTHS_FLAG_ID
@@ -197,6 +199,10 @@ WallText(No_PurchasedAerodactylText)
 ENUF ObtainedAerodactylFlag
 DISA TempAlly
 GOTO 63
+LABEL 44 
+WallText(LittleCupRulesText)
+ENUF ObtainedAerodactylFlag 
+GOTO 63 
 
 LABEL 20
 ENUT ObtainedAerodactylFlag

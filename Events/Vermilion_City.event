@@ -43,6 +43,8 @@ END_MAIN
 PurchaseFarfetchdevent:
 EVBIT_MODIFY 4 
 WallText(CatchBeforePurchaseFarfetchdText)
+CHECK_EVENTID CannotEvolveFlag
+BNE 44 sC s0 
 CheckIfCaught(VulpixID) 
 BEQ 30 sC s0 
 CheckIfCaught(MeowthID)
@@ -90,6 +92,8 @@ SVAL s1 TempAlly // Farfetchd's UnitID
 ASMC ChangeS1UnitIntoLowestUnitID
 SET_ACTIVE 0x7ffe
 GOTO 63 
+LABEL 44 
+WallText(LittleCupRulesText)
 
 LABEL 30 // Haven't caught the pokemon 
 ENUF PurchasedFarfetchdFlag

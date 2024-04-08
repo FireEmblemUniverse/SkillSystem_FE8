@@ -581,6 +581,7 @@ ENUT MoltresFledFlag
 ENUT ArticunoFledFlag 
 ENUT ZapdosFledFlag 
 ENUT MewFledFlag 
+ENUT CannotEvolveFlag 
 
 //ENUF CasualModeFlag 
 
@@ -603,7 +604,7 @@ Write_Byte(24, YCoordNewArea)
 //MNC2 ViridianForestSCh
 ENUT MissingnoFlag
 //MNC2 CinnabarCh 
-MNC2 DebugCh
+MNC2 VermilionCh
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh

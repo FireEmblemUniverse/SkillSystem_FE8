@@ -12,7 +12,7 @@ ORG FreeSpace
 #include "Maps/MapTables.event" 
 NewChapterDataTable: // so we can see this for maps 
 MESSAGE Used free space will end at currentOffset
-MESSAGE please wait a while...
+MESSAGE please wait a while
 POP 
 #endif 
 ORG FreeSpace_Low

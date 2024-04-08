@@ -87,6 +87,8 @@ ENDA
 PurchaseJynxevent:
 EVBIT_MODIFY 4 
 WallText(CatchBeforePurchaseJynxText)
+CHECK_EVENTID CannotEvolveFlag
+BNE 44 sC s0 
 CheckIfCaught(DoduoID) 
 BEQ 30 sC s0 
 CheckIfCaught(PonytaID)
@@ -133,7 +135,8 @@ SVAL s1 TempAlly // Jynx's UnitID
 ASMC ChangeS1UnitIntoLowestUnitID
 SET_ACTIVE 0x7ffe
 GOTO 63 
-
+LABEL 44 
+WallText(LittleCupRulesText)
 LABEL 30 // Haven't caught the pokemon 
 ENUF PurchasedJynxFlag
 
@@ -196,6 +199,8 @@ ENDA
 PrizesEvent:
 EVBIT_MODIFY 4 
 WallText(PurchasePrizeText)
+CHECK_EVENTID CannotEvolveFlag
+BNE 44 sC s0 
 LOAD1 1 PrizesUnitGroup  
 ENUN 
 ENUT FIXED_GROWTHS_FLAG_ID
@@ -205,6 +210,9 @@ SelectCharacter(TempAlly_A, TempAlly_B, TempAlly_C, TempAlly_D, TempAlly_E, 3000
 SVAL sB 0x100 
 BEQ 10 sC sB 
 GOTO 20
+LABEL 44 
+WallText(LittleCupRulesText)
+GOTO 63 
 
 LABEL 10 
 UNCR(0x7fff, 1) // SelectCharacter ends MMS 
