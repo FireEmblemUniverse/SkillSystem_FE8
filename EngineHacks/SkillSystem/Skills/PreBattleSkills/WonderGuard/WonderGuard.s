@@ -20,30 +20,14 @@ ldr r1, WonderGuardID
 cmp r0, #0
 beq GoBack
 
-@check weapon type
+@check weapon type of skill holder
 mov r3,#0x50
 ldrb r0,[r4,r3]
-cmp r0,#0x4
-blt CheckIfOpposingWeaponIsMagic
-b   CheckIfOpposingWeaponIsPhysical 
 
-@Skill holder's weapon is physical, check if the opponent's is magical
-CheckIfOpposingWeaponIsMagic:
-ldrb r0,[r5,r3]
-cmp r0,#0x4
-bge GoBack
-mov r6,#0xF
-ldr r3,=ChapterStruct
-ldrb r3,[r3,r6]
-cmp r3,#0x80
-blt WonderGuardAttacking
-b   WonderGuardDefending
-
-@Skill holder's weapon is magical, check if the opponent's is magical
-CheckIfOpposingWeaponIsPhysical:
-ldrb r0,[r5,r3]
-cmp r0,#0x4
-blt GoBack
+@check weapon type of enemy
+ldrb r1,[r5,r3]
+cmp r0,r1
+bne GoBack
 mov r6,#0xF
 ldr r3,=ChapterStruct
 ldrb r3,[r3,r6]
