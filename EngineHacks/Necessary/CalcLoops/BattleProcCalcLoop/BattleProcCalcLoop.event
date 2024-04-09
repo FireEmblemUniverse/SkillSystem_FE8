@@ -62,6 +62,8 @@ POIN Proc_StealHP
 	POIN CombatArt_Sol
 #endif // COMBAT_ARTS
 
+POIN Proc_SolarBrace
+
 POIN Proc_AetherHeal	//skills that heal based on final damage
 
 POIN Proc_BlackMagic Proc_Petrify Proc_Enrage Proc_Deadeye //skills that apply a status effect

@@ -884,6 +884,10 @@
 //Author Unknown (Initial Commit)
 #define SolID 12
 
+//Solar Brace: When attacking, restore 25% of damage dealt as HP.
+//By Snerdels
+#define SolarBraceID 255
+
 //Sure Shot: A precision attack that always hits and does 1.5x damage. (Skill % activation)
 //Author Unknown (Initial Commit)
 #define SureShotID 10
