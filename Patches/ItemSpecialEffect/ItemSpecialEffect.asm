@@ -73,7 +73,7 @@ blh RemoveUnitBlankItems
 
 ExitItemSpecialEffect:
 ldr r1, =CurrentUnitFateData	@these four lines copied from wait routine
-mov r0, #0x10 @ Visit @ warning: using 0x1A "Use Item" will cause the item to also be used if it can (eg. vuln will also heal)  
+mov r0, #0x1F @ Visit @ warning: using 0x1A "Use Item" will cause the item to also be used if it can (eg. vuln will also heal)  
 strb r0, [r1,#0x11]
 
 @Effect/Idle Routine Return Value (r0 Bitfield):
