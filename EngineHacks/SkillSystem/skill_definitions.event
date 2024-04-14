@@ -418,6 +418,10 @@
 //By Jester
 #define WonderGuardID 255
 
+//Analytic: +10 attack if speed is less than opponent's by 4 points or more. If between 1-3 points, then +5 attack.
+//By Jester
+#define AnalyticID 255
+
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
 #define AxeFaithID 165
