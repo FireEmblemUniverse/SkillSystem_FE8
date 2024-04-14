@@ -363,6 +363,10 @@
 //Author Unknown (Initial Commit)
 #define DespoilID 122
 
+//Pickup: Obtain the last item in the enemy's inventory after attacking and defeating them. (Luck % activation)
+//By Jester
+#define PickupID 255
+
 //Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
 //By circleseverywhere
 #define FuryID 128
