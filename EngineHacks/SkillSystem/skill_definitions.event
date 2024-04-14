@@ -405,7 +405,7 @@
 
 //Gridmaster: Movement skills do not end your action.
 //By Sme
-#define GridmasterID 255
+#define GridmasterID 120
 
 
 //Pre-Battle Skills
@@ -420,7 +420,7 @@
 
 //Analytic: +10 attack if speed is less than opponent's by 4 points or more. If between 1-3 points, then +5 attack.
 //By Jester
-#define AnalyticID 120
+#define AnalyticID 255
 
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
