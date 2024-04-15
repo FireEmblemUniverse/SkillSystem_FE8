@@ -1125,6 +1125,9 @@ ORG SkillIcon(AnalyticID)
 ORG SkillIcon(SolarBraceID)
 #incbin "SkillIcons/SolarBrace.dmp"
 
+ORG SkillIcon(SnowWarningID)
+#incbin "SkillIcons/Acrobat.dmp"
+
 
 ORG SkillIcons+0x8000
 

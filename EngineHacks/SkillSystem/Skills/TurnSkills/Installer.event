@@ -14,7 +14,10 @@ WORD HoardersBaneID
 VulneraryItemID_Link:
 WORD Vulnerary 
 
-
+SnowWarningID_Link:
+#include "SnowWarning/SnowWarning.lyn.event"
+POIN SkillTester
+Word SnowWarningID
 
 
 ALIGN 4 
