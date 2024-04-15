@@ -149,6 +149,9 @@
 
 #define SoulSapID 255
 
+//Airlock: On the first turn of the map, set the weather condition to clear.[X]
+#define AirlockID 255
+
 
 // Buff Skills
 
