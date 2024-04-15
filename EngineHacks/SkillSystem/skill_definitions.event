@@ -149,6 +149,10 @@
 
 #define SoulSapID 255
 
+// Drizzle: On the first turn of the map set the weather condition to raining.
+//By Jester
+#define DrizzleID 255
+
 
 // Buff Skills
 

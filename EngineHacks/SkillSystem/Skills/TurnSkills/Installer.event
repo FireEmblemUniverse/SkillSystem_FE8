@@ -14,7 +14,10 @@ WORD HoardersBaneID
 VulneraryItemID_Link:
 WORD Vulnerary 
 
-
+DrizzleID_Link:
+#include "Drizzle/Drizzle.lyn.event"
+POIN SkillTester
+Word DrizzleID
 
 
 ALIGN 4 
