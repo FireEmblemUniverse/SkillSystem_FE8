@@ -16,10 +16,13 @@ mov r2,#1                       @value to compare against
 cmp r1,r2                       @compare to see if this is the first turn
 bne End                         @if not, we branch to the end
 
-@check to see if the weather has already been set to sunny (higher priority)
+@check to see if the weather has already been set to sunny, or snowy
 ldrb r1,[r0,#0x15]              @load the weather byte
-mov r0,#5                       @set the sunny weather byte in another register
-cmp r0,r1                       @compare them both
+cmp r1,#1                       @compare the weather byte to the snow weather byte
+beq End                         @if they're equal, then the weather is already snowy and we can't override it
+cmp r1,#2                       @compare the weather byte to the snowstorm weather byte
+beq End                         @if they're equal, then the weather is already snowy and we can't override it
+cmp r1,#5                       @compare the weather byte to the sunny weather byte
 beq End                         @if they're equal, then the weather is already sunny and we can't override it
 
 @Start looping through all deployed units
