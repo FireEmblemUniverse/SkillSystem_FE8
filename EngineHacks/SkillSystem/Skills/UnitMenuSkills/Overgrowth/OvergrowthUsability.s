@@ -1,6 +1,5 @@
 @Overgrowth Check
-@true if unit has Overgrowth skill AND attack is available
-@NOTE does not check terrain! 
+@true if unit has Overgrowth skill
 
 .equ OvergrowthID, SkillTester+4
 .thumb
@@ -21,16 +20,7 @@ ldr r2, SkillTester
 mov lr, r2
 .short 0xf800 @test if unit has the skill
 cmp r0, #0
-bne HasOvergrowth
-b False
-
-HasOvergrowth:
-@now check if can attack
-ldr r0, =0x80249ac @attack usability
-mov lr, r0
-.short 0xf800
-cmp r0, #1
-bne False
+beq False
 
 True:
 mov r0,#1

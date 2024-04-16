@@ -111,6 +111,9 @@ UnitMenuTable:
 	//Gamble
 	MenuCommand(UM_Gamble, UM_GambleDesc, NormalText, GambleUsability, GambleEffect, $22c31, $22c99)
 
+  //Overgrowth
+	MenuCommand(UM_Overgrowth, UM_OvergrowthDesc, NormalText, OvergrowthUsability, OvergrowthEffect, $22c31, $22c99)
+
 	//Capture
 	MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
   #endif // COMBAT_ARTS
