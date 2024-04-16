@@ -1084,7 +1084,11 @@
 
 //Gamble: A reckless attack with halved hit but doubled crit.
 //Author Unknown (Initial Commit)
-#define GambleID 60
+#define GambleID 255
+
+//Overgrowth: Creates a forest tile underneath this unit.
+//By Jester
+#define OvergrowthID 60
 
 //Lunge: Swap places with the opponent after combat. (No effect if Move is --)
 //By Tequila

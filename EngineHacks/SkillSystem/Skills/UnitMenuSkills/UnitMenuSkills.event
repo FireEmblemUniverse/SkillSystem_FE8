@@ -62,6 +62,16 @@ ALIGN 4
 MercyEffect:
 #incbin "Mercy/MercyEffect.dmp"
 
+ALIGN 4
+OvergrowthUsability:
+#incbin "Overgrowth/OvergrowthUsability.dmp"
+POIN SkillTester
+WORD OvergrowthID
+
+ALIGN 4
+OvergrowthEffect:
+#incbin "Overgrowth/OvergrowthEffect.dmp"
+
 
 #include "CombatArts/CombatArts.event"
 

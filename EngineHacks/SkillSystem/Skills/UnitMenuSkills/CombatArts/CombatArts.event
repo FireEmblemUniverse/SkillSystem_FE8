@@ -50,6 +50,7 @@ SetCombatArtCost(11,2) //Ignis
 SetCombatArtCost(12,2) //Luna
 SetCombatArtCost(13,2) //Sol
 SetCombatArtCost(14,3) //Sure Shot
+SetCombatArtCost(15,3) //Overgrowth
 
 ALIGN 4
 CombatArtsMenu:
@@ -86,6 +87,9 @@ MenuCommand(UM_Gamble, UM_GambleDesc, NormalText, GambleUsability, GambleEffect,
 
 //Capture
 MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
+
+//Overgrowth
+MenuCommand(UM_Overgrowth, UM_OvergrowthDesc, NormalText, OvergrowthUsability, OvergrowthEffect, $22c31, $22c99)
 
 #ifdef HAX_RALLIES
   // Rally preview conflicts with window semitransparency changes
