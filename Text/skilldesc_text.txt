@@ -1638,6 +1638,50 @@ HP by 10.[X]
 Reciprocal Aid: User and target[N]
 ally switch their current HP totals.[X]
 
+## SD_FailGale
+Fail 'n Gale: Move again[N]
+after attacking but failing[N]
+to harm an enemy.[X]
 
+## SD_Multiscale
+Multiscale: Take half[N]
+damage when at full HP.[X]
 
+## SD_Flank
+Flank: If an ally is on the[N]
+opposite side of an adjacent[N]
+target, deal 25% more damage.[X]
+
+## SD_Swarm
+Swarm: If an adjacent target is[N]
+surrounded, deal 50% more damage.[X]
+
+## SD_LadyBlade
+Lady Blade: If weapon wielder is[N]
+female, doubles weapon might.[X]
+
+## SD_HighGround
+High Ground: If on a fort, +2[N]
+range to all ranged weapon types.[X]
+
+## SD_NoGuard
+No Guard: Both sides have a[N]
+100% hit rate.[X]
+
+## SD_SpeedBoost
+Speed Boost: Boosts movement by[N]
++1 per turn up to 6 turns.[X]
+
+## SD_WonderGuard
+Wonder Guard: Cannot be damaged by[N]
+weapons of the same type as the user's.[X]
+
+## SD_SolarBrace
+Solar Brace: When initiating[N]
+combat, heal 25% of damage dealt.[X]
+
+## SD_Analytic
+Analytic: +10 attack if speed is less than[N]
+opponent's by 4 or more, if between 1-3[N] 
+poits, then +5 attack.[X]
 

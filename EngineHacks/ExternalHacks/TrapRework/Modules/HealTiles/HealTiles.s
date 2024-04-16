@@ -18,7 +18,7 @@ HealTiles_MapSpriteFunc:
 push {r4,r14}
 mov r4,r0 @r4 = trap data ptr
 
-ldrb r0,[r4,#0x7]
+ldrb r0,[r4,#0x5]
 push {r2}
 blh CheckEventId,r1
 pop {r2}

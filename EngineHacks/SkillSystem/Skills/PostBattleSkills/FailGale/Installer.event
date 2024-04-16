@@ -1,0 +1,14 @@
+#include "FailGale.lyn.event" 
+
+ALIGN 4 
+FailGale_Link:
+WORD FailGaleID 
+
+ALIGN 4 
+FailGaleEvent: 
+CAM1 0xFFFF
+SOUN 0x10F
+STAL 0x16
+NoFade
+ENDA
+

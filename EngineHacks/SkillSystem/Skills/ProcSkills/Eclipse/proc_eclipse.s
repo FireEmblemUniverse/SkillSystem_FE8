@@ -82,12 +82,9 @@ ldrb  r0, EclipseID
 strb  r0, [r6,#4] 
 
 @if we proc, get enemy HP, subtract 1, and set as damage dealt 
-mov r0,r5
-add r0,#0x72
-ldrb r0,[r0]
+ldrb r5,[r5,#0x13] 
 sub r0,#1
 strb r0,[r7,#4]
-
 
 End:
 pop {r4-r7}

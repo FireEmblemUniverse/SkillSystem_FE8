@@ -148,9 +148,9 @@ ENDA
 
 ALIGN 4 
 AoE_DebuffTable:
-WORD 0 
-//DebuffUnitEntry(mag, str, skl, spd, def, res, luk, mov)
-DebuffUnitEntry(5, 5, 0,0,0,0,0,0)// -5 mag/str from this AoE 
+WORD 0 0 // id of 0 does nothing 
+//WepDebuffEntry(mag, str, skl, spd, def, res, luk, mov)
+WepDebuffEntry(4, 5, 0,0,6,7,0,0)
 
 #define Sword 0 
 #define Lance 1

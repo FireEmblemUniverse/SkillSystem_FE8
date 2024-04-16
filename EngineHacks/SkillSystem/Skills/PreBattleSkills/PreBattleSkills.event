@@ -376,7 +376,32 @@ StunningSmile:
 POIN SkillTester
 WORD StunningSmileID
 
+ALIGN 4
+LadyBlade:
+#incbin "LadyBlade/LadyBlade.dmp"
+POIN SkillTester
+WORD LadyBladeID
+
+ALIGN 4
+NoGuard:
+#incbin "NoGuard/NoGuard.dmp"
+POIN SkillTester
+WORD NoGuardID
+
+ALIGN 4
+WonderGuard:
+#incbin "WonderGuard/WonderGuard.dmp"
+POIN SkillTester
+WORD WonderGuardID
+
+ALIGN 4
+Analytic:
+#incbin "Analytic/Analytic.dmp"
+POIN SkillTester
+WORD AnalyticID
+
 #include "KeenFighter/Installer.event" 
+#include "FlankSwarmScale/Installer.event" 
 
 
 #ifdef MODULAR_PRE_BATTLE_SKILLS

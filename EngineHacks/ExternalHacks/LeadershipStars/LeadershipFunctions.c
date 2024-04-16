@@ -1,4 +1,4 @@
-#include "include\gbafe.h"
+#include "gbafe.h"
 
 // Leadership Stars FE8. Hack by Zeta/Gilgamesh
 // Requires FE-CLIB
@@ -95,7 +95,7 @@ void CalculateHitAvoidBonus(BattleUnit* bunit, signed char leadership)
 	else if (UNIT_FACTION(&bunit->unit) == FACTION_RED)
 	{
 		bunit->battleHitRate += leadership * EnemyStarHitBonus;
-		bunit->battleAvoidRate += leadership * NPCStarAvoidBonus;
+		bunit->battleAvoidRate += leadership * EnemyStarAvoidBonus;
 	}
 	else
 	{

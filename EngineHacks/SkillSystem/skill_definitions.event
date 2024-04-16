@@ -371,6 +371,10 @@
 //Author Unknown (Initial Commit)
 #define GaleforceID 117
 
+//Fail 'n Gale: Move again after attacking but failing to harm an enemy. 
+//By Vesly 
+#define FailGaleID 255 
+
 //Lifetaker: Restore up to 25% HP after attacking and defeating an enemy.
 //Author Unknown (Initial Commit)
 #define LifetakerID 124
@@ -405,6 +409,18 @@
 
 
 //Pre-Battle Skills
+
+//No Guard: Both sides have a 100% hit rate.
+//By Jester
+#define NoGuardID 255
+
+//Wonder Guard: Cannot be damaged by the same weapon type (e.g. sword vs sword)
+//By Jester
+#define WonderGuardID 255
+
+//Analytic: +10 attack if speed is less than opponent's by 4 points or more. If between 1-3 points, then +5 attack.
+//By Jester
+#define AnalyticID 255
 
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
@@ -728,6 +744,23 @@
 // By Vesly 
 #define SteadyBrawlerID 255
 
+// Multiscale: Take half damage when at full HP.
+// By Vesly 
+#define MultiscaleID 255
+
+// Flank: If an ally is on the opposite side of an adjacent target, deal 25% more damage.
+// By Vesly 
+#define FlankID 255 
+
+//Swarm: If an adjacent target is surrounded, deal 50% more damage.
+// By Vesly 
+#define SwarmID 255 
+
+//Lady Blade: If the unit is female, double weapon might
+//By Snerdels
+#define LadyBladeID 255
+
+
 
 //Proc Skills
 
@@ -855,6 +888,10 @@
 //Author Unknown (Initial Commit)
 #define SolID 12
 
+//Solar Brace: When attacking, restore 25% of damage dealt as HP.
+//By Snerdels
+#define SolarBraceID 255
+
 //Sure Shot: A precision attack that always hits and does 1.5x damage. (Skill % activation)
 //Author Unknown (Initial Commit)
 #define SureShotID 10
@@ -892,6 +929,10 @@
 //Tome Range +1: Maximum range of equipped tome is increased.
 //By Kirb
 #define TomeRangeUpID 135
+
+//High Ground: Maximum range of all tomes and bows increased by 2 when on specified terrain.
+//By Snerdels
+#define HighGroundID 255
 
 
 //Rounds Data Skills
@@ -1005,7 +1046,7 @@
 #define LullLckID 255
 #define LullDefID 255
 #define LullResID 255
-#define LullSpectrumID 155
+#define LullSpectrumID 255
 
 //Guts:  +5 Str while under any status condition. (Includes dancer rings.) 
 // Author: Vesly 
@@ -1013,6 +1054,10 @@
 //Strong Constitution: +5 Def/Res while under any status condition. (Includes dancer rings.) 
 // Author: Vesly 
 #define StrongConstitutionID 255
+
+//Speed Boost: Boost movement by +1 per turn up to 6 turns.
+//By Jester
+#define SpeedBoostID 155
 
 
 //Unit Menu Skills

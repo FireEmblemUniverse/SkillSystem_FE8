@@ -35,7 +35,6 @@
 
   #define NameDescGetter 0x88bd5
   #define ClassDescGetter 0x88c01
-  #define ConditionGetter 0x88a2d
   #define StrMagGetter 0x88b09
   #define ItemDescGetter 0x88A01
   #define ItemDescLooper 0x88B41
@@ -158,7 +157,7 @@
 	RMenu(ST_Trv,ST_Cond,ST_Affin,0,0xbe,0x38,AffinityDescLooper,AffinityDescGetter)
 
   ST_Cond:
-    RMenu(ST_Affin,ST_Talk,ST_Luck,0,0xA6,0x48,0x552,ConditionGetter)
+    RMenu(ST_Affin,ST_Talk,ST_Luck,0,0xA6,0x48,0x552,StatusDescGetter)
 
   ST_Talk:
     RMenu(ST_Cond,ST_Skills,ST_Def,0,0xA6,0x58,SS_TalkRText)
@@ -248,7 +247,7 @@
     RMenu(ST_Con,ST_Cond,ST_Mag,0,0xa6,0x28,0x54F)
 
   ST_Cond:
-    RMenu(ST_Aid,ST_Affin,ST_Skl,0,0xa6,0x38,0x552,ConditionGetter)
+    RMenu(ST_Aid,ST_Affin,ST_Skl,0,0xa6,0x38,0x552,StatusDescGetter)
 
   ST_Affin:
     #ifdef LEADERSHIP_STARS
@@ -259,9 +258,6 @@
 
   ST_AffinDesc:
     RMenu(ST_Cond,ST_Talk,ST_Spd,0,0xbe,0x48,AffinityDescLooper,AffinityDescGetter)
-
-  //ST_Cond:
-    //RMenu(ST_Affin,ST_Talk,ST_Spd,0,0xA6,0x48,0x552,ConditionGetter)
 
   ST_Talk:
     RMenu(ST_Affin,ST_Skills,ST_Luck,0,0xA6,0x58,SS_TalkRText)

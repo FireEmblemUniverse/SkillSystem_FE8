@@ -30,6 +30,21 @@ ldr r1,=AttackerUnit
 cmp r1,r5
 bne VanillaStatusApplyCheck
 
+@check if the attacker and defender are the same faction
+@we don't want synchronize to activate during healing for example
+ldr  r1,=AttackerUnit
+ldr  r0,=DefenderUnit
+ldrb r0,[r0,#0xB]    @load defender allegiance byte
+ldrb r1,[r1,#0xB]    @load attacker allegiance byte
+sub  r0,r1           @calculate the difference between the two
+@get the absolute value
+asr  r3, r0, #31
+add  r0, r0, r3
+eor  r0, r3
+mov  r3,#0x3F        @0x3F represents the highest number of units per faction
+cmp  r0, r3          @compare the difference between allegiance bytes to this value
+ble  GoBack          @stop any further checks if the attacker and defender are in the same faction
+
 @does the attacker have Synchronize?
 ldr r0,=SkillTester
 mov r14,r0

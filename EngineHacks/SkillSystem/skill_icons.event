@@ -1096,6 +1096,35 @@ ORG SkillIcon(ArdentSacrificeID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(ReciprocalAidID)
 #incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(FailGaleID)
+#incbin "SkillIcons/FailGale.dmp"
+ORG SkillIcon(MultiscaleID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(FlankID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(SwarmID)
+#incbin "SkillIcons/Acrobat.dmp"
+
+ORG SkillIcon(LadyBladeID)
+#incbin "SkillIcons/LadyBlade.dmp"
+ORG SkillIcon(HighGroundID)
+#incbin "SkillIcons/HighGround.dmp"
+
+ORG SkillIcon(NoGuardID)
+#incbin "SkillIcons/Acrobat.dmp"
+
+ORG SkillIcon(NoGuardID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(SpeedBoostID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(WonderGuardID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(AnalyticID)
+#incbin "SkillIcons/Acrobat.dmp"
+
+ORG SkillIcon(SolarBraceID)
+#incbin "SkillIcons/SolarBrace.dmp"
+
 
 ORG SkillIcons+0x8000
 
