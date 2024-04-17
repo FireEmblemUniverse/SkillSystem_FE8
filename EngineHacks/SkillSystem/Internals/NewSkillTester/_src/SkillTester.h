@@ -12,7 +12,7 @@ typedef struct BWLData BWLData;
 //extern int IsSameAllegience(int, int) __attribute__((long_call)); // forgive the typo
 //extern BWLData* BWL_GetEntry(int charID);
 //Using a function pointer GetInitialSkillList doesn't have the thumb bit set
-extern u8* (*GetInitialSkillList_Pointer) (Unit* unit, u8* skillBuffer);
+extern u8* (*GetInitialSkillList_Pointer) (struct Unit* unit, u8* skillBuffer);
 
 struct SkillBuffer {
 /*00*/  u8 lastUnitChecked;
@@ -38,7 +38,42 @@ struct SkillTestConfig {
 /*04*/  u8 roofUnitAuras;
 };
 
-extern struct BWLData gBWLDataArray[];
+//extern struct BWLData gBWLDataArray[];
+
+struct ItemDataExt {
+    /* 00 */ u16 nameTextId;
+    /* 02 */ u16 descTextId;
+    /* 04 */ u16 useDescTextId;
+
+    /* 06 */ u8  number;
+    /* 07 */ u8  weaponType;
+
+    /* 08 */ u32 attributes;
+
+    /* 0C */ const struct ItemStatBonuses* pStatBonuses;
+    /* 10 */ const u8* pEffectiveness;
+
+    /* 14 */ u8  maxUses;
+
+    /* 15 */ u8  might;
+    /* 16 */ u8  hit;
+    /* 17 */ u8  weight;
+    /* 18 */ u8  crit;
+
+    /* 19 */ u8 encodedRange;
+
+    /* 1A */ u16 costPerUse;
+    /* 1C */ u8  weaponRank;
+    /* 1D */ u8  iconId;
+    /* 1E */ u8  useEffectId;
+    /* 1F */ u8  weaponEffectId;
+    /* 20 */ u8  weaponExp;
+	/* 21 */ u8  debuffType;
+	/* 22 */ u8  IERdata;
+	/* 23 */ u8  skill;
+};
+
+typedef struct ItemDataExt ItemDataExt;
 
 //RAM buffers
 extern SkillBuffer gAttackerSkillBuffer;
