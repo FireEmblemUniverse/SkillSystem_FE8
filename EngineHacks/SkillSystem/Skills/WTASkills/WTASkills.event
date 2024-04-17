@@ -5,8 +5,15 @@ POIN SkillTester
 WORD TriAdeptID
 WORD TriAdeptPlusID
 
-ALIGN 4
-Poise:
-#incbin "Poise/Poise.dmp"
-POIN SkillTester
-WORD PoiseID
+TriAdeptID_Link:
+BYTE TriAdeptID
+
+TriAdeptPlusID_Link:
+BYTE TriAdeptPlusID
+
+#include "Poise/Poise.lyn.event"
+
+PoiseID_Link:
+BYTE PoiseID
+
+
