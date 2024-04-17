@@ -149,6 +149,10 @@
 
 #define SoulSapID 255
 
+//Drought: On the first turn of the map, set the weather condition to sunny
+//By Jester
+#define DroughtID 255
+
 
 // Buff Skills
 

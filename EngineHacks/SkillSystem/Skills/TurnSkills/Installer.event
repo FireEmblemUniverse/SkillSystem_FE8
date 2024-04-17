@@ -12,7 +12,12 @@ HoardersBaneID_Link:
 WORD HoardersBaneID 
 
 VulneraryItemID_Link:
-WORD Vulnerary 
+WORD Vulnerary
+
+DroughtID_Link:
+#include "Drought/Drought.lyn.event"
+POIN SkillTester
+Word DroughtID
 
 
 
