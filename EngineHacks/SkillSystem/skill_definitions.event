@@ -149,6 +149,10 @@
 
 #define SoulSapID 255
 
+//Drought: On the first turn of the map, set the weather condition to sunny
+//By Jester
+#define DroughtID 255
+
 
 // Buff Skills
 
@@ -362,6 +366,10 @@
 //Despoil: Obtain a Red Gem after attacking and defeating an enemy. (Luck % activation)
 //Author Unknown (Initial Commit)
 #define DespoilID 122
+
+//Pickup: Obtain the last item in the enemy's inventory after attacking and defeating them. (Luck % activation)
+//By Jester
+#define PickupID 255
 
 //Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
 //By circleseverywhere

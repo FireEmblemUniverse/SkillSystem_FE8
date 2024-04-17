@@ -1685,3 +1685,11 @@ Analytic: +10 attack if speed is less than[N]
 opponent's by 4 or more, if between 1-3[N] 
 poits, then +5 attack.[X]
 
+## SD_Drought
+Drought: On the first turn of the map,[N]
+set the weather condition to sunny.[X]
+
+
+## SD_Pickup
+Pickup: A luck % chance of obtaining the[N]
+enemy unit's last item upon death.[X]
