@@ -151,7 +151,7 @@ const struct MenuDef Menu_SkillDebug =
 
 int SkillDebugCommand_OnSelect(struct MenuProc* menu, struct MenuItemDef* command)
 {
-    struct SkillDebugProc* proc = (void*) Proc_Start(Proc_SkillDebug, ROOT_PROC(3));
+    struct SkillDebugProc* proc = (void*) Proc_Start(Proc_SkillDebug, PROC_TREE_3);
 
     proc->unit = gActiveUnit;
     proc->skillsUpdated = FALSE;
