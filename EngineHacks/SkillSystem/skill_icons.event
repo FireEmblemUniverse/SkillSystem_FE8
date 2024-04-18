@@ -1131,6 +1131,9 @@ ORG SkillIcon(DroughtID)
 ORG SkillIcon(PickupID)
 #incbin "SkillIcons/Acrobat.dmp"
 
+ORG SkillIcon(TechnicianID)
+#incbin "SkillIcons/Acrobat.dmp"
+
 
 
 ORG SkillIcons+0x8000

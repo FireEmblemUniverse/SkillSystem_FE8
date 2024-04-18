@@ -400,6 +400,12 @@ Analytic:
 POIN SkillTester
 WORD AnalyticID
 
+ALIGN 4
+Technician:
+#incbin "Technician/Technician.dmp"
+POIN SkillTester
+WORD TechnicianID
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 
