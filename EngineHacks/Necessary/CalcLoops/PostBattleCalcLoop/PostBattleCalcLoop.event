@@ -12,7 +12,7 @@ POIN PostCombatSkills
 
 PostCombatSkills: //I like having savage blow as the first one because it makes the activation sound play first
 POIN InitSkillBuffers //Refresh skill buffers so freshly learned post-battle skills can apply
-POIN SavageBlow BreathOfLife Despoil Lifetaker Fury PoisonStrike GrislyWound//lifetaker should probably go after any messages because it can mess with the palette a bit
+POIN SavageBlow BreathOfLife Despoil Lifetaker Fury PoisonStrike PoisonPoint GrislyWound//lifetaker should probably go after any messages because it can mess with the palette a bit
 POIN StrTaker SklTaker SpdTaker DefTaker ResTaker LukTaker MagTaker MovTaker 
 POIN Canto CantoPlus Galeforce FailGale ReMove Powerstaff CulturedPostCombat Gridmaster //this order for canto and friends is the only one I tested
 #ifdef GAIDEN_MAGIC
