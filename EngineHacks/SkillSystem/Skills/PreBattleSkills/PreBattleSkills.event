@@ -401,6 +401,12 @@ POIN SkillTester
 WORD AnalyticID
 
 ALIGN 4
+SuperLuck:
+#incbin "SuperLuck/SuperLuck.dmp"
+POIN SkillTester
+WORD SuperLuckID
+
+ALIGN 4
 Technician:
 #incbin "Technician/Technician.dmp"
 POIN SkillTester
