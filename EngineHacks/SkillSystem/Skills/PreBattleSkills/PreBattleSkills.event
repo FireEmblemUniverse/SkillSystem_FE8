@@ -418,6 +418,12 @@ SolarPower:
 POIN SkillTester
 WORD SolarPowerID
 
+ALIGN 4
+SlushRush:
+#incbin "SlushRush/SlushRush.dmp"
+POIN SkillTester
+WORD SlushRushID
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 
