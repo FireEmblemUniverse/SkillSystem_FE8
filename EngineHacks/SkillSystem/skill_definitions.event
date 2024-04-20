@@ -151,6 +151,10 @@
 // By Vesly
 #define SoulSapID 255
 
+//Sandstream: On the first turn of the map, set the weather condition to a sandstorm
+//By Jester
+#define SandstreamID 255
+
 // Drizzle: On the first turn of the map set the weather condition to raining.
 //By Jester
 #define DrizzleID 255
@@ -161,6 +165,7 @@
 //Drought: On the first turn of the map, set the weather condition to sunny
 //By Jester
 #define DroughtID 255
+
 
 
 // Buff Skills
