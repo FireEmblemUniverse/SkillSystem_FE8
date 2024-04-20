@@ -151,6 +151,10 @@
 // By Vesly
 #define SoulSapID 255
 
+//Snow Warning: On the first turn of the map, set the weather condition to snowy.
+//By Jester
+#define SnowWarningID 255
+
 //Sandstream: On the first turn of the map, set the weather condition to a sandstorm
 //By Jester
 #define SandstreamID 255
@@ -165,7 +169,6 @@
 //Drought: On the first turn of the map, set the weather condition to sunny
 //By Jester
 #define DroughtID 255
-
 
 
 // Buff Skills

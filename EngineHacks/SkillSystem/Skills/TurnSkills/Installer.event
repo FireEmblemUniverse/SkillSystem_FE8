@@ -14,6 +14,10 @@ WORD HoardersBaneID
 VulneraryItemID_Link:
 WORD Vulnerary
 
+SnowWarning:
+#include "SnowWarning/SnowWarning.lyn.event"
+POIN SkillTester
+Word SnowWarningID
 
 Sandstream:
 #include "Sandstream/Sandstream.lyn.event"
@@ -34,7 +38,6 @@ Airlock:
 #include "Airlock/Airlock.lyn.event"
 POIN SkillTester
 Word AirlockID
-
 
 
 ALIGN 4 
