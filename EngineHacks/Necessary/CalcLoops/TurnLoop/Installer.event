@@ -14,6 +14,7 @@ POIN MakeAuraSkillBuffer // So auras work from here
 POIN ProcessDebuffs ArmorMarch_StartOfTurn VigorDanceReset // Standalone things that loop through all units and do not pause the game 
 POIN KeepUp
 POIN AirlockID_Link
+POIN DroughtID_Link
 WORD 0 
 
 

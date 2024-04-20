@@ -1121,9 +1121,22 @@ ORG SkillIcon(WonderGuardID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(AnalyticID)
 #incbin "SkillIcons/Acrobat.dmp"
-
 ORG SkillIcon(SolarBraceID)
 #incbin "SkillIcons/SolarBrace.dmp"
+ORG SkillIcon(DroughtID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(PickupID)
+#incbin "SkillIcons/Acrobat.dmp"
+
+ORG SkillIcon(TechnicianID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(SolarPowerID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(PoisonPointID)
+#incbin "SkillIcons/Acrobat.dmp"
+
+ORG SkillIcon(SuperLuckID)
+#incbin "SkillIcons/Acrobat.dmp"
 
 ORG SkillIcon(AirlockID)
 #incbin "SkillIcons/Acrobat.dmp"
