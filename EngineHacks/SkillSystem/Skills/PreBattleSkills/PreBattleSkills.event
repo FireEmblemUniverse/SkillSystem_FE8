@@ -406,6 +406,18 @@ SuperLuck:
 POIN SkillTester
 WORD SuperLuckID
 
+ALIGN 4
+Technician:
+#incbin "Technician/Technician.dmp"
+POIN SkillTester
+WORD TechnicianID
+
+ALIGN 4
+SolarPower:
+#incbin "SolarPower/SolarPower.dmp"
+POIN SkillTester
+WORD SolarPowerID
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 
