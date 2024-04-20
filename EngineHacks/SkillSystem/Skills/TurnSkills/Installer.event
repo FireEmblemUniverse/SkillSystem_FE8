@@ -14,6 +14,11 @@ WORD HoardersBaneID
 VulneraryItemID_Link:
 WORD Vulnerary
 
+Drizzle:
+#include "Drizzle/Drizzle.lyn.event"
+POIN SkillTester
+Word DrizzleID
+
 Drought:
 #include "Drought/Drought.lyn.event"
 POIN SkillTester

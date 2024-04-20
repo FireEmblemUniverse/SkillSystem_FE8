@@ -136,18 +136,24 @@
 // Turn Skills
 
 // Rally Chaos: At the start of your turn, perform a random rally. 
-// Author: Vesly 
+// By Vesly 
 #define RallyChaosID 255
 
 //Hoarder's Bane: At the end of your turn, consume a vulnerary from the supply if below full health.
-// Author: Vesly 
+// By Vesly 
 #define HoardersBaneID 255
 
 // Dark Bargain: At the end of your turn, sacrifice extra exp to heal by that much.
-// Author: Vesly 
+// By Vesly 
 #define DarkBargainID 255
 
+// Soul Sap: At the end of your turn, drain up to 10% health from every unit within two tiles.
+// By Vesly
 #define SoulSapID 255
+
+// Drizzle: On the first turn of the map set the weather condition to raining.
+//By Jester
+#define DrizzleID 255
 
 //Airlock: On the first turn of the map, set the weather condition to clear.[X]
 #define AirlockID 255
