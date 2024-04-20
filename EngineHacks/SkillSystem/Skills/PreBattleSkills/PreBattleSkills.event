@@ -401,6 +401,12 @@ POIN SkillTester
 WORD AnalyticID
 
 ALIGN 4
+Technician:
+#incbin "Technician/Technician.dmp"
+POIN SkillTester
+WORD TechnicianID
+
+ALIGN 4
 SolarPower:
 #incbin "SolarPower/SolarPower.dmp"
 POIN SkillTester
