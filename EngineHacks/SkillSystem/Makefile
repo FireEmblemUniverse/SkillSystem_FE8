@@ -2,9 +2,9 @@
 CACHE_DIR := .cache_dir
 $(shell mkdir -p $(CACHE_DIR) > /dev/null)
 
-TOOL_DIR := ../Tools
+TOOL_DIR := ../../Tools
 LIB_DIR  := $(TOOL_DIR)/FE-CLib
-HAX_DIR  := $(abspath .)
+HAX_DIR  := ./
 
 FE8_REF := $(LIB_DIR)/reference/fireemblem8.ref.s
 
@@ -25,9 +25,9 @@ CC      := $(PREFIX)gcc$(EXE)
 AS      := $(PREFIX)as$(EXE)
 OBJCOPY := $(PREFIX)objcopy$(EXE)
 
-EA_DIR  := ../EventAssembler
+EA_DIR  := ../../EventAssembler
 EA_DEP  := $(TOOL_DIR)/ea-dep/ea-dep$(EXE)
-MAIN    := ./_MasterHackInstaller.event
+MAIN    := ./SkillSystemInstaller.event
 LYN     := $(EA_DIR)/Tools/lyn$(EXE)
 
 DUMMY_INC := $(TOOL_DIR)/ea-dep
@@ -59,13 +59,20 @@ $(LYN_REF): $(FE8_REF)
 	@echo "[AS ]	$@"
 	@cp $(FE8_REF) $(LYN_REF:.o=.s)
 	@$(AS) $(LYN_REF:.o=.s) -o $@
+	
+SKILLSYS_REF := $(CACHE_DIR)/skillsys-ref.o
+	
+$(SKILLSYS_REF) : ./skillsys-ref.s
+	@echo "[AS ]	$@"
+	@cp ./skillsys-ref.s $(SKILLSYS_REF:.o=.s)
+	@$(AS) $(SKILLSYS_REF:.o=.s) -o $@
 
 # Build rules
 
 #.o to .lyn.event rule	
-%.lyn.event: %.o $(LYN_REF)
+%.lyn.event: %.o $(LYN_REF) $(SKILLSYS_REF)
 	@echo "[LYN]	$@"
-	@$(LYN) $< $(LYN_REF) > $@
+	@$(LYN) $< $(LYN_REF) $(SKILLSYS_REF) > $@
 
 #.o to .dmp rule
 %.dmp: %.o

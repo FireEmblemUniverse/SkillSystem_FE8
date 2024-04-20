@@ -1688,3 +1688,31 @@ poits, then +5 attack.[X]
 ## SD_Drizzle
 Drizzle: On the first turn of the map,[N]
 set the weather condition to raining.[X]
+
+## SD_Airlock
+Airlock: On the first turn of the map,[N]
+set the weather condition to clear.[X]
+
+## SD_Drought
+Drought: On the first turn of the map,[N]
+set the weather condition to sunny.[X]
+
+## SD_Pickup
+Pickup: A luck % chance of obtaining the[N]
+enemy unit's last item upon death.[X]
+
+## SD_Technician
+Technician: Increase weapon damage by[N] 
+50% if using an E-ranked weapon.[X]
+
+## SD_SolarPower
+SolarPower: Under harsh sunlight, magic[N]
+weapons result in 25% more damage.[X]
+
+## SD_PoisonPoint
+PoisonPoint: Inflict the poison status at[N]
+the end of the battle.[X]
+
+## SD_SuperLuck
+SuperLuck: Use luck as crit rate.[X]
+

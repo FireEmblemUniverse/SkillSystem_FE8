@@ -315,6 +315,13 @@ NegatedSkillEntry(SpeedBoostID)
 NegatedSkillEntry(WonderGuardID)
 NegatedSkillEntry(AnalyticID)
 NegatedSkillEntry(DrizzleID)
+NegatedSkillEntry(AirlockID)
+NegatedSkillEntry(DroughtID)
+NegatedSkillEntry(PickupID)
+NegatedSkillEntry(TechnicianID)
+NegatedSkillEntry(SolarPowerID)
+NegatedSkillEntry(PoisonPointID)
+NegatedSkillEntry(SuperLuckID)
 
 /*
 //NOT WORKING (or they should not be affected by nihil)
