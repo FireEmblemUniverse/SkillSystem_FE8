@@ -406,6 +406,12 @@ Technician:
 POIN SkillTester
 WORD TechnicianID
 
+ALIGN 4
+SolarPower:
+#incbin "SolarPower/SolarPower.dmp"
+POIN SkillTester
+WORD SolarPowerID
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 
