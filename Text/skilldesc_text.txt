@@ -1685,6 +1685,10 @@ Analytic: +10 attack if speed is less than[N]
 opponent's by 4 or more, if between 1-3[N] 
 poits, then +5 attack.[X]
 
+## SD_Airlock
+Airlock: On the first turn of the map,[N]
+set the weather condition to clear.[X]
+
 ## SD_Drought
 Drought: On the first turn of the map,[N]
 set the weather condition to sunny.[X]
@@ -1707,5 +1711,3 @@ the end of the battle.[X]
 
 ## SD_SuperLuck
 SuperLuck: Use luck as crit rate.[X]
-
-

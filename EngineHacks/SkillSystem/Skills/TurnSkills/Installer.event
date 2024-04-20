@@ -19,7 +19,10 @@ DroughtID_Link:
 POIN SkillTester
 Word DroughtID
 
-
+AirlockID_Link:
+#include "Airlock/Airlock.lyn.event"
+POIN SkillTester
+Word AirlockID
 
 
 ALIGN 4 
