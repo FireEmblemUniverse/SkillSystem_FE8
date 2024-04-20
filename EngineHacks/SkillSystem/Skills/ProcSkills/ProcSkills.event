@@ -101,6 +101,11 @@ Proc_Colossus:
 POIN SkillTester
 WORD ColossusID
 
+Proc_Pickup:
+#incbin "Pickup/proc_pickup.dmp"
+POIN SkillTester
+WORD PickupID
+
 Proc_Ignis:
 #incbin "Ignis/proc_ignis.dmp"
 POIN SkillTester
