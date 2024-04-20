@@ -14,12 +14,12 @@ WORD HoardersBaneID
 VulneraryItemID_Link:
 WORD Vulnerary
 
-DroughtID_Link:
+Drought:
 #include "Drought/Drought.lyn.event"
 POIN SkillTester
 Word DroughtID
 
-AirlockID_Link:
+Airlock:
 #include "Airlock/Airlock.lyn.event"
 POIN SkillTester
 Word AirlockID
