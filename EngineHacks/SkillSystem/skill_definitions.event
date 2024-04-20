@@ -136,22 +136,36 @@
 // Turn Skills
 
 // Rally Chaos: At the start of your turn, perform a random rally. 
-// Author: Vesly 
+// By Vesly 
 #define RallyChaosID 255
 
 //Hoarder's Bane: At the end of your turn, consume a vulnerary from the supply if below full health.
-// Author: Vesly 
+// By Vesly 
 #define HoardersBaneID 255
 
 // Dark Bargain: At the end of your turn, sacrifice extra exp to heal by that much.
-// Author: Vesly 
+// By Vesly 
 #define DarkBargainID 255
 
+// Soul Sap: At the end of your turn, drain up to 10% health from every unit within two tiles.
+// By Vesly
 #define SoulSapID 255
 
 //Sandstream: On the first turn of the map, set the weather condition to a sandstorm
 //By Jester
 #define SandstreamID 255
+
+// Drizzle: On the first turn of the map set the weather condition to raining.
+//By Jester
+#define DrizzleID 255
+
+//Airlock: On the first turn of the map, set the weather condition to clear.[X]
+#define AirlockID 255
+
+//Drought: On the first turn of the map, set the weather condition to sunny
+//By Jester
+#define DroughtID 255
+
 
 
 // Buff Skills
@@ -367,6 +381,10 @@
 //Author Unknown (Initial Commit)
 #define DespoilID 122
 
+//Pickup: Obtain the last item in the enemy's inventory after attacking and defeating them. (Luck % activation)
+//By Jester
+#define PickupID 255
+
 //Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
 //By circleseverywhere
 #define FuryID 128
@@ -411,6 +429,9 @@
 //By Sme
 #define GridmasterID 120
 
+//PoisonPoint: Inflict the poison status to your opponent at the end of the battle.
+//By Jester
+#define PoisonPointID 255
 
 //Pre-Battle Skills
 
@@ -425,6 +446,18 @@
 //Analytic: +10 attack if speed is less than opponent's by 4 points or more. If between 1-3 points, then +5 attack.
 //By Jester
 #define AnalyticID 255
+
+//SuperLuck: Use luck as crit rate
+//By Jester
+#define SuperLuckID 255
+
+//Technician: Increase weapon damage by 50% if using an E-ranked weapon.
+//By Jester
+#define TechnicianID 255
+
+//SolarPower: Under harsh sunlight, magical weapons result in 25% additional damage
+//By Jester
+#define SolarPowerID 255
 
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz

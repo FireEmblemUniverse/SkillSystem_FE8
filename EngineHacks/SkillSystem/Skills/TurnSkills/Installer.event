@@ -12,12 +12,29 @@ HoardersBaneID_Link:
 WORD HoardersBaneID 
 
 VulneraryItemID_Link:
-WORD Vulnerary 
+WORD Vulnerary
+
 
 Sandstream:
 #include "Sandstream/Sandstream.lyn.event"
 POIN SkillTester
 Word SandstreamID
+
+Drizzle:
+#include "Drizzle/Drizzle.lyn.event"
+POIN SkillTester
+Word DrizzleID
+
+Drought:
+#include "Drought/Drought.lyn.event"
+POIN SkillTester
+Word DroughtID
+
+Airlock:
+#include "Airlock/Airlock.lyn.event"
+POIN SkillTester
+Word AirlockID
+
 
 
 ALIGN 4 
