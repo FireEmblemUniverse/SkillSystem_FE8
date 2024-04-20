@@ -433,6 +433,10 @@
 //By Jester
 #define AnalyticID 255
 
+//SuperLuck: Use luck as crit rate
+//By Jester
+#define SuperLuckID 255
+
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
 #define AxeFaithID 165

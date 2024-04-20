@@ -400,6 +400,12 @@ Analytic:
 POIN SkillTester
 WORD AnalyticID
 
+ALIGN 4
+SuperLuck:
+#incbin "SuperLuck/SuperLuck.dmp"
+POIN SkillTester
+WORD SuperLuckID
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 
