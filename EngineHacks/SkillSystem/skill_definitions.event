@@ -433,6 +433,10 @@
 //By Jester
 #define AnalyticID 255
 
+//SolarPower: Under harsh sunlight, magical weapons result in 25% additional damage
+//By Jester
+#define SolarPowerID 255
+
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
 #define AxeFaithID 165
