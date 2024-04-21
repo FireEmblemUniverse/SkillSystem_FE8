@@ -324,6 +324,8 @@ NegatedSkillEntry(TechnicianID)
 NegatedSkillEntry(SolarPowerID)
 NegatedSkillEntry(PoisonPointID)
 NegatedSkillEntry(SuperLuckID)
+NegatedSkillEntry(PlusID)
+NegatedSkillEntry(MinusID)
 
 /*
 //NOT WORKING (or they should not be affected by nihil)
