@@ -4,6 +4,7 @@
 .equ ExtraUnitData, SealSkillList+4
 .equ ItemTableLocation, ExtraUnitData+4 @dont forget to add this to the master skill installer
 .equ FullMetalBodyID, ItemTableLocation+4
+.equ ContraryID, FullMetalBodyID+4
 
 mov r1,r5
 ldr r3, =0x802c1ec @UpdateUnitFromBattleUnit
@@ -110,6 +111,7 @@ bx r0
 ApplyDebuff:
 @r0 is unit data, r1 is amount, r2 is nth stat
 push {r4-r6, lr}
+push {r0}   @push the unit register onto the stack for a Contrary check
 @ r0 = unit 
 mov r4, r1
 mov r5, r2
@@ -125,10 +127,32 @@ ldr r2, [r2]
 bl UnpackData_Signed 
 mov r3, r0 @ value 
 cmp r3, #0 
-blt Negative 
-sub r3, r4 @ new value 
+blt Negative
+
+@check for Contrary
+pop {r2}            @pop the unit register off of the stack
+push {r3,r4}        @push the registers for the debuff amount
+ldr	r1,ContraryID
+mov	r0,r2
+ldr	r2,SkillTester
+mov	lr,r2
+.short	0xf800
+cmp	r0,#1
+beq AddBuff         @the unit has contrary, so the debuff becomes a buff
+b   SubtractBuff    @the unit doesn't have contrary so proceed as usual
+
+AddBuff:
+pop {r3,r4}         @pop the registers for the debuff amount
+add r3, r4          @now turn this into a buff 
 mov r4, r3 
 b NowStoreDebuff 
+
+SubtractBuff:
+pop {r3,r4}         @pop the registers for the debuff amount
+sub r3, r4          @keep it as a debuff
+mov r4, r3 
+b NowStoreDebuff 
+
 Negative: 
 mov r1, #0 
 sub r1, r4 @ to compare 
@@ -167,3 +191,4 @@ SkillTester:
 @POIN ExtraUnitData
 @POIN ItemTableLocation
 @WORD FullMetalBodyID
+@WORD Contrary

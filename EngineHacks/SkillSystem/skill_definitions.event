@@ -462,6 +462,10 @@
 //By Jester
 #define SolarPowerID 255
 
+//Contrary: Invert the effects of seal skills
+//By Jester
+#define ContraryID 255
+
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
 #define AxeFaithID 165
