@@ -1172,7 +1172,7 @@
 
 //Steal+: Unit can steal unequipped weapons and staves if con>weight.
 //By Tequila
-#define StealPlusID 57 
+#define StealPlusID 255
 
 //Draw Back: Unit moves 1 space away from target ally. Ally moves to unit’s previous space. 
 //By Vesly 
@@ -1190,7 +1190,9 @@
 //By Vesly 
 #define ReciprocalAidID 255
 
-
+//Stride: Increase movement of all allied units in a 3 tile radius by 3
+//By Jester
+#define StrideID 57
 
 
 //Miscellaneous Skills
