@@ -462,6 +462,10 @@
 //By Jester
 #define SolarPowerID 255
 
+//Catching Up: If foe doubles unit, unit's damage increases by the amount foe is above the doubling threshold.
+//By Jester
+#define CatchingUpID 255
+
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
 #define AxeFaithID 165

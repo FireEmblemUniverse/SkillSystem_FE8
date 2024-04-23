@@ -418,6 +418,12 @@ SolarPower:
 POIN SkillTester
 WORD SolarPowerID
 
+ALIGN 4
+CatchingUp:
+#incbin "CatchingUp/CatchingUp.dmp"
+POIN SkillTester
+WORD CatchingUpID
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 
