@@ -968,12 +968,15 @@
 
 //Tome Range +1: Maximum range of equipped tome is increased.
 //By Kirb
-#define TomeRangeUpID 135
+#define TomeRangeUpID 255
 
 //High Ground: Maximum range of all tomes and bows increased by 2 when on specified terrain.
 //By Snerdels
 #define HighGroundID 255
 
+//Running Start: +1 max attack range with bows for every 2 tiles moved.
+//By Jester
+#define RunningStartID 135
 
 //Rounds Data Skills
 
