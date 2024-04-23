@@ -1318,6 +1318,10 @@
 // Author: Vesly 
 #define ShrewdPotentialID 255
 
+//Nonconforming: Inverts the effects of the weapon triangle.
+//By Jester
+#define NonconformingID 255
+
 
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme
