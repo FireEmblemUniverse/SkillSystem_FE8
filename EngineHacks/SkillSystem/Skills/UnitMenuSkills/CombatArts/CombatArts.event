@@ -50,7 +50,6 @@ SetCombatArtCost(11,2) //Ignis
 SetCombatArtCost(12,2) //Luna
 SetCombatArtCost(13,2) //Sol
 SetCombatArtCost(14,3) //Sure Shot
-SetCombatArtCost(16,3) //Stride
 
 ALIGN 4
 CombatArtsMenu:
@@ -87,9 +86,6 @@ MenuCommand(UM_Gamble, UM_GambleDesc, NormalText, GambleUsability, GambleEffect,
 
 //Capture
 MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
-
-//Stride
-MenuCommand(UM_Stride, UM_StrideDesc, NormalText, StrideUsability, StrideEffect, $22c31, $22c99)
 
 #ifdef HAX_RALLIES
   // Rally preview conflicts with window semitransparency changes
@@ -233,17 +229,3 @@ ALIGN 4
 SureShotEffect:
 #incbin "CombatArtEffect.dmp"
 WORD 14 //Sure Shot art ID
-
-ALIGN 4
-StrideUsability:
-#incbin "CombatArtUsability.dmp"
-POIN SkillTester
-WORD StrideID
-WORD 16 //Stride art ID
-POIN CombatArtCostTable
-
-ALIGN 4
-SureShotEffect:
-#incbin "CombatArtEffect.dmp"
-WORD 16 //Stride art ID
-

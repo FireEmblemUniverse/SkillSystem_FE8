@@ -116,7 +116,7 @@ UnitMenuTable:
   #endif // COMBAT_ARTS
 
   //Stride
-	MenuCommand(UM_Stride, UM_StrideOvergrowthDesc, NormalText, StrideUsability, StrideEffect, $22c31, $22c99)
+	MenuCommand(UM_Stride, UM_StrideDesc, NormalText, StrideUsability, StrideEffect, $22c31, $22c99)
 
   UM_Staff
   UM_Ride

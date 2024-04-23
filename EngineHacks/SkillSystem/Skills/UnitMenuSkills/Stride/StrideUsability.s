@@ -4,6 +4,7 @@
 .equ StrideID, SkillTester+4
 .thumb
 .org 0
+
 push {r4-r7,lr}
 ldr r0,=0x3004e50
 ldr r4,[r0] @save active unit in r4
@@ -13,7 +14,7 @@ and r0,r1
 cmp r0,#0
 bne False
 
-@check if active unit has Stride
+@ check if active unit has Stride
 mov r0, r4 @test
 ldr r1, StrideID
 ldr r2, SkillTester
@@ -28,6 +29,7 @@ b End
 
 False:
 mov r0,#3
+
 End:
 pop {r4-r7}
 pop {r1}
@@ -36,5 +38,5 @@ bx r1
 .align
 .ltorg
 SkillTester:
-@POIN SkillTester
+@POIN AuraSkillCheck
 @WORD StrideID
