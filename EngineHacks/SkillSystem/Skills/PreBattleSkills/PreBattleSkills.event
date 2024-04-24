@@ -418,6 +418,10 @@ SolarPower:
 POIN SkillTester
 WORD SolarPowerID
 
+ALIGN 4
+Detonate:
+#incbin "Detonate/Detonate.dmp"
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 

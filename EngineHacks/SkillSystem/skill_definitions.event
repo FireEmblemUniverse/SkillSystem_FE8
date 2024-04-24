@@ -1190,7 +1190,9 @@
 //By Vesly 
 #define ReciprocalAidID 255
 
-
+//Detonate: Destroy equipped weapon to deal remaining uses as damage
+//By Jester
+#define DetonateID 255
 
 
 //Miscellaneous Skills

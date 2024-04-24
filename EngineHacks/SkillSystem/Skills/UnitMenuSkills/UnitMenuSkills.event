@@ -62,6 +62,16 @@ ALIGN 4
 MercyEffect:
 #incbin "Mercy/MercyEffect.dmp"
 
+ALIGN 4
+DetonateUsability:
+#incbin "Detonate/DetonateUsability.dmp"
+POIN SkillTester
+WORD DetonateID
+
+ALIGN 4
+DetonateEffect:
+#incbin "Detonate/DetonateEffect.dmp"
+
 
 #include "CombatArts/CombatArts.event"
 

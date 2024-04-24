@@ -87,6 +87,9 @@ MenuCommand(UM_Gamble, UM_GambleDesc, NormalText, GambleUsability, GambleEffect,
 //Capture
 MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
 
+//Detonate
+MenuCommand(UM_Detonate, UM_DetonateDesc, NormalText, DetonateUsability, DetonateEffect, $22c31, $22c99)
+
 #ifdef HAX_RALLIES
   // Rally preview conflicts with window semitransparency changes
   // So we only add that in if it is disabled
@@ -229,4 +232,3 @@ ALIGN 4
 SureShotEffect:
 #incbin "CombatArtEffect.dmp"
 WORD 14 //Sure Shot art ID
-
