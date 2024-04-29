@@ -418,6 +418,12 @@ SolarPower:
 POIN SkillTester
 WORD SolarPowerID
 
+ALIGN 4
+TrueStrike:
+#incbin "TrueStrike/TrueStrike.dmp"
+POIN SkillTester
+WORD TrueStrikeID
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 
