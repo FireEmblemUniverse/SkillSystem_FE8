@@ -462,6 +462,10 @@
 //By Jester
 #define SolarPowerID 255
 
+//CriticalPierce: Nullify the enemy's crit avoid rate 
+//By Jester
+#define CriticalPierceID 255
+
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
 #define AxeFaithID 165
