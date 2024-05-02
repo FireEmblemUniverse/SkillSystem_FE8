@@ -1190,7 +1190,8 @@
 //By Vesly 
 #define ReciprocalAidID 255
 
-
+//GoddessDance: When used, all adjacent allied units can move again
+#define GoddessDanceID 255
 
 
 //Miscellaneous Skills

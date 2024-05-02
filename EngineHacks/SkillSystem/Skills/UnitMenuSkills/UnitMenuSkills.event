@@ -62,6 +62,17 @@ ALIGN 4
 MercyEffect:
 #incbin "Mercy/MercyEffect.dmp"
 
+ALIGN 4
+GoddessDanceUsability:
+#incbin "GoddessDance/GoddessDanceUsability.dmp"
+POIN SkillTester
+WORD GoddessDanceID
+
+ALIGN 4
+GoddessDanceEffect:
+#incbin "GoddessDance/GoddessDanceEffect.dmp"
+POIN GetUnitsInRange
+
 
 #include "CombatArts/CombatArts.event"
 
