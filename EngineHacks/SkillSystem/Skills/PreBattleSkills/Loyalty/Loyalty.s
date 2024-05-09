@@ -6,7 +6,6 @@ push {r4-r7, lr}
 mov r4, r0 @atkr
 mov r5, r1 @dfdr
 
-
 @has Loyalty
 ldr r0, SkillTester
 mov lr, r0
@@ -32,28 +31,21 @@ cmp r2,#0x0
 beq End
 add r0,#0x1
 
+@	Make Loyalty check for Lord bit instead of ClassID
 mov r3,#0x48
 ldr r5,CharData
 sub r2,#0x1
 mul r3,r2
 add r5,r3
-mov r3,#0x4
-ldr r5,[r5,r3]
-ldrb r3,[r5,r3]
-cmp r3,#0x1
-beq Final
-cmp r3,#0x2
-beq Final
-cmp r3,#0x3
-beq Final
-cmp r3,#0x4
-beq Final
-cmp r3,#0x3B
-beq Final
-cmp r3,#0x3C
-beq Final
-b Loop
-
+ldr r0, [r5] @char
+ldr r0, [r0, #0x28] @char abilities
+ldr r1, [r5,#4] @class
+ldr r1, [r1,#0x28] @class abilities
+orr r0, r1
+mov r1, #0x20
+lsl r1, #8
+tst r0, r1
+beq End
 
 Final:
 mov r1, #0x5C
@@ -65,8 +57,6 @@ mov r1, #0x60
 ldrh r2, [r4, r1]
 add r2, #15
 strh r2, [r4,r1]
-
-
 
 End:
 pop {r4-r7, r15}
