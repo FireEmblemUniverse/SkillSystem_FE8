@@ -174,11 +174,11 @@
 // Buff Skills
 
 //Eternal Vanity: Your buffed stats do not deplete each turn. 
-// Author: Vesly 
+// By Vesly 
 #define EternalVanityID 255
 
 // _ Taker: After attacking and defeating an enemy, gain +4 _. (Max +10) 
-// Author: Vesly 
+// By Vesly 
 #define StrTakerID 255
 #define SklTakerID 255 
 #define SpdTakerID 255 
@@ -189,7 +189,7 @@
 #define MovTakerID 255 
 
 // Hone _ : At the start of your turn, give adjacent allies up to +3 _. 
-// Author: Vesly 
+// By Vesly 
 #define HoneMagID  255 
 #define HoneStrID  255
 #define HoneSklID  255 
@@ -200,7 +200,7 @@
 #define HoneMovID  255 
 
 // _ Oath : At the start of your turn, gain up to +4 _ if adjacent to an ally.
-// Author: Vesly 
+// By Vesly 
 #define MagOathID  255 
 #define StrOathID  255
 #define SklOathID  255 
@@ -211,7 +211,7 @@
 #define MovOathID  255 
 
 // Rouse _ : At the start of your turn, gain up to +4 _ if not adjacent to an ally.
-// Author: Vesly 
+// By Vesly 
 #define RouseMagID 255 
 #define RouseStrID 255
 #define RouseSklID 255 
@@ -222,7 +222,7 @@
 #define RouseMovID 255 
 
 // _ Initiative: Begin the chapter with +7 __. 
-// Author: Vesly 
+// By Vesly 
 #define CleverInitID 255 // Mag
 #define StrongInitID 255 // Str 
 #define DeftInitID 255 // Skl 
@@ -450,7 +450,7 @@
 //By Jester
 #define AnalyticID 255
 
-//SuperLuck: Use luck as crit rate
+//Super Luck: Use luck as crit rate
 //By Jester
 #define SuperLuckID 255
 
@@ -458,9 +458,22 @@
 //By Jester
 #define TechnicianID 255
 
-//SolarPower: Under harsh sunlight, magical weapons result in 25% additional damage
+//Solar Power: Under harsh sunlight, magical weapons result in 25% additional damage
 //By Jester
 #define SolarPowerID 255
+
+//Sand Rush: If the weather is a sandstorm then double this unit's attack speed.
+//By Jester
+#define SandRushID 255
+
+//Slush Rush: If the weather is sunny then double this unit's attack speed.
+//By Jester
+#define SlushRushID 255
+
+//Swift Swim: If the weather is raining then double this unit's attack speed.
+//By Jester
+#define SwiftSwimID 255
+
 
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
@@ -932,6 +945,10 @@
 //By Snerdels
 #define SolarBraceID 255
 
+//Lunar Brace: When attacking, ignore 25% of enemy defense.
+//By Snerdels
+#define LunarBraceID 255
+
 //Sure Shot: A precision attack that always hits and does 1.5x damage. (Skill % activation)
 //Author Unknown (Initial Commit)
 #define SureShotID 10
@@ -1089,15 +1106,23 @@
 #define LullSpectrumID 255
 
 //Guts:  +5 Str while under any status condition. (Includes dancer rings.) 
-// Author: Vesly 
+// By Vesly 
 #define GutsID 255
 //Strong Constitution: +5 Def/Res while under any status condition. (Includes dancer rings.) 
-// Author: Vesly 
+// By Vesly 
 #define StrongConstitutionID 255
 
 //Speed Boost: Boost movement by +1 per turn up to 6 turns.
 //By Jester
 #define SpeedBoostID 155
+
+//Minus: +4 to all stats for adjacent units with the 'Plus' skill.
+//By Jester
+#define PlusID 255
+
+//Plus: +4 to all stats for adjacent units with the 'Minus' skill.
+//By Jester
+#define MinusID 255
 
 
 //Unit Menu Skills
@@ -1190,6 +1215,13 @@
 //By Vesly 
 #define ReciprocalAidID 255
 
+//Detonate: Destroy equipped weapon to deal remaining uses as damage
+//By Jester
+#define DetonateID 255
+
+//Stride: Increase movement of all allied units in a 3 tile radius by 3
+//By Jester
+#define StrideID 255
 
 
 
@@ -1315,13 +1347,16 @@
 #define TriangleAttackID 6
 
 // Shrewd Potential: Stat boosters provide +1 more than usual. 
-// Author: Vesly 
+// By Vesly 
 #define ShrewdPotentialID 255
 
 //Nonconforming: Inverts the effects of the weapon triangle.
 //By Jester
 #define NonconformingID 255
 
+//Concealed Weapon: Smuggle in your equipped weapon into the arena.
+// By Jester
+#define ConcealedWeaponID 255
 
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme
