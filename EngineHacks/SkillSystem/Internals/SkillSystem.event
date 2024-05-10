@@ -338,7 +338,7 @@ NegatedSkillEntry(SwiftSwimID)
 /*
 //NOT WORKING (or they should not be affected by nihil)
 BYTE ProvokeID//this is kinda it's own thing really (works)
-BYTE MercyID LungeID GambleID CaptureID DetonateID StrideID //commands, not working, if you want to you can make a test for nihil in the target routine and make it not a valid target if they have nihil
+BYTE MercyID LungeID GambleID CaptureID DetonateID StrideID GoddessDanceID //commands, not working, if you want to you can make a test for nihil in the target routine and make it not a valid target if they have nihil
 BYTE ShoveID SmiteID//commands that do not initiate a fight, same as above but I felt they should be another group
 BYTE StaffSavantID BowRangeUpID RunningStartID//range skills, not working, if you really want to you can edit the targeting routine to make an enemy with nihil untargetable if they are outside the range you would have without the skill
 BYTE RallyStrID RallyMagID RallySklID RallySpdID RallyLukID RallyDefID RallyResID RallyMovID RallySpectrumID//not even tested, they have no reason to be negated

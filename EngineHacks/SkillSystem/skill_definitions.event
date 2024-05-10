@@ -1229,6 +1229,10 @@
 //By Vesly 
 #define ReciprocalAidID 255
 
+//Goddess Dance: When used, all adjacent allied units can move again.
+//By Jester
+#define GoddessDanceID 255
+
 //Detonate: Destroy equipped weapon to deal remaining uses as damage
 //By Jester
 #define DetonateID 255
@@ -1236,7 +1240,6 @@
 //Stride: Increase movement of all allied units in a 3 tile radius by 3
 //By Jester
 #define StrideID 255
-
 
 
 //Miscellaneous Skills
