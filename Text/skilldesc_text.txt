@@ -1769,6 +1769,11 @@ with bows for every 2 tiles moved.[X]
 Critical Pierce: Nullify the[N] 
 enemy's crit avoid rate.[X]
 
+## SD_TrueStrike
+True Strike: Targets the lower stat[N]
+of the opponent's defense and[N]
+resistance.[X]
+
 ## SD_CatchingUp
 Catching Up: If foe doubles unit, unit's[N]
 damage increases by the amount foe is[N]
@@ -1777,3 +1782,4 @@ above the doubling threshold.[X]
 ## SD_SwiftSwim
 Swift Swim: If the weather is raining[N]
 then double this unit's attack speed.[X]
+

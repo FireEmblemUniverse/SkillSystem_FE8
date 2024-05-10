@@ -1144,6 +1144,8 @@ ORG SkillIcon(SandstreamID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(SnowWarningID)
 #incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(TrueStrikeID)
+#incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(CriticalPierceID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(RunningStartID)

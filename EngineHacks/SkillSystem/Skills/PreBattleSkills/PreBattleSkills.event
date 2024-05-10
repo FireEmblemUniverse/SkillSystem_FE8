@@ -419,6 +419,12 @@ POIN SkillTester
 WORD SolarPowerID
 
 ALIGN 4
+TrueStrike:
+#incbin "TrueStrike/TrueStrike.dmp"
+POIN SkillTester
+WORD TrueStrikeID
+
+ALIGN 4
 CriticalPierce:
 #incbin "CriticalPierce/CriticalPierce.dmp"
 POIN SkillTester
