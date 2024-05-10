@@ -34,3 +34,17 @@ WORD GutsID
 ALIGN 4
 SpeedBoostID_Link:
 WORD SpeedBoostID
+
+PlusAura:
+#incbin "Plus/Plus.dmp" 
+POIN AuraSkillCheck
+POIN SkillTester
+WORD PlusID
+WORD MinusID
+
+MinusAura:
+#incbin "Minus/Minus.dmp" 
+POIN AuraSkillCheck
+POIN SkillTester
+WORD PlusID
+WORD MinusID

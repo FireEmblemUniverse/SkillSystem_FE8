@@ -113,7 +113,17 @@ UnitMenuTable:
 
 	//Capture
 	MenuCommand(UM_Capture, UM_CaptureDesc, NormalText, Capture_Usability, Capture_Effect_Func, $22c31, $22c99)
+
+  //GoddessDance
+	MenuCommand(UM_GoddessDance, UM_GoddessDanceDesc, NormalText, GoddessDanceUsability, GoddessDanceEffect, $22c31, $22c99)
+
+  //Detonate
+	MenuCommand(UM_Detonate, UM_DetonateDesc, NormalText, DetonateUsability, DetonateEffect, $22c31, $22c99)
+
   #endif // COMBAT_ARTS
+
+  //Stride
+	MenuCommand(UM_Stride, UM_StrideDesc, NormalText, StrideUsability, StrideEffect, $22c31, $22c99)
 
   UM_Staff
   UM_Ride
