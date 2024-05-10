@@ -462,6 +462,10 @@
 //By Jester
 #define SolarPowerID 255
 
+//Contrary: Invert the effects of seal skills
+//By Jester
+#define ContraryID 255
+
 //True Strike: Targets the lower stat of the opponent's defense and resistance.
 //By Jester
 #define TrueStrikeID 255

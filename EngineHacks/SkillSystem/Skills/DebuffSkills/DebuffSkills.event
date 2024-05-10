@@ -18,6 +18,7 @@ POIN SealSkillList
 POIN GetUnitDebuffEntry
 POIN ItemTable
 WORD FullMetalBodyID
+WORD ContraryID
 
 SealSkillList:
 BYTE SealStrID SealSklID SealSpdID SealDefID SealResID SealLukID SealMagID
