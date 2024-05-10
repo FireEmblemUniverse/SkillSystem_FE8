@@ -73,6 +73,27 @@ GoddessDanceEffect:
 #incbin "GoddessDance/GoddessDanceEffect.dmp"
 POIN GetUnitsInRange
 
+ALIGN 4
+DetonateUsability:
+#incbin "Detonate/DetonateUsability.dmp"
+POIN SkillTester
+WORD DetonateID
+
+ALIGN 4
+DetonateEffect:
+#incbin "Detonate/DetonateEffect.dmp"
+
+StrideUsability:
+#incbin "Stride/StrideUsability.dmp"
+POIN SkillTester
+WORD StrideID
+
+ALIGN 4
+StrideEffect:
+#incbin "Stride/StrideEffect.dmp"
+POIN GetUnitsInRange
+
+
 
 #include "CombatArts/CombatArts.event"
 
