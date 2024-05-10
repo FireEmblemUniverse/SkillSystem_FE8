@@ -994,6 +994,9 @@
 //By Snerdels
 #define HighGroundID 255
 
+//Running Start: +1 max attack range with bows for every 2 tiles moved.
+//By Jester
+#define RunningStartID 255
 
 //Rounds Data Skills
 
