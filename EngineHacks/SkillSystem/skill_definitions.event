@@ -462,6 +462,10 @@
 //By Jester
 #define SolarPowerID 255
 
+//Critical Pierce: Nullify the enemy's crit avoid rate 
+//By Jester
+#define CriticalPierceID 255
+
 //Catching Up: If foe doubles unit, unit's damage increases by the amount foe is above the doubling threshold.
 //By Jester
 #define CatchingUpID 255

@@ -419,6 +419,12 @@ POIN SkillTester
 WORD SolarPowerID
 
 ALIGN 4
+CriticalPierce:
+#incbin "CriticalPierce/CriticalPierce.dmp"
+POIN SkillTester
+WORD CriticalPierceID
+
+ALIGN 4
 CatchingUp:
 #incbin "CatchingUp/CatchingUp.dmp"
 POIN SkillTester
