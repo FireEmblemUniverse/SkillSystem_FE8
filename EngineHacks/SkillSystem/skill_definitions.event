@@ -1112,6 +1112,14 @@
 //By Jester
 #define SpeedBoostID 155
 
+//Minus: +4 to all stats for adjacent units with the 'Plus' skill.
+//By Jester
+#define PlusID 255
+
+//Plus: +4 to all stats for adjacent units with the 'Minus' skill.
+//By Jester
+#define MinusID 255
+
 
 //Unit Menu Skills
 
