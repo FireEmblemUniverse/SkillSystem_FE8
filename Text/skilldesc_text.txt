@@ -1745,6 +1745,10 @@ units with the 'Plus' skill.[X]
 Sand Rush: If the weather is a sandstorm[N] 
 then double this unit's attack speed.[X]
 
+## SD_Detonate
+Detonate: Destroy equipped weapon[N]
+to deal remaining uses as damage.[X]
+
 ## SD_SlushRush
 Slush Rush: If the weather is snow then[N]
 double this unit's attack speed.[X]
@@ -1752,3 +1756,4 @@ double this unit's attack speed.[X]
 ## SD_SwiftSwim
 Swift Swim: If the weather is raining[N]
 then double this unit's attack speed.[X]
+

@@ -419,6 +419,10 @@ POIN SkillTester
 WORD SolarPowerID
 
 ALIGN 4
+Detonate:
+#incbin "Detonate/Detonate.dmp"
+
+ALIGN 4
 LunarBraceSkill:
 #incbin "LunarBraceSkill/LunarBraceSkill.dmp"
 POIN SkillTester
