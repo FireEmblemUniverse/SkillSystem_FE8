@@ -1139,10 +1139,10 @@ ORG SkillIcon(SuperLuckID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(AirlockID)
 #incbin "SkillIcons/Acrobat.dmp"
-
+ORG SkillIcon(SwiftSwimID)
+#incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(SandstreamID)
 #incbin "SkillIcons/Acrobat.dmp"
-
 ORG SkillIcon(SnowWarningID)
 #incbin "SkillIcons/Acrobat.dmp"
 
