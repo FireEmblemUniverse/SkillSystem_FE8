@@ -190,9 +190,9 @@ ASSERT (DebuffAssertTable+DebuffEntrySize)-DebuffTooBig
 
 TeamDebuffTables:
   {
-  #define MaxPlayerUnits 62+1
-  #define MaxEnemyUnits 50+1
-  #define MaxGreenUnits 20+1
+  #define MaxPlayerUnits "(62+1)"
+  #define MaxEnemyUnits "(50+1)"
+  #define MaxGreenUnits "(20+1)"
   
   #define PUDebuffTable DebuffTableRam
   #define EUDebuffTable "PUDebuffTable + (MaxPlayerUnits*DebuffEntrySize)"

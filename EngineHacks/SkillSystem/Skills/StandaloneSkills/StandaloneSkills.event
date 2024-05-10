@@ -53,6 +53,10 @@ jumpToHack(Synchronize)
 ORG $2F840 
 jumpToHack(ShrewdPotential) 
 
+ORG $31B84
+jumpToHack(ConcealedWeapon)
+
+
 POP
 
 #include "Bargain/Bargain.event"
@@ -131,3 +135,9 @@ ShrewdPotentialID_Link:
 WORD ShrewdPotentialID 
 ShrewdPotentialAmount_Link: 
 WORD 1
+
+ALIGN 4
+ConcealedWeapon:
+#incbin "ConcealedWeapon/ConcealedWeapon.dmp"
+POIN SkillTester
+WORD ConcealedWeaponID
