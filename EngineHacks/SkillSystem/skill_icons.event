@@ -1112,9 +1112,6 @@ ORG SkillIcon(HighGroundID)
 
 ORG SkillIcon(NoGuardID)
 #incbin "SkillIcons/Acrobat.dmp"
-
-ORG SkillIcon(NoGuardID)
-#incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(SpeedBoostID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(WonderGuardID)
@@ -1145,16 +1142,14 @@ ORG SkillIcon(SandstreamID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(SnowWarningID)
 #incbin "SkillIcons/Acrobat.dmp"
-
+ORG SkillIcon(StrideID)
+#incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(PlusID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(MinusID)
 #incbin "SkillIcons/Acrobat.dmp"
-
-
 ORG SkillIcon(SlushRushID)
 #incbin "SkillIcons/Acrobat.dmp"
-
 ORG SkillIcon(SandRushID)
 #incbin "SkillIcons/Acrobat.dmp"
 
