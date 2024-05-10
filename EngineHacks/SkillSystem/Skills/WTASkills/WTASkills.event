@@ -10,3 +10,9 @@ Poise:
 #incbin "Poise/Poise.dmp"
 POIN SkillTester
 WORD PoiseID
+
+ALIGN 4
+Nonconforming:
+#incbin "Nonconforming/Nonconforming.dmp"
+POIN SkillTester
+WORD NonconformingID
