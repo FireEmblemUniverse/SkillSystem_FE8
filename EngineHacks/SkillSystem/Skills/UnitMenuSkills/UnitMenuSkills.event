@@ -62,6 +62,17 @@ ALIGN 4
 MercyEffect:
 #incbin "Mercy/MercyEffect.dmp"
 
+ALIGN 4
+StrideUsability:
+#incbin "Stride/StrideUsability.dmp"
+POIN SkillTester
+WORD StrideID
+
+ALIGN 4
+StrideEffect:
+#incbin "Stride/StrideEffect.dmp"
+POIN GetUnitsInRange
+
 
 #include "CombatArts/CombatArts.event"
 
