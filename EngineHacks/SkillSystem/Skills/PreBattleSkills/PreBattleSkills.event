@@ -424,6 +424,12 @@ SlushRush:
 POIN SkillTester
 WORD SlushRushID
 
+ALIGN 4
+SwiftSwim:
+#incbin "SwiftSwim/SwiftSwim.dmp"
+POIN SkillTester
+WORD SwiftSwimID
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 
