@@ -1350,6 +1350,10 @@
 // By Vesly 
 #define ShrewdPotentialID 255
 
+//Nonconforming: Inverts the effects of the weapon triangle.
+//By Jester
+#define NonconformingID 255
+
 //Concealed Weapon: Smuggle in your equipped weapon into the arena.
 // By Jester
 #define ConcealedWeaponID 255
