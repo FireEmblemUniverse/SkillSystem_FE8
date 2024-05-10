@@ -1127,18 +1127,27 @@ ORG SkillIcon(DroughtID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(PickupID)
 #incbin "SkillIcons/Acrobat.dmp"
-
 ORG SkillIcon(TechnicianID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(SolarPowerID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(PoisonPointID)
 #incbin "SkillIcons/Acrobat.dmp"
-
+ORG SkillIcon(DrizzleID)
+#incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(SuperLuckID)
 #incbin "SkillIcons/Acrobat.dmp"
-
 ORG SkillIcon(AirlockID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(SwiftSwimID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(SandstreamID)
+#incbin "SkillIcons/Acrobat.dmp"
+ORG SkillIcon(SnowWarningID)
+#incbin "SkillIcons/Acrobat.dmp"
+
+
+ORG SkillIcon(SlushRushID)
 #incbin "SkillIcons/Acrobat.dmp"
 
 ORG SkillIcon(SandRushID)

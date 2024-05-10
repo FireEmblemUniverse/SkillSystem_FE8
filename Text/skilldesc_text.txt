@@ -1685,6 +1685,18 @@ Analytic: +10 attack if speed is less than[N]
 opponent's by 4 or more, if between 1-3[N] 
 poits, then +5 attack.[X]
 
+## SD_SnowWarning
+Snow Warning: On the first turn of the[N]
+map, set the weather condition to snowy.[X]
+
+## SD_Sandstream
+Sandstream: On the first turn of the map,[N]
+set the weather condition to a sand storm.[X]
+
+## SD_Drizzle
+Drizzle: On the first turn of the map,[N]
+set the weather condition to raining.[X]
+
 ## SD_Airlock
 Airlock: On the first turn of the map,[N]
 set the weather condition to clear.[X]
@@ -1702,16 +1714,24 @@ Technician: Increase weapon damage by[N]
 50% if using an E-ranked weapon.[X]
 
 ## SD_SolarPower
-SolarPower: Under harsh sunlight, magic[N]
+Solar Power: Under harsh sunlight, magic[N]
 weapons result in 25% more damage.[X]
 
 ## SD_PoisonPoint
-PoisonPoint: Inflict the poison status at[N]
+Poison Point: Inflict the poison status at[N]
 the end of the battle.[X]
 
 ## SD_SuperLuck
-SuperLuck: Use luck as crit rate.[X]
+Super Luck: Use luck as crit rate.[X]
 
 ## SD_SandRush
-SandRush: If the weather is a sandstorm[N] 
+Sand Rush: If the weather is a sandstorm[N] 
+then double this unit's attack speed.[X]
+
+## SD_SlushRush
+Slush Rush: If the weather is snow then[N]
+double this unit's attack speed.[X]
+
+## SD_SwiftSwim
+Swift Swim: If the weather is raining[N]
 then double this unit's attack speed.[X]
