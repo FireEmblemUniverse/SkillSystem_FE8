@@ -945,6 +945,10 @@
 //By Snerdels
 #define SolarBraceID 255
 
+//Lunar Brace: When attacking, ignore 25% of enemy defense.
+//By Snerdels
+#define LunarBraceID 255
+
 //Sure Shot: A precision attack that always hits and does 1.5x damage. (Skill % activation)
 //Author Unknown (Initial Commit)
 #define SureShotID 10

@@ -1120,6 +1120,8 @@ ORG SkillIcon(AnalyticID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(SolarBraceID)
 #incbin "SkillIcons/SolarBrace.dmp"
+ORG SkillIcon(LunarBraceID)
+#incbin "SkillIcons/LunarBraceSkill.dmp"
 ORG SkillIcon(DroughtID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(PickupID)

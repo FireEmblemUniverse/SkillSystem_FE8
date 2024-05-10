@@ -419,6 +419,12 @@ POIN SkillTester
 WORD SolarPowerID
 
 ALIGN 4
+LunarBraceSkill:
+#incbin "LunarBraceSkill/LunarBraceSkill.dmp"
+POIN SkillTester
+WORD LunarBraceID
+
+ALIGN 4
 SandRush:
 #incbin "SandRush/SandRush.dmp"
 POIN SkillTester
