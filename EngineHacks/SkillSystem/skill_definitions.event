@@ -174,11 +174,11 @@
 // Buff Skills
 
 //Eternal Vanity: Your buffed stats do not deplete each turn. 
-// Author: Vesly 
+// By Vesly 
 #define EternalVanityID 255
 
 // _ Taker: After attacking and defeating an enemy, gain +4 _. (Max +10) 
-// Author: Vesly 
+// By Vesly 
 #define StrTakerID 255
 #define SklTakerID 255 
 #define SpdTakerID 255 
@@ -189,7 +189,7 @@
 #define MovTakerID 255 
 
 // Hone _ : At the start of your turn, give adjacent allies up to +3 _. 
-// Author: Vesly 
+// By Vesly 
 #define HoneMagID  255 
 #define HoneStrID  255
 #define HoneSklID  255 
@@ -200,7 +200,7 @@
 #define HoneMovID  255 
 
 // _ Oath : At the start of your turn, gain up to +4 _ if adjacent to an ally.
-// Author: Vesly 
+// By Vesly 
 #define MagOathID  255 
 #define StrOathID  255
 #define SklOathID  255 
@@ -211,7 +211,7 @@
 #define MovOathID  255 
 
 // Rouse _ : At the start of your turn, gain up to +4 _ if not adjacent to an ally.
-// Author: Vesly 
+// By Vesly 
 #define RouseMagID 255 
 #define RouseStrID 255
 #define RouseSklID 255 
@@ -222,7 +222,7 @@
 #define RouseMovID 255 
 
 // _ Initiative: Begin the chapter with +7 __. 
-// Author: Vesly 
+// By Vesly 
 #define CleverInitID 255 // Mag
 #define StrongInitID 255 // Str 
 #define DeftInitID 255 // Skl 
@@ -1106,10 +1106,10 @@
 #define LullSpectrumID 255
 
 //Guts:  +5 Str while under any status condition. (Includes dancer rings.) 
-// Author: Vesly 
+// By Vesly 
 #define GutsID 255
 //Strong Constitution: +5 Def/Res while under any status condition. (Includes dancer rings.) 
-// Author: Vesly 
+// By Vesly 
 #define StrongConstitutionID 255
 
 //Speed Boost: Boost movement by +1 per turn up to 6 turns.
@@ -1347,10 +1347,11 @@
 #define TriangleAttackID 6
 
 // Shrewd Potential: Stat boosters provide +1 more than usual. 
-// Author: Vesly 
+// By Vesly 
 #define ShrewdPotentialID 255
 
-//ConcealedWeapon: Smuggle in your equipped weapon into the arena
+//Concealed Weapon: Smuggle in your equipped weapon into the arena.
+// By Jester
 #define ConcealedWeaponID 255
 
 //Biorhythm Skills: Double or halve biorhythm effects.
