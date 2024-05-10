@@ -450,7 +450,7 @@
 //By Jester
 #define AnalyticID 255
 
-//SuperLuck: Use luck as crit rate
+//Super Luck: Use luck as crit rate
 //By Jester
 #define SuperLuckID 255
 
@@ -458,17 +458,22 @@
 //By Jester
 #define TechnicianID 255
 
-//SolarPower: Under harsh sunlight, magical weapons result in 25% additional damage
+//Solar Power: Under harsh sunlight, magical weapons result in 25% additional damage
 //By Jester
 #define SolarPowerID 255
 
-//SlushRush: If the weather is sunny then double this unit's attack speed.
+//Sand Rush: If the weather is a sandstorm then double this unit's attack speed.
+//By Jester
+#define SandRushID 255
+
+//Slush Rush: If the weather is sunny then double this unit's attack speed.
 //By Jester
 #define SlushRushID 255
 
-//SwiftSwim: If the weather is raining then double this unit's attack speed.
+//Swift Swim: If the weather is raining then double this unit's attack speed.
 //By Jester
 #define SwiftSwimID 255
+
 
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
