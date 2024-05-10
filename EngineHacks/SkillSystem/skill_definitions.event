@@ -462,6 +462,10 @@
 //By Jester
 #define SolarPowerID 255
 
+//SlushRush: If the weather is sunny then double this unit's attack speed.
+//By Jester
+#define SlushRushID 255
+
 //SwiftSwim: If the weather is raining then double this unit's attack speed.
 //By Jester
 #define SwiftSwimID 255

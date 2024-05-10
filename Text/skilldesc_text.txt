@@ -1714,16 +1714,20 @@ Technician: Increase weapon damage by[N]
 50% if using an E-ranked weapon.[X]
 
 ## SD_SolarPower
-SolarPower: Under harsh sunlight, magic[N]
+Solar Power: Under harsh sunlight, magic[N]
 weapons result in 25% more damage.[X]
 
 ## SD_PoisonPoint
-PoisonPoint: Inflict the poison status at[N]
+Poison Point: Inflict the poison status at[N]
 the end of the battle.[X]
 
 ## SD_SuperLuck
-SuperLuck: Use luck as crit rate.[X]
+Super Luck: Use luck as crit rate.[X]
+
+## SD_SlushRush
+Slush Rush: If the weather is snow then[N]
+double this unit's attack speed.[X]
 
 ## SD_SwiftSwim
-SwiftSwim: If the weather is raining[N]
+Swift Swim: If the weather is raining[N]
 then double this unit's attack speed.[X]

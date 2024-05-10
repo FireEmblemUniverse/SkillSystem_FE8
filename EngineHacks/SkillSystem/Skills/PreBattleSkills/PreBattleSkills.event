@@ -419,6 +419,12 @@ POIN SkillTester
 WORD SolarPowerID
 
 ALIGN 4
+SlushRush:
+#incbin "SlushRush/SlushRush.dmp"
+POIN SkillTester
+WORD SlushRushID
+
+ALIGN 4
 SwiftSwim:
 #incbin "SwiftSwim/SwiftSwim.dmp"
 POIN SkillTester
