@@ -326,6 +326,9 @@ NegatedSkillEntry(PoisonPointID)
 NegatedSkillEntry(SuperLuckID)
 NegatedSkillEntry(PlusID)
 NegatedSkillEntry(MinusID)
+NegatedSkillEntry(SandRushID)
+NegatedSkillEntry(SlushRushID)
+NegatedSkillEntry(SwiftSwimID)
 
 /*
 //NOT WORKING (or they should not be affected by nihil)
