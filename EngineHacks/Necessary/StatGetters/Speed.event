@@ -5,7 +5,7 @@
 
 pSpeedModifiers: // Speed
 	POIN prAddUnitSpeed prHalveIfRescuing prHalveIfCapturing 
-	POIN prDebuffSpd 
+	POIN prDebuffSpd PlusAura MinusAura
 	POIN prAddEquipSpeed prItemPassiveSpeed prRallySpd prLifeAndDeathBonus prSkillFury prResolve prDefiantSpd prPushSpd
 	#ifdef DEBUFFS_MIN_ZERO
 	POIN prMinZero

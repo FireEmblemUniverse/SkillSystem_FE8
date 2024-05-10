@@ -422,6 +422,31 @@ ALIGN 4
 Detonate:
 #incbin "Detonate/Detonate.dmp"
 
+ALIGN 4
+LunarBraceSkill:
+#incbin "LunarBraceSkill/LunarBraceSkill.dmp"
+POIN SkillTester
+WORD LunarBraceID
+
+ALIGN 4
+SandRush:
+#incbin "SandRush/SandRush.dmp"
+POIN SkillTester
+WORD SandRushID
+
+ALIGN 4
+SlushRush:
+#incbin "SlushRush/SlushRush.dmp"
+POIN SkillTester
+WORD SlushRushID
+
+ALIGN 4
+SwiftSwim:
+#incbin "SwiftSwim/SwiftSwim.dmp"
+POIN SkillTester
+WORD SwiftSwimID
+
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 

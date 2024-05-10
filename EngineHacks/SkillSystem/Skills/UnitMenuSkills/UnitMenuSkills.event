@@ -72,6 +72,17 @@ ALIGN 4
 DetonateEffect:
 #incbin "Detonate/DetonateEffect.dmp"
 
+StrideUsability:
+#incbin "Stride/StrideUsability.dmp"
+POIN SkillTester
+WORD StrideID
+
+ALIGN 4
+StrideEffect:
+#incbin "Stride/StrideEffect.dmp"
+POIN GetUnitsInRange
+
+
 
 #include "CombatArts/CombatArts.event"
 
