@@ -7,9 +7,15 @@ BYTE TriAdeptID
 TriAdeptPlusID_Link:
 BYTE TriAdeptPlusID
 
-
 #include "Poise/Poise.lyn.event"
 
 PoiseID_Link:
 BYTE PoiseID
+
+
+ALIGN 4
+Nonconforming:
+#incbin "Nonconforming/Nonconforming.dmp"
+POIN SkillTester
+WORD NonconformingID
 
