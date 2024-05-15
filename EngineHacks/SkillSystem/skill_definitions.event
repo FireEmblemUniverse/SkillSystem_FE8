@@ -1016,6 +1016,10 @@
 //Author Unknown (Initial Commit)
 #define ArmsthriftID 138
 
+//Blessing: Guaranteed to not consume weapon durability.
+//By Snerdels
+#define BlessingID 255
+
 //Dazzle: Opponents cannot counterattack this unit.
 //By circleseverywhere
 #define DazzleID 140
