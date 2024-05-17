@@ -27,7 +27,7 @@
 // If uncommented, a full str/split will be implemented without replacing any stats
 // TODO: Define an item ID for Spirit Dust (Mag statbooster) in "Strmag/Str Mag Split/Installer.event". Energy Ring is used by default!
 // Item icon for Spirit Dust is included! Define your icon ID in "Strmag/_Master Asm Installer.event". Default is Green Note.
-// #define USE_STRMAG_SPLIT
+#define USE_STRMAG_SPLIT
 
 // If uncommented, the statscreen will have a moving background similar to FE6 and FE7.
 // Customization of graphical assets is possible in Necessary/ModularStatScreen/Background/Graphics/Graphics.event.
@@ -73,7 +73,7 @@
 #define HP_BARS
 
 //If uncommented, will enable Improved Sound Mixer.
-#define IMPROVED_SOUND_MIXER
+//#define IMPROVED_SOUND_MIXER
 
 //If uncommented, will enable L-Toggle Animations.
 #define LTOGGLE_HACK
@@ -410,4 +410,4 @@ MESSAGE Please see the README.md there or ask @Vesly for help.
 //If you are using Str/Mag Split, these are instead located in
 //ExternalHacks/StrMagSplit/ModularStatScreen/DisplayGrowthsOptions.
 
-#endif // HAX_CONFIG
+#endif // HAX_CONFIGs

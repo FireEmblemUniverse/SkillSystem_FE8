@@ -1,4 +1,6 @@
 #ifdef _FE8_
+#define SKILLSYS_INSTALLED 
+#define STRMAG_INSTALLED 
     #include "EAstdlib.event"
     #include "CustomDefinitions.event"
 //PROTECT $25224
@@ -26,6 +28,9 @@
     //Maps
     #include "Maps/MasterMapInstaller.event"
     #endif // USE_TEST_MAP
+	
+	#include "../SRR_FEGBA/RomBuildfile.event" 
+	
 	
 	ASSERT (FreeSpaceEnd - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
 	

@@ -1,6 +1,6 @@
 
 	/* Mug loading calculation loop */
-
+/*
 PUSH
 	ORG $7898
 		ALIGN 4
@@ -20,3 +20,4 @@ POIN RandomMug3 // Associated with Identity Problems
 WORD 0 // Terminator
 
 PROTECT 0x7898 0x78A8
+*/

@@ -116,7 +116,7 @@ int GetNumberOfLevelUps(struct BattleUnit* bu) { // This doesn't really account 
 	return numberOfLevels; 
 } 
 
-int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  struct Unit* unit) { 
+int NewGetStatIncreaseSS(int growth, int mode, int stat, struct BattleUnit* bu,  struct Unit* unit) { 
     int result = 0;
 	if ((stat == magStat) && (!gMagGrowth)) { return 0; } 
 	
@@ -169,7 +169,7 @@ int NewGetStatIncrease(int growth, int mode, int stat, struct BattleUnit* bu,  s
 
 
 
-void CheckBattleUnitLevelUp(struct BattleUnit* bu) {
+void CheckBattleUnitLevelUpSS(struct BattleUnit* bu) {
     if (CanBattleUnitGainLevels(bu) && bu->unit.exp >= 100) {
 		int mode = regularGrowths; // default  
 		struct Unit* unit = GetUnit(bu->unit.index); // required because bunit includes stats from temp boosters (eg. weapon provides +5 str) in their raw stats 
