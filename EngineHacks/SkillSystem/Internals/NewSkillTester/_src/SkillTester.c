@@ -55,7 +55,7 @@ ItemDataExt* GetItemDataExt(u16 item) {
 }
 
 /*Main functions*/
-
+extern int RandomizeSkill(int id, struct Unit* unit); 
 //Makes skill buffer at a given location.
 SkillBuffer* MakeSkillBuffer(struct Unit* unit, SkillBuffer* buffer) {
     int unitNum = unit->pCharacterData->number;
@@ -63,13 +63,13 @@ SkillBuffer* MakeSkillBuffer(struct Unit* unit, SkillBuffer* buffer) {
     buffer->lastUnitChecked = unit->index;
 
     //Personal skill
-    temp = PersonalSkillTable[unitNum];
+    temp = RandomizeSkill(PersonalSkillTable[unitNum], unit);
     if (IsSkillIDValid(temp)) {
         buffer->skills[count++] = temp;
     }
 
     //Class skill
-    temp = ClassSkillTable[unit->pClassData->number];
+	temp = RandomizeSkill(ClassSkillTable[unit->pClassData->number], unit);
     if (IsSkillIDValid(temp)) {
         buffer->skills[count++] = temp;
     }
@@ -92,7 +92,7 @@ SkillBuffer* MakeSkillBuffer(struct Unit* unit, SkillBuffer* buffer) {
             if (!IsSkillIDValid(tempBuffer[i])) {
                 break;
             }
-            buffer->skills[count++] = tempBuffer[i];
+            buffer->skills[count++] = RandomizeSkill(tempBuffer[i], unit);
         }
     }
 
@@ -101,7 +101,7 @@ SkillBuffer* MakeSkillBuffer(struct Unit* unit, SkillBuffer* buffer) {
         temp = unit->items[i];
         if ((GetItemAttributes(temp) & PassiveSkillBit)) {
             if (IsSkillIDValid(GetItemDataExt(temp & 0xFF)->skill)) {
-                buffer->skills[count++] = GetItemDataExt(temp & 0xFF)->skill;
+                buffer->skills[count++] = RandomizeSkill(GetItemDataExt(temp & 0xFF)->skill, unit);
                 //If passive skills don't stack, stop looping
                 if (!gSkillTestConfig.passiveSkillStack) {
                     break;
@@ -113,14 +113,14 @@ SkillBuffer* MakeSkillBuffer(struct Unit* unit, SkillBuffer* buffer) {
     //Equipped weapon skills
     //If unit is in combat, use the equipped weapon short
     if (unit->index == gBattleActor.unit.index && IsBattleReal()) {
-        temp = GetItemDataExt(gBattleActor.weaponBefore & 0xFF)->skill;
+        temp = RandomizeSkill(GetItemDataExt(gBattleActor.weaponBefore & 0xFF)->skill, unit);
     }
     else if (unit->index == gBattleTarget.unit.index && IsBattleReal()) {
-        temp = GetItemDataExt(gBattleTarget.weaponBefore & 0xFF)->skill;
+        temp = RandomizeSkill(GetItemDataExt(gBattleTarget.weaponBefore & 0xFF)->skill, unit);
     }
     //Otherwise, get the equipped weapon via a vanilla function
     else {
-        temp = GetItemDataExt(GetUnitEquippedWeapon(unit) & 0xFF)->skill;
+        temp = RandomizeSkill(GetItemDataExt(GetUnitEquippedWeapon(unit) & 0xFF)->skill, unit);
     }
 
     //Check if equipped weapon skill is valid

@@ -51,12 +51,13 @@ make_buffer:
 	ldrb r6, [r6, #0x04] @ var r6 = character id
 
 	ldr  r2, lPersonalSkillTable
-	ldrb r2, [r2, r6] @ skill byte
-
-	cmp r2, #0
+	ldrb r0, [r2, r6] @ skill byte
+	cmp r0, #0
 	beq no_personal
+mov r1, r4 @ unit 
+bl RandomizeSkill 
 
-	strb r2, [r5]
+	strb r0, [r5]
 	add  r5, #1
 
 no_personal:
@@ -66,12 +67,13 @@ no_personal:
 	ldrb r0, [r0, #0x04] @ r0 = class id
 
 	ldr  r2, lClassSkillTable
-	ldrb r2, [r2, r0] @ skill byte
-
-	cmp r2, #0
+	ldrb r0, [r2, r0] @ skill byte
+	cmp r0, #0
 	beq no_class
+mov r1, r4 @ unit 
+bl RandomizeSkill 
 
-	strb r2, [r5]
+	strb r0, [r5]
 	add  r5, #1
 
 no_class:
@@ -79,26 +81,28 @@ no_class:
 	cmp r6, #0x46
 	bhi generic_unit
 
-	ldr r0, =BWLTable
+	ldr r7, =BWLTable
 	lsl r1, r6, #4 @ r1 = char*0x10
-	add r0, r1
-	add r0, #1 @start at byte 1, not 0
-	mov r2, #0
+	add r7, r1
+	add r7, #1 @start at byte 1, not 0
+	mov r6, #0
 
 lop:
-	ldrb r1, [r0, r2]
+	ldrb r0, [r7, r6]
 
-	cmp  r1, #0
+	cmp  r0, #0
 	beq  continue
+mov r1, r4 
+bl RandomizeSkill
 
-	strb r1, [r5]
+	strb r0, [r5]
 	add  r5, #1
 
 continue:
-	cmp r2, #3
+	cmp r6, #3
 	bge lop_end
 
-	add r2, #1
+	add r6, #1
 	b lop
 
 lop_end:

@@ -29,7 +29,9 @@ AutoloadSkills.lop_adv_buf:
 
 	cmp r0, #0
 	beq AutoloadSkills.end_adv_buf
-
+mov r1, r4 @ unit 
+bl RandomizeSkill 
+strb r0, [r5] 
 	add r5, #1
 	b AutoloadSkills.lop_adv_buf
 
