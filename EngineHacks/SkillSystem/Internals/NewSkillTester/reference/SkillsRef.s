@@ -17,6 +17,10 @@ SET_FUNC __aeabi_idivmod, __modsi3
 
 SET_FUNC sub_8004B0C, 0x8004B0D
 
+SET_FUNC AreUnitsAllied, 0x08024D8D
+SET_FUNC IsSameAllegiance, 0x08024DA5
+SET_FUNC GetPidStats, 0x080A4CFD
+
 SET_DATA gAttackerSkillBuffer, 0x02026BB0
 SET_DATA gDefenderSkillBuffer, 0x02026C00
 SET_DATA gTempSkillBuffer, 0x02026B90

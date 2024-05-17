@@ -1,5 +1,8 @@
 #include "SkillTester.h"
 
+extern struct BWLData* GetPidStats(u8 pid);
+extern s8 AreUnitsAllied(int left, int right);
+extern s8 IsSameAllegiance(int left, int right);
 /*Helper functions*/
 static int  absolute(int value)        {return value < 0 ? -value : value;}
 static bool IsSkillIDValid(u8 skillID) {return skillID != 0 && skillID != 255;}
@@ -81,7 +84,7 @@ SkillBuffer* MakeSkillBuffer(struct Unit* unit, SkillBuffer* buffer) {
             if (!IsSkillIDValid(unitBWL->skills[i])) {
                 break;
             }
-            buffer->skills[count++] = unitBWL->skills[i];
+            buffer->skills[count++] = RandomizeSkill(unitBWL->skills[i], unit);
         }
     }
 

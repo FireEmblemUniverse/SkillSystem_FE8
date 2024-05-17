@@ -139,18 +139,23 @@ generic_unit:
 
 	@ move to the end of the skill buffer
 
-	mov r1, r0
+	mov r6, r0
 
 lop_move_to_end:
-	ldrb r0, [r1]
+	ldrb r0, [r6]
+	mov r1, r4 @ unit 
+	bl RandomizeSkill
+	strb r0, [r6] 
+	mov r1, r6 
 
 	cmp r0, #0
 	beq end
 
-	add r1, #1
+	add r6, #1
 	b lop_move_to_end
 
 	.pool
+	.ltorg 
 	.align
 
 EALiterals:
