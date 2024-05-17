@@ -158,6 +158,7 @@ ALIGN 4
 BeginningScene:
 ENUT 0x1 //no more boss quotes
 ENUT 0x2 //no more death quotes
+ASMC CallBreak
 LOAD1 0x1 EnemyUnits
 ENUN
 LOAD1 0x1 EnemyUnits2
@@ -168,6 +169,7 @@ LOAD1 0x0 Units2
 ENUN
 LOAD1 0x0 MoreUnits
 ENUN
+ASMC CallBreak
 // FADI 10
 // MOVE 0 Carlyle [7,10]
 // ENUN
