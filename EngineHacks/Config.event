@@ -8,7 +8,7 @@
 // =========================
 
 // If commented, the test map will not be installed.
-#define USE_TEST_MAP
+//#define USE_TEST_MAP
 
 // The amount of attack speed needed to double an opponent.
 #define AS_DOUBLING_THRESHOLD 4

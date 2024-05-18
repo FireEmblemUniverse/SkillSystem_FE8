@@ -22,7 +22,7 @@ POP
 */
 //Fix MNC2 Freezing glitch (breaks skirmishes!)
   ORG $BD070
-  SHORT $E0B8
+  //SHORT $E0B8
   
 //Fix coordinate loading in WARP codes when not loading from slot B (by hypergammaspaces)
 ORG $10C18
@@ -32,11 +32,11 @@ SHORT $7891 $78D2 $0608
     
 	// do not display 0 gold in 5x
     ORG $024DF2
-        SHORT $46C0 // nop
+        //SHORT $46C0 // nop
     
 	// allow convoy access in 5x
     ORG $03164E
-        SHORT $E003 // b 0x08031658
+        //SHORT $E003 // b 0x08031658
 
 //Set Default Options
   ORG $30d8a  //animations type 2
@@ -139,7 +139,7 @@ SHORT $46c0
 
 //Enemy Control Glitch Fix (Credits to Brendor, Eebit)
   ORG 0x377A2
-  SHORT 0x46C0 0x46C0
+  //SHORT 0x46C0 0x46C0
 
 //Mode Coefficient EXP fix (credit Vennobennu)
   ORG 0x2C474
