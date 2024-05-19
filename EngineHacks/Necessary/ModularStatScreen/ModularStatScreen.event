@@ -35,7 +35,7 @@
       POIN MSS_page1|1 MSS_page2|1 MSS_page3|1 MSS_page4|1
 
     ORG $88690
-      BYTE 4 //make 4 pages
+      BYTE 3 //make 4 pages
 	  
     ORG $88650
       POIN NewPageNameGraphic
