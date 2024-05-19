@@ -56,6 +56,8 @@ make_buffer:
 	beq no_personal
 mov r1, r4 @ unit 
 bl RandomizeSkill 
+	cmp r0, #0
+	beq no_personal
 
 	strb r0, [r5]
 	add  r5, #1
@@ -72,7 +74,8 @@ no_personal:
 	beq no_class
 mov r1, r4 @ unit 
 bl RandomizeSkill 
-
+	cmp r0, #0
+	beq no_class
 	strb r0, [r5]
 	add  r5, #1
 
@@ -94,7 +97,8 @@ lop:
 	beq  continue
 mov r1, r4 
 bl RandomizeSkill
-
+	cmp  r0, #0
+	beq  continue
 	strb r0, [r5]
 	add  r5, #1
 
@@ -140,18 +144,21 @@ generic_unit:
 	@ move to the end of the skill buffer
 
 	mov r6, r0
-
+	sub r6, #1 
 lop_move_to_end:
+add r6, #1
 	ldrb r0, [r6]
-	mov r1, r4 @ unit 
-	bl RandomizeSkill
 	strb r0, [r6] 
 	mov r1, r6 
-
-	cmp r0, #0
+	cmp r0, #0 
 	beq end
-
-	add r6, #1
+	mov r1, r4 @ unit 
+	bl RandomizeSkill
+	cmp r0, #0
+	beq lop_move_to_end
+	strb r0, [r6] 
+	
+	
 	b lop_move_to_end
 
 	.pool
