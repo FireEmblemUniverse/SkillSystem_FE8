@@ -1,44 +1,44 @@
 INLINE PersonalSkillTable,Skill
 None,0x0
-Eirika,CharismaID
-Seth,SaviorID
-Gilliam,RallyDefID
-Franz,SealStrID
-Moulder,RallyResID
-Vanessa,SpurSpdID
-Ross,ParagonID
-Neimi,RallyLukID
-Colm,RallySpdID
-Garcia,ColossusID
+Eirika,MultiscaleID
+Seth,ArdentSacrificeID
+Gilliam,SteadyBrawlerID
+Franz,StrongInitID
+Moulder,CalmInitID
+Vanessa,QuickInitID
+Ross,FailGaleID
+Neimi,DeftInitID
+Colm,NimbleInitID
+Garcia,GutsID
 Innes,BowRangeUpID
-Lute,ParagonID
-Natasha,SealLukID
-Cormag,RallyStrID
-Ephraim,InspirationID
-Forde,SpurSpdID
-Kyle,SpurStrID
-Amelia,ParagonID
-Artur,FocusID
-Gerik,BondID
-Tethys,DemoiselleID
-Marisa,FocusID
-Saleh,SpurMagID
-Ewan,CelerityID
-L'Arachel,IntimidateID
-Dozla,PivotID
+Lute,CleverInitID
+Natasha,LuckyInitID
+Cormag,HoneStrID
+Ephraim,EternalVanityID
+Forde,FlankID
+Kyle,SwarmID
+Amelia,QuickLearnerID
+Artur,MagTakerID
+Gerik,HoardersBaneID
+Tethys,RallyChaosID
+Marisa,SpdOathID
+Saleh,HoneMagID
+Ewan,MagOathID
+L'Arachel,HoneResID
+Dozla,StrOathID
 0,0x0
-Rennac,SpurSpdID
-Duessel,RepositionID
-Myrrh,DragonsBloodID
-Knoll,VoiceOfPeaceID
-Joshua,GambleID
-Syrene,TantivyID
-Tana,LilysPoiseID
+Rennac,HoneSpdID
+Duessel,SturdyInitID
+Myrrh,SpectrumInitID
+Knoll,SoulSapID
+Joshua,SklTakerID
+Syrene,MovOathID
+Tana,SpdTakerID
 Lyon,LunaID
 Orson,0x0
 Glen,0x0
 Selena,0x0
-Valter,CharmID
+Valter,RecklessFighterID
 Riev,0x0
 Caellach,0x0
 Fado,0x0
@@ -64,7 +64,7 @@ Lyon's Summon,0x0
 Knoll's Summon,0x0
 Ewan's Summon,0x0
 Lyon (Ch 17),0x0
-Morva (Ch 20),FrenzyID
+Morva (Ch 20),StrongConstitutionID
 Orson (Ch 5x),0x0
 Valter (Ch 15),0x0
 Selena (Ch 10B & 13B),0x0
@@ -103,7 +103,7 @@ Hunter (Ch 16),0x0
 0,0x0
 Brigand,0x0
 0,0x0
-O'Neill (Prologue),QuickRiposteID
+O'Neill (Prologue),GutsID
 Glen (Cutscene),0x0
 Zonta (Ch 5x),0x0
 Vigarde (Ch 14B),RenewalID

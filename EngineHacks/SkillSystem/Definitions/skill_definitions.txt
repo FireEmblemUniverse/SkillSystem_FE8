@@ -1,0 +1,1511 @@
+.ceiling 255
+
+// regex used: (ID [0-9]+)+
+// replace ID 123 with ID 
+
+//Here you can choose which skills to install. You can only install up to 254, ranging from IDs 1 - 254. Make sure you don't use the same ID more than once.
+//To disable a skill, define it as 255.
+//Skills are categorized broadly by where their effect is applied, in no particular order within each category.
+
+//AI Skills
+
+//Provoke: Enemies are more likely to target this unit.
+//By Tequila
+ProvokeID
+
+//Shade+: Enemies will not target this unit.
+//By Sme
+ShadePlusID
+
+
+
+//Spur Skills: Adjacent allies gain +4 to their respective stat.
+//Author Unknown (Initial Commit)
+SpurStrID
+SpurMagID
+SpurSpdID
+SpurDefID
+SpurResID
+
+
+
+// Turn Skills
+
+// Rally Chaos: At the start of your turn, perform a random rally. 
+// By Vesly 
+RallyChaosID
+
+//Hoarder's Bane: At the end of your turn, consume a vulnerary from the supply if below full health.
+// By Vesly 
+HoardersBaneID
+
+// Dark Bargain: At the end of your turn, sacrifice extra exp to heal by that much.
+// By Vesly 
+DarkBargainID
+
+// Soul Sap: At the end of your turn, drain up to 10% health from every unit within two tiles.
+// By Vesly
+SoulSapID
+
+
+
+
+// Buff Skills
+
+//Eternal Vanity: Your buffed stats do not deplete each turn. 
+// By Vesly 
+EternalVanityID
+
+// _ Taker: After attacking and defeating an enemy, gain +4 _. (Max +10) 
+// By Vesly 
+StrTakerID
+SklTakerID 
+SpdTakerID 
+DefTakerID 
+ResTakerID 
+LukTakerID 
+MagTakerID 
+MovTakerID 
+
+// Hone _ : At the start of your turn, give adjacent allies up to +3 _. 
+// By Vesly 
+HoneMagID   
+HoneStrID  
+HoneSklID   
+HoneSpdID   
+HoneDefID   
+HoneResID   
+HoneLukID   
+HoneMovID   
+
+// _ Oath : At the start of your turn, gain up to +4 _ if adjacent to an ally.
+// By Vesly 
+MagOathID   
+StrOathID  
+SklOathID   
+SpdOathID   
+DefOathID   
+ResOathID   
+LukOathID   
+MovOathID   
+
+
+// _ Initiative: Begin the chapter with +7 __. 
+// By Vesly 
+CleverInitID // Mag
+StrongInitID // Str 
+DeftInitID // Skl 
+QuickInitID // Spd 
+LuckyInitID // Luk 
+SturdyInitID // Def 
+CalmInitID // Res 
+NimbleInitID // Mov 
+SpectrumInitID // All stats  
+
+
+//Debuff Skills
+
+//Seal Skills: Debuff opponent's stat by 6 after combat. (Recover 1/turn)
+//Author Unknown (Initial Commit)
+SealStrID
+SealSklID
+SealSpdID
+SealLukID
+SealDefID
+SealResID
+////By Snakey1
+SealMagID
+
+
+//EXP Skills
+
+//Paragon: Experience gain is doubled.
+//Author Unknown (Initial Commit)
+ParagonID
+
+//Growth Skills
+
+//Blossom: 2x growth rates, but 1/2 exp gain.
+//By Sme
+BlossomID
+
+//Aptitude: +20% to all growth rates.
+//By Sme
+AptitudeID
+
+
+//HP Restoration Skills
+
+//Renewal: Restore 30% of max HP at the start of each turn.
+//Author Unknown (Initial Commit)
+RenewalID
+
+//Amaterasu: Allies within 2 tiles recover 20% HP each turn.
+//Author Unknown (Initial Commit)
+AmaterasuID
+
+
+
+//Imbue: Recover HP equal to Magic at the start of each turn.
+//By Sme
+ImbueID
+
+//Movement Skills
+
+//Acrobat: All traversable terrain costs 1 movement.
+//By Tequila
+AcrobatID
+
+//Armor March: At start of turn, if unit is adjacent to an armor ally, unit and adjacent armor allies gain +2 Mov.
+//By Leonarth
+ArmorMarchID
+
+//Pass: Can move through enemy units.
+//By Tequila
+PassID
+
+//Keep Up: At start of turn, if unit is within 3 spaces of an ally with Canto or Canto+, unit gains +2 Mov.
+//By Sme
+KeepUpID
+
+
+
+//Post-Battle Skills
+
+//Breath of Life: After attacking,allies in 2 tiles heal of 20% max HP.
+//By circleseverywhere
+BreathOfLifeID
+
+//Canto: Can move again after certain actions.
+//By Tequila
+CantoID
+
+//Canto+: Can move again after attacking and other actions.
+//By Tequila
+CantoPlusID
+
+//Despoil: Obtain a Red Gem after attacking and defeating an enemy. (Luck % activation)
+//Author Unknown (Initial Commit)
+DespoilID
+
+//Pickup: Obtain the last item in the enemy's inventory after attacking and defeating them. (Luck % activation)
+//By Jester
+PickupID
+
+//Fury: +2 Atk/Spd/Def/Res. Unit takes 6 damage after combat.
+//By circleseverywhere
+FuryID
+
+//Galeforce: Move again after attacking and defeating an enemy.
+//Author Unknown (Initial Commit)
+GaleforceID
+
+//Fail 'n Gale: Move again after attacking but failing to harm an enemy. 
+//By Vesly 
+FailGaleID 
+
+
+//Grisly Wound: Deals damage equal to 20% of the enemy's max HP after every battle.
+//By Snakey1
+GrislyWoundID
+
+//Powerstaff: Get another action after using a staff.
+//By Sme
+PowerstaffID
+
+//Savage Blow: After attacking, enemies within 2 tiles take 20% damage.
+//By circleseverywhere
+SavageBlowID
+
+
+
+//Pre-Battle Skills
+
+//No Guard: Both sides have a 100% hit rate.
+//By Jester
+NoGuardID
+
+
+//True Strike: Targets the lower stat of the opponent's defense and resistance.
+//By Jester
+TrueStrikeID
+
+
+//Blow Skills: Apply a stat bonus when initiating battle.
+//By Rossendale
+DuelistsBlowID
+DeathBlowID
+DartingBlowID
+WardingBlowID
+CertainBlowID
+ArmoredBlowID
+//By Darrman
+HeroesDeathBlowID
+
+//Breaker Skills:  +50 Hit/Avo when enemy has the specified weapon type equipped.
+//By Rossendale
+SwordbreakerID
+LancebreakerID
+AxebreakerID
+BowbreakerID
+TomebreakerID
+
+//Charge: Gain +1 damage for every two squares moved.
+//By Datagne
+ChargeID
+
+//Charge+: Charge+: If unit has used up all movement, gain brave effect.
+//By Sme
+ChargePlusID
+
+//Killing Machine: Total critical rate is doubled.
+//Author Unknown (Initial Commit)
+KillingMachineID
+
+//Faire Skills: +4 damage when equipping a weapon of the specified type.
+//Author Unknown (Initial Commit)
+SwordfaireID
+LancefaireID
+AxefaireID
+BowfaireID
+TomefaireID
+
+//Fiery Blood: +4 damage when HP is not at max.
+//Author Unknown (Initial Commit)
+FieryBloodID
+
+//Fortune: This unit cannot be crit.
+//By Sme
+FortuneID
+
+//Hawkeye: User will always hit the enemy.
+//By SD9k
+HawkeyeID
+
+//Heavy Strikes: Add weapon weight to critical chance.
+//By Datagne
+HeavyStrikesID
+
+//Life and Death: +10 to damage dealt and taken.
+//Author Unknown (Initial Commit)
+LifeAndDeathID
+
+
+//Loyalty: When within 2 spaces of a Lord, -3 damage taken, +15% hit.
+//By Datagne
+LoyaltyID
+
+//Lucky Seven: +20 Hit and Avoid until the 7th turn.
+//Author Unknown (Initial Commit)
+LuckySevenID
+
+//Mage Slayer: Gain +2 damage and +10% crit when facing magical enemies.
+//By Datagne
+MageSlayerID
+
+//Natural Cover: -3 damage taken when on terrain with effects.
+//Author Unknown (Initial Commit)
+NaturalCoverID
+
+//Opportunist: +4 damage if the foe cannot counter.
+//By Tequila
+OpportunistID
+
+
+//Quick/Slow Burn: Hit and Avoid bonus increasing or decreasing each turn, maximum +15.
+//Author Unknown (Initial Commit)
+QuickBurnID
+SlowBurnID
+
+//Quick Draw: +4 Damage when initiating battle.
+//Author Unknown (Initial Commit)
+QuickDrawID
+
+//Heavy Blade: +4 Damage/-2 Attack Speed when unit’s Con. is bigger than the enemy.
+//By Mikey Seregon
+HeavyBladeID
+
+//Dancing Blade: +4 Attack Speed/-2 Damage when unit’s Con. is lower than the enemy.
+//By Mikey Seregon
+DancingBladeID
+
+
+//Dragonskin: Halve damage taken
+//By Jopettajah
+DragonSkinID
+//DragonskinID DragonSkinID //Alias
+
+// Keen Fighter: Unit takes 75% damage if the opponent can double. 
+// By Vesly 
+KeenFighterID
+
+// Steady Brawler: This unit deals 25% less damage while doubling, but 25% more when not. 
+// By Vesly 
+SteadyBrawlerID
+
+// Multiscale: Take half damage when at full HP.
+// By Vesly 
+MultiscaleID
+
+// Flank: If an ally is on the opposite side of an adjacent target, deal 25% more damage.
+// By Vesly 
+FlankID 
+
+//Swarm: If an adjacent target is surrounded, deal 50% more damage.
+// By Vesly 
+SwarmID 
+
+//Proc Skills
+
+//Adept: Gain a consecutive attack. (Speed % activation)
+//Author Unknown (Initial Commit)
+AdeptID
+
+//Aegis: Nullify a magic attack. (Skill % activation)
+//Author Unknown (Initial Commit)
+AegisID
+
+//Aether: First strike absorbs HP, second strike negates defenses. (Skill/2 % activation)
+//Author Unknown (Initial Commit)
+AetherID
+
+//Astra: 5 attacks at half damage. (Skill % activation)
+//Author Unknown (Initial Commit)
+AstraID
+
+
+//Black Magic: Skill% chance to inflict a random status.
+//By Tequila
+BlackMagicID
+
+//Colossus: Triples Strength. (Skill % activation)
+//Author Unknown (Initial Commit)
+ColossusID
+
+//Corona: Negate enemy resistance. (Skill% activation)
+//By Sme
+CoronaID
+
+//Counter: Reflect physical damage when attacked at 1-2 range.
+//Author Unknown (Initial Commit)
+CounterID
+
+//Countermagic: Reflect magic damage when attacked at 1-2 range.
+//Author Unknown (Initial Commit)
+CounterMagicID
+//CountermagicID CounterMagicID //Alias
+
+//Deadeye: Doubles hit rate. Skill% chance to inflict sleep.
+//By Sme
+DeadeyeID
+
+
+//Devil's Pact: Immune to Devil Reversal. Curses the enemy with Devil Reversal. (31-Luck % chance of Devil Reversal).
+//By Leonarth
+DevilsPactID
+
+
+//Dragon Fang: 1.5x damage. (Skill% activation)
+//By Sme
+DragonFangID
+
+//Eclipse: Leave opponent with 1 HP. (Skill % activation)
+//By Sme
+EclipseID
+
+//Enrage: Inflict berserk status. (Skill% activation)
+//By Sme
+EnrageID
+
+//Flare: Halve enemy resistance. (Skill% activation)
+//By Sme
+FlareID
+
+//Foresight: Avoid the damage from enemy Critical Hits and Skill Activations.
+//By Leonarth
+ForesightID
+
+//Ignis: Add Def/2 and Res/2 to damage dealt. (Skill % activation)
+//Author Unknown (Initial Commit)
+IgnisID
+
+//Impale: Deal 4x damage. (Skill % activation)
+//Author Unknown (Initial Commit)
+ImpaleID
+
+//Lethality: Instantly kill opponent. (Skill/2 % activation)
+//Author Unknown (Initial Commit)
+LethalityID
+
+//Luna: Negates enemy defenses. (Skill % activation)
+//Author Unknown (Initial Commit)
+LunaID
+
+//Miracle: Survive a lethal attack if HP > 50%.
+//Author Unknown (Initial Commit)
+MiracleID
+
+
+//Pavise: Nullify a physical attack. (Skill % activation)
+//Author Unknown (Initial Commit)
+PaviseID
+
+//Petrify: Inflict stone status. (Skill% activation)
+//By Sme
+PetrifyID
+
+//Sol: Restore damage dealt as HP. (Skill % activation)
+//Author Unknown (Initial Commit)
+SolID
+
+//Solar Brace: When attacking, restore 25% of damage dealt as HP.
+//By Snerdels
+SolarBraceID
+
+//Lunar Brace: When attacking, ignore 25% of enemy defense.
+//By Snerdels
+LunarBraceID
+
+//Sure Shot: A precision attack that always hits and does 1.5x damage. (Skill % activation)
+//Author Unknown (Initial Commit)
+SureShotID
+
+//Corrosion: Decrease durability of enemy's weapon by User's level (Skill/2 % activation)
+//By Sme
+CorrosionID
+
+//Glacies: Add unit's Resistance to damage dealt. (Skill % activation)
+//By Sme
+GlaciesID
+
+//Great Shield: Negate all damage. (Defense % activation)
+//By Sme
+GreatShieldID
+
+//Vengeance: Add half of damage taken to damage dealt. (Skill % activation)
+//By Sme
+VengeanceID
+
+//Range Skills
+
+//Bow Range +1: Maximum range of equipped bows is increased.
+//By Teraspark
+BowRangeUpID
+
+//Point Blank: Minimum range of equipped bows is set to 1.
+//By Teraspark
+PointBlankID
+
+//Staff Savant: Maximum range of staves is increased by 1.
+//By Teraspark
+StaffSavantID
+
+//Tome Range +1: Maximum range of equipped tome is increased.
+//By Kirb
+TomeRangeUpID
+
+
+//Rounds Data Skills
+
+//Blessing: Guaranteed to not consume weapon durability.
+//By Snerdels
+BlessingID
+
+//Dazzle: Opponents cannot counterattack this unit.
+//By circleseverywhere
+DazzleID
+
+//Desperation: If HP < 50%, double attacks occur immediately.
+//By ??? (Initial Commit)
+DesperationID
+
+// Prideful Warrior: This unit always attacks after the enemy, but always doubles.
+// By Vesly 
+PridefulWarriorID
+
+// Doubling Skills 
+
+//Moonlight: Cannot double but opponent cannot counterattack.
+//By Sme
+MoonlightID
+
+// Reckless Fighter: Both units in combat always double. 
+// By Vesly 
+RecklessFighterID
+
+
+//Wary Fighter: Unit cannot double or be doubled.
+//By Tequila
+WaryFighterID
+
+// Quick Learner: When attacking a higher leveled enemy, this unit doubles.
+// By Vesly 
+QuickLearnerID
+
+// Passion's Flow: If gaining support bonuses, this unit always doubles while attacking.
+// by Vesly 
+PassionsFlowID
+
+// Biding Blow: If the opponent cannot counterattack, this unit doubles. 
+// By Vesly 
+BidingBlowID
+
+// Advantage Chaser: Unit always doubles when attacking with WTA.
+// By Jopettajah
+AdvantageChaserID
+
+
+//Fortress Defense: +5 Def, -3 Str/Mag
+//By Leonarth
+FortressDefenseID
+
+//Fortress Resistance: 5 Res, -3 Str/Mag
+//By Leonarth
+FortressResistanceID
+
+
+//Guts:  +5 Str while under any status condition. (Includes dancer rings.) 
+// By Vesly 
+GutsID
+//Strong Constitution: +5 Def/Res while under any status condition. (Includes dancer rings.) 
+// By Vesly 
+StrongConstitutionID
+
+//Speed Boost: Boost movement by +1 per turn up to 6 turns.
+//By Jester
+SpeedBoostID
+
+
+//Unit Menu Skills
+
+//Rally Skills: +4 to specified stat to allies within 2 tiles.
+//Author Unknown (Initial Commit)
+RallyStrID
+RallyMagID //Requires Str/Mag Split
+RallySklID
+RallySpdID
+RallyLukID
+RallyDefID
+RallyResID
+RallyMovID
+RallySpectrumID
+
+//Capture: Capture an enemy after defeating it with reduced stats.
+//By Tequila
+CaptureID
+
+
+//Lunge: Swap places with the opponent after combat. (No effect if Move is --)
+//By Tequila
+LungeID
+
+//Mercy: Enemies are left with at least 1 HP.
+//By Tequila
+MercyID
+
+//Supply: This unit has access to the convoy.
+//By Sme
+SupplyID
+
+//Shove: Allows unit to push other units one tile away.
+//By StanH
+ShoveID
+
+//Smite: Allows unit to push other units two tiles away.
+//By StanH
+SmiteID
+
+//Pivot: Allows unit to move to the opposite side of an adjacent ally.
+//By StanH
+PivotID
+
+//Reposition: Allows unit to pull an adjacent ally to its opposite side.
+//By StanH
+RepositionID
+
+//Swap: Allows unit to swap positions with an adjacent ally.
+//By StanH
+SwapID
+
+//Swarp: Allows unit to swap positions with a distant ally.
+//Be Sme
+SwarpID 
+
+//Steal: Unit can steal items.
+//By Tequila
+StealID 
+
+//Steal+: Unit can steal unequipped weapons and staves if con>weight.
+//By Tequila
+StealPlusID 
+
+//Draw Back: Unit moves 1 space away from target ally. Ally moves to unit’s previous space. 
+//By Vesly 
+DrawBackID
+
+//Sacrifice: Drains the user’s HP to restore the HP of another allied unit. It also cures status effects, with no HP cost to the user.
+//By Vesly 
+SacrificeID
+
+
+//Ardent Sacrifice: Restores 10 HP to target, but drops user’s HP by 10. 
+//By Vesly 
+ArdentSacrificeID
+
+//Reciprocal Aid: User and target ally switch their current HP totals. 
+//By Vesly 
+ReciprocalAidID
+
+//Goddess Dance: When used, all adjacent allied units can move again.
+//By Jester
+GoddessDanceID
+
+//Miscellaneous Skills
+
+//Savior: Can rescue without penalties.
+//Author Unknown (Initial Commit)
+SaviorID
+
+
+//Vantage: If HP < 50%, strike first when attacked.
+//Author Unknown (Initial Commit)
+VantageID
+
+
+//Nihil: Cancels the opponent's skills in combat.
+//Author Unknown (Initial Commit)
+NihilID
+
+//Live to Serve: When healing an ally, also heals self.
+////Author Unknown (Initial Commit) & Leonarth
+LiveToServeID
+
+
+//Celerity: Movement +2.
+//Author Unknown (Initial Commit)
+CelerityID
+
+
+//Locktouch: Can open locks without keys or picks.
+//By Kao
+LockTouchID
+//LocktouchID LockTouchID //Alias
+
+
+//Rightful God: +30% to Skill activation rate.
+//Author Unknown (Initial Commit)
+RightfulGodID
+
+//Triangle Adept+: Doubles weapon triangle effects.
+//By Sme
+TriAdeptPlusID
+//TriangleAdeptPlusID TriAdeptPlusID //Alias
+
+//Inspiring Tune: Refreshing a unit grants them +2 Pow/Def until the next turn.
+//By Leonarth
+VigorDanceID
+//InspiringTuneID VigorDanceID //Alias
+
+
+
+//Discipline+: Weapon experience gains are doubled. Unit may S-Rank multiple weapon types.
+//By Zeta
+DisciplinePlusID
+
+//Watchful: This unit cannot be captured or stolen from.
+//By Sme
+WatchfulID
+
+//Boon: Cure bad status effects at the beginning of each turn.
+//By Sme
+BoonID
+
+//Synchronize: Statuses are also applied to the attacker.
+//By Sme
+SynchronizeID
+
+//Bargain: Halves prices in shops.
+//By Sme
+BargainID
+
+// Shrewd Potential: Stat boosters provide +1 more than usual. 
+// By Vesly 
+ShrewdPotentialID
+
+//Nonconforming: Inverts the effects of the weapon triangle.
+//By Jester
+NonconformingID
+
+//Concealed Weapon: Smuggle in your equipped weapon into the arena.
+// By Jester
+ConcealedWeaponID
+
+// Rouse _ : At the start of your turn, gain up to +4 _ if not adjacent to an ally.
+// By Vesly 
+RouseMagID 
+RouseStrID
+RouseSklID 
+RouseSpdID 
+RouseDefID 
+RouseResID 
+RouseLukID 
+RouseMovID 
+
+
+//Crit Boost: +15 critical rate.
+//Author Unknown (Initial Commit)
+CritUpID
+//CritBoostID CritUpID //Alias
+
+NiceThighsID
+
+//Thighdeology: If a unit within 3 tiles has Nice Thighs, gain +2 Attack and +20 Hit.
+//By Sme
+ThighdeologyID
+
+//Cultured: If unit attacks next to a unit with Nice Thighs, move again. -50 hit against units with Nice Thighs.
+//By Sme
+CulturedID
+
+
+
+//Charisma: Grants +10 Hit/Avoid to all allies within three tiles.
+//By Darrman
+CharismaID
+
+//Charm: Allies within 2 tiles deal +2 damage.
+//Author Unknown (Initial Commit)
+CharmID
+
+
+
+//Summon: Can conjure a phantom soldier to fight alongside you.
+//By Sme
+SummonID
+
+
+
+//Dance: Refresh an ally unit to let them act again.
+//By Sme
+DanceID
+
+
+
+
+
+//Slayer: Deal effective damage to monster units.
+//By Tequila
+SlayerID
+
+
+
+
+
+
+
+
+
+
+
+//Display-Only Skills
+
+CunningID 255 
+
+
+//Snow Warning: On the first turn of the map, set the weather condition to snowy.
+//By Jester
+SnowWarningID 255
+
+//Sandstream: On the first turn of the map, set the weather condition to a sandstorm
+//By Jester
+SandstreamID
+
+// Drizzle: On the first turn of the map set the weather condition to raining.
+//By Jester
+DrizzleID
+
+//Airlock: On the first turn of the map, set the weather condition to clear.[X]
+AirlockID
+
+//Drought: On the first turn of the map, set the weather condition to sunny
+//By Jester
+DroughtID
+
+
+//Shade: Enemies are less likely to target this unit.
+//By Sme
+ShadeID
+
+
+
+// Even/Odd Footed: +1 Mov on Even/Odd turns
+// By Jopettajah
+OddFootedID
+EvenFootedID
+
+
+//Full Metal Body: This unit is immune to all the Seal skills.
+//By Leonarth
+FullMetalBodyID
+//FullmetalBodyID FullMetalBodyID //Alias
+
+
+//Effectiveness Skills
+
+//Nullify: Unit is protected from all effective attacks.
+//By Tequila
+NullifyID
+
+
+//Skybreaker: Deal effective damage to flying units.
+//By Sme
+SkybreakerID
+
+//Resourceful: Double effectiveness multiplier.
+//By Sme
+ResourcefulID
+
+
+//Void Curse: This unit gives no experience when defeated.
+//By Sme
+VoidCurseID
+
+
+//Camaraderie: Recover 10% HP each turn if there are allies within 2 tiles.
+//Author Unknown (Initial Commit)
+CamaraderieID
+
+//Relief: Recover 20% HP each turn if there are no allies within 2 tiles.
+//Author Unknown (Initial Commit)
+ReliefID
+
+//Bond: All allies within 3 tiles recover 10% HP each turn.
+//Author Unknown (Initial Commit)
+BondID
+
+//Forager: Recover 20% HP each turn if on a Plain, Forest or Mountain.
+//By Leonarth
+ForagerID
+
+
+//Indoor March: At start of turn, if unit is on indoor terrain, unit gains +2 Mov.
+//By Sme
+IndoorMarchID
+
+//Nature Rush: At start of turn, if unit is on natural terrain, unit gains +2 Mov.
+//By Sme
+NatureRushID
+
+
+//Mug-Loading Skills
+
+//Quantum Visage: Face changes every time it's looked at.
+//By Leonarth
+RandomMugID
+
+
+//Identity Problems: This unit can't decide on a name or face.
+//By Leonarth
+IdentityProblemsID
+
+
+//Lifetaker: Restore up to 25% HP after attacking and defeating an enemy.
+//Author Unknown (Initial Commit)
+LifetakerID
+
+//Poison Strike: Deals damage equal to 20% of the enemy's max HP after battle this unit initiates.
+//By Snakey1
+PoisonStrikeID
+
+
+
+//Re-Move: Luck% chance to get another action at end of turn.
+//By Sme
+ReMoveID
+
+
+//Gridmaster: Movement skills do not end your action.
+//By Sme
+GridmasterID
+
+//PoisonPoint: Inflict the poison status to your opponent at the end of the battle.
+//By Jester
+PoisonPointID
+
+
+//Wonder Guard: Cannot be damaged by the same weapon type (e.g. sword vs sword)
+//By Jester
+WonderGuardID
+
+//Analytic: +10 attack if speed is less than opponent's by 4 points or more. If between 1-3 points, then +5 attack.
+//By Jester
+AnalyticID
+
+//Super Luck: Use luck as crit rate
+//By Jester
+SuperLuckID
+
+//Technician: Increase weapon damage by 50% if using an E-ranked weapon.
+//By Jester
+TechnicianID
+
+//Solar Power: Under harsh sunlight, magical weapons result in 25% additional damage
+//By Jester
+SolarPowerID
+
+//Contrary: Invert the effects of seal skills
+//By Jester
+ContraryID
+
+
+//Critical Pierce: Nullify the enemy's crit avoid rate 
+//By Jester
+CriticalPierceID
+
+//Catching Up: If foe doubles unit, unit's damage increases by the amount foe is above the doubling threshold.
+//By Jester
+CatchingUpID
+
+//Sand Rush: If the weather is a sandstorm then double this unit's attack speed.
+//By Jester
+SandRushID
+
+//Slush Rush: If the weather is sunny then double this unit's attack speed.
+//By Jester
+SlushRushID
+
+//Swift Swim: If the weather is raining then double this unit's attack speed.
+//By Jester
+SwiftSwimID
+
+//Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
+//By 2WB & Colorz
+AxeFaithID
+//AxefaithID AxeFaithID //Alias
+
+//Battle Veteran: Gain +1 damage and +5% Hit per 10 levels unit has.
+//By Datagne
+BattleVeteranID
+
+
+//Critical Force: Base critical is Skl * 1.5.
+//Author Unknown (Initial Commit)
+CriticalForceID
+
+
+//Strong Riposte: When under attack, damage +3.
+//Author Unknown (Initial Commit)
+StrongRiposteID
+
+//Patience: When under attack, avoid +10.
+//Author Unknown (Initial Commit)
+PatienceID
+
+//Pursuit: When under attack, attack speed +2.
+//Author Unknown (Initial Commit)
+PursuitID
+
+//Chivalry: When foe is at full HP, attack and def/res +2.
+//Author Unknown (Initial Commit)
+ChivalryID
+
+//Pragmatic: When foe is not at full HP, attack +3 and def/res+1.
+//Author Unknown (Initial Commit)
+PragmaticID
+
+//Defiant Avoid/Crit: When HP is 25% or lower, gain +30 Avoid or Crit.
+//By Sme
+DefiantAvoID
+DefiantCritID
+
+//Indoor/Outdoor Fighter: +10 Hit and Avo when fighting indoors/outdoors.
+//By Sme
+IndoorFighterID
+OutdoorFighterID
+
+//Elbow Room: +3 damage dealt when on open terrain.
+//Author Unknown (Initial Commit)
+ElbowRoomID
+
+//Even/Odd Rhythm: +10 Hit and Avoid on even or odd numbered turns.
+//Author Unknown (Initial Commit)
+OddRhythmID
+EvenRhythmID
+
+
+//Foreign Princess: Foreign army units take -2/+2 damage dealt/taken.
+//By Sme
+ForeignPrincessID
+
+//Frenzy: For every 4 damage taken, +1 to damage dealt.
+//By Tequila
+FrenzyID
+
+
+//Holy Aura: Gain +1 damage, +5% hit, +5% avoid, +5% crit when using light.
+//By Datagne
+HolyAuraID
+
+//Insight: Hit +20.
+//By Sme
+InsightID
+
+//Knight Aspirant: When above 75% health, +2 damage, +15% avoid.
+//By Datagne
+KnightAspirantID
+
+
+//Light Weight: When holding three or less items, attack speed +3.
+//Author Unknown (Initial Commit)
+LightWeightID
+
+
+//Outrider: Take -1 damage and gain +3% crit per space moved.
+//By Datagne
+OutriderID
+
+//Perfectionist: +15 Hit/Avoid when user's HP is at maximum.
+//By Zeta
+PerfectionistID
+
+//Prescience: When initiating battle, Hit and Avo +15.
+//By Sme
+PrescienceID
+
+//Puissance: +3 Damage when the user's Strength is higher than the enemy's.
+//By Zeta
+PuissanceID
+
+//Quick Riposte: If defending and HP is 50% or higher, unit doubles and attacker does not double.
+//By Sme
+QuickRiposteID
+
+
+//Short Shield: Gain 6 defense against attacks recieved in melee.
+//By Sme
+ShortShieldID
+
+//Silent Pride: Gain 2 damage and take -2 damage per 25% below max HP.
+//By Datagne
+SilentPrideID
+
+//Stance Skills: Bonus to stats when defending.
+//By Snakey1
+BracingStanceID
+DartingStanceID
+FierceStanceID
+KestrelStanceID
+MirrorStanceID
+ReadyStanceID
+SteadyStanceID
+SturdyStanceID
+SwiftStanceID
+WardingStanceID
+SpectrumStanceID
+//By Sme
+AlertStanceID
+AlertStancePlusID
+
+//Thunderstorm: If weapon weight > enemy W. Weight, +2 dmg, +15% hit, +5% crit.
+//By Datagne
+ThunderstormID
+
+//Tower Shield: Gain 6 defense against attacks recieved at range.
+//By Sme
+TowerShieldID
+
+//Tower Shield+: Take no damage against attacks recieved at range.
+//By Sme
+TowerShieldPlusID
+
+//Trample: +5 damage to unmounted units.
+//By Tequila
+TrampleID
+
+//Vanity: Gain +2 Damage and +10 Hit when fighting enemy at 2 range.
+//By Datagne
+VanityID
+
+//Vigilance: Avoid +20.
+//By Sme
+VigilanceID
+
+//Wind Disciple: +10 Hit and Avoid when HP is not at max.
+//Author Unknown (Initial Commit)
+WindDiscipleID
+
+
+//Wrath: If HP < 50%, +20 critical rate.
+//Author Unknown (Initial Commit)
+WrathID
+
+// Arcane Blade: When initiating battle at 1 range: Add 3+(Mag/2) to Hit and Crit.
+//By Zeta
+ArcaneBladeID
+
+//Blue Flame: Attack +2. When adjacent to an ally, Attack +4.
+//By Sme
+BlueFlameID
+
+//Double Lion: All weapons are treated as brave.
+//By Sme
+DoubleLionID
+
+
+//Thotslayer: +15 crit against units with Nice Thighs or Personality.
+//By Sme
+ThotslayerID
+
+
+//Fire Boost: Grants +6 Attack if unit's current HP is at least 3 higher than the enemy's.
+//By Mikey Seregon
+FireBoostID
+
+//Wind Boost: Grants +6 Attack Speed if unit's current HP is at least 3 higher than the enemy's.
+//By Mikey Seregon
+WindBoostID
+
+//Earth Boost: Grants +6 Defense if unit's current HP is at least 3 higher than the enemy's.
+//By Mikey Seregon
+EarthBoostID
+
+//Water Boost: Grants +6 Resistance if unit's current HP is at least 3 higher than the enemy's.
+//By Mikey Seregon
+WaterBoostID
+
+//Air Raid: Grants +5 or +15 on a stat when on a tile enemy cannot enter
+//By Jopettajah
+AirRaidAtkID
+AirRaidSpdID
+AirRaidDefID
+AirRaidCriID
+AirRaidHitID
+AirRaidAvoID
+AirRaidResID
+
+//Chaos Style: AS +3 during combat with a physical weapon against a foe armed with magic or vice versa.
+//By Jopettajah
+ChaosStyleID
+
+
+//Stunning Smile: If foe is male, inflicts Avo-20 on that foe during combat.
+//By Jopettajah
+StunningSmileID
+
+//Lady Blade: If the unit is female, double weapon might
+//By Snerdels
+LadyBladeID
+
+
+
+//Aura Skills
+
+//Anathema: -10 Avoid/Dodge to all enemies within 3 tiles.
+//Author Unknown (Initial Commit)
+AnathemaID
+
+//Blood Tide: Atk and Hit +5 to adjacent allies.
+//By Sme
+BloodTideID
+
+
+//Daunt: -5 Hit and Crit to all enemy units in a 3-tile radius.
+//By Sme
+DauntID
+
+//Demoiselle: Male allies within 2 tiles receive -2 damage.
+//Author Unknown (Initial Commit)
+DemoiselleID
+
+//Drive Skills: Allies within 2 spaces receive +4 to their respective stat.
+//By Sme
+DriveStrID
+DriveMagID
+DriveSpdID
+DriveDefID
+DriveResID
+
+//Focus: +10 Critical if there are no allies within 3 tiles.
+//Author Unknown (Initial Commit)
+FocusID
+
+//Gentilhomme: Female allies within 2 tiles receive -2 damage.
+//Author Unknown (Initial Commit)
+GentilhommeID
+
+//Hex: -15 avoid to all adjacent enemies.
+//By Snakey1
+HexID
+
+//Infiltrator: If within 2 spaces of two or more enemies, gain +3 damage and +15% hit.
+//By Datagne
+InfiltratorID
+
+//Inspiration: Allies within 2 tiles deal +2 damage and receive -2 damage.
+//Author Unknown (Initial Commit)
+InspirationID
+
+//Divinely Inspiring: Adjacent allies deal +3 damage and receive -1 damage.
+//By Dragz
+DivinelyInspiringID
+
+//Intimidate: -10 Avoid to all enemies within 2 tiles.
+//Author Unknown (Initial Commit)
+IntimidateID
+
+//Lily's Poise: Adjacent allies gain +1/-3 damage dealt/received.
+//Author Unknown (Initial Commit)
+LilysPoiseID
+
+//Malefic Aura: Enemies within 2 tiles receive +2 magic damage.
+//Author Unknown (Initial Commit)
+MaleficAuraID
+
+//Night Tide: Def and Res +5 to adjacent allies.
+//By Sme
+NightTideID
+
+//Solidarity: Critical and Critical Avoid +10 to adjacent allies.
+//By SD9k
+SolidarityID
+
+
+//Tantivy: +10 Hit/Avoid if there are no allies within 3 tiles.
+//Author Unknown (Initial Commit)
+TantivyID
+
+//Up With Arch: Adjacent ally units gain might equal to half this unit's might. (Only if name starts with "Arch")
+//Author Unknown (Initial Commit)
+UpWithArchID
+
+//Voice of Peace: Enemies within 2 tiles deal -2 damage.
+//Author Unknown (Initial Commit)
+VoiceOfPeaceID
+
+//White Pool: Atk and AS +5 to adjacent allies.
+//By Sme
+WhitePoolID
+
+//Skyguard: +4 defense against flying enemies if within 3 spaces of an ally flier.
+//By Sme
+SkyguardID
+
+//Horseguard: +4 defense against horseback enemies if within 3 spaces of an ally horse rider.
+//By Sme
+HorseguardID
+
+//Armorboost: +4 attack and defense against armored enemies if within 3 spaces of an armored ally.
+//By Sme
+ArmorboostID
+//ArmorBoostID ArmorboostID //Alias\
+
+
+
+//Bane: Leave the opponent at 1 HP if the attack would kill. (Skill/2 % activation)
+//Author Unknown (Initial Commit)
+BaneID
+
+//Barricade: Damage taken is halved after first being struck.
+//By Snakey1
+BarricadeID
+
+//Barricade+: In combat, damage recieved equals half of the damage when struck last.
+//By Snakey1
+BarricadePlusID
+
+
+//Devil's Luck: Immune to Devil Reversal. Gives unit's Devil Reversal to the enemy. (31-Luck % chance of Devil Reversal).
+//By Leonarth
+DevilsLuckID
+//Devil's Whim: This unit is cursed, but the curse spreads to the enemy as well. (31-Luck % chance of Devil Reversal).
+//By Leonarth
+DevilsWhimID
+
+//Down With Arch: If the hit lands, instantly kill the enemy unit. (Only if name starts with "Arch")
+DownWithArchID
+
+
+//Moonbow: Enemy Def/Res is reduced by 25%. Charge: 2
+//Author Unknown (Initial Commit)
+MoonbowID
+
+
+//High Ground: Maximum range of all tomes and bows increased by 2 when on specified terrain.
+//By Snerdels
+HighGroundID
+
+//Running Start: +1 max attack range with bows for every 2 tiles moved.
+//By Jester
+RunningStartID
+
+
+//Armsthrift: Luck % chance to not consume weapon durability.
+//Author Unknown (Initial Commit)
+ArmsthriftID
+
+
+//Assassinate: When initiating battle at 1 range: +2 Damage, double attacks occur before counter.
+//By Zeta
+AssassinateID
+
+
+// Last Word: When doubled, this unit also doubles.
+// By Vesly 
+LastWordID
+
+// Bold Fighter: When attacking, this unit always doubles. 
+// By Vesly 
+BoldFighterID 
+
+// Vengeful Fighter: When defending, this unit always doubles. 
+// By Vesly 
+VengefulFighterID
+
+
+//Stat Modifier Skills
+
+//Defiant Skills: When HP is 25% or lower, gain +4 to the given stat.
+//By Sme
+DefiantStrID
+DefiantMagID
+DefiantSklID
+DefiantSpdID
+DefiantLckID
+DefiantDefID
+DefiantResID
+
+//Resolve: When HP < 50%, gain 1.5x Str, Skl, & Spd.
+//By Sme
+ResolveID
+
+
+//Life and Death: Grants +5 Atk/Mag/Spd, -5 Def/Res.
+//By Leonarth
+HeroesLifeAndDeathID
+
+//Push Skills: When HP is full, gain +5 to the given stat.
+//By Sme
+PushStrID
+PushMagID
+PushSklID
+PushSpdID
+PushDefID
+PushResID
+
+//Lull Skills: Negate the effects of a rally for the given stat.
+//By Sme
+LullStrID
+LullMagID
+LullSklID
+LullSpdID
+LullLckID
+LullDefID
+LullResID
+LullSpectrumID
+
+
+//Minus: +4 to all stats for adjacent units with the 'Plus' skill.
+//By Jester
+PlusID
+
+//Plus: +4 to all stats for adjacent units with the 'Minus' skill.
+//By Jester
+MinusID
+
+//Gamble: A reckless attack with halved hit but doubled crit.
+//Author Unknown (Initial Commit)
+GambleID
+
+
+
+//Detonate: Destroy equipped weapon to deal remaining uses as damage
+//By Jester
+DetonateID
+
+//Stride: Increase movement of all allied units in a 3 tile radius by 3
+//By Jester
+StrideID
+
+
+
+//Catch 'Em All: Grants the user every skill.
+//By Leonarth
+CatchEmAllID
+
+//Vantage+: User always attacks first, even if attacked. Negates crits.
+//By SD9k
+VantagePlusID
+
+//Expertise: Reduce bonus damage from critical hits by 50%.
+//Author Unknown (Initial Commit)
+ExpertiseID
+//Dragon's Blood: Unit is able to activate Dragon Veins.
+//By Colorz
+DragonsBloodID
+
+//Hero: +30% skill activation rate when HP is below 50%.
+//By Sme
+HeroID
+
+//Rightful King: +10% to Skill activation rate.
+//Author Unknown (Initial Commit)
+RightfulKingID
+
+
+//Rightful Arch: Sets Skill activation rate to 100%.
+//Author Unknown (Initial Commit)
+RightfulArchID
+
+//Triangle Adept: Doubles weapon triangle effects for this unit.
+//By Tequila
+TriAdeptID
+//TriangleAdeptID TriAdeptID //Alias
+
+
+//Discipline: Weapon experience gains are doubled.
+//Author Unknown (Initial Commit)
+DisciplineID
+//Liquid Ooze: Attackers trying to gain HP from attacking this unit lose it instead.
+//By Leonarth
+LiquidOozeID
+
+//Shadowgift: Allows the user to use Dark Magic. (Uses highest Magic Rank)
+//By Leonarth
+ShadowgiftID
+
+//Lumina: Allows the user to use Light Magic. (Uses highest Magic Rank)
+//By Leonarth
+LuminaID
+
+
+//Poise: +1 Move. Negates enemy hit bonus from weapon triangle advantage.
+//By Zeta
+PoiseID
+
+//Amische: This unit's religion disallows them from using non-Iron weaponry.
+//By Sme
+AmischeID
+
+//Triangle Attack: Allows this unit to perform a triangle attack with 2 other units who have this skill.
+TriangleAttackID
+
+
+
+
+
+
+
+//Biorhythm Skills: Double or halve biorhythm effects.
+//By Sme
+TempestID //Requires Biorhythm
+SerenityID //Requires Biorhythm
+
+
+PersonalityID
+
+
+//Broken Skills
+Roll12ID
+TraceID
+
+

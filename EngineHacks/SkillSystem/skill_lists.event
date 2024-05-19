@@ -116,7 +116,7 @@ ALIGN 4
 
 RogueSkillList:
 BYTE 255 StealID
-BYTE 1 LocktouchID
+BYTE 1 LockTouchID
 BYTE 00 00
 ALIGN 4
 

@@ -515,7 +515,7 @@ ORG SkillIcon(FortressResistanceID)
 ORG SkillIcon(ForesightID)
 #incbin "SkillIcons/Foresight.dmp"
 
-ORG SkillIcon(AxefaithID)
+ORG SkillIcon(AxeFaithID)
 #incbin "SkillIcons/Axefaith.dmp"
 
 ORG SkillIcon(ArmorMarchID)
@@ -1053,7 +1053,7 @@ ORG SkillIcon(AirRaidResID)
 #incbin "SkillIcons/AirRaidRes.dmp"
 ORG SkillIcon(ChaosStyleID)
 #incbin "SkillIcons/ChaosStyle.dmp"
-ORG SkillIcon(DragonskinID)
+ORG SkillIcon(DragonSkinID)
 #incbin "SkillIcons/DragonSkin.dmp"
 ORG SkillIcon(StunningSmileID)
 #incbin "SkillIcons/StunningSmile.dmp"

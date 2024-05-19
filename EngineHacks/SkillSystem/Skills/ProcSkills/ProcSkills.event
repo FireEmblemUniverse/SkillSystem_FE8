@@ -199,7 +199,7 @@ Proc_Eclipse:
 POIN SkillTester
 WORD EclipseID
 WORD CounterID
-WORD CountermagicID
+WORD CounterMagicID
 
 ALIGN 4
 Proc_Corrosion:

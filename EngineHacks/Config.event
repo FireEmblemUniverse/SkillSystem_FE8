@@ -290,9 +290,9 @@ MESSAGE Please see the README.md there or ask @Vesly for help.
 #define DOES_BARGAIN_STACK False
 
 //If true, will use the vanilla check in addition to the skill check.
-#define ALSO_USE_VANILLA_DANCE_CHECK False
+#define ALSO_USE_VANILLA_DANCE_CHECK True
 #define ALSO_USE_VANILLA_SUPPLY_CHECK True
-#define ALSO_USE_VANILLA_SUMMON_CHECK False
+#define ALSO_USE_VANILLA_SUMMON_CHECK True
 #define ALSO_USE_VANILLA_STEAL_CHECK True
 
 //If uncommented, Combat Arts will be enabled.

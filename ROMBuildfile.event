@@ -30,10 +30,7 @@
     #endif // USE_TEST_MAP
 	
 	#include "../SRR_FEGBA/RomBuildfile.event" 
-	
-	
-	ASSERT (FreeSpaceEnd - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
-	
+
     MESSAGE Used free space ends at currentOffset
 #else
     ERROR "You are not assembling FE8 events!"

@@ -1,3 +1,7 @@
+
+#include "Definitions/skill_definitions.enu.event" 
+
+/*
 //Here you can choose which skills to install. You can only install up to 254, ranging from IDs 1 - 254. Make sure you don't use the same ID more than once.
 //To disable a skill, define it as 255.
 //Skills are categorized broadly by where their effect is applied, in no particular order within each category.
@@ -1399,3 +1403,5 @@
 //Broken Skills
 #define Roll12ID 255
 #define TraceID 255
+
+*/
