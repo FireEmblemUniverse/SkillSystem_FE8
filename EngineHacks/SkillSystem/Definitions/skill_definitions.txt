@@ -671,6 +671,9 @@ SaviorID
 //Author Unknown (Initial Commit)
 VantageID
 
+//Vantage+: User always attacks first, even if attacked. Negates crits.
+//By SD9k
+VantagePlusID
 
 //Nihil: Cancels the opponent's skills in combat.
 //Author Unknown (Initial Commit)
@@ -1431,10 +1434,6 @@ StrideID
 //Catch 'Em All: Grants the user every skill.
 //By Leonarth
 CatchEmAllID
-
-//Vantage+: User always attacks first, even if attacked. Negates crits.
-//By SD9k
-VantagePlusID
 
 //Expertise: Reduce bonus damage from critical hits by 50%.
 //Author Unknown (Initial Commit)

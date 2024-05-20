@@ -50,6 +50,14 @@ make_buffer:
     beq  no_personal
 	ldrb r6, [r6, #0x04] @ var r6 = character id
 
+mov r0, r4 @ unit 
+bl GetAlwaysSkill
+cmp r0, #0 
+beq NoAlways
+strb r0, [r5] 
+add r5, #1 
+
+NoAlways: 
 	ldr  r2, lPersonalSkillTable
 	ldrb r0, [r2, r6] @ skill byte
 	cmp r0, #0

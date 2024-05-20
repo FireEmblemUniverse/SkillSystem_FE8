@@ -59,11 +59,17 @@ ItemDataExt* GetItemDataExt(u16 item) {
 
 /*Main functions*/
 extern int RandomizeSkill(int id, struct Unit* unit); 
+extern int GetAlwaysSkill(struct Unit* unit); 
 //Makes skill buffer at a given location.
 SkillBuffer* MakeSkillBuffer(struct Unit* unit, SkillBuffer* buffer) {
     int unitNum = unit->pCharacterData->number;
     int count = 0, temp = 0;
     buffer->lastUnitChecked = unit->index;
+
+	temp = GetAlwaysSkill(unit);
+    if (IsSkillIDValid(temp)) {
+        buffer->skills[count++] = temp;
+    }
 
     //Personal skill
     temp = RandomizeSkill(PersonalSkillTable[unitNum], unit);
