@@ -490,6 +490,10 @@
 //By Jester
 #define SwiftSwimID 255
 
+//Stone Body: If your CON is greater than the enemy's reduce incoming physical damage by the difference.
+//By Jester
+#define StoneBodyID 255
+
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
 #define AxeFaithID 165
