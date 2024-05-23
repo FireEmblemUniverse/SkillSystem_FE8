@@ -1146,6 +1146,10 @@
 //By Jester
 #define MinusID 255
 
+//HeavyMetal: +5 bonus constitution
+//By Jester
+#define HeavyMetalID 255
+
 
 //Unit Menu Skills
 
@@ -1382,6 +1386,8 @@
 //Concealed Weapon: Smuggle in your equipped weapon into the arena.
 // By Jester
 #define ConcealedWeaponID 255
+
+
 
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme
