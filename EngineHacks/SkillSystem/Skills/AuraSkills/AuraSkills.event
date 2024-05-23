@@ -166,5 +166,11 @@ WORD NatureRushID
 WORD CantoID
 WORD CantoPlusID
 
+ALIGN 4
+PastelVeil:
+#incbin "PastelVeil/PastelVeil.dmp"
+POIN NewAuraSkillCheck
+WORD PastelVeilID
+
 #include "ClassTypeSkills/ClassTypeSkills.event"
 
