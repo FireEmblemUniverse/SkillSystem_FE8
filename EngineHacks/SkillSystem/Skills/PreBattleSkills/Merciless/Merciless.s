@@ -17,7 +17,8 @@ beq End
 @check status of enemy
 mov r0,#0x30            @get status byte
 ldrb r1,[r5,r0]         @load the defender's status byte
-lsr r1,#4               @shift one place to the right to isolate the status effect nibble
+mov r2,#0xF
+and r1,r2               @and it with F to isolate the second bit
 cmp r1,#1               @compare it to the poison status effect (#1)
 bne End                 @if they're not poisoned, branch to the end
 
