@@ -132,6 +132,10 @@
 #define ArmorboostID 156
 #define ArmorBoostID ArmorboostID //Alias\
 
+//PastelVeil: Allies in a 3 tile radius are immune to poison.
+//By Jester
+#define PastelVeilID 255
+
 
 // Turn Skills
 

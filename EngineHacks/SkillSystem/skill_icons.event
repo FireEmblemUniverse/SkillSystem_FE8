@@ -1175,7 +1175,8 @@ ORG SkillIcon(SandRushID)
 
 ORG SkillIcon(BlessingID)
 #incbin "SkillIcons/Acrobat.dmp"
-
+ORG SkillIcon(PastelVeilID)
+#incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(StoneBodyID)
 #incbin "SkillIcons/Acrobat.dmp"
 
