@@ -1800,3 +1800,9 @@ consume weapon durability.[X]
 SD_PastelVeil: Allies[N]
 in a 3 tile radius are[N]
 immune to poison.[X]
+
+## SD_StoneBody
+StoneBody: If your CON is greater[N]
+than the enemy's, reduce incoming[N]
+physical damage by the difference.[X]
+
