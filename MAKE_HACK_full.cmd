@@ -63,17 +63,12 @@ echo Assembling
 cd "%base_dir%EventAssembler"
 ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" --nocash-sym
 
-if /I not [%1]==[quick] (
-
-  @rem only do the following if this isn't a make hack quick
-
   echo:
   echo Generating patch
 
   cd "%base_dir%"
   "%ups%" diff -b "%source_rom%" -m "%target_rom%" -o "%target_ups%"
 
-)
 
 echo:
 echo Generating sym file
