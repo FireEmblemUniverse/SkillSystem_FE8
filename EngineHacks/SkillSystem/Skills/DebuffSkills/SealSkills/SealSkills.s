@@ -110,9 +110,9 @@ bx r0
 .type ApplyDebuff, %function 
 ApplyDebuff:
 @r0 is unit data, r1 is amount, r2 is nth stat
-push {r4-r6, lr}
-push {r0}   @push the unit register onto the stack for a Contrary check
-@ r0 = unit 
+push {r4-r7, lr}
+@push the unit register onto the stack for a Contrary check
+mov r7, r0 @ unit 
 mov r4, r1
 mov r5, r2
 bl GetUnitDebuffEntry @ r0 = unit struct 
@@ -130,10 +130,9 @@ cmp r3, #0
 blt Negative
 
 @check for Contrary
-pop {r2}            @pop the unit register off of the stack
 push {r3,r4}        @push the registers for the debuff amount
 ldr	r1,ContraryID
-mov	r0,r2
+mov	r0,r7 @ unit 
 ldr	r2,SkillTester
 mov	lr,r2
 .short	0xf800
@@ -175,7 +174,7 @@ ldr r2, [r2]
 bl PackData_Signed
 
 EndApplyDebuff:
-pop {r4-r6}
+pop {r4-r7}
 pop {r0} 
 bx r0 
 .ltorg 
