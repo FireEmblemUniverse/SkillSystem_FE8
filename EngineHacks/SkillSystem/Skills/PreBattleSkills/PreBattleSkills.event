@@ -464,6 +464,17 @@ SwiftSwim:
 POIN SkillTester
 WORD SwiftSwimID
 
+Merciless:
+#incbin "Merciless/Merciless.dmp"
+POIN SkillTester
+WORD MercilessID
+
+ALIGN 4
+StoneBody:
+#incbin "StoneBody/StoneBody.dmp"
+POIN SkillTester
+WORD StoneBodyID
+
 ALIGN 4
 PursuerPre:
 #incbin "PursuerPre/Pursuer.dmp"
