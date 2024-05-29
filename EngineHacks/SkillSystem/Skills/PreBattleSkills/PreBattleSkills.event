@@ -464,6 +464,11 @@ SwiftSwim:
 POIN SkillTester
 WORD SwiftSwimID
 
+ALIGN 4
+PursuerPre:
+#incbin "PursuerPre/Pursuer.dmp"
+POIN SkillTester
+WORD PursuerID
 
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 

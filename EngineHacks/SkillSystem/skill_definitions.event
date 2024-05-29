@@ -1383,6 +1383,10 @@
 // By Jester
 #define ConcealedWeaponID 255
 
+//Pursuer: If initiating, AS +5, deals damage = 25% of Spd, Double attacks hit again
+// By Devisio
+#define PursuerID 255
+
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme
 #define TempestID 255 //Requires Biorhythm
