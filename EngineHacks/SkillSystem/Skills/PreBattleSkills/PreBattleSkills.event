@@ -482,6 +482,13 @@ PursuerPre:
 POIN SkillTester
 WORD PursuerID
 
+ALIGN 4
+Decapitator:
+#incbin "Decapitator/Decapitator.dmp"
+POIN SkillTester
+WORD DecapitatorID
+
+
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 
 

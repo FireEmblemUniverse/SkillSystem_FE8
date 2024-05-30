@@ -1819,3 +1819,7 @@ Pursuer: If initiating, grants AS +5,[N]
 deal more damage = 25% of Spd, and[N]
 follow-ups attack twice.[X]
 
+## SD_Decapitator
+Decapitator: Grants Atk = foe's missing HP[N]
+at start of combat. If foe is below 50%[N]
+HP, grants Hit/Crit +80.[X]
