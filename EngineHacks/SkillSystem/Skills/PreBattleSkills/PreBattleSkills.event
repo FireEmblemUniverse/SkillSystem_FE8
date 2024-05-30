@@ -464,6 +464,7 @@ SwiftSwim:
 POIN SkillTester
 WORD SwiftSwimID
 
+ALIGN 4
 Merciless:
 #incbin "Merciless/Merciless.dmp"
 POIN SkillTester
