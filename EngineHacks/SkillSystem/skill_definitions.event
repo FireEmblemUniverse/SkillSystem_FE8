@@ -1407,6 +1407,10 @@
 // By Devisio
 #define DecapitatorID 255
 
+//Pathfinder: Allies within 3 spaces can Canto.
+// By Devisio
+#define PathfinderID 255
+
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme
 #define TempestID 255 //Requires Biorhythm
