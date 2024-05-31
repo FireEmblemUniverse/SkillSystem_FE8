@@ -1151,11 +1151,11 @@ ORG SkillIcon(GoddessDanceID)
 ORG SkillIcon(TrueStrikeID)
 #incbin "SkillIcons/TrueStrike.dmp"
 ORG SkillIcon(CriticalPierceID)
-#incbin "SkillIcons/Acrobat.dmp"
+#incbin "SkillIcons/CriticalPierce.dmp"
 ORG SkillIcon(RunningStartID)
-#incbin "SkillIcons/Acrobat.dmp"
+#incbin "SkillIcons/RunningStart.dmp"
 ORG SkillIcon(CatchingUpID)
-#incbin "SkillIcons/Acrobat.dmp"
+#incbin "SkillIcons/CatchingUp.dmp"
 ORG SkillIcon(NonconformingID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(ConcealedWeaponID)
@@ -1176,7 +1176,7 @@ ORG SkillIcon(SandRushID)
 ORG SkillIcon(BlessingID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(PastelVeilID)
-#incbin "SkillIcons/Acrobat.dmp"
+#incbin "SkillIcons/PastelVeil.dmp"
 ORG SkillIcon(StoneBodyID)
 #incbin "SkillIcons/StoneBody.dmp"
 
