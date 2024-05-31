@@ -1186,5 +1186,11 @@ ORG SkillIcon(MercilessID)
 ORG SkillIcon(HeavyMetalID)
 #incbin "SkillIcons/HeavyMetal.dmp"
 
+ORG SkillIcon(PursuerID)
+#incbin "SkillIcons/Pursuer.dmp"
+
+ORG SkillIcon(DecapitatorID)
+#incbin "SkillIcons/Decapitator.dmp"
+
 ORG SkillIcons+0x8000
 

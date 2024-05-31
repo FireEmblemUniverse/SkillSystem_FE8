@@ -25,6 +25,7 @@ POIN Proc_Moonbow
 #endif // COMBAT_ARTS
 
 POIN Proc_Eclipse	//skills that do damage and all that
+POIN Proc_Pursuer
 
 POIN Proc_Impale Proc_Colossus 
 #ifndef COMBAT_ARTS

@@ -1399,7 +1399,13 @@
 // By Jester
 #define ConcealedWeaponID 255
 
+//Pursuer: If initiating, AS +5, deals damage = 25% of Spd, Double attacks hit again.
+// By Devisio
+#define PursuerID 255
 
+//Decapitator: Grants Atk = foe's missing HP; +80 Hit/Crit if foe's HP is below half.
+// By Devisio
+#define DecapitatorID 255
 
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme

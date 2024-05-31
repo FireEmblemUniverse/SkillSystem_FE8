@@ -158,6 +158,12 @@ BlackMagic_AnimsOff:
 #incbin "BlackMagic/BlackMagic_AnimsOff.dmp"
 
 ALIGN 4
+Proc_Pursuer:
+#incbin "Pursuer/Pursuer.dmp"
+POIN SkillTester
+WORD PursuerID
+
+ALIGN 4
 Proc_Corona:
 #incbin "Corona/proc_corona.dmp"
 POIN SkillTester
