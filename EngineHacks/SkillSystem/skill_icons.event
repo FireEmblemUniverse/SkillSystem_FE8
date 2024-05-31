@@ -1147,9 +1147,9 @@ ORG SkillIcon(SnowWarningID)
 ORG SkillIcon(ContraryID)
 #incbin "SkillIcons/Contrary.dmp"
 ORG SkillIcon(GoddessDanceID)
-#incbin "SkillIcons/Acrobat.dmp"
+#incbin "SkillIcons/GoddessDance.dmp"
 ORG SkillIcon(TrueStrikeID)
-#incbin "SkillIcons/Acrobat.dmp"
+#incbin "SkillIcons/TrueStrike.dmp"
 ORG SkillIcon(CriticalPierceID)
 #incbin "SkillIcons/Acrobat.dmp"
 ORG SkillIcon(RunningStartID)
