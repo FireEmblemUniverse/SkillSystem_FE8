@@ -1,18 +1,21 @@
-ALIGN 4
-TriangleAdept:
-#incbin "TriangleAdept/TriangleAdept.dmp"
-POIN SkillTester
-WORD TriAdeptID
-WORD TriAdeptPlusID
 
-ALIGN 4
-Poise:
-#incbin "Poise/Poise.dmp"
-POIN SkillTester
-WORD PoiseID
+#include "TriangleAdept/TriangleAdept.lyn.event"
+
+TriAdeptID_Link:
+BYTE TriAdeptID
+
+TriAdeptPlusID_Link:
+BYTE TriAdeptPlusID
+
+#include "Poise/Poise.lyn.event"
+
+PoiseID_Link:
+BYTE PoiseID
+
 
 ALIGN 4
 Nonconforming:
 #incbin "Nonconforming/Nonconforming.dmp"
 POIN SkillTester
 WORD NonconformingID
+

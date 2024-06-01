@@ -1,17 +1,15 @@
 
-#include "RightfulKing/RightfulKing.lyn.event"
+#include "RightfulSkills/RightfulSkills.lyn.event"
 
-#include "RightfulGod/RightfulGod.lyn.event"
+RightfulKingID_Link:
+BYTE RightfulKingID
+RightfulGodID_Link:
+BYTE RightfulGodID
+RightfulArchID_Link:
+BYTE RightfulArchID
 
-#include "RightfulArch/RightfulArch.lyn.event"
 
 #include "Hero/Hero.lyn.event"
 
-RightfulKingIDLink:
-BYTE RightfulKingID
-RightfulGodIDLink:
-BYTE RightfulGodID
-RightfulArchIDLink:
-BYTE RightfulArchID
-HeroIDLink:
+HeroID_Link:
 BYTE HeroID
