@@ -464,6 +464,30 @@ SwiftSwim:
 POIN SkillTester
 WORD SwiftSwimID
 
+ALIGN 4
+Merciless:
+#incbin "Merciless/Merciless.dmp"
+POIN SkillTester
+WORD MercilessID
+
+ALIGN 4
+StoneBody:
+#incbin "StoneBody/StoneBody.dmp"
+POIN SkillTester
+WORD StoneBodyID
+
+ALIGN 4
+PursuerPre:
+#incbin "PursuerPre/Pursuer.dmp"
+POIN SkillTester
+WORD PursuerID
+
+ALIGN 4
+Decapitator:
+#incbin "Decapitator/Decapitator.dmp"
+POIN SkillTester
+WORD DecapitatorID
+
 
 #include "KeenFighter/Installer.event" 
 #include "FlankSwarmScale/Installer.event" 

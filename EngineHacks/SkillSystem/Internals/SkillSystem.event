@@ -335,6 +335,9 @@ NegatedSkillEntry(MinusID)
 NegatedSkillEntry(SandRushID)
 NegatedSkillEntry(SlushRushID)
 NegatedSkillEntry(SwiftSwimID)
+NegatedSkillEntry(MercilessID)
+NegatedSkillEntry(StoneBodyID)
+
 
 /*
 //NOT WORKING (or they should not be affected by nihil)
@@ -346,7 +349,7 @@ BYTE RallyStrID RallyMagID RallySklID RallySpdID RallyLukID RallyDefID RallyResI
 BYTE SpurStrID SpurMagID SpurSpdID SpurDefID SpurResID//spur, same as rally
 BYTE UpWithArchID DemoiselleID GentilhommeID InspirationID CharmID AmaterasuID CamaraderieID LilysPoiseID BondID//auras that don't affect the one that makes them, so same as rally
 BYTE DisciplineID ParagonID ArmsthriftID CantoPlusID//after battle, probably not working and probably shouldn't be nullified anyway
-BYTE CelerityID ReliefID LockTouchID LiveToServeID NihilID PersonalityID NiceThighsID SummonID DanceID CunningID DragonsBloodID AcrobatID PassID CantoID RenewalID//other, can't be affected
+BYTE HeavyMetalID CelerityID ReliefID LockTouchID LiveToServeID NihilID PersonalityID NiceThighsID SummonID DanceID CunningID DragonsBloodID AcrobatID PassID CantoID RenewalID//other, can't be affected
 BYTE RightfulArchID RightfulKingID RightfulGodID//Rightful skills shouldn't really be checked by nihil since any skill that's going to be affected by them should already be nullified
 
 //TO DO:

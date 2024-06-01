@@ -14,9 +14,9 @@ ALIGN 4
 Armsthrift:
 AxeFaithArmsthrift:
 ArmsthriftAxeFaith:
-#incbin "Armsthrift/armsthriftaxefaith.dmp"
+#incbin "Armsthrift/armsthriftaxefaithblessing.dmp"
 POIN SkillTester|1
-WORD ArmsthriftID AxeFaithID
+WORD ArmsthriftID AxeFaithID BlessingID
 
 ALIGN 4
 DazzleCheck:

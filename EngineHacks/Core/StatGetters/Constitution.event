@@ -1,0 +1,42 @@
+#ifndef MODULAR_GETTER_CONSITUTION_EVENT
+#define MODULAR_GETTER_CONSITUTION_EVENT
+
+#include "_Common.event"
+ALIGN 4
+pConModifiers: // Consitition
+	POIN prAddUnitBaseCon prAddUnitConBonus prItemPassiveCon prGetItemConBonus
+	POIN prSkillHeavyMetal
+	#ifdef DEBUFFS_MIN_ZERO
+	POIN prMinZero
+	#endif
+WORD 0
+
+prAddUnitBaseCon:
+{
+	rCallSequence(_prAddClassCon _prAddCharConBonus)
+	
+_prAddClassCon: // byte 0x11 in ROM char data is class consition
+	rAdd(rForWordAt(UNIT_ROMCLASS, rSByteAt(0x11))) 
+
+_prAddCharConBonus: // byte 0x13 in ROM char data is personal consition bonus
+	rAdd(rForWordAt(UNIT_ROMCHAR, rSByteAt(0x13)))
+}
+
+prAddUnitConBonus:
+	rAdd(rSByteAt(UNIT_CON_BONUS))
+
+prSkillHeavyMetal:
+  rIfUnitHasSkill(HeavyMetalID)
+    rAddConst(5)
+
+#include "_asm/GetItemConBonus.lyn.event" 
+
+ALIGN 4
+prItemPassiveCon:
+#ifndef DONT_STACK_BOOSTS
+	rPassiveStatBoostsStacking(STAT_CON)
+#else // DONT_STACK_BOOSTS
+	rPassiveStatBoostsNonStacking(STAT_CON)
+#endif // DONT_STACK_BOOSTS
+
+#endif // MODULAR_GETTER_CONSITUTION_EVENT

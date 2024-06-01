@@ -132,6 +132,10 @@
 #define ArmorboostID 156
 #define ArmorBoostID ArmorboostID //Alias\
 
+//PastelVeil: Allies in a 3 tile radius are immune to poison.
+//By Jester
+#define PastelVeilID 255
+
 
 // Turn Skills
 
@@ -489,6 +493,14 @@
 //Swift Swim: If the weather is raining then double this unit's attack speed.
 //By Jester
 #define SwiftSwimID 255
+
+//Merciless: Guranteed critical hit against poisoned foes.
+//By Jester
+#define MercilessID 255
+
+//Stone Body: If your CON is greater than the enemy's reduce incoming physical damage by the difference.
+//By Jester
+#define StoneBodyID 255
 
 //Axefaith: Axes can't lose durability, and grants +Luck*1.5 Hit when wielding axes.
 //By 2WB & Colorz
@@ -1016,6 +1028,10 @@
 //Author Unknown (Initial Commit)
 #define ArmsthriftID 138
 
+//Blessing: Guaranteed to not consume weapon durability.
+//By Snerdels
+#define BlessingID 255
+
 //Dazzle: Opponents cannot counterattack this unit.
 //By circleseverywhere
 #define DazzleID 140
@@ -1141,6 +1157,10 @@
 //Plus: +4 to all stats for adjacent units with the 'Minus' skill.
 //By Jester
 #define MinusID 255
+
+//HeavyMetal: +5 bonus constitution
+//By Jester
+#define HeavyMetalID 255
 
 
 //Unit Menu Skills
@@ -1378,6 +1398,14 @@
 //Concealed Weapon: Smuggle in your equipped weapon into the arena.
 // By Jester
 #define ConcealedWeaponID 255
+
+//Pursuer: If initiating, AS +5, deals damage = 25% of Spd, Double attacks hit again.
+// By Devisio
+#define PursuerID 255
+
+//Decapitator: Grants Atk = foe's missing HP; +80 Hit/Crit if foe's HP is below half.
+// By Devisio
+#define DecapitatorID 255
 
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme

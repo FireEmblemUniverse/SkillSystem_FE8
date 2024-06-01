@@ -1,0 +1,147 @@
+//Battle procs loop; entries that do not contain skill tester calls have been moved here, along with the loop itself
+
+
+
+ProcLoopParent:
+#incbin "ProcLoop/proc_loop.dmp"
+POIN ProcLoop_Start	//start
+
+POIN Proc_Devil	//devil effect
+
+
+
+#ifndef COMBAT_ARTS
+	POIN Proc_Sureshot Proc_Luna 
+#else //COMBAT_ARTS
+	POIN CombatArt_SureShot CombatArt_Luna
+#endif // COMBAT_ARTS
+
+POIN Proc_Moonbow 
+
+#ifndef COMBAT_ARTS
+	POIN Proc_Adept Proc_DragonFang 
+#else // COMBAT_ARTS
+	POIN CombatArt_Adept CombatArt_DragonFang
+#endif // COMBAT_ARTS
+
+POIN Proc_Eclipse	//skills that do damage and all that
+POIN Proc_Pursuer
+
+POIN Proc_Impale Proc_Colossus 
+#ifndef COMBAT_ARTS
+	POIN Proc_Ignis Proc_AetherDamage 
+#else // COMBAT_ARTS
+	POIN CombatArt_Ignis CombatArt_AetherDamage
+#endif // COMBAT_ARTS
+POIN Proc_Corona Proc_Flare 
+
+#ifndef COMBAT_ARTS
+	POIN Proc_Glacies
+#else // COMBAT_ARTS
+	POIN CombatArt_Glacies
+#endif // COMBAT_ARTS
+
+POIN Proc_Vengeance //more damage
+
+#ifndef COMBAT_ARTS
+	POIN Proc_Astra	//astra should be the last one before the ones that set damage
+#else // COMBAT_ARTS
+	POIN CombatArt_Astra
+#endif // COMBAT_ARTS
+
+POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
+
+POIN Proc_CapDamage	//check that damage is not over cap
+
+POIN Proc_Foresight Proc_Miracle Proc_Mercy Proc_Aegis Proc_Pavise Proc_GreatShield 	//skills that set damage to 0 or lower it
+
+POIN Proc_StealHP 
+
+#ifndef COMBAT_ARTS
+	POIN Proc_Sol 
+#else // COMBAT_ARTS
+	POIN CombatArt_Sol
+#endif // COMBAT_ARTS
+
+POIN Proc_SolarBrace
+
+POIN Proc_Pickup
+
+POIN Proc_AetherHeal	//skills that heal based on final damage
+
+POIN Proc_BlackMagic Proc_Petrify Proc_Enrage Proc_Deadeye //skills that apply a status effect
+
+#ifdef STATUS_WEAPONS
+	POIN Proc_StatusWeapons
+#endif // STATUS_WEAPONS
+
+#ifdef COMBAT_ARTS
+	POIN Proc_CombatArtCost
+#endif // COMBAT_ARTS
+
+POIN Proc_Corrosion //skills that don't affect damage
+
+
+#ifdef GAIDEN_MAGIC
+	POIN Proc_GaidenMagicHPCost // Very similar to a counter.
+#endif // GAIDEN_MAGIC
+
+#ifdef MODULAR_PRE_BATTLE_SKILLS
+	POIN Proc_CmbArtHpCost
+#endif //ModularPreBattleSkills
+
+
+POIN Proc_Counter Proc_CounterMagic	//counters are last
+
+#ifdef FLASHY_MODE
+	POIN Proc_FlashyMode
+#endif
+
+POIN Proc_Finish 0	//end
+
+//POIN Chargeups, chargeup not working? so I just removed them for now
+
+ALIGN 4
+#include "ProcStart/proc_start.lyn.event" // Barricade needs to write into proc start where damage is stored.
+ExpertiseIDLink:
+BYTE ExpertiseID
+BarricadeIDLink:
+BYTE BarricadeID
+BarricadePlusIDLink:
+BYTE BarricadePlusID
+
+ALIGN 4
+Proc_Finish:
+#incbin "ProcFinish/proc_finish.dmp"
+
+ALIGN 4
+Proc_CapDamage:	//actually the same as proc_finish
+#incbin "CapDamage/proc_capdamage.dmp"	//making a different file just in case one of the two needs tweaking
+
+ALIGN 4
+Proc_FlashyMode:
+#incbin "FlashyMode/proc__flashymode.dmp"
+
+ALIGN 4
+Chargeups:
+#incbin "Chargeups/Chargeups.dmp"
+
+ALIGN 4
+Proc_StealHP:
+#incbin "LifeSteal/proc_stealhp.dmp"
+POIN SkillTester
+WORD LiquidOozeID
+
+PUSH
+ORG $2b3ec
+jumpToHack(ProcLoopParent)
+
+//skip hp substraction if devil effect
+ORG $2B69E
+SHORT 0xE00B
+ORG $2B6C4
+SHORT 0x4001
+SHORT 0x2900
+SHORT 0xD123
+SHORT 0xE011
+POP
