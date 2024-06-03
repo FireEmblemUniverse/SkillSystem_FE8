@@ -10,6 +10,7 @@
 
 .equ Skill_ID, SkillTester+4
 .equ SkillPlus_ID, Skill_ID+4
+.equ ArmsMasterID, SkillPlus_ID+4
 .equ DisciplinePlusReturn, 0x802C177
 push {r4-r5,r14}
 
@@ -37,12 +38,21 @@ mov	lr, r2
 .short     0xF800
 orr	r0, r5
 cmp     r0, #0x0
-beq	NoSkill
+beq	NoDiscipline
 lsl     r4, r4, #0x1    @double WEXP if you have the skill
 cmp	r5, #0x0
+HasArmsMaster:
 bne 	DisciplinePlus
 
-NoSkill:
+NoDiscipline:
+@check for Arms Master
+ldr     r1, ArmsMasterID
+ldr     r2, SkillTester
+mov     r0, r7
+mov     lr, r2
+.short     0xF800    @two byte bl to lr
+cmp 	r0, #0x0
+bne 	HasArmsMaster
 mov     r0, r4
 pop     {r4-r5}
 pop     {r1}
@@ -67,3 +77,4 @@ SkillTester:
 @POIN SkillTester
 @WORD Skill_ID
 @WORD SkillPlus_ID
+@WORD ArmsMasterID

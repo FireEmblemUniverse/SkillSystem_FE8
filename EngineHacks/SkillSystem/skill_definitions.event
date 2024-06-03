@@ -707,7 +707,7 @@
 #define SteadyStanceID 251
 #define SturdyStanceID 252
 #define SwiftStanceID 253
-#define WardingStanceID 254
+#define WardingStanceID 255
 #define SpectrumStanceID 255
 //By Sme
 #define AlertStanceID 245
@@ -1410,6 +1410,10 @@
 //Pathfinder: Allies within 3 spaces can Canto.
 // By Devisio
 #define PathfinderID 255
+
+//Arms Master: Unit can S rank more than one weapon.
+// By Snerdels
+#define ArmsMasterID 254
 
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme

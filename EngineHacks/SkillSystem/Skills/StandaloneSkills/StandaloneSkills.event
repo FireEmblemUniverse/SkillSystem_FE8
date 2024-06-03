@@ -73,6 +73,7 @@ Discipline:
 POIN SkillTester
 WORD DisciplineID
 WORD DisciplinePlusID
+WORD ArmsMasterID
 
 ALIGN 4
 LiveToServe:
