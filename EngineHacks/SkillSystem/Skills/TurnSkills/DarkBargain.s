@@ -24,15 +24,15 @@ DarkBargain_HealAmount:
 ldrb r1, [r0, #9] @ exp 
 ldrb r2, [r0, #0x12] @ max hp 
 ldrb r3, [r0, #0x13] @ current hp 
-sub r2, r3 
-cmp r1, r2 
-ble NoCapHeal 
-mov r1, r2 @ only heal by this much exp 
-NoCapHeal: 
-mov r2, r1 
-sub r2, r1 @ final exp 
-strb r2, [r0, #9] 
-mov r0, r1 @ amount to heal by 
+
+sub r2, r3 @ max amount to heal by 
+cmp r1, r2 @ do we have less exp than this 
+bge HealAmountInR2 @ we have at least this much exp 
+mov r2, r1 @ amount we can heal by 
+HealAmountInR2: 
+sub r1, r2 @ new exp 
+strb r1, [r0, #9] 
+mov r0, r2 @ amount to heal by 
 bx lr 
 .ltorg 
 
