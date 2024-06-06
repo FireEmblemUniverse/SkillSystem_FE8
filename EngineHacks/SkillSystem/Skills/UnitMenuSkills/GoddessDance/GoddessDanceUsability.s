@@ -2,6 +2,7 @@
 @true if unit has GoddessDance skill
 
 .equ GoddessDanceID, SkillTester+4
+.equ GetUnitsInRange, GoddessDanceID+4
 .thumb
 .org 0
 
@@ -22,6 +23,16 @@ mov lr, r2
 .short 0xf800 @test if unit has the skill
 cmp r0, #0
 beq False
+
+@get list of all allied units in range
+ldr r0, GetUnitsInRange
+mov lr,r0
+mov r0,r4
+mov r1,#0x0          @check for same allegiance
+mov r2,#0x1          @check if unit is in 1 tile of active unit (adjacent)
+.short 0xf800        @return list of unit ids that meet this criteria in r0
+cmp r0, #1           @check if GetUnitsInRange returned anything (1 is the active unit, so anything greater will mean allies)
+ble False            @if not, branch to the end
 
 True:
 mov r0,#1

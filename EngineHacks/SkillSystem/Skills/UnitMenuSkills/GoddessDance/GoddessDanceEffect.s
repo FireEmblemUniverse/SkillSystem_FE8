@@ -22,7 +22,9 @@ mov r0,r4
 mov r1,#0x0          @check for same allegiance
 mov r2,#0x1          @check if unit is in 1 tile of active unit (adjacent)
 .short 0xf800        @return list of unit ids that meet this criteria in r0
-mov r6, r0           @r0 contains the active list of units in tange
+cmp r0, #1           @check if GetUnitsInRange returned anything (1 is the active unit, so anything greater will mean allies)
+ble End              @if not, branch to the end
+mov r6, r0           @r0 contains the active list of units in range
 
 Loop:                @start loop
 ldrb r0,[r6]         @load the unit ID
