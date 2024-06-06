@@ -67,6 +67,7 @@ GoddessDanceUsability:
 #incbin "GoddessDance/GoddessDanceUsability.dmp"
 POIN SkillTester
 WORD GoddessDanceID
+POIN GetUnitsInRange
 
 ALIGN 4
 GoddessDanceEffect:
