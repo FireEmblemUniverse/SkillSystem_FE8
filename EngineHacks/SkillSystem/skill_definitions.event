@@ -707,7 +707,7 @@
 #define SteadyStanceID 251
 #define SturdyStanceID 252
 #define SwiftStanceID 253
-#define WardingStanceID 255
+#define WardingStanceID 254
 #define SpectrumStanceID 255
 //By Sme
 #define AlertStanceID 245
@@ -1413,7 +1413,7 @@
 
 //Arms Master: Unit can S rank more than one weapon.
 // By Snerdels
-#define ArmsMasterID 254
+#define ArmsMasterID 255
 
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme
