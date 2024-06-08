@@ -2,14 +2,13 @@
 
 .equ GoddessDanceMarker, 0x203F101
 .equ GetUnit, 0x8019430
+.equ ActionStruct, 0x203A958
 
 push {lr}
-ldr r2, =GoddessDanceMarker
-mov r3, #16
-strb r3, [r2]
-ldr r2, =0x8023E58   @chest effect - we choose this as it doesn't require combat
-mov lr, r2
-.short 0xf800
+mov r0, #1           @the byte for the 'wait' acition
+ldr r1,=ActionStruct @load the action struct
+strb r0,[r1,#0x11]   @store the action take as 
+mov r0, #0x17        @makes the unit wait?? makes the menu disappear after command is selected??
 push {r0-r7}
 
 ldr r4, =0x3004E50   @load the address of the active unit
