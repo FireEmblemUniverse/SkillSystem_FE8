@@ -14,6 +14,8 @@
 .equ ProcFind, 0x8002e9c		@{U}
 @.equ ProcFind, 0x8002DEC		@{J}
 
+.set InitItemDescVramDoubleProcExceptionsList, ProcExceptionsList+4
+
 push {r4-r7, lr} 
 
 ldr r5, =0x10000D8 @ Vanilla uses this 
@@ -45,11 +47,33 @@ Loop:
 add r4, #4 
 ldr r0, [r4] 
 cmp r0, #0 
-beq BreakLoop 
+beq BeginSecondLoop
 blh ProcFind 
 cmp r0, #0 
 beq Loop 
 b Exit2 
+
+BeginSecondLoop:
+ldr r4, InitItemDescVramDoubleProcExceptionsList
+
+SecondLoop:
+ldr r0, [r4]
+cmp r0, #0
+beq BreakLoop
+blh ProcFind
+cmp r0, #0
+beq NextEntry_SecondLoop
+
+ldr r0, [r4,#4]
+cmp r0, #0
+beq NextEntry_SecondLoop
+blh ProcFind
+cmp r0, #0
+bne Exit2
+
+NextEntry_SecondLoop:
+add r4, #8
+b SecondLoop
 
 BreakLoop: 
 
