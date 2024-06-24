@@ -41,7 +41,6 @@ cmp     r0, #0x0
 beq	NoDiscipline
 lsl     r4, r4, #0x1    @double WEXP if you have the skill
 cmp	r5, #0x0
-HasArmsMaster:
 bne 	DisciplinePlus
 
 NoDiscipline:
@@ -52,7 +51,7 @@ mov     r0, r7
 mov     lr, r2
 .short     0xF800    @two byte bl to lr
 cmp 	r0, #0x0
-bne 	HasArmsMaster
+bne 	DisciplinePlus @If you have the skill, jump to just the multiple S ranks effect of DisciplinePlus
 mov     r0, r4
 pop     {r4-r5}
 pop     {r1}
