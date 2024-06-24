@@ -200,6 +200,9 @@ ORG SkillIcon(NullifyID)
 ORG SkillIcon(ParagonID)
 #incbin "SkillIcons/Paragon.dmp"
 
+ORG SkillIcon(VeteranID)
+#incbin "SkillIcons/Acrobat.dmp"
+
 ORG SkillIcon(ImpaleID)
 #incbin "SkillIcons/Impale.dmp"
 

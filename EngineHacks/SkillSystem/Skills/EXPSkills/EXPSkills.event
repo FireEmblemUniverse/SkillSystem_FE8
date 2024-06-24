@@ -11,6 +11,12 @@ POIN SkillTester
 WORD ParagonID
 
 ALIGN 4
+Veteran:
+#incbin "Veteran/Veteran.dmp"
+POIN SkillTester
+WORD VeteranID
+
+ALIGN 4
 VoidCurse:
 #incbin "VoidCurse/VoidCurse.dmp"
 POIN SkillTester

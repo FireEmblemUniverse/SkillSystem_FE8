@@ -11,7 +11,7 @@ POP
 
 #include "EXPCalcLoop.lyn.event"
 EXPCalcFunctions:
-POIN Paragon Blossom VoidCurse
+POIN Paragon Veteran Blossom VoidCurse
 #ifdef MODULAR_EXP
 	POIN ModularEXP
 #endif // MODULAR_EXP
