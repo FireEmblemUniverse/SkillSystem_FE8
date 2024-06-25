@@ -1415,6 +1415,10 @@
 // By Devisio
 #define PathfinderID 255
 
+//Arms Master: Unit can S rank more than one weapon.
+// By Snerdels
+#define ArmsMasterID 255
+
 //Biorhythm Skills: Double or halve biorhythm effects.
 //By Sme
 #define TempestID 255 //Requires Biorhythm
