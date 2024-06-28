@@ -237,7 +237,10 @@ CheckTrainerFlag(0xEE) // based on unit IDs 0xE0-0xEF per chapter
 BNE 10 rC r0 
 LOAD1 0x1 ArticunoBattleUnitGroup 
 ENUN 
+GOTO 11 
 LABEL 10 
+ENUT ArticunoFledFlag
+LABEL 11 
 
 
 AutoLevelUnits(WildLvl, True, 0xE0EF) // Trainers 

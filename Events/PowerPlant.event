@@ -269,7 +269,10 @@ CheckTrainerFlag(0xEE) // based on unit IDs 0xE0-0xEF per chapter
 BNE 10 rC r0 
 LOAD1 0x1 ZapdosBattleUnitGroup 
 ENUN 
+GOTO 11 
 LABEL 10 
+ENUT ZapdosFledFlag
+LABEL 11 
  
 AutoLevelUnits(WildLvl, True, 0xE0EF) // Trainers 
 
