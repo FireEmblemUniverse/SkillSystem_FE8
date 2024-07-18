@@ -144,15 +144,17 @@ struct AnimsOnWrapperProc {
 	/* 2C */ const struct BattlePopupType* itPop;
 };
 
-static void PopR_AnimsOnWrapperLoop(struct AnimsOnWrapperProc* proc);
+static void PopR_AnimsOnWrapperPreparePopup(struct AnimsOnWrapperProc* proc);
+static void PopR_AnimsOnWrapperDisplayPopup(struct AnimsOnWrapperProc* proc);
 static void PopR_AnimsOnWrapperCleanup(struct AnimsOnWrapperProc* proc);
 
 static const struct ProcInstruction sProc_PopR_AnimsOnWrapper[] = {
 	PROC_SET_DESTRUCTOR(PopR_AnimsOnWrapperCleanup),
-	PROC_SLEEP(10),
 
 PROC_LABEL(0),
-	PROC_LOOP_ROUTINE(PopR_AnimsOnWrapperLoop),
+	PROC_LOOP_ROUTINE(PopR_AnimsOnWrapperPreparePopup),
+	PROC_SLEEP(10),
+	PROC_CALL_ROUTINE(PopR_AnimsOnWrapperDisplayPopup),
 	PROC_SLEEP(8),
 
 	PROC_GOTO(0),
@@ -174,12 +176,11 @@ void PopR_StartBattlePopups(void) {
 	else
 		// Not Promoting!
 		proc->itPop = gBattlePopupTable;
-
-	Sound_SetSongVolume(0x80);
 }
 
-static void PopR_AnimsOnWrapperLoop(struct AnimsOnWrapperProc* proc) {
-	const struct BattlePopupType type = *proc->itPop++;
+//Search for a popup that can display. If found, itPop will point to it
+static void PopR_AnimsOnWrapperPreparePopup(struct AnimsOnWrapperProc* proc) {
+	const struct BattlePopupType type = *proc->itPop;
 
 	if (!type.tryInit) {
 		ProcGoto((struct Proc*) (proc), 1);
@@ -188,11 +189,19 @@ static void PopR_AnimsOnWrapperLoop(struct AnimsOnWrapperProc* proc) {
 
 	if (!type.tryInit()) {
 		ProcGoto((struct Proc*) (proc), 0);
+		proc->itPop++;
 		return;
 	}
 
-	PopR_StartAnimsOnPopup(type.definition, type.time, (struct Proc*) (proc));
+	//Valid popup has been found. End loop and let PopR_AnimsOnWrapperDisplayPopup run
+	Sound_SetSongVolume(0x80);
 	BreakProcLoop((struct Proc*) (proc));
+}
+
+static void PopR_AnimsOnWrapperDisplayPopup(struct AnimsOnWrapperProc* proc) {
+	const struct BattlePopupType type = *proc->itPop++;
+	PopR_StartAnimsOnPopup(type.definition, type.time, (struct Proc*) (proc));
+	ProcGoto((struct Proc*) (proc), 0);
 }
 
 static void PopR_AnimsOnWrapperCleanup(struct AnimsOnWrapperProc* proc) {
