@@ -1201,5 +1201,8 @@ ORG SkillIcon(PathfinderID)
 ORG SkillIcon(ArmsMasterID)
 #incbin "SkillIcons/ArmsMaster.dmp"
 
+ORG SkillIcon(FactionSlayerID)
+#incbin "SkillIcons/FactionSlayer.dmp"
+
 ORG SkillIcons+0x8000
 

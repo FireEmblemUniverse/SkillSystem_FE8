@@ -65,6 +65,8 @@ EvenRhythm:
 POIN SkillTester
 WORD EvenRhythmID
 
+#include "FactionSlayer/FactionSlayer.event"
+
 #include "FaireSkills/FaireSkills.event"
 
 ALIGN 4
