@@ -82,14 +82,14 @@ SubMenuSample:
 
 //{U}
 
-MenuCommand(OrderMovesName,OrderMovesDesc,NormalText,AlwaysUsable,ReorderMovesEffect)
+MenuCommand(OrderMovesName,OrderMovesDesc,NormalText,UsableNonTrainer,ReorderMovesEffect)
 	
   UM_Rescue
   UM_Give
   UM_Take
   UM_Drop
 //UM_Item
-MenuCommand(UM_Learnset, UM_LearnsetDesc, NormalText, AlwaysUsable, ViewLearnsetCommand_OnSelect)
+MenuCommand(UM_Learnset, UM_LearnsetDesc, NormalText, UsableNonTrainer, ViewLearnsetCommand_OnSelect)
 MenuCommand(UM_Release, UM_ReleaseDesc, NormalText, ReleaseCommandUsability, ReleaseCommandEffect)
  
 /*

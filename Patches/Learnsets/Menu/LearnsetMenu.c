@@ -188,9 +188,16 @@ static const struct MenuDefinition Menu_ViewLearnsetDef =
     .onBPress = (void*) (0x08022860+1), // FIXME
 };
 
+int UsableNonTrainer(void) { 
+    if (gActiveUnit->pCharacterData->number == 0x45) { return 2; } 
+    return 1; 
+
+} 
+
 extern const ProcCode gProc_8A01650[]; 
 int ViewLearnsetCommand_OnSelect(struct MenuProc* menu, struct MenuCommandProc* command)
 {
+    if (UsableNonTrainer() == 2) { return 0; } 
     struct ViewLearnsetProc* proc = (void*) ProcStart(Proc_ViewLearnset, ROOT_PROC_3);
     //struct ViewLearnsetProc* proc2 = (void*) ProcStart(&gProc_8A01650[0], ROOT_PROC_3);
 	
