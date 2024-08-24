@@ -23,7 +23,4 @@ if exist "Definitions.s" (
 
 echo y | del "%~n1.elf"
 
-@copy "%~n1.lyn.event" "%~dp0dmp" > nul
-@del "%~n1.lyn.event"
-
 pause

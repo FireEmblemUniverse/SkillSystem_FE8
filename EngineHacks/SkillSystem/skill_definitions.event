@@ -592,11 +592,11 @@
 //Even/Odd Rhythm: +10 Hit and Avoid on even or odd numbered turns.
 //Author Unknown (Initial Commit)
 #define OddRhythmID 216
-#define EvenRhythmID 255 //215
+#define EvenRhythmID 215
 
-//"Faction" Slayer: 2x calculated damage when facing specific unit IDs
+//"Faction" Slayer: 2x calculated damage when facing specific units.
 //By ditto
-#define FactionSlayerID 215 //255
+#define FactionSlayerID 255
 
 //Faire Skills: +4 damage when equipping a weapon of the specified type.
 //Author Unknown (Initial Commit)
