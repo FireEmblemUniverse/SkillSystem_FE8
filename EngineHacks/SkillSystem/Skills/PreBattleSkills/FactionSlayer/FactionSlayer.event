@@ -1,0 +1,10 @@
+ALIGN 4
+FactionSlayer:
+#include "FactionSlayer.lyn.event"
+POIN SkillTester
+WORD FactionSlayerID
+
+ALIGN 4
+FactionSlayer_UnitIDList: //Edit the following list to change what unit IDs are affected.
+BYTE $CD $CE $19 $00
+//This is a null terminated list. These are Rausten Knights + L'arachel. I like L'arachel but I needed a faction.

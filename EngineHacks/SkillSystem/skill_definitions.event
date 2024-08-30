@@ -594,6 +594,10 @@
 #define OddRhythmID 216
 #define EvenRhythmID 215
 
+//"Faction" Slayer: 2x calculated damage when facing specific units.
+//By ditto
+#define FactionSlayerID 255
+
 //Faire Skills: +4 damage when equipping a weapon of the specified type.
 //Author Unknown (Initial Commit)
 #define SwordfaireID 195
