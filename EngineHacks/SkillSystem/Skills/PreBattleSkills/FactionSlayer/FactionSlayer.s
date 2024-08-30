@@ -42,7 +42,7 @@ beq End
   mov r1, r5
   bl ApplyFactionSlayer
   b  End
-  
+
 End:
 pop {r4, r5}
 pop {r0}
@@ -65,7 +65,7 @@ ListLoop:
 ldrb r0, [r3,r2] @loads a list item to r0
 
 cmp r0, #0x0
-beq End @if list reaches a $00 byte, terminate
+beq ApplyEnd @if list reaches a $00 byte, terminate
 
 cmp r0, r1
 beq ApplyDamage @if the list item and the enemy unit match, apply damage
@@ -82,13 +82,14 @@ mov r3, #0x5C
 ldrh r1, [r4, r3] @enemy defense
 sub r0, r1 @get the battle damage
 cmp r0, #0x0
-blt End
+blt ApplyEnd
 
 @if it's not below 0, add it on to user attack
 add r0, r2
 mov r3, #0x5A
 strh r0, [r5, r3] @store the calculated damage*2
 
+ApplyEnd:
 pop {r4, r5}
 bx lr
 
