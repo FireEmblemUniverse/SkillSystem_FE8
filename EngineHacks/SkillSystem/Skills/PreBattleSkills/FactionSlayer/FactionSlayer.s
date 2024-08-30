@@ -1,15 +1,23 @@
 @FactionSlayer_UnitIDList is a null terminated list of unit IDs in FactionSlayer/Installer.event
 
+@by ditto, big thanks Jester and Contro for helping fix this!
+
 @flow of this skill:
 @if attacker has this skill, deal 2x calculated damage to a list of units (no, not effective)
 
 .thumb
 .equ FactionSlayerID, SkillTester+4
+.equ gBattleDefender, 0x203A56C
 
 @start time! usual stuff, copy over attacker/defender to r4/r5 respectively
 push {r4, r5, lr}
 mov r4, r0 @attacker
 mov r5, r1 @defender
+
+@this took far too long to figure out
+ldr r0, =gBattleDefender
+cmp r0, r4
+bne End
 
 ldr r0, SkillTester
 mov lr, r0
@@ -17,11 +25,37 @@ mov r0, r5 @defender data
 ldr r1, FactionSlayerID
 .short 0xf800
 cmp r0, #0
+beq CheckDefender
+  mov r0, r5
+  mov r1, r4
+  bl ApplyFactionSlayer
+
+CheckDefender:
+ldr r0, SkillTester
+mov lr, r0
+mov r0, r4 @defender data
+ldr r1, FactionSlayerID
+.short 0xf800
+cmp r0, #0
 beq End
+  mov r0, r4
+  mov r1, r5
+  bl ApplyFactionSlayer
+  b  End
+  
+End:
+pop {r4, r5}
+pop {r0}
+bx r0
+
+ApplyFactionSlayer:
+push {r4, r5}
+
+mov r4, r1
+mov r5, r0
 
 @okay! if they're here, they have the skill. Now, we check their enemy's unit ID against our list.
 @Let's initiate our loop, as we've got to traverse this array of sorts.
-@Loop Init
 ldr r3, =FactionSlayer_UnitIDList
 ldr r1, [r4]
 ldrb r1, [r1, #4] @Enemy unit's ID
@@ -55,11 +89,8 @@ add r0, r2
 mov r3, #0x5A
 strh r0, [r5, r3] @store the calculated damage*2
 
-@*pop*
-End:
 pop {r4, r5}
-pop {r0}
-bx r0
+bx lr
 
 .align
 .ltorg
