@@ -524,6 +524,15 @@ BNE 20 sC s0
 CHECK_EVENTID EarthbadgeObtained // open other gyms 
 BNE 11 sC s0 
 
+// i dunno why this is needed but whatever 
+ENUF PewterGymClosedFlag 
+ENUF CeruleanGymClosedFlag 
+ENUF VermilionGymClosedFlag
+ENUF FuschiaGymClosedFlag 
+ENUF CeladonGymClosedFlag 
+ENUF SaffronGymClosedFlag 
+ENUF CinnabarGymClosedFlag 
+
 // this part is for compatibility with save files before 1.12 
 CHECK_EVENTID BoulderbadgeObtained
 BEQ 1 sC s0 
