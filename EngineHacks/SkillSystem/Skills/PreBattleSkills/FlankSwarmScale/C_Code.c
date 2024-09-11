@@ -8,9 +8,28 @@ extern int FlankRequiresSkill_Link;
 extern int MultiscaleID_Link; 
 
 
+inline const s8* VanillaGetUnitMovementCost(struct Unit* unit) {
+    if (unit->state & US_IN_BALLISTA)
+        return Unk_TerrainTable_0880BC18;
+
+    switch (gPlaySt.chapterWeatherId) {
+
+    case WEATHER_RAIN:
+        return unit->pClassData->pMovCostTable[1];
+
+    case WEATHER_SNOW:
+    case WEATHER_SNOWSTORM:
+        return unit->pClassData->pMovCostTable[2];
+
+    default:
+        return unit->pClassData->pMovCostTable[0];
+
+    } // switch (gPlaySt.chapterWeatherId)
+}
+
 // use vanilla version so we don't lag by using hooked versions that accounts for pass etc 
 inline s8 Vanilla_CanUnitCrossTerrain(struct Unit* unit, int terrain) {
-    const s8* lookup = (s8*)GetUnitMovementCost(unit);
+    const s8* lookup = (s8*)VanillaGetUnitMovementCost(unit);
     return (lookup[terrain] > 0) ? TRUE : FALSE;
 }
 
