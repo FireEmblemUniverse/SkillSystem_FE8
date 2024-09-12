@@ -163,8 +163,10 @@
 	callHack_r3(Prep_Screen_Write_New_Stats)
 	
 	//Number placement
+	// Loop over the stats. Compare old stat with new stat. If they are non-equal, display the stat gain.
+	// Start at proc+0x2B for old stats, proc+0x35 for new stats
 	ORG $9CEF2
-	SHORT 0x302C 0x1903 0x300A
+	SHORT 0x302B 0x1903 0x300A
 	ORG $9CF20 //counter
 	BYTE 0x8
 	ORG $9CF02
