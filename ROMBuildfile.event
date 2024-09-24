@@ -1,4 +1,8 @@
 #ifdef _FE8_
+//PROTECT $273A4 $2752a
+//PROTECT $273cc 
+//PROTECT $27318 
+//PROTECT $271eC 
     #include "EAstdlib.event"
 	#include "Extensions/Hack Installation.txt"
     #include "CustomDefinitions.event"
