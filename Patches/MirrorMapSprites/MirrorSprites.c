@@ -35,7 +35,7 @@ const u16 gObject_32x32_HFlipped[] =
 };
 
 /*
-void RefreshUnitSprites2(void)
+void RefreshUnitSprites(void)
 {
     struct SMSHandle * smsHandle;
 
@@ -80,6 +80,8 @@ void RefreshUnitSprites2(void)
 void SetMirrorSpriteInSmsHandle(struct Unit* unit, struct SMSHandle * smsHandle) { 
     //SMSHandle._u0A appears to be unused, so I'll use it to track who should be flipped
     smsHandle->_u0A = 0;
+    int unitID = unit->pCharacterData->number; 
+    if ((unitID >= 0xE0)) { return; } 
     switch (UNIT_FACTION(unit)) {
         case FACTION_BLUE:
             if (gMirrorSpriteOptions & FLIP_PLAYER) {
