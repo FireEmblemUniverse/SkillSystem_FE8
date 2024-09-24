@@ -36,8 +36,8 @@ END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
-CHAR PurchasedHitmonchanFlag PurchaseHitmonchanevent [0x0, OaksAide] 0 // NPC
-CHAR PurchasedHitmonleeFlag PurchaseHitmonleeevent [0x0, OaksAide2] 0 // NPC
+CHAR 0 PurchaseHitmonchanevent [0x0, OaksAide] 0 // NPC
+CHAR 0 PurchaseHitmonleeevent [0x0, OaksAide2] 0 // NPC
 TrainerPostBattleTalk(OaksAide) // NPC talk again 
 TrainerPostBattleTalk(OaksAide2) // NPC talk again 
 TrainerPostBattleTalk(0xE0) // NPC talk again 
@@ -76,6 +76,7 @@ DISA TempAlly
 GOTO 63
 
 LABEL 20
+ENUT PurchasedHitmonchanFlag
 CHECK_COORDS 0x7fff
 SADD sA sC s0  
 SET_ACTIVE 0
@@ -137,6 +138,7 @@ DISA TempAlly
 GOTO 63
 
 LABEL 20
+ENUT PurchasedHitmonleeFlag
 CHECK_COORDS 0x7fff
 SADD sA sC s0  
 SET_ACTIVE 0

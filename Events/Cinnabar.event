@@ -63,7 +63,7 @@ GOTO 99
 
 LABEL 0 // Kabuto 
 CHECK_EVENTID ObtainedKabutoFlag
-BNE 10 sC s0 
+//BNE 10 sC s0 
 CHECK_EVENTID DomeFossilFlag 
 BEQ 11 sC s0 // we don't have the flag 
 CALL KabutoEvent 
@@ -71,7 +71,7 @@ GOTO 99
 
 LABEL 1 // Omanyte 
 CHECK_EVENTID ObtainedOmanyteFlag
-BNE 10 sC s0 
+//BNE 10 sC s0 
 CHECK_EVENTID HelixFossilFlag 
 BEQ 11 sC s0 // we don't have the flag 
 CALL OmanyteEvent 
@@ -80,7 +80,7 @@ GOTO 99
 LABEL 2 // Aerodactyl 
 
 CHECK_EVENTID ObtainedAerodactylFlag
-BNE 10 sC s0 
+//BNE 10 sC s0 
 CHECK_EVENTID OldAmberFlag 
 BEQ 11 sC s0 // we don't have the flag 
 CALL AerodactylEvent 
