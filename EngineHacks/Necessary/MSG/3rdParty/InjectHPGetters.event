@@ -6,7 +6,7 @@
 PUSH
 
 	ORG $193A4 // UnitAddHp
-#include UnitAddHpInject.dmp
+#incbin UnitAddHpInject.dmp
 
 	ORG $17CE0 // LoadUnit
 	SHORT $F001 $FA56 $E005
