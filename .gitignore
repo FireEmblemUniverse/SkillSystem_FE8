@@ -35,6 +35,7 @@ $RECYCLE.BIN/
 *.sym
 /*.png
 !Tools/sym/*.sym
+*.elf
 
 # python cache
 __pycache__
