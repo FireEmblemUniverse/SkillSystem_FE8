@@ -39,10 +39,11 @@ adding yourself!
 - Pikmin1211: Miscellaneous
 - 2WB: Miscellaneous
 - Someone: Taker, Hone, Oath, Rouse, Guts, Strong Con, Rally Chaos, Hoarders Bane, Shrewd Potential, Eternal Vanity 
-- Alice: Dancing/Heavy Blade, Dark Bargain, Soul Sap 
+- Alice: Dancing/Heavy Blade, Dark Bargain, Soul Sap
 - VelvetKitsune: Initiative 
 - Zaim: Indoor March
 - Reds: Quick Riposte
 - Dragz: Divinely Inspiring
+- Feier: Mage Slayer, Liquid Ooze 
 - circleseverywhere: Skill Animations
 
