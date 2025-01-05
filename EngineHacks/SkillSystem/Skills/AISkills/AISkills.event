@@ -1,6 +1,9 @@
 PUSH
 
 //Provoke
+ORG $3DF40
+SHORT 0x2132 0xE018 // fix provoke not working when skill holder can die
+
 ORG $3DF78
 jumpToHack(Provoke)
 
