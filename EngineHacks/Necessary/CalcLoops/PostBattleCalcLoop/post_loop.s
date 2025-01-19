@@ -21,14 +21,13 @@ push	{r4-r7, lr}
 @reload current unit data to avoid weird staff on reload
 ldr	r5, =CurrentUnit
 ldr	r6, [r5]
-ldr	r0, [r5]
-ldrb r1, [r6, #0x1D] @mov bonus
-ldr r2, [r6, #4] @class ptr
-ldrb r2, [r2, #0x12] @class mov
-add r1, r1, r2
-ldr r2, =ActionData
-ldrb r2, [r2, #0x10]
-sub r1, r1, r2
+mov r0, r6
+mov r1, #0x0
+ldr r2, =#0x8019224 @mov getter
+mov r14, r2
+.short 0xf800
+mov r1, r0
+mov r0, r6
 ldr r2, =#0x801a3cc
 mov r14, r2
 .short 0xf800
