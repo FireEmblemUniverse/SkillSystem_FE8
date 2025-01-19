@@ -22,8 +22,15 @@ push	{r4-r7, lr}
 ldr	r5, =CurrentUnit
 ldr	r6, [r5]
 ldr	r0, [r5]
-ldr	r1, =#0x801a3cc
-mov	lr, r1
+ldrb r1, [r6, #0x1D] @mov bonus
+ldr r2, [r6, #4] @class ptr
+ldrb r2, [r2, #0x12] @class mov
+add r1, r1, r2
+ldr r2, =ActionData
+ldrb r2, [r2, #0x10]
+sub r1, r1, r2
+ldr r2, =#0x801a3cc
+mov r14, r2
 .short 0xf800
 
 @giving the registers useful values
