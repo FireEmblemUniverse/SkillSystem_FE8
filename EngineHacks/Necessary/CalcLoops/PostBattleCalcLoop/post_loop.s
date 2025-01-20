@@ -21,9 +21,15 @@ push	{r4-r7, lr}
 @reload current unit data to avoid weird staff on reload
 ldr	r5, =CurrentUnit
 ldr	r6, [r5]
-ldr	r0, [r5]
-ldr	r1, =#0x801a3cc
-mov	lr, r1
+mov r0, r6
+mov r1, #0x0
+ldr r2, =#0x8019224 @mov getter
+mov r14, r2
+.short 0xf800
+mov r1, r0
+mov r0, r6
+ldr r2, =#0x801a3cc
+mov r14, r2
 .short 0xf800
 
 @giving the registers useful values
