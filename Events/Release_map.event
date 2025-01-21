@@ -148,7 +148,6 @@ Traps1:
 #ifdef DRAGON_VEINS
 Vein(9,23,0x0,DV1Desc) //freeze enemies
 #endif // DRAGON_VEINS
-BLST [6,22] 0x35
 ENDTRAP
 ALIGN 4
 
