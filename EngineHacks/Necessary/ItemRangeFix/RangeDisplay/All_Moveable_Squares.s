@@ -18,8 +18,10 @@ cmp		r1,#0x0
 beq		NoBallistaAbility
 mov		r1,#0x1
 NoBallistaAbility:
-mov		r12,r1					@r12 has ballista check flag
-mov		r1,#0x1
+@mov		r12,r1					@r12 has ballista check flag
+ldr r4, =#0x03000006
+strb r1, [r4]
+
 neg		r1,r1
 @ldr		r3,GetRangeBitfield
 @bl		goto_r3					@returns range bitfield in r0 and min/max halfword in r1 (if some range was > 0xF)
