@@ -6,10 +6,10 @@ push	{r4-r7,r14}
 mov		r7,r8
 push	{r7}
 
-add     r13,#-0x4
-pop     {r4}
-
+ldr r4, =#0x03000006
+ldrb r4, [r4]
 mov		r8,r4
+
 mov		r4,r0
 mov		r5,r1
 mov		r6,r2
