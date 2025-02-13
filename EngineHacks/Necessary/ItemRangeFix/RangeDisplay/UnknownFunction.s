@@ -34,7 +34,6 @@ ldsb	r0,[r4,r0]
 mov		r1,#0x11
 ldsb	r1,[r4,r1]
 mov		r2,#0x0
-@mov		r12,r2
 ldr     r3, =#0x03000006
 strb    r2, [r3]
 

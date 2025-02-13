@@ -1,7 +1,7 @@
 .thumb
 .org 0x0
 
-@r0 has x, r1 has y, r2 has bitfield, r3 has halfword, 0x030005B0 has ballista flag
+@r0 has x, r1 has y, r2 has bitfield, r3 has halfword, 0x03000006 has ballista flag
 push	{r4-r7,r14}
 mov		r7,r8
 push	{r7}

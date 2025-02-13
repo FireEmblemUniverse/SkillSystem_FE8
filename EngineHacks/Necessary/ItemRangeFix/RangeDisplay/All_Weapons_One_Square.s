@@ -10,8 +10,7 @@ ldr		r2,WeaponCheck
 bl		Return_Range_Bitfield
 mov		r2,#0x0
 
-@mov		r12,r0					@ain't gonna be no ballista
-ldr     r3, =#0x03000006
+ldr     r3, =#0x03000006 @ain't gonna be no ballista
 strb    r0, [r3]
 
 mov		r2,r0
