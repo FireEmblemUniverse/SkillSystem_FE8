@@ -18,8 +18,7 @@ cmp		r1,#0x0
 beq		NoBallistaAbility
 mov		r1,#0x1
 NoBallistaAbility:
-@mov		r12,r1					@r12 has ballista check flag
-ldr r4, =#0x03000006
+ldr r4, =#0x03000006 @0x03000006 has ballista check flag
 strb r1, [r4]
 
 neg		r1,r1
@@ -68,7 +67,7 @@ bne		DecrementX
 mov		r0,r5					@current x
 mov		r1,r4					@current y
 mov		r2,r7					@range bitfield
-mov		r3,r8					@range halfword (also, r12 has flag)
+mov		r3,r8					@range halfword
 @push	{r4}
 @ldr		r4,GetRangeBitfield+4	@writes the range at that square
 @bl		goto_r4
