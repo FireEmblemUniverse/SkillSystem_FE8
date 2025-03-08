@@ -20,7 +20,7 @@ mov		r1,#0x1
 NoBallistaAbility:
 ldr r4, =#0x03000006 @0x03000006 has ballista check flag
 strb r1, [r4]
-
+mov r1, #0x1
 neg		r1,r1
 @ldr		r3,GetRangeBitfield
 @bl		goto_r3					@returns range bitfield in r0 and min/max halfword in r1 (if some range was > 0xF)
