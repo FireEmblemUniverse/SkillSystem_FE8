@@ -100,6 +100,9 @@ MNC2 PalletCh
 GOTO 0x63 
 
 LABEL 91 
+#ifndef USE_DEBUGGER 
+ENUT DebuggerFlag 
+#endif 
 ENUT BracketedGrowthsFlag
 ENUT CasualModeFlag
 ENUT CasualModeFlag_2

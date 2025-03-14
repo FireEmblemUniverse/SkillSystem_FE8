@@ -1,0 +1,240 @@
+
+#ifndef callHackNew 
+	#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+#endif 
+#include "Hooks.lyn.event" 
+#include "C_Code.lyn.event" 
+
+ALIGN 4 
+DebuggerTurnedOff_Flag:
+WORD DebuggerFlag // if this flag is on, the debugger is off 
+
+#define A_BUTTON        0x0001
+#define B_BUTTON        0x0002
+#define SELECT_BUTTON   0x0004
+#define START_BUTTON    0x0008
+#define DPAD_RIGHT      0x0010
+#define DPAD_LEFT       0x0020
+#define DPAD_UP         0x0040
+#define DPAD_DOWN       0x0080
+#define R_BUTTON        0x0100
+#define L_BUTTON        0x0200
+
+ALIGN 4 
+KeyComboToDisableFlag:
+WORD DPAD_UP|DPAD_LEFT|L_BUTTON 
+
+ALIGN 4 
+KonamiCodeEnabled:
+WORD 1 // if 0, it is disabled 
+
+PUSH 
+ORG 0x1ca0c
+callHackNew(CallDebuggerProc)
+POP 
+
+#ifndef UNIT_MENU_DEFINITIONS
+    #define MenuCommand(name,description,colour,usability,effect) "WORD $80d7d94; SHORT name description; BYTE colour $4e; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; WORD 0 0 0"
+    #define MenuCommand(name,description,colour,usability,effect, unknown1, unknown2) "WORD $80d7d94; SHORT name description; BYTE colour $4e; SHORT 0; POIN usability|1; WORD 0; POIN effect|1; POIN 0 unknown1|1 unknown2|1"
+
+    #define NormalText 0x0
+    #define GrayText 0x1
+    #define BlueText 0x2
+    #define OrangeText 0x3
+    #define GreenText 0x4
+    #define BlackText 0x5
+#endif 
+
+#define MenuAlwaysEnabled 0x804f449
+#define MenuNeverEnabled  0x804f451 
+ALIGN 4 
+gDebuggerMenuText: 
+FILL(256 * 4) 
+
+#define Counter 0 
+#define MenuCommand1(NameLabel, DescLabel,colour,usability,draw, effect) "WORD $80d7d94; SHORT 0x505 0x505; BYTE colour $4e; SHORT 0; POIN usability|1; POIN draw|1; POIN effect|1; POIN PageIdler|1; WORD 0 0; PUSH; ORG gDebuggerMenuText + (2 * ((CURRENTOFFSET - (9 * 4)) - gDebuggerMenuItems) / 9); POIN NameLabel DescLabel; POP"
+// #define MenuCommand2(NameLabel, DescLabel,colour,usability,draw, effect) "WORD $80d7d94; SHORT 0x505 0x505; BYTE colour $4e; SHORT 0; POIN usability|1; POIN draw|1; POIN effect|1; POIN PageIdler|1; WORD 0 0; PUSH; ORG gDebuggerMenuText2 + (2 * ((CURRENTOFFSET - (9 * 4)) - gDebuggerMenuItemsPage2) / 9); POIN NameLabel DescLabel; POP"
+//#define MenuCommand(NameLabel, DescLabel,colour,usability,draw, effect) "WORD $80d7d94; SHORT 0x505 0x505; BYTE colour $4e; SHORT 0; POIN usability|1; POIN draw|1; POIN effect|1; WORD 0 0 0; "
+    
+ALIGN 4 
+NumberOfPages:
+WORD 3
+
+ggDebuggerMenuItems:
+POIN gDebuggerMenuItems gDebuggerMenuItemsPage2 gDebuggerMenuItemsPage3 
+WORD 0 
+
+ALIGN 4 
+gDebuggerMenuItems: 
+MenuCommand1(PickupText, PickupDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, PickupUnitNow)
+MenuCommand1(PromoteText, PromoteDesc, NormalText, CanActiveUnitPromoteMenu, DebuggerMenuItemDraw, StartPromotionNow)
+// MenuCommand1(ArenaText, ArenaDesc,NormalText, CallArenaIsUnitAllowed, DebuggerMenuItemDraw, StartArenaNow)
+MenuCommand1(LevelupText,LevelupDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, LevelupNow)
+MenuCommand1(EditStatsText,EditStatsDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, EditStatsNow)
+MenuCommand1(EditMiscText,EditMiscDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, EditMiscNow)
+MenuCommand1(EditItemsText,EditItemsDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, EditItemsNow)
+MenuCommand1(EditStateText,EditStateDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, EditStateNow)
+MenuCommand1(PageText, PageDesc, NormalText, MenuAlwaysEnabled, PageMenuItemDraw, PageIncrementNow) // sprite draw assumes always on the bottom 
+
+
+WORD 0 0 0 0 0 0 0 0 0 // terminator 
+
+
+ALIGN 4 
+gDebuggerMenuItemsPage2: // must be immediately after gDebuggerMenuItems 
+MenuCommand1(GodmodeText,GodmodeDesc, NormalText, MenuAlwaysEnabled, GodmodeDrawText, StartGodmodeNow)
+// MenuCommand1(ControlAiText,ControlAiDesc, NormalText, MenuAlwaysEnabled, ControlAiDrawText, ControlAiNow)
+MenuCommand1(EditMapText,EditMapDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, EditMapNow)
+MenuCommand1(ChStateText,ChStateDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, ChStateNow)
+MenuCommand1(ClearChText,ClearChDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, CallEndEventNow)
+MenuCommand1(LoadUnitsText,LoadUnitsDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, LoadUnitsNow)
+MenuCommand1(GodmodeText,GodmodeDesc, NormalText, MenuAlwaysEnabled, BootmodeDrawText, ToggleBootNow)
+MenuCommand1(PageText, PageDesc, NormalText, MenuAlwaysEnabled, PageMenuItemDraw, PageIncrementNow) // sprite draw assumes always on the bottom 
+#ifdef DEBUG_SKILL_EDIT_INCLUDED 
+//MenuCommand(EditSkillsText,EditSkillsDesc, OrangeText, $04F449,DebuggerMenuItemDraw, SkillDebugCommand_OnSelect)
+#endif 
+WORD 0 0 0 0 0 0 0 0 0 // terminator 
+ALIGN 4 
+gDebuggerMenuItemsPage3: // must be immediately after gDebuggerMenuItemsPage2 
+MenuCommand1(WExpText,WExpDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, EditWExpNow)
+MenuCommand1(SupportMenuText,SupportMenuDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, EditSupportNow)
+MenuCommand1(SupplyMenuText,SupplyMenuDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, SupplyNow)
+MenuCommand1(ListMenuText,ListMenuDesc, NormalText, MenuAlwaysEnabled, DebuggerMenuItemDraw, ListNow) 
+// MenuCommand1(AiControlRemainingUnitsText,AiControlRemainingUnitsDesc, NormalText, MenuAlwaysEnabled, AiControlRemainingUnitsDrawText, AiControlRemainingUnitsNow) 
+MenuCommand1(PageText, PageDesc, NormalText, MenuAlwaysEnabled, PageMenuItemDraw, PageIncrementNow) // sprite draw assumes always on the bottom 
+#ifdef DEBUG_SKILL_EDIT_INCLUDED 
+//MenuCommand(EditSkillsText,EditSkillsDesc, OrangeText, $04F449,DebuggerMenuItemDraw, SkillDebugCommand_OnSelect)
+#endif 
+WORD 0 0 0 0 0 0 0 0 0 // terminator 
+
+
+#define NL "BYTE 0x1" 
+#define EndText "BYTE 0x0" 
+
+PickupText:
+    String(" Pickup"); EndText 
+PickupDesc:
+    String("Pickup a unit and"); NL
+    String("place them anywhere."); EndText 
+
+PromoteText:
+    String(" Promote"); EndText 
+PromoteDesc:
+    String("Promote the unit"); NL
+    String("into an advanced"); NL 
+    String("class."); EndText 
+    
+ArenaText:
+    String(" Arena"); EndText 
+ArenaDesc: 
+    String("Enter the arena"); NL
+    String("and fight for glory."); EndText 
+
+ClearChText:
+    String(" Clear Ch."); EndText 
+ClearChDesc:
+    String("Clear the current"); NL
+    String("chapter."); EndText 
+    
+ChStateText:
+    String(" Ch. State"); EndText 
+ChStateDesc:
+    String("Edit things about"); NL
+    String("the chapter."); EndText 
+
+EditMapText:
+    String(" Edit Map"); EndText 
+EditMapDesc:
+    String("Edit tiles on the"); NL
+    String("map with the tileset."); EndText 
+
+EditStatsText:
+    String(" Stats"); EndText 
+EditStatsDesc:
+    String("Edit a unit's stats."); EndText
+
+EditItemsText:
+    String(" Items"); EndText 
+EditItemsDesc:
+    String("Edit a unit's items."); EndText
+
+EditSkillsText:
+    String(" Skills"); EndText 
+EditSkillsDesc:
+    String("Edit a unit's"); NL
+    String("learned skills."); EndText 
+
+GodmodeText:
+    String(" Godmode off"); EndText 
+GodmodeDesc:
+    String("Make your units"); NL
+    String("win every battle."); EndText 
+
+ControlAiText:
+    String(" AI is on"); EndText 
+ControlAiDesc:
+    String("Control just players"); NL
+    String("or control everyone."); EndText 
+
+PageText:
+    String(" Page"); EndText 
+PageDesc:
+    String("Swap pages in"); NL
+    String("this debugger."); EndText 
+
+
+EditMiscText:
+    String(" Misc"); EndText 
+EditMiscDesc:
+    String("Edit unit's ID, class,"); NL
+    String("bonuses, and more."); EndText 
+
+LoadUnitsText:
+    String(" Load units"); EndText 
+LoadUnitsDesc:
+    String("Load units."); NL
+    String("Possibly useful."); EndText 
+
+LevelupText:
+    String(" Level up"); EndText 
+LevelupDesc:
+    String("Level up"); NL
+    String("the unit."); EndText 
+
+EditStateText:
+    String(" State"); EndText 
+EditStateDesc:
+    String("Level up"); NL
+    String("the unit."); EndText 
+
+WExpText:
+    String(" WExp"); EndText 
+WExpDesc:
+    String("Edit WExp"); NL
+    String("for the unit."); EndText 
+
+SupportMenuText:
+    String(" Supports"); EndText 
+SupportMenuDesc:
+    String("Edit support levels"); NL
+    String("for the unit."); EndText 
+
+SupplyMenuText:
+    String(" Supply"); EndText 
+SupplyMenuDesc:
+    String("Open the convoy"); NL
+    String("to access items."); EndText 
+
+ListMenuText:
+    String(" List"); EndText 
+ListMenuDesc:
+    String("Open the list"); NL
+    String("of everyone's items."); EndText 
+
+AiControlRemainingUnitsText:
+    String(" Autoplay off"); EndText 
+AiControlRemainingUnitsDesc:
+    String("Open the list"); NL
+    String("of everyone's items."); EndText 
+
+

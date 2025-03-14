@@ -1,4 +1,4 @@
-//PROTECT $1457584
+//PROTECT $1c998
 //PROTECT $144F944
 // 7BCA8 // ~5 extra frames than needed? nvm 
 // gProc_PopR_AnimsOnWrapper ~3 frames? 
@@ -18,6 +18,7 @@
 
 // Comment out for public releases
 //#define DEBUG_MODE 
+#define USE_DEBUGGER 
 
 #define TESTING_RANGES
 
@@ -26,13 +27,13 @@
 #define ENABLE_FMU 
 #define ENABLE_RANDOMIZER 
 #define ENABLE_DAMAGE_REDUCTION
-//#define INSTALL_OTHER_LANGUAGES
-//#define INSTALL_SPANISH 
+#define INSTALL_OTHER_LANGUAGES
+#define INSTALL_SPANISH 
 #define USE_HGSS_SPRITES
 //#define USE_PMD_SPRITES
 
 PUSH; ORG $D74D0	//{U}
-String("V1.14.07              Aug 2024") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.14.08T             Mar 2025") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 //String("V1.14.07 DEBUG BUILD  Mar 2024") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 #define ProtagID 0x45 
@@ -398,6 +399,8 @@ String("V1.14.07              Aug 2024") ; BYTE 0; POP // this overflows into th
 #define CardKeyFlag 0xEC 
 // 0xED BracketedGrowths 
 // 0xEF fixed growths 
+#define DebuggerFlag 0xF0 
+#define NoExpFlag 0xF1 
 
 // Pewter City: visit gym with flag 0x12C 
 

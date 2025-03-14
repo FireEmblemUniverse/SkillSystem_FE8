@@ -10,6 +10,13 @@ push {r4-r5, lr}
 mov r4, r0 @ unit 
 @bl GetDifficulty 
 
+ldr r0, =NoExpFlag
+lsl r0, #16 
+lsr r0, #16 
+blh CheckEventId 
+cmp r0, #0 
+bne False 
+
 ldrb r5, [r4, #8] @ level 
 
 ldr r0, =0x202BCb0 
