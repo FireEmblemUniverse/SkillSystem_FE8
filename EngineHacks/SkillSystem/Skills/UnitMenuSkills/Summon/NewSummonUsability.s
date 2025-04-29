@@ -17,7 +17,7 @@
 
 @old at 80243D8
 
-push {r4-r6,r14}
+push {r4-r7,r14}
 ldr r5,=gActiveUnit
 ldr r7,[r5] @r7 active unit data
 
@@ -155,7 +155,7 @@ ReturnTrue:
 mov r0,#1
 
 GoBack:
-pop {r4-r6}
+pop {r4-r7}
 pop {r1}
 bx r1
 
