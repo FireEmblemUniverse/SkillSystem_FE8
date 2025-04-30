@@ -17,14 +17,14 @@
 
 @old at 80243D8
 
-push {r4-r6,r14}
+push {r4-r7,r14}
 ldr r5,=gActiveUnit
-ldr r2,[r5]
+ldr r7,[r5] @r7 active unit data
 
 
 ldr r0, SkillTester
 mov lr, r0
-mov r0, r2
+mov r0, r7
 ldr r1, SummonID
 .short  0xf800
 cmp r0, #1
@@ -36,11 +36,8 @@ beq ReturnFalse
 
 
 @vanilla summon flag check
-ldr r5,=gActiveUnit
-ldr r2,[r5]
-
-ldr r0,[r2]
-ldr r1,[r2,#4]
+ldr r0,[r7]
+ldr r1,[r7,#4]
 ldr r0,[r0,#0x28]
 ldr r1,[r1,#0x28]
 orr r0,r1
@@ -52,14 +49,14 @@ beq ReturnFalse
 
 
 CantoCheck:
-ldr r0,[r2,#0xC]
+ldr r0,[r7,#0xC]
 mov r1,#0x40
 and r0,r1
 cmp r0,#0
 bne ReturnFalse
 
 @target list check
-mov r0,r2
+mov r0,r7
 blh ListSummonTargets,r6
 blh GetTargetListSize,r6
 cmp r0,#0
@@ -68,7 +65,7 @@ beq ReturnFalse
 @summon char ID config check
 ldr r4,=0xFFFF
 mov r2,#0
-ldr r0,[r5]
+mov r0,r7
 ldr r0,[r0]
 ldr r1,=0x0802442C
 ldr r1,[r1]   @Get SummonTable
@@ -158,7 +155,7 @@ ReturnTrue:
 mov r0,#1
 
 GoBack:
-pop {r4-r6}
+pop {r4-r7}
 pop {r1}
 bx r1
 
