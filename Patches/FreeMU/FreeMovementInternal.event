@@ -21,12 +21,12 @@ ENDA */
 #ifdef INSTALL_FMU
 PUSH
 
-ORG $1C998 
-#ifdef USE_DEBUGGER
-BYTE $80 // pressing R or B on a unit will open their status screen 
-#else 
-BYTE $81 
-#endif 
+// ORG $1C998 
+// #ifdef USE_DEBUGGER
+// BYTE $80 // pressing R or B on a unit will open their status screen 
+// #else 
+// BYTE $81 
+// #endif 
 //BYTE $84 // pressing R or Start on a unit will open their status screen 
 
 ORG $1ca9c
