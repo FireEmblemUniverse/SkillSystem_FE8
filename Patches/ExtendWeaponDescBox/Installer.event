@@ -99,14 +99,15 @@ PROTECT $8980C $8980C+12	//{U}
 
 
 // from 8089980 
+#define LinesToShow 4 // 5 might freeze the game in supply sometimes? 
 
 ORG $899BC		//{U}
 //ORG $8BCDA		//{J}
-BYTE (4)<<4
+BYTE (LinesToShow)<<4
 
 ORG $899C0		//{U}
 //ORG $8BCDE		//{J}
-BYTE (4)<<4
+BYTE (LinesToShow)<<4
 
 
 // [203E7C4]!!

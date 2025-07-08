@@ -24,37 +24,37 @@ FILL(0x1C*0x100) 0
 
 ALIGN 16 
 OakData: // 001
-#incbin "Dmp/Oak_mug.dmp" 
-#incbin "Dmp/Oak_frames.dmp" 
-#incbin "Dmp/Oak_palette.dmp" 
-#incbin "Dmp/Oak_minimug.dmp" 
-setMugEntry(153, OakData, 9, 9, 9, 9)
+#incbin "Dmp/Oak_Eden_mug.dmp" 
+#incbin "Dmp/Oak_Eden_frames.dmp" 
+#incbin "Dmp/Oak_Eden_palette.dmp" 
+#incbin "Dmp/Oak_Eden_minimug.dmp" 
+setMugEntry(153, OakData, 3, 6, 3, 4)
 
 ALIGN 16 
 GaryPointData: // 001
-#incbin "Dmp/GaryPoint_mug.dmp" 
-#incbin "Dmp/GaryPoint_frames.dmp" 
+#incbin "Dmp/Blue_Eden_mug.dmp" 
+#incbin "Dmp/Blue_Eden_frames.dmp" 
 GaryPointData_Pal:
-#incbin "Dmp/GaryPoint_palette.dmp" 
-#incbin "Dmp/GaryPoint_minimug.dmp" 
-setMugEntry(154, GaryPointData, 9, 9, 9, 9)
+#incbin "Dmp/Blue_Eden_palette.dmp" 
+#incbin "Dmp/Blue_Eden_minimug.dmp" 
+setMugEntry(154, GaryPointData, 3, 5, 3, 3)
 
 ALIGN 16 
 GaryShrugData: // 001
-#incbin "Dmp/GaryShrug_mug.dmp" 
-#incbin "Dmp/GaryShrug_frames.dmp" 
-#incbin "Dmp/GaryShrug_palette.dmp" 
-#incbin "Dmp/GaryShrug_minimug.dmp" 
-setMugEntry(155, GaryShrugData, 9, 9, 9, 9)
+#incbin "Dmp/Blue_Eden_EyesClosed_mug.dmp" 
+#incbin "Dmp/Blue_Eden_EyesClosed_frames.dmp" 
+#incbin "Dmp/Blue_Eden_EyesClosed_palette.dmp" 
+#incbin "Dmp/Blue_Eden_EyesClosed_minimug.dmp" 
+setMugEntry(155, GaryShrugData, 3, 5, 3, 3)
 
 
 ALIGN 16 
 GaryBattleData: // 001
-#incbin "Dmp/GaryBattle_mug.dmp" 
-#incbin "Dmp/GaryBattle_frames.dmp" 
-#incbin "Dmp/GaryBattle_palette.dmp" 
-#incbin "Dmp/GaryBattle_minimug.dmp" 
-setMugEntry(156, GaryBattleData, 9, 9, 9, 9)
+#incbin "Dmp/Blue_Eden_Stare_mug.dmp" 
+#incbin "Dmp/Blue_Eden_Stare_frames.dmp" 
+#incbin "Dmp/Blue_Eden_Stare_palette.dmp" 
+#incbin "Dmp/Blue_Eden_Stare_minimug.dmp" 
+setMugEntry(156, GaryBattleData, 3, 5, 3, 3)
 
 
 ALIGN 16 
@@ -68,68 +68,70 @@ setMugEntry(157, BirdkeeperData, 9, 9, 9, 9)
 
 ALIGN 16 
 BrockData: // 001
-#incbin "Dmp/Brock_mug.dmp" 
-#incbin "Dmp/Brock_frames.dmp" 
-#incbin "Dmp/Brock_palette.dmp" 
-#incbin "Dmp/Brock_minimug.dmp" 
-setMugEntry(158, BrockData, 9, 9, 9, 9)
+#incbin "Dmp/Brock_Eden_mug.dmp" 
+#incbin "Dmp/Brock_Eden_frames.dmp" 
+#incbin "Dmp/Brock_Eden_palette.dmp" 
+#incbin "Dmp/Brock_Eden_minimug.dmp" 
+setMugEntry(158, BrockData, 3, 6, 3, 4)
 
 
 ALIGN 16 
 MistyData: // 001
-#incbin "Dmp/Misty_mug.dmp" 
-#incbin "Dmp/Misty_frames.dmp" 
-#incbin "Dmp/Misty_palette.dmp" 
-#incbin "Dmp/Misty_minimug.dmp" 
-setMugEntry(159, MistyData, 9, 9, 9, 9)
+#incbin "Dmp/Misty_Eden_mug.dmp" 
+#incbin "Dmp/Misty_Eden_frames.dmp" 
+#incbin "Dmp/Misty_Eden_palette.dmp" 
+#incbin "Dmp/Misty_Eden_minimug.dmp" 
+setMugEntry(159, MistyData, 3, 6, 3, 4)
 
 ALIGN 16 
 LtSurgeData: 
-#incbin "Dmp/LtSurge_mug.dmp" 
-#incbin "Dmp/LtSurge_frames.dmp" 
-#incbin "Dmp/LtSurge_palette.dmp" 
-#incbin "Dmp/LtSurge_minimug.dmp" 
-setMugEntry(165, LtSurgeData, 9, 9, 9, 9)
+#incbin "Dmp/Surge_Eden_Specs_mug.dmp" 
+#incbin "Dmp/Surge_Eden_Specs_frames.dmp" 
+#incbin "Dmp/Surge_Eden_Specs_palette.dmp" 
+#incbin "Dmp/Surge_Eden_Specs_minimug.dmp" 
+setMugEntry(165, LtSurgeData, 2, 5, 2, 3)
 
 ALIGN 16 
 KogaData: 
-#incbin "Dmp/Koga_mug.dmp" 
-#incbin "Dmp/Koga_frames.dmp" 
-#incbin "Dmp/Koga_palette.dmp" 
-#incbin "Dmp/Koga_minimug.dmp" 
-setMugEntry(166, KogaData, 9, 9, 9, 9)
+#incbin "Dmp/Koga_Eden_mug.dmp" 
+#incbin "Dmp/Koga_Eden_frames.dmp" 
+#incbin "Dmp/Koga_Eden_palette.dmp" 
+#incbin "Dmp/Koga_Eden_minimug.dmp" 
+setMugEntry(166, KogaData, 2, 5, 2, 3)
 
 ALIGN 16 
 ErikaData: 
-#incbin "Dmp/Erika_mug.dmp" 
-#incbin "Dmp/Erika_frames.dmp" 
-#incbin "Dmp/Erika_palette.dmp" 
-#incbin "Dmp/Erika_minimug.dmp" 
-setMugEntry(167, ErikaData, 9, 9, 9, 9)
+#incbin "Dmp/Erika_Eden_mug.dmp" 
+#incbin "Dmp/Erika_Eden_frames.dmp" 
+#incbin "Dmp/Erika_Eden_palette.dmp" 
+#incbin "Dmp/Erika_Eden_minimug.dmp" 
+setMugEntry(167, ErikaData, 3, 6, 3, 4)
 
 ALIGN 16 
 SabrinaData: 
-#incbin "Dmp/Sabrina_mug.dmp" 
-#incbin "Dmp/Sabrina_frames.dmp" 
-#incbin "Dmp/Sabrina_palette.dmp" 
-#incbin "Dmp/Sabrina_minimug.dmp" 
-setMugEntry(168, SabrinaData, 9, 9, 9, 9)
+#incbin "Dmp/Sabrina_Eden_mug.dmp" 
+#incbin "Dmp/Sabrina_Eden_frames.dmp" 
+#incbin "Dmp/Sabrina_Eden_palette.dmp" 
+#incbin "Dmp/Sabrina_Eden_minimug.dmp" 
+setMugEntry(168, SabrinaData, 3, 5, 3, 3)
 
 ALIGN 16 
 BlaineData: 
-#incbin "Dmp/Blaine_mug.dmp" 
-#incbin "Dmp/Blaine_frames.dmp" 
-#incbin "Dmp/Blaine_palette.dmp" 
-#incbin "Dmp/Blaine_minimug.dmp" 
-setMugEntry(169, BlaineData, 9, 9, 9, 9)
+#incbin "Dmp/Blaine_Eden_mug.dmp" 
+#incbin "Dmp/Blaine_Eden_frames.dmp" 
+#incbin "Dmp/Blaine_Eden_palette.dmp" 
+#incbin "Dmp/Blaine_Eden_minimug.dmp" 
+setMugEntry(169, BlaineData, 2, 5, 2, 3)
 
 ALIGN 16 
 GiovanniData: 
-#incbin "Dmp/Giovanni_mug.dmp" 
-#incbin "Dmp/Giovanni_frames.dmp" 
-#incbin "Dmp/Giovanni_palette.dmp" 
-#incbin "Dmp/Giovanni_minimug.dmp" 
-setMugEntry(170, GiovanniData, 9, 9, 9, 9)
+#incbin "Dmp/Giovanni_Eden_mug.dmp" 
+#incbin "Dmp/Giovanni_Eden_frames.dmp" 
+#incbin "Dmp/Giovanni_Eden_palette.dmp" 
+#incbin "Dmp/Giovanni_Eden_minimug.dmp" 
+setMugEntry(170, GiovanniData, 3, 4, 3, 2)
+
+//MugEntry(JanineMug, JanineMugData, JanineMinimugData, JanineFramesData, JaninePaletteData,  1, 6, 1, 4) 
 
 // 171 is reserved for convoy 
 ALIGN 16 
@@ -142,36 +144,36 @@ setMugEntry(171, SupplyData, 9, 9, 9, 9)
 
 ALIGN 16 
 BrunoData: 
-#incbin "Dmp/Bruno_mug.dmp" 
-#incbin "Dmp/Bruno_frames.dmp" 
-#incbin "Dmp/Bruno_palette.dmp" 
-#incbin "Dmp/Bruno_minimug.dmp" 
-setMugEntry(172, BrunoData, 9, 9, 9, 9)
+#incbin "Dmp/Bruno_Eden_mug.dmp" 
+#incbin "Dmp/Bruno_Eden_frames.dmp" 
+#incbin "Dmp/Bruno_Eden_palette.dmp" 
+#incbin "Dmp/Bruno_Eden_minimug.dmp" 
+setMugEntry(172, BrunoData, 2, 5, 2, 3)
 
 ALIGN 16 
 AgathaData: 
-#incbin "Dmp/Agatha_mug.dmp" 
-#incbin "Dmp/Agatha_frames.dmp" 
-#incbin "Dmp/Agatha_palette.dmp" 
-#incbin "Dmp/Agatha_minimug.dmp" 
-setMugEntry(173, AgathaData, 9, 9, 9, 9)
+#incbin "Dmp/Agatha_Eden_mug.dmp" 
+#incbin "Dmp/Agatha_Eden_frames.dmp" 
+#incbin "Dmp/Agatha_Eden_palette.dmp" 
+#incbin "Dmp/Agatha_Eden_minimug.dmp" 
+setMugEntry(173, AgathaData, 3, 6, 3, 4)
 
 ALIGN 16 
 LanceData: 
-#incbin "Dmp/Lance_mug.dmp" 
-#incbin "Dmp/Lance_frames.dmp" 
-#incbin "Dmp/Lance_palette.dmp" 
-#incbin "Dmp/Lance_minimug.dmp" 
-setMugEntry(174, LanceData, 9, 9, 9, 9)
+#incbin "Dmp/Lance_Eden_mug.dmp" 
+#incbin "Dmp/Lance_Eden_frames.dmp" 
+#incbin "Dmp/Lance_Eden_palette.dmp" 
+#incbin "Dmp/Lance_Eden_minimug.dmp" 
+setMugEntry(174, LanceData, 3, 5, 3, 3)
 
 
 ALIGN 16 
 LoreleiData: 
-#incbin "Dmp/Lorelei_mug.dmp" 
-#incbin "Dmp/Lorelei_frames.dmp" 
-#incbin "Dmp/Lorelei_palette.dmp" 
-#incbin "Dmp/Lorelei_minimug.dmp" 
-setMugEntry(175, LoreleiData, 9, 9, 9, 9)
+#incbin "Dmp/Lorelei_Eden_mug.dmp" 
+#incbin "Dmp/Lorelei_Eden_frames.dmp" 
+#incbin "Dmp/Lorelei_Eden_palette.dmp" 
+#incbin "Dmp/Lorelei_Eden_minimug.dmp" 
+setMugEntry(175, LoreleiData, 3, 5, 3, 3)
 
 ALIGN 16 
 ShedinjaData: 
@@ -191,19 +193,19 @@ setMugEntry(177, SableyeData, 9, 9, 9, 9)
 
 ALIGN 16 
 RedData: 
-#incbin "Dmp/Red_mug.dmp" 
-#incbin "Dmp/Red_frames.dmp" 
-#incbin "Dmp/Red_palette.dmp" 
-#incbin "Dmp/Red_minimug.dmp" 
-setMugEntry(178, RedData, 9, 9, 9, 9)
+#incbin "Dmp/Red_Eden_mug.dmp" 
+#incbin "Dmp/Red_Eden_frames.dmp" 
+#incbin "Dmp/Red_Eden_palette.dmp" 
+#incbin "Dmp/Red_Eden_minimug.dmp" 
+setMugEntry(178, RedData, 3, 5, 3, 3)
 
 ALIGN 16 
 GreenData: 
-#incbin "Dmp/Green_mug.dmp" 
-#incbin "Dmp/Green_frames.dmp" 
-#incbin "Dmp/Green_palette.dmp" 
-#incbin "Dmp/Green_minimug.dmp" 
-setMugEntry(179, GreenData, 9, 9, 9, 9)
+#incbin "Dmp/Green_Eden_mug.dmp" 
+#incbin "Dmp/Green_Eden_frames.dmp" 
+#incbin "Dmp/Green_Eden_palette.dmp" 
+#incbin "Dmp/Green_Eden_minimug.dmp" 
+setMugEntry(179, GreenData, 3, 6, 3, 4)
 
 
 // Reserved 
