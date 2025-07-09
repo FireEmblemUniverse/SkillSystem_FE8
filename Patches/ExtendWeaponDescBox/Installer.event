@@ -1,5 +1,5 @@
 #include "EAstdlib.event" 
-
+#include "C_Code.lyn.event" 
 // If these procs are active, don't use the extra vram. 
 // If you experience graphical glitches, the solution is 
 // to look in FEBuilder's debugger to see what procs are running,
@@ -99,7 +99,7 @@ PROTECT $8980C $8980C+12	//{U}
 
 
 // from 8089980 
-#define LinesToShow 4 // 5 might freeze the game in supply sometimes? 
+#define LinesToShow 5
 
 ORG $899BC		//{U}
 //ORG $8BCDA		//{J}
