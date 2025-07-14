@@ -39,15 +39,16 @@ PUSH
 
 
   //Convoy size expansion
+  #define ConvoySize 200
   
   ORG $1DFB2
-  BYTE $C7
+  BYTE ConvoySize-1
   
   ORG $1E05A
-  BYTE $C7
+  BYTE ConvoySize-1
   
   ORG $1E0EC
-  BYTE $C7
+  BYTE ConvoySize-1
 
   ORG $31504
   WORD ConvoyExpansionRAMAddr
@@ -63,7 +64,7 @@ PUSH
   WORD ConvoyExpansionRAMAddr
 
   ORG $31528
-  BYTE $C8
+  BYTE ConvoySize
 
 //ORG $3153E 
 //SHORT $46C0 // completely overwrite whatever was in gGenericBuffer with the convoy 
@@ -71,42 +72,42 @@ PUSH
 //BYTE $C7 
 
   ORG $31576
-  BYTE $C7
+  BYTE ConvoySize-1
 
   ORG $315BC
-  BYTE $C7
+  BYTE ConvoySize-1
 
   ORG $9828E
-  BYTE $C7
+  BYTE ConvoySize-1
 
   ORG $9A550
-  BYTE $C7
+  BYTE ConvoySize-1
 
   ORG $9A56A
-  BYTE $C7
+  BYTE ConvoySize-1
 
   ORG $9D676
-  BYTE $C8
+  BYTE ConvoySize
 
   ORG $9D73E
-  BYTE $C8
+  BYTE ConvoySize
 
   ORG $9D768
-  BYTE $C8
+  BYTE ConvoySize
 
   ORG $9DD10
-  BYTE $C7
+  BYTE ConvoySize-1
 
   ORG $9E902
-  BYTE $C8
+  BYTE ConvoySize
 
   ORG $B4738
-  BYTE $C7
+  BYTE ConvoySize-1
   
   //need this
   ORG $A324A
-  BYTE $C7
+  BYTE ConvoySize-1
   
   ORG $A32D2
-  BYTE $C7
+  BYTE ConvoySize-1
 POP
