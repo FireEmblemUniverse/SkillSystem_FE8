@@ -32,7 +32,7 @@ WORD 1 // if 0, it is disabled
 ALIGN 4 
 DebuggerFlagEvent:
 CHECK_EVENTID DebuggerFlag 
-BEQ 0 sC s0 
+BNE 0 sC s0 
 TutText(DebuggerOnText)
 GOTO 99 
 LABEL 0 // Off 

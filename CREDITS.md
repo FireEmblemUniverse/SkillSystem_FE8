@@ -23,9 +23,11 @@ FabulaFares, ScubaLuigi, ChilanBerry, Rurouni
 
 # Assets
 
-Title screen - redppr 
-
-Most item icons - Lukirioh
+Title screen - redppr  
+  
+Most item icons - Lukirioh  
+  
+Portraits - Eden  
 
 Map Sprites - redppr 
 
