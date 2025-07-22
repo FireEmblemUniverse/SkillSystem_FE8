@@ -390,14 +390,12 @@ LOAD1 1 Units21
 LABEL 29 
 */
 
-#ifdef AddedScenes
 CHECK_EVENTID ViridianBrockFlag
 BNE 27 sC s0 
 LOAD1 1 GymLeaderUnitGroup
 ENUN 
 MarkTrainerAsDefeated(GymLeader) 
 LABEL 27 
-#endif 
 
 LOAD1 1 OaksAideUnitGroup
 ENUN 

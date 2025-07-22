@@ -9,7 +9,6 @@
 #define FreeSpace_Low 0xb2a610
 #define POKEMBLEM
 
-#define AddedScenes 
 
 //#define SkillSys_HookAiTryDoOffensiveAction
 // Shade+ (in AiSkills), Steal+, and Barricade hook this function so I've disabled them 
@@ -407,7 +406,7 @@ String("V1.15.00             July 2025") ; BYTE 0; POP // this overflows into th
 #define ViridianBrockFlag 0xF2 
 #define BillMtMoonFlag 0xF3 
 #define SurgePowerPlantFlag 0xF4 
-// 0xF2 - 0x10C free 
+// 0xF5 - 0x10C free 
 
 // Pewter City: visit gym with flag 0x12C 
 

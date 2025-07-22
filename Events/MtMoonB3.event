@@ -184,8 +184,6 @@ ENUN
 RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(25,4,31,10)) //NE patch 
 UnmarkTrainerAsDefeated(0xEE)
 
-
-#ifdef AddedScenes 
 CHECK_EVENTID BillMtMoonFlag
 BNE 27 sC s0 
 LOAD1 1 BillUnitGroup 
@@ -195,8 +193,6 @@ GOTO 28
 LABEL 27
 RemoveTrapAtCoords(28,14)
 LABEL 28  
-#endif 
-
 
 
 LOAD1 0x1 HumanTrainers

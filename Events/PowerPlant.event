@@ -42,10 +42,37 @@ Reinforce(0xF2, 1, ReinforcementUnitsA, 3, 4)
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CharacterEventBothWays(0x10,SurgeEvent, 0, GymLeader)
+CharacterEventBothWays(0,SurgeEvent2, 0, GymLeader)
 AllTrainersPostBattleTalk
 END_MAIN
 
+SurgeEvent:
+EVBIT_MODIFY 4 
+CAM1 [19,29]
+ASMC PauseFreeMovementASMC
+Text(SurgePowerPlantText)
+EVBIT_F 9 // Do not follow - can be before or after MOVE 
+MOVE 8 GymLeader [28,22]
+ENUN
+MOVE (-1) GymLeader [34,28] 
+EVBIT_F 9 // Do not follow 
+ENUN 
+SVAL s1 GymLeader 
+SVAL s3 3 // up
+ASMC SetUnitFacingASMC
+NoFade 
+ENDA 
 
+SurgeEvent2:
+EVBIT_MODIFY 4 
+ENUT SurgePowerPlantFlag
+Text(SurgePowerPlantText2)
+FADI 8 
+DISA GymLeader 
+FADU 8 
+NoFade 
+ENDA 
 
 LocationBasedEvents:
 House(0, ToRoute10W, 1,11) 
@@ -273,6 +300,17 @@ GOTO 11
 LABEL 10 
 ENUT ZapdosFledFlag
 LABEL 11 
+
+
+CHECK_EVENTID SurgePowerPlantFlag 
+BNE 27 sC s0 
+LOAD1 1 SurgeUnitGroup 
+ENUN 
+MarkTrainerAsDefeated(GymLeader) 
+LABEL 27 
+
+
+
  
 AutoLevelUnits(WildLvl, True, 0xE0EF) // Trainers 
 
@@ -312,7 +350,9 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
-
+SurgeUnitGroup:
+UNIT GymLeader LtSurgeID 0x0 Level(LVFACEUP, Enemy, 1)   [21,29] 0	0x0 0x01 REDA21R29 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 

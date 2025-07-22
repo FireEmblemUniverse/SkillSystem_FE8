@@ -174,11 +174,14 @@ MU_ExecCmd_FixForFreeMU:
 .ltorg	
 .align	
 MU_CALL2_FixForFreeMU:
-	@ORG 0x8078D10
+	@ORG 0x8078D10    
 	ldr		r0, =FreeMovementControlProc
 	blh		ProcFind
 	cmp		r0, #0
-	beq 	.ReturnCall2Camera
+	beq 	.ReturnCall2Normal
+    bl      IsFMUPaused
+    cmp r0, #0 
+    bne .ReturnCall2Normal
 	
 	ldrh r0, [r4] 
 	lsl r0, #0x10 
@@ -195,13 +198,12 @@ MU_CALL2_FixForFreeMU:
 	
 	
 	b .ReturnCall2Normal
-	beq		.ReturnCall2Normal
 	.ReturnCall2Camera: 
 	ldr		r0, =0x8078D23 // camera 
 	bx		r0
 		
 	.ReturnCall2Normal:
-	mov		r0, r6
+    mov		r0, r6
 	add		r0, #0x3E
 	ldrb	r0, [r0]
 	cmp		r0, #0
