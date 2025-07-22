@@ -59,7 +59,7 @@ echo:
 echo Assembling
 
 cd "%base_dir%EventAssembler"
-ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" "--nocash-sym:%~dp0FE8Hack.sym" "--build-times"
+ColorzCore A FE8 "-output:%target_rom%" "-input:%main_event%" "--nocash-sym:%~dp0FE8Hack.sym" "--build-times" "--warnings:no-nonportable-pathnames"
 @rem type "%~dp0FE8_clean.sym" >> "%~dp0FE8Hack.sym"
 SET destDir="C:\Users\David\Desktop\FEBuilderGBA\config\etc\FE8Hack"
 copy /y "%~dp0baserom.sym" %destDir%\comment_.txt

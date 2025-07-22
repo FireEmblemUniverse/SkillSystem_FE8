@@ -14,7 +14,7 @@
 // Shade+ (in AiSkills), Steal+, and Barricade hook this function so I've disabled them 
 
 //#define FreeSpace2_End 0xFFFFFF
-#define FreeSpace_Low_End 0xC00000
+#define FreeSpace_Low_End 0x8C00000
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
