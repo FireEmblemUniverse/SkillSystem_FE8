@@ -41,9 +41,28 @@ Reinforce(0xF3, 1, BurrowReinforcementUnits, 9, 4) // East burrow
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CharacterEventBothWays(0,BillEvent, 0, GymLeader)
 AllTrainersPostBattleTalk
 END_MAIN
 
+BillEvent: 
+ENUT BillMtMoonFlag 
+EVBIT_MODIFY 4 
+TEXTSTART 
+TEXTSHOW BillMtMoonText
+TEXTEND 
+CHECK_EVENTID 0x10 
+BEQ 99 sC s0 
+TEXTSHOW BillMtMoonText2
+TEXTEND 
+REMA 
+FADI 6 
+DISA GymLeader 
+FADU 6 
+LABEL 99 
+REMA 
+NoFade 
+ENDA 
 
 
 LocationBasedEvents:
@@ -87,6 +106,15 @@ ToMtMoonB2_Exit:
 ENUT SkipIntroFlag
 ChapterTransition(MtMoonB2Ch, 20, 6)
 
+
+GenericDisappearEffect(17, ObtainBillsRopeEvent)
+
+ObtainBillsRopeEvent: 
+ENUT 0x10
+TutText(ObtainedBillsRopeText) 
+NoFade 
+ENDA 
+
 // Allocated 2 traps per chapter, in most cases 
 // Eg. 2 skill scrolls, 2 TMs, 2 Coin traps, 2 Pokeball traps 
 // Traps that do not reference ram do not have this limit 
@@ -94,6 +122,7 @@ ChapterTransition(MtMoonB2Ch, 20, 6)
 Traps1:
 //CoinsTrap(13,15,ChapterID*2,550)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
+GenericDisappearCompletion(28, 14, 0x10, RedPokeballSMS, 17) // xx, yy, flag, sprite, effectID 
 
 //CutBush(4,2)
 RockSmash(9,8)
@@ -154,6 +183,21 @@ LOAD1 0x1 BossUnit
 ENUN
 RandomizeEnemyCoords(Ground, Range(0,0,5,5), Range(25,4,31,10)) //NE patch 
 UnmarkTrainerAsDefeated(0xEE)
+
+
+#ifdef AddedScenes 
+CHECK_EVENTID BillMtMoonFlag
+BNE 27 sC s0 
+LOAD1 1 BillUnitGroup 
+ENUN 
+MarkTrainerAsDefeated(GymLeader)
+GOTO 28 
+LABEL 27
+RemoveTrapAtCoords(28,14)
+LABEL 28  
+#endif 
+
+
 
 LOAD1 0x1 HumanTrainers
 ENUN 
@@ -292,6 +336,10 @@ UNIT 0xE3 rocket_fID 0x0 Level(0, Enemy, 1) [5,32]  0b 0x0	0x1 REDA5R32 [OneRang
 UNIT 0xE4 super_nerdID 0x0 Level(LVFACERIGHT, Enemy, 1) [8,14]  0b 0x0 0x1 REDA8R14 [OneRangeWep,0x0,0x0,0x0] TrainerAI //
 UNIT 0xE5 rocket_mID 0x0 Level(0, Enemy, 1) [11,2]  0b 0x0	0x1 REDA11R2 [FiveRangeWep,0x0,0x0,0x0] TrainerBossAI // TrainerBossAI
 UNIT 0xE6 rocket_fID 0x0 Level(0, Enemy, 1) [8,2]  0b 0x0	0x1 REDA8R2 [OneRangeWep,0x0,0x0,0x0] TrainerAI //
+UNIT
+
+BillUnitGroup:
+UNIT GymLeader billID 0x0 Level(LVFACELEFT, Enemy, 1) [31,16]  0b 0x0	0x1 REDA31R16 [0,0x0,0x0,0x0] DoNothing
 UNIT
 
 

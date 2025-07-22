@@ -35,7 +35,7 @@
 //#define USE_PMD_SPRITES
 
 PUSH; ORG $D74D0	//{U}
-String("V1.14.08T             Mar 2025") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
+String("V1.15.00             July 2025") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 //String("V1.14.07 DEBUG BUILD  Mar 2024") ; BYTE 0; POP // this overflows into the date but I don't use the date so whatever 
 
 #define ProtagID 0x45 
@@ -405,6 +405,7 @@ String("V1.14.08T             Mar 2025") ; BYTE 0; POP // this overflows into th
 #define NoExpFlag 0xF1 
 
 #define ViridianBrockFlag 0xF2 
+#define BillMtMoonFlag 0xF3 
 // 0xF2 - 0x10C free 
 
 // Pewter City: visit gym with flag 0x12C 

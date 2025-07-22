@@ -39,6 +39,7 @@ END_MAIN
 
 ViridianBrockEvent: 
 ENUT ViridianBrockFlag
+EVBIT_MODIFY 4 
 Text(BrockViridianText)
 FADI 8 
 DISA GymLeader 

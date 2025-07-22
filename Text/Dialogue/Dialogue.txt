@@ -18,6 +18,51 @@ I'm heading back to Pewter City.[A][N]
 Come find me when you're[N]
 up for a challenge.[A][X]
 
+## BillMtMoonText
+[OpenMidRight][LoadBrock][OpenMidRight]Oh! A fellow trainer![A][N]
+Wait - don’t move! You might scare[N]
+off the Clefable I was tracking...[A][N]
+Actually, never mind. At this point,[N]
+I just want to get home.[A][N]
+I slipped on some ice and[N]
+dropped my notes everywhere.[A][N]
+I've been trying to leave for hours,[N]
+but it's... not going well.[A][N]
+If only I hadn't dropped my escape rope.[N]
+Think you could help me retrieve it?[A][N]
+I’d seriously appreciate it.[A][X]
+
+## BillMtMoonText2
+[OpenMidRight]You found it! Thank you![A][N]
+I'm headed back to my home[N]
+North of Cerulean City.[A][N]
+Come visit me sometime.[N]
+You're a real lifesaver. Seriously.[A][X]
+
+## ObtainedBillsRopeText
+Obtained Bill's Escape Rope.[A][X]
+
+## BillHouseText
+[OpenMidRight][LoadBrock][OpenMidRight]Oh, [Tact]![A][N]
+I rushed off right after you[N]
+helped me - sorry about that.[A][N]
+I’ve been thinking about how to repay you.[N]
+Here! This should do the trick.[A][X]
+
+## BillHouseText2
+[OpenMidRight][LoadBrock][OpenMidRight]They invited me to their party,[N]
+but I can't stand fancy do's.[A][N]
+Why don't you go instead of me?[A][X]
+
+
+## BillHouseTicketText
+Obtained SS. Anne Ticket.[A][X]
+
+## BillHouseAwayText
+The door is locked with a note[N]
+on it that reads:[A][N]
+“Tracking Clefable in Mt. Moon”.[A][X]
+
 
 ## NotSafeToFleeText
 It's not safe to move![A][X]
@@ -1116,11 +1161,6 @@ done well.[A][X]
 ## TooPoorToSaveText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Insufficient funds.[NL]
 Requires 500[Gold].[A][X]
-
-## BillHouseText
-My name's Bill.[NL]
-Here, take this.[A][2NL][CloseSpeechFast]
-OBTAINED SS. ANNE TICKET.[A][X]
 
 
 ## ViridianForestTrainerE4Text

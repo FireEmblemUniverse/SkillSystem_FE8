@@ -46,7 +46,7 @@ END_MAIN
 
 
 LocationBasedEvents:
-House(SSAnneTicketFlag, BillsHouse, 49,4) 
+House(0, BillsHouse, 49,4) 
 END_MAIN
 
 MiscBasedEvents:
@@ -79,9 +79,25 @@ ChapterTransition(Route24Ch, 23,11)
 
 
 BillsHouse:
+CHECK_EVENTID SSAnneTicketFlag
+BNE 11 sC s0 
+CHECK_EVENTID BillMtMoonFlag
+BEQ 10 sC s0 
 EVBIT_MODIFY 4
-TutText(BillHouseText)
-EVBIT_MODIFY 0
+Text(BillHouseText)
+TutText(BillHouseTicketText)
+ENUT SSAnneTicketFlag
+GOTO 11 
+LABEL 10 
+EVBIT_MODIFY 4
+TutText(BillHouseAwayText)
+GOTO 99 
+
+LABEL 11 
+Text(BillHouseText2)
+
+
+LABEL 99 
 NoFade 
 ENDA 
 
