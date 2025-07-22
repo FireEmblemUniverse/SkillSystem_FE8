@@ -989,21 +989,21 @@ Let me sip my coffee in peace.[A][X]
 ## MissingNoHintText
 I done 'ere seen it![N]
 Taller'an you or me![A][N]
-A giant Tetris block![N]
-L-shaped and spooky like...[A][X]
+A giant Tetris block...[N]
+L-shaped and spooky like.[A][X]
 
 ## CinnabarOldManText2
 My home's back in Viridian.[A][N]
 I thought this 'ere sea would[N]
 do these ole bones some good.[A][N]
-Terrified I am, now.[N]
+Now I'm just terrified.[N]
 Perhaps I should head home soon..[A][X]
 
 ## ViridianGrumpyManText2
-I used to teach 'em, y'kno.[N]
-Wouldn't let'em past 'til[N]
-I showed 'em my weedle.[A][N]
-Made 'em catch it 'n everything.[A][N]
+I used to teach the kids, y'kno.[N]
+Wouldn't let 'em past 'til[N]
+they watched me catch a Weedle.[A][N]
+Made 'em do it too - good learnin'![A][N]
 Now I'm under house arrest[N]
 'n haunted by tetris blocks...[A][X]
 
@@ -3892,18 +3892,24 @@ confound and destroy you![A][X]
 I must hone my skills.[A][X]
 
 ## ErikaChallengeText
-[OpenMidRight][LoadErika][OpenMidRight]My name is Erika.[A][N]
-I sequence plant genomes and[N]
-concoct herbal remedies.[A][N]
-I use Pokémon in my research[N]
-in pursuit of scientific truths.[A][N]
-You wish to challenge me?[A][N]
+[OpenMidRight][LoadErika][OpenMidRight]Ah... what lovely weather.[A][N]
+The scent of blossoms always[N]
+puts me at ease.[A][N]
+My name is Erika. I specialize[N]
+in botanical research.[N][A]
+I sequence plant genomes[N]
+and craft herbal remedies.[A][N]
+My Pokémon help me explore the deeper[N]
+truths of plants and natural healing.[A][N]
+Oh... you wish to challenge me?[N]
 Very well, but I shall not lose.[A][X]
+
 
 ## ErikaDefeatText
 [OpenMidRight][LoadErika][OpenMidRight]I concede defeat.[N]
-It's curious, how strong you are...[A][N]
-I must confer on you the[N]
+How curious... your strength[N]
+feels so natural.[A][N]
+I must confer upon you the[N]
 Rainbow Badge.[A][X]
 
 ## ErikaWaitText
@@ -3918,16 +3924,18 @@ good use of it.[A][X]
 
 
 ## ErikaRematchText
-[OpenMidRight][LoadErika][OpenMidRight]Do you like plants?[N]
-Plants are such delicate things.[A][N]
-The amount of water, the temperature,[N]
-the condition of the soil...[A][N]
-Get these wrong and plants will[N]
-wither and die.[A][N]
-Pokémon, too, are delicate.[A][N]
-Exposed to certain stimuli.. they'll[N]
-quickly pass out.[A][N]
-Here, I'll show you.[A][X]
+
+[OpenMidRight][LoadErika][OpenMidRight]Do you like plants?[A][N]
+Some are delicate... others, resilient.[A][N]
+With the right balance of water, warmth,[N]
+and soil, they flourish.[A][N]
+But throw off that balance,[N]
+and they begin to wither.[A][N]
+Pokémon are not so different. Their[N]
+bodies respond to all kinds of stimuli...[A][N]
+Allow me to demonstrate.[A][X]
+
+
 
 ## ErikaRematchDefeatText
 [OpenMidRight][LoadErika][OpenMidRight]Nobody blinks an eye when[N]
@@ -3935,6 +3943,12 @@ you experiment on plants.[A][N]
 But the second you use live[N]
 critters as specimens, there's[A][N]
 an uproar...[A][X]
+
+
+
+
+
+
 
 //I installed cameras around this gym.[A][N]
 //Things are easier... when they're[N]
