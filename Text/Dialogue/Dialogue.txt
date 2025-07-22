@@ -19,7 +19,7 @@ Come find me when you're[N]
 up for a challenge.[A][X]
 
 ## BillMtMoonText
-[OpenMidRight][LoadBrock][OpenMidRight]Oh! A fellow trainer![A][N]
+[OpenMidRight][LoadBill][OpenMidRight]Oh! A fellow trainer![A][N]
 Wait - don’t move! You might scare[N]
 off the Clefable I was tracking...[A][N]
 Actually, never mind. At this point,[N]
@@ -43,14 +43,14 @@ You're a real lifesaver. Seriously.[A][X]
 Obtained Bill's Escape Rope.[A][X]
 
 ## BillHouseText
-[OpenMidRight][LoadBrock][OpenMidRight]Oh, [Tact]![A][N]
+[OpenMidRight][LoadBill][OpenMidRight]Oh, [Tact]![A][N]
 I rushed off right after you[N]
 helped me - sorry about that.[A][N]
 I’ve been thinking about how to repay you.[N]
 Here! This should do the trick.[A][X]
 
 ## BillHouseText2
-[OpenMidRight][LoadBrock][OpenMidRight]They invited me to their party,[N]
+[OpenMidRight][LoadBill][OpenMidRight]They invited me to their party,[N]
 but I can't stand fancy do's.[A][N]
 Why don't you go instead of me?[A][X]
 
@@ -118,7 +118,7 @@ Rematch trainer?[NL]
 
 ## SavingHelpText
 Your emulator's save type should be[N]
-"auto" for it to work properly.[A][X]
+“auto” for it to work properly.[A][X]
 
 ## GM_IntroTitle
 Pokémblem[X]
@@ -211,7 +211,7 @@ Hitrate[X]
 
 ## GM_Hitrate
 Attacks cannot miss in this game.[N]
-Instead, a "miss" becomes a[N]
+Instead, a “miss” becomes a[N]
 glancing blow, which deals[N]
 half damage.[X]
 
@@ -1448,8 +1448,8 @@ I'm steamed![A][X]
 
 
 ## MMB3_0xE4_BQ
-"Hey, stop![A][NL]
-I found these fossils!",[A][NL]
+“Hey, stop![A][NL]
+I found these fossils!”,[A][NL]
 I told them.[NL]
 But they didn't listen...[A][X]
 
