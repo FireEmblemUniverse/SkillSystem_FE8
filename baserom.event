@@ -41,7 +41,7 @@ FILL(0xD59F0) 0 // 0 out where we'll write to: 0xD59F0 bytes of space
 	//Graphics
 	#include "Graphics/GraphicsInstaller.event"
 #endif 
-	ASSERT (FreeSpace - currentOffset) // So that you don't overwrite vanilla tables if using default freespace
+	ASSERT (FreeSpace - (currentOffset&0x1FFFFFF)) // So that you don't overwrite vanilla tables if using default freespace
 MESSAGE Chunk 2 free space ends at currentOffset
 
 
