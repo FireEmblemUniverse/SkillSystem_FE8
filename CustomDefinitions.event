@@ -1,4 +1,4 @@
-//PROTECT $1c998
+// PROTECT $6FD0 $8000
 //PROTECT $144F944
 // 7BCA8 // ~5 extra frames than needed? nvm 
 // gProc_PopR_AnimsOnWrapper ~3 frames? 
@@ -9,7 +9,7 @@
 #define FreeSpace_Low 0xb2a610
 #define POKEMBLEM
 
-
+#define ProtagMug 179 
 //#define SkillSys_HookAiTryDoOffensiveAction
 // Shade+ (in AiSkills), Steal+, and Barricade hook this function so I've disabled them 
 
@@ -18,7 +18,10 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-#define DEBUG_MODE 
+// #define DEBUG_MODE 
+
+
+
 #define USE_DEBUGGER 
 
 #define TESTING_RANGES

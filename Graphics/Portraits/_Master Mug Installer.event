@@ -198,6 +198,8 @@ RedData:
 #incbin "Dmp/Red_Eden_palette.dmp" 
 #incbin "Dmp/Red_Eden_minimug.dmp" 
 setMugEntry(178, RedData, 3, 5, 3, 3)
+setMugEntry(179, RedData, 3, 5, 3, 3)
+
 
 ALIGN 16 
 GreenData: 
@@ -205,7 +207,7 @@ GreenData:
 #incbin "Dmp/Green_Eden_frames.dmp" 
 #incbin "Dmp/Green_Eden_palette.dmp" 
 #incbin "Dmp/Green_Eden_minimug.dmp" 
-setMugEntry(179, GreenData, 3, 6, 3, 4)
+setMugEntry(180, GreenData, 3, 6, 3, 4)
 
 
 // Reserved 

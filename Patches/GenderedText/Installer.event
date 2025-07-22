@@ -1,0 +1,20 @@
+
+#ifdef _FE8_
+
+	#include eastdlib.event
+	
+	// Adds text control codes that inject gendered pronouns into text (i.e. He, She, Him, Her, he, she, him, her...) by an event ID switch. By Snek.
+	
+	#include "GenderedText.lyn.event"
+	
+	ALIGN 4
+	#define GenderedTextEntry(ControlCode,EventID,String1,String2) "SHORT ControlCode EventID ; POIN String1 String2" // String1 is if EventID is false, String2 is if it's true.
+	GenderedTextList:
+	// GenderedTextEntry(0x1B2,GirlProtagFlag,FemaleFace,MaleFace)
+	// GenderedTextEntry(0x3180,GenderEventID,sheString,heString)
+	// GenderedTextEntry(0x3280,GenderEventID,HerString,HimString)
+	GenderedTextEntry(0,0,0,0)
+	
+// [0xB2][0x1]
+	
+#endif // _FE8_

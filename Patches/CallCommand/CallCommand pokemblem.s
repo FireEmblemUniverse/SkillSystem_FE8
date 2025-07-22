@@ -23,6 +23,38 @@
 	.equ RefreshTerrainMap, 0x08019a64 @RefreshTerrainMap
 @ @ 32696
 @ Seth [0202BE4C] @ [0202BE67]? yup 
+
+
+
+.global AvatarGenderMug 
+.type AvatarGenderMug, %function 
+AvatarGenderMug: 
+push {r4, lr} 
+mov r4, #0 @ no change 
+ldr r1, =ProtagMug 
+lsl r1, #16 
+lsr r1, #16 
+mov r2, #1 
+lsl r2, #8 
+sub r0, r2 @ LoadFace does |0x100 
+cmp r0, r1 
+bne ExitAvatarGenderMug 
+
+mov r4, r0 
+ldr r0, =GirlProtagFlag 
+lsl r0, #16 
+lsr r0, #16 
+blh CheckEventId 
+cmp r0, #0 
+beq ExitAvatarGenderMug 
+add r4, #1 
+ExitAvatarGenderMug: 
+mov r0, r4 
+pop {r4} 
+pop {r1} 
+bx r1 
+.ltorg 
+
 	
 	.global CallCommandEffect
 	.type   CallCommandEffect, function
