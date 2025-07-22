@@ -9,6 +9,8 @@
 #define FreeSpace_Low 0xb2a610
 #define POKEMBLEM
 
+#define AddedScenes 
+
 //#define SkillSys_HookAiTryDoOffensiveAction
 // Shade+ (in AiSkills), Steal+, and Barricade hook this function so I've disabled them 
 
@@ -17,7 +19,7 @@
 //#define FreeSpaceBLRange 0x1c1ec0
 
 // Comment out for public releases
-//#define DEBUG_MODE 
+#define DEBUG_MODE 
 #define USE_DEBUGGER 
 
 #define TESTING_RANGES
@@ -402,6 +404,9 @@ String("V1.14.08T             Mar 2025") ; BYTE 0; POP // this overflows into th
 #define DebuggerFlag 0xF0 
 #define NoExpFlag 0xF1 
 
+#define ViridianBrockFlag 0xF2 
+// 0xF2 - 0x10C free 
+
 // Pewter City: visit gym with flag 0x12C 
 
 #define PewterGymClosedFlag 0x12C // final flag 
@@ -449,6 +454,7 @@ String("V1.14.08T             Mar 2025") ; BYTE 0; POP // this overflows into th
 // Unit IDs 
 #define OaksAide 0xEA 
 #define OaksAide2 0xEC // used in Saffron for Hitmons 
+#define GymLeader 0xEC 
 #define OaksAidePkmn 0xEB
 #define OaksAidePkmn2 0xED
 #define OaksAideClass gentlemanID 

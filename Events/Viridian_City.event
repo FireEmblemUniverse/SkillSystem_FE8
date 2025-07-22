@@ -32,8 +32,19 @@ ENDA
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
 CHAR PurchasedPsyduckFlag PurchasePsyduckevent [0x0, OaksAide] 0 // NPC
+CHAR 0 ViridianBrockEvent [0x0, GymLeader] 0 // NPC
 TrainerPostBattleTalk(OaksAide) // NPC talk again 
+// TrainerPostBattleTalk(GymLeader) // NPC talk again 
 END_MAIN
+
+ViridianBrockEvent: 
+ENUT ViridianBrockFlag
+Text(BrockViridianText)
+FADI 8 
+DISA GymLeader 
+FADU 8
+NoFade 
+ENDA 
 
 PurchasePsyduckevent:
 EVBIT_MODIFY 4 
@@ -378,6 +389,15 @@ LOAD1 1 Units21
 LABEL 29 
 */
 
+#ifdef AddedScenes
+CHECK_EVENTID ViridianBrockFlag
+BNE 27 sC s0 
+LOAD1 1 GymLeaderUnitGroup
+ENUN 
+MarkTrainerAsDefeated(GymLeader) 
+LABEL 27 
+#endif 
+
 LOAD1 1 OaksAideUnitGroup
 ENUN 
 MarkTrainerAsDefeated(OaksAide) 
@@ -495,6 +515,12 @@ OaksAideUnitGroup:
 UNIT OaksAide fisherID 0x0 Level(LVFACERIGHT, Enemy, 1) [13,24]  0b 0x0	0x1 REDA13R24 [0x0,0x0,0x0,0x0] DoNothing
 UNIT OaksAidePkmn PsyduckID 0x0 Level(0, Enemy, 1) [14,24]  0b 0x0	0x1 REDA14R24 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
+
+
+GymLeaderUnitGroup:
+UNIT GymLeader BrockID 0x0 Level(LVFACERIGHT, Enemy, 1) [9,17]  0b 0x0	0x1 REDA9R17 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
+
 
 PsyduckUnitGroup:
 UNIT TempAlly PsyduckID 0x0 Level(0, Ally, 1) [0,0]  0b 0x0	0x1 REDA0R0 [0x0,0x0,0x0,0x0] DoNothing
