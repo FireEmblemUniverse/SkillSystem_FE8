@@ -180,6 +180,7 @@ int FMU_ShouldWeYieldForEvent(struct FMUProc* proc);
 /*------------- Events --------------*/
 void pFMU_RunMiscBasedEvents(struct FMUProc*);
 int pFMU_RunLocBasedAsmcAuto(struct FMUProc*);
+int pFMU_RunLocBasedAsmcAutoAndUpdateCoord(struct FMUProc *proc); 
 bool FMUmisc_RunMapEvents(struct FMUProc*);
 bool FMUmisc_RunTalkEvents(struct FMUProc*);
 bool FMU_RunTrapASMC(FMUProc*);

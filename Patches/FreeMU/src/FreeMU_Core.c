@@ -51,8 +51,8 @@ void pFMU_InputLoop(struct Proc *inputProc) {
   // u16 iKeyCur = gKeyState.heldKeys;
 
   // if (gKeyState.lastPressKeys && (gKeyState.timeSinceNonStartSelect <=
-  // bufferFramesMove)) { 	iKeyCur = iKeyCur | gKeyState.lastPressKeys; } // use
-  // latest button press within x frames
+  // bufferFramesMove)) { 	iKeyCur = iKeyCur | gKeyState.lastPressKeys; }
+  // // use latest button press within x frames
 
   /*
 
@@ -161,7 +161,6 @@ void pFMU_MainLoop(struct FMUProc *proc) {
   }
 
   if (proc->updateAfterStatusScreen && (proc->countdown == 0)) {
-    // asm("mov r11, r11");
 
     // see
     // https://github.com/FireEmblemUniverse/fireemblem8u/blob/f27fe5c06962b4de940b7830564d70ff1e193e9c/src/statscreen.c#L430
@@ -247,7 +246,7 @@ void pFMU_MainLoop(struct FMUProc *proc) {
   if ((proc->xTo == proc->xCur) && (proc->yTo == proc->yCur)) {
     // asm("mov r8, r8");
   } else {
-    if (pFMU_RunLocBasedAsmcAuto(proc) == yield) {
+    if (pFMU_RunLocBasedAsmcAutoAndUpdateCoord(proc) == yield) {
       proc->countdown = 1;
       proc->yield_move = true;
       proc->yield = true;
@@ -262,6 +261,20 @@ void pFMU_MainLoop(struct FMUProc *proc) {
         if (iKeyCur & 0xF0) {
           iKeyCur = FMU_FilterMovementInput(proc, iKeyCur);
           pFMU_MoveUnit(proc, iKeyCur);
+          if (pFMU_RunLocBasedAsmcAuto(proc) == yield) {
+            struct EventEngineProc *eventProc =
+                (struct EventEngineProc *)ProcFind(&gProc_MapEventEngine);
+            if (eventProc) {
+              proc->yield = true;
+              proc->countdown = 3;
+              // if (FreeMoveRam->pause || FreeMoveRam->silent ||
+              // eventProc->evStallTimer || eventProc->pUnitLoadData ||
+              // eventProc->activeTextType) {
+              proc->countdown = 2;
+              proc->range_event = true;
+              // }
+            }
+          }
           proc->yield_move = true;
         }
       }
@@ -569,7 +582,8 @@ int FMU_HandleContinuedMovement(void) {
   }
   u8 dir = FMU_ChkKeyForMUExtra(proc, iKeyUse);
 
-  if (dir == 0x10) {
+  if (dir == 0x10) { // stopping
+
     return (-1);
   }
   int x = ctrProc->xPos;
@@ -623,9 +637,28 @@ int FMU_HandleContinuedMovement(void) {
   ctrProc->xPos2 = x;
   ctrProc->yPos2 = y;
 
+  proc->xTo = proc->xCur;
+  proc->yTo = proc->yCur;
+  if (!pFMU_RunLocBasedAsmcAuto(proc)) {
+
+    struct EventEngineProc *eventProc =
+        (struct EventEngineProc *)ProcFind(&gProc_MapEventEngine);
+    if (eventProc) {
+      if (FreeMoveRam->pause || FreeMoveRam->silent ||
+          eventProc->evStallTimer || eventProc->pUnitLoadData ||
+          eventProc->activeTextType) {
+        proc->yield = true;
+        proc->yield_move = true;
+        proc->countdown = 2;
+        proc->range_event = true;
+        return dir;
+      }
+    }
+  }
+
   proc->xTo = x;
   proc->yTo = y;
-  if (!pFMU_RunLocBasedAsmcAuto(proc)) {
+  if (!pFMU_RunLocBasedAsmcAutoAndUpdateCoord(proc)) {
     struct EventEngineProc *eventProc =
         (struct EventEngineProc *)ProcFind(&gProc_MapEventEngine);
     if (eventProc) {
@@ -710,7 +743,6 @@ int pFMU_MoveUnit(struct FMUProc *proc, u16 iKeyCur) { // Label 1
     pFMU_UpdateSMS(proc);
     FreeMoveRam->dir = proc->smsFacing;
     SetUnitFacing(gActiveUnit, proc->smsFacing);
-    // asm("mov r11, r11");
     proc->curInput = 0;  // so we don't immediately walk the next frame ?
     proc->countdown = 8; // STAL for 8 frames while we turn directions
   } else {
@@ -1127,7 +1159,6 @@ void UpdateSMSDir(struct Unit *unit, u8 smsID, int facing) {
   if (!unit->pMapSpriteHandle) {
     return;
   }
-  // asm("mov r11, r11");
   u32 tileIndex = (unit->pMapSpriteHandle->oam2Base & 0x3FF) - 0x80;
 
   u16 size = NewStandingMapSpriteTable[smsID].size;
@@ -1187,7 +1218,6 @@ void UpdateSMSDir(struct Unit *unit, u8 smsID, int facing) {
   */
 
   // src, dst, width, height
-  // asm("mov r11, r11");
   CopyTileGfxForObj((void *)gGenericBuffer2 + srcOffs[0],
                     (void *)gSMSGfxBuffer_Frame1 + (tileIndex << 5), width >> 3,
                     height >> 3);

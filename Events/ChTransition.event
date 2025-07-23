@@ -222,6 +222,42 @@ LABEL 99
 NoFade 
 ENDA 
 
+WarpMoveEvent: // not functional with FMU for teleporters 
+// so I'm just going to use ForcedChapterTransition for them in Silph Co instead 
+CHECK_COORDS 0x7FFF 
+SADD sB sC s0 
+ASMC 0x804EF21 // EndAllMenus 
+ASMC 0x804E885 //ClearBG0BG1
+PauseFreeMovement 
+EVBIT_MODIFY 1 
+// CALL MyWarpOutEvent
+// STAL 12 
+// SADD sB sA s0 
+// SPAWN_NPC 0xFD [-1, -1]
+// CHECK_COORDS 0x7FFE 
+// SADD sB sC s0 
+// MOVEONTO 	(-1) 0x7ffe 0xFD
+// ENUN 
+// CAM1 0xFD 
+// DISA 0xFD
+// STAL 5 
+// Text(0x9df)
+SADD sB sA s0 
+ASMC SetActorCoords 
+SADD sB sA s0 
+SADD sA sA s0 
+SVAL sD 0
+
+CALL EnqueueREDAFromCoords
+
+MOVEFORCED (-1) 0x7FFF (-1)
+ENUN
+// CALL MyWarpInEvent 
+NoFade 
+ENDA 
+
+
+
 ToggleMansionFlagEvent:
 CHECK_EVENTID ToggleMansionFlag 
 BEQ 0 sC s0 // if off, turn on 

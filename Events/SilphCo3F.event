@@ -48,8 +48,8 @@ AllTrainersPostBattleTalk
 END_MAIN
 
 
-AREA 0 ToSilphCo4F_Stairs [32,3][32,3] 
-AREA 0 ToSilphCo2F [28,3][28,3]
+
+
 LocationBasedEvents:
 House(0, ToSilphCo2F, 28,3)
 House(0, ToSilphCo4F_Stairs, 32,3)
@@ -57,8 +57,8 @@ Stairs(0,19,7,19,7) // does nothing but will activate the range event
 Stairs(1,18,18,18,18)
 Stairs(2, 4,10,4,10)
 
-Stairs(3, 8, 21, 31,21)
-Stairs(3, 31,21,8,21)
+Stairs(3, 8, 21, 8,21)
+Stairs(4, 31,21,31,21)
 
 END_MAIN
 
@@ -72,11 +72,21 @@ ToSilphCo4F_Tele:
 PlayerInRange
 ForcedChapterTransition(SilphCo4FCh, 12,18)
 
+ToSilphCo3F_TeleA:
+PlayerInRange
+ForcedChapterTransition(SilphCo3FCh, 8,21)
+ToSilphCo3F_TeleB:
+PlayerInRange
+Text(0x9df)
+ForcedChapterTransition(SilphCo3FCh, 31,21)
+
 
 ToSilphCo2F:
 ChapterTransition(SilphCo2FCh, 29,3)
 ToSilphCo4F_Stairs:
 ChapterTransition(SilphCo4FCh, 19,3)
+
+
 
 MiscBasedEvents:
 CauseGameOverIfLordDies
@@ -84,9 +94,14 @@ AFEV 0 GlobalAfev 0
 //AFEV flagID eventOffset activationFlag
 //AREA flagID eventOffset [corner1x, corner1y] [corner2x, corner2y]
 //AFEV 0 RefreshIfNotInDanger 0 
+// AREA 0 ToSilphCo4F_Stairs [32,3][32,3] 
+// AREA 0 ToSilphCo2F [28,3][28,3]
+// AREA 0 ToSilphCo2F [28,3][28,3]
 AREA 0 ToSilphCo2F_TeleA [18,18][18,18] 
 AREA 0 ToSilphCo2F_TeleB [4,10][4,10] 
 AREA 0 ToSilphCo4F_Tele [19,7][19,7] 
+AREA 0 ToSilphCo3F_TeleA [31,21][31,21] 
+AREA 0 ToSilphCo3F_TeleB [8,21][8,21] 
 AREA 0 NW_StatsDrained [4,16][5,16] // w 
 AREA 0 NW_StatsDrained [15,12][16,12] // mid n  
 AREA 0 NW_StatsDrained [15,16][16,16] // mid s  
