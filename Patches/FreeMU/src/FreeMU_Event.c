@@ -44,19 +44,27 @@ extern void DepleteRepelByStep(void);
 
 int pFMU_RunLocBasedAsmcAuto(struct FMUProc *proc) {
 
-  int x = proc->xTo;
-  int y = proc->yTo;
+  int x = gActiveUnit->xPos;
+  int y = gActiveUnit->yPos;
+  gActiveUnit->xPos = proc->xTo;
+  gActiveUnit->yPos = proc->yTo;
   DepleteRepelByStep();
-  // RefreshUnitsOnBmMap();
-  // TryUnhideSteppedOnUnit(proc, x, y);
 
   if (FMU_RunTrapASMC_Auto(proc)) {
+    gActiveUnit->xPos = x;
+    gActiveUnit->yPos = y;
     return yield;
   }
-  asm("mov r11, r11");
-  if (RunMiscBasedEvents(x, y)) {
+
+  if (RunMiscBasedEvents(proc->xTo,
+                         proc->yTo)) { // 8083aa4 T EvCheck0B_AREA directly uses
+                                       // gActiveUnit coordinates
+    gActiveUnit->xPos = x;
+    gActiveUnit->yPos = y;
     return yield;
   }
+  gActiveUnit->xPos = x;
+  gActiveUnit->yPos = y;
   return no_yield;
 }
 

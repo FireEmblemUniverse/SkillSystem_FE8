@@ -19,7 +19,7 @@ POIN TurnBasedEvents
 POIN CharacterBasedEvents
 POIN LocationBasedEvents
 POIN MiscBasedEvents
-POIN Dunno1 Dunno2 Dunno3 Tutorial
+UnusedPointers
 POIN Traps1 Traps2_Empty
 POIN Units1_Empty Units1_Empty  //This unit group determines the number and position of deployment slots when there is a prep screen
 POIN $0 $0 $0
@@ -32,10 +32,6 @@ TurnEventPlayer(0,GlobalTurnEvent,0,255)
 
 END_MAIN
 
-Dunno1: 
-Dunno2:
-Tutorial:
-END_MAIN 
 
 
 //Reinforce(BushUnitID, NumberOfEnemies, UnitGroup, GracePeriod, FrequencyInTurns)
@@ -73,7 +69,6 @@ PlayerInRange
 ForcedChapterTransition(SilphCo3FCh, 4,10)
 ToSilphCo4F_Tele:
 PlayerInRange
-Text(0x9df)
 DisableFreeMovement
 ForcedChapterTransition(SilphCo4FCh, 23,19)
 
@@ -100,9 +95,6 @@ AREA 0 NW_StatsDrained [6,17][7,17] // sw
 AREA 0 NW_StatsDrained [28,18][28,19] // se 
 END_MAIN
 
-
-Dunno3: 
-END_MAIN 
 
 
 #ifdef MultiTileMarker_Installer

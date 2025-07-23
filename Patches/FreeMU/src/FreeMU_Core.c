@@ -246,12 +246,12 @@ void pFMU_MainLoop(struct FMUProc *proc) {
   if ((proc->xTo == proc->xCur) && (proc->yTo == proc->yCur)) {
     // asm("mov r8, r8");
   } else {
-    if (pFMU_RunLocBasedAsmcAutoAndUpdateCoord(proc) == yield) {
-      proc->countdown = 1;
-      proc->yield_move = true;
-      proc->yield = true;
-      // return;
-    }
+    // if (pFMU_RunLocBasedAsmcAutoAndUpdateCoord(proc) == yield) {
+    // proc->countdown = 1;
+    // proc->yield_move = true;
+    // proc->yield = true;
+    // return;
+    // }
   }
 
   u16 iKeyCur = gKeyState.heldKeys;
@@ -260,19 +260,25 @@ void pFMU_MainLoop(struct FMUProc *proc) {
       if (!(proc->yield_move)) {
         if (iKeyCur & 0xF0) {
           iKeyCur = FMU_FilterMovementInput(proc, iKeyCur);
+          int facing = proc->smsFacing;
           pFMU_MoveUnit(proc, iKeyCur);
-          if (pFMU_RunLocBasedAsmcAuto(proc) == yield) {
-            struct EventEngineProc *eventProc =
-                (struct EventEngineProc *)ProcFind(&gProc_MapEventEngine);
-            if (eventProc) {
-              proc->yield = true;
-              proc->countdown = 3;
-              // if (FreeMoveRam->pause || FreeMoveRam->silent ||
-              // eventProc->evStallTimer || eventProc->pUnitLoadData ||
-              // eventProc->activeTextType) {
-              proc->countdown = 2;
-              proc->range_event = true;
-              // }
+
+          if (proc->smsFacing ==
+              facing) { // if we are turning directions, don't run
+                        // events again
+            if (pFMU_RunLocBasedAsmcAuto(proc) == yield) {
+              struct EventEngineProc *eventProc =
+                  (struct EventEngineProc *)ProcFind(&gProc_MapEventEngine);
+              if (eventProc) {
+                proc->yield = true;
+                proc->countdown = 3;
+                if (FreeMoveRam->pause || FreeMoveRam->silent ||
+                    eventProc->evStallTimer || eventProc->pUnitLoadData ||
+                    eventProc->activeTextType) {
+                  proc->countdown = 2;
+                  proc->range_event = true;
+                }
+              }
             }
           }
           proc->yield_move = true;
@@ -636,26 +642,6 @@ int FMU_HandleContinuedMovement(void) {
   ctrProc->yPos = y;
   ctrProc->xPos2 = x;
   ctrProc->yPos2 = y;
-
-  proc->xTo = proc->xCur;
-  proc->yTo = proc->yCur;
-  if (!pFMU_RunLocBasedAsmcAuto(proc)) {
-
-    struct EventEngineProc *eventProc =
-        (struct EventEngineProc *)ProcFind(&gProc_MapEventEngine);
-    if (eventProc) {
-      if (FreeMoveRam->pause || FreeMoveRam->silent ||
-          eventProc->evStallTimer || eventProc->pUnitLoadData ||
-          eventProc->activeTextType) {
-        proc->yield = true;
-        proc->yield_move = true;
-        proc->countdown = 2;
-        proc->range_event = true;
-        return dir;
-      }
-    }
-  }
-
   proc->xTo = x;
   proc->yTo = y;
   if (!pFMU_RunLocBasedAsmcAutoAndUpdateCoord(proc)) {
