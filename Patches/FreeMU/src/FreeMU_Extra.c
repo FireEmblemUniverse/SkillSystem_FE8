@@ -144,6 +144,7 @@ void EnableFreeMovementASMC(void) {
 }
 
 void DisableFreeMovementASMC(void) {
+  EndAllMenus();
   FreeMoveRam->state = false;
   FreeMoveRam->use_dir = false;
   return;
@@ -191,10 +192,10 @@ void End6CInternal_FreeMU() {
   FreeMoveRam->state = false;
   FreeMoveRam->use_dir = false;
   if (proc) {
-    EndAllMenus();
+    // EndAllMenus();
     ProcGoto((Proc *)proc, 0xF);
     BreakEachProcLoop(FMU_IdleProc);
-    EndProc((Proc *)proc);
+    // EndProc((Proc *)proc);
   }
   return;
 }

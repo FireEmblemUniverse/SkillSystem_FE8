@@ -88,6 +88,7 @@ FMU_InputLoopProc:
 ALIGN 4
 	FreeMovementControlProc:
 	_6C_SET_NAME(FreeMovementProcName)
+    _6C_SET_DESTRUCTOR(0x804ef21) // EndAllMenus 
 	_6C_SET_MARK(2)
 	_6C_YIELD
 	_6C_NEW_CHILD(FMU_InputLoopProc)
