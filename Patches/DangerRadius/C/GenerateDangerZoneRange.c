@@ -1,6 +1,8 @@
 #include "RangeStuff.h"
 // #include "NewMapAddInRange.c"
 
+void PokemblemSetWorkingBmMap(u8 **map) { gWorkingBmMap = map; }
+
 #ifdef POKEMBLEM_VERSION
 void PokemblemGenerateDangerZoneRange(void) // I don't use staves
 #endif
@@ -8,7 +10,7 @@ void PokemblemGenerateDangerZoneRange(void) // I don't use staves
     void PokemblemGenerateDangerZoneRange(s8 boolDisplayStaffRange)
 #endif
 {
-  // asm("mov r11, r11");
+  // asm("mov r11, r11"); [30049a0..30049a3]!! [0x202f573]!!
 
   struct Unit *unit;
   int i, enemyFaction;
@@ -130,7 +132,7 @@ extern int BuildStraightLineRangeFromUnit(struct Unit *unit);
 
 void NewGenerateUnitCompleteAttackRange(struct Unit *unit) {
   int ix, iy;
-  // asm("mov r11, r11"); [0x202f573]!!
+  // asm("mov r11, r11");
   int size = SIZEOF_MapAddInRange_Link;
   // size = gBmMapFog[5][0];
 #ifdef USE_ARM
@@ -305,8 +307,6 @@ void NewGenerateUnitCompleteAttackRange(struct Unit *unit) {
   SetWorkingBmMap(gBmMapMovement);
 }
 
-void PokemblemSetWorkingBmMap(u8 **map) { gWorkingBmMap = map; }
-
 void PokemblemGenerateUnitMovementMapExt(struct Unit *unit, s8 movement) {
   AcrobatSetWorkingMoveCosts(GetUnitMovementCost(unit), 0, unit);
   PokemblemSetWorkingBmMap(gBmMapMovement);
@@ -418,69 +418,46 @@ inline void PokemblemMapAddInBoundedRange(short x, short y, short minRange,
   // IRAM_MapAddInRange(x, y, minRange - 1, -1);
 }
 
+//  [30049a0..30049a3]!! [0x202f573]!!
 #ifndef USE_ARM
-inline void ThumbPokemblemMapAddInRange(int x, int y, int range, int value) //
-{
-  int ix, iy, iRange;
-  int setFog = (gBmSt.gameStateBits &
-                BM_FLAG_3); // @ Check if we're called by DangerRadius
+inline void ApplyMapValueAtRow(int iy, int x, int iRange, int value,
+                               int setFog) {
+  int xMin = x - iRange;
+  int xRange = 2 * iRange + 1;
 
-  // Handles rows [y, y+range]
-  // For each row, decrement range
-  for (iRange = range, iy = y; (iy <= y + range) && (iy < gBmMapSize.y);
-       --iRange, ++iy) {
-    int xMin, xMax, xRange;
-
-    xMin = x - iRange;
-    xRange = 2 * iRange + 1;
-
-    if (xMin < 0) {
-      xRange += xMin;
-      xMin = 0;
-    }
-
-    xMax = xMin + xRange;
-
-    if (xMax > gBmMapSize.x) {
-      xMax -= (xMax - gBmMapSize.x);
-      xMax = gBmMapSize.x;
-    }
-
-    for (ix = xMin; ix < xMax; ++ix) {
-      gWorkingBmMap[iy][ix] += value;
-      if (setFog) {
-        gBmMapFog[iy][ix] = 1;
-      }
-    }
+  if (xMin < 0) {
+    xRange += xMin;
+    xMin = 0;
   }
 
-  // Handle rows [y-range, y-1], starting from the bottom most row
-  // For each row, decrement range
-  for (iRange = (range - 1), iy = (y - 1); (iy >= y - range) && (iy >= 0);
-       --iRange, --iy) {
-    int xMin, xMax, xRange;
+  int xMax = xMin + xRange;
 
-    xMin = x - iRange;
-    xRange = 2 * iRange + 1;
+  if (xMax > gBmMapSize.x) {
+    xMax = gBmMapSize.x;
+  }
 
-    if (xMin < 0) {
-      xRange += xMin;
-      xMin = 0;
-    }
-
-    xMax = xMin + xRange;
-
-    if (xMax > gBmMapSize.x) {
-      xMax -= (xMax - gBmMapSize.x);
-      xMax = gBmMapSize.x;
-    }
-
-    for (ix = xMin; ix < xMax; ++ix) {
-      gWorkingBmMap[iy][ix] += value;
-      if (setFog) {
-        gBmMapFog[iy][ix] = 1;
-      }
+  for (int ix = xMin; ix < xMax; ++ix) {
+    gWorkingBmMap[iy][ix] += value;
+    if (setFog) {
+      gBmMapFog[iy][ix] = 1;
     }
   }
 }
+
+inline void ThumbPokemblemMapAddInRange(int x, int y, int range, int value) {
+  int setFog = (gBmSt.gameStateBits & BM_FLAG_3);
+
+  // Upper half, including center row
+  for (int iRange = range, iy = y; (iy <= y + range) && (iy < gBmMapSize.y);
+       --iRange, ++iy) {
+    ApplyMapValueAtRow(iy, x, iRange, value, setFog);
+  }
+
+  // Lower half (rows above the center)
+  for (int iRange = range - 1, iy = y - 1; (iy >= y - range) && (iy >= 0);
+       --iRange, --iy) {
+    ApplyMapValueAtRow(iy, x, iRange, value, setFog);
+  }
+}
+
 #endif

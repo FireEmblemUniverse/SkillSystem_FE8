@@ -254,11 +254,15 @@ void DrawItemInfo(struct MenuProc *menu, struct MenuCommandProc *command,
   // update tileNext to be whatever we offset it to
   // in this case it's 0, but it would be important if it wasn't
   // menu starts at tileNext as 0 (and draws spaces as needed)
+  // asm("mov r11, r11");
   for (u8 c = 1; c <= menu->commandCount; c++) {
     gpCurrentFont->tileNext = menu->pCommandProc[c - 1]->text.tileIndexOffset +
                               menu->pCommandProc[c - 1]->text.tileWidth;
-    menu->pCommandProc[c]->text.tileIndexOffset = gpCurrentFont->tileNext;
+    if (c < menu->commandCount) {
+      menu->pCommandProc[c]->text.tileIndexOffset = gpCurrentFont->tileNext;
+    }
   }
+
   // menu->pCommandProc[1]->text.currentBufferId = 0;
   // //handles[i].currentBufferId;
   MoveListCommandDraw(menu, menu->pCommandProc[1]);
