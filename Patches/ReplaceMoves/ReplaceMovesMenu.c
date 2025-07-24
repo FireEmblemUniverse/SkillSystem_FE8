@@ -12,6 +12,7 @@ struct StatScreenSt {
   /* 0C */ struct Unit *unit;
   /* 10 */ struct MUProc *mu;
   /* 14 */ const struct HelpBoxInfo *help;
+  /* 18 */ struct TextHandle text[34];
 };
 extern struct StatScreenSt gStatScreen; // statscreen state
 enum { UNIT_MOVE_COUNT = 5 };
@@ -229,11 +230,11 @@ static void PrepareText(TextHandle *handle, char *string) {
 
 void DrawItemInfo(struct MenuProc *menu, struct MenuCommandProc *command,
                   struct ReplaceMoveProc *proc) {
-  for (int x = 0; x < 30; x++) { // clear out most of bg0
-    for (int y = 0; y < 20; y++) {
-      gBG0MapBuffer[y][x] = 0;
-    }
-  }
+  // for (int x = 0; x < 30; x++) { // clear out most of bg0
+  // for (int y = 0; y < 20; y++) {
+  // gBG0MapBuffer[y][x] = 0;
+  // }
+  // }
   BgMap_ApplyTsa(&gBG1MapBuffer[9][11], &PkmnDetailsTSA, 0);
   BgMap_ApplyTsa(&gBG1MapBuffer[14][5], &ReplaceMovesTSA, 0);
   BgMap_ApplyTsa(&gBG1MapBuffer[1][10], &DescBoxTSA, 0);
@@ -268,7 +269,7 @@ void DrawItemInfo(struct MenuProc *menu, struct MenuCommandProc *command,
 
   // u16 tile = menu->tileBase+20;
 
-  TextHandle handles[20] = {};
+  TextHandle *handles = gStatScreen.text;
   for (int i = 0; i < 20; i++) {
     // handles[i].tileIndexOffset = tile; // offset to start at
     handles[i].xCursor = 0;
@@ -464,7 +465,7 @@ void UpdateItemInfo(struct MenuProc *menu, struct MenuCommandProc *command,
     item = UnitGetMoveList(proc->unit)[hover];
   }
 
-  TextHandle handles[8] = {};
+  TextHandle *handles = &gStatScreen.text[20];
   for (int i = 0; i < 8; i++) {
     // handles[i].tileIndexOffset = tile; // offset to start at
     handles[i].xCursor = 0;
