@@ -61,7 +61,7 @@ BEQ 0 sC s1
 
 // check if we have heart scale here 
 // if not, goto 1 
-
+ASMC ClearSpellLearnedRam 
 ASMC ViewRelearnCommand_OnSelect
 BEQ 99 sC s0 
 CLEAN 

@@ -38,6 +38,7 @@ LABEL 0
 // Selected "no" 
 ASMC ReplaceMoveCommand_OnSelect
 LABEL 0x63 
+ASMC ClearSpellLearnedRam
 EVBIT_MODIFY 4 
 
 

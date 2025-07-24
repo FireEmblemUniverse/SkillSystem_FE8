@@ -92,7 +92,7 @@ Tutorial:
 END_MAIN
 
 Units1:
-UNIT Eirika  PikachuID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [ThunderStone,0,0,0] [0x0,0x0,0x0,0x0]
+UNIT Eirika  AlakazamID 0x1 Level(0,Ally,True)   [5,5] 0b 0x0 0x0 0x0 [0,0,0,0] [0x0,0x0,0x0,0x0]
 UNIT 2  CaterpieID 0x1 Level(0,Ally,True)  [5,6] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 4  DragoniteID 0x1 Level(0,Ally,True)    [5,7] 0b 0x0 0x0 0x0 [0x0,0x0,0x0,0x0] [0x0,0x0,0x0,0x0]
 UNIT 3  MewtwoID 0x1 Level(0,Ally,True)   [6,5] 0b 0x0 0x0 0x0 [0x0,0,0,0x0] [0x0,0x0,0x0,0x0]
@@ -592,8 +592,8 @@ ENUT CannotEvolveFlag
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(19, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(5, YCoordNewArea)  
+Write_Byte(12, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(15, YCoordNewArea)  
 
 //Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
 //Write_Byte(18, YCoordNewArea) 
@@ -610,7 +610,7 @@ Write_Byte(5, YCoordNewArea)
 ENUT MissingnoFlag
 //MNC2 CinnabarCh 
 //MNC2 VermilionCh
-MNC2 SilphCo2FCh
+MNC2 CeladonCh
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh
