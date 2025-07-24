@@ -130,10 +130,12 @@ extern int BuildStraightLineRangeFromUnit(struct Unit *unit);
 
 void NewGenerateUnitCompleteAttackRange(struct Unit *unit) {
   int ix, iy;
-  asm("mov r11, r11");
+  // asm("mov r11, r11"); [0x202f573]!!
+  int size = SIZEOF_MapAddInRange_Link;
+  // size = gBmMapFog[5][0];
 #ifdef USE_ARM
   CpuFastCopy(PokemblemMapAddInRange, (void *)IRAM_MapAddInRange,
-              SIZEOF_MapAddInRange_Link); // copy render code into IWRAM
+              size); // copy render code into IWRAM
 #endif
 
 #ifndef POKEMBLEM_VERSION
