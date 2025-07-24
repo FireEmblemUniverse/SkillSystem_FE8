@@ -39,11 +39,10 @@ void TryUnhideSteppedOnUnit(struct FMUProc *proc, int x, int y) {
     proc->updateSMS = true;
   }
 }
-// [2025084+0x2F]!!
 extern void DepleteRepelByStep(void);
 
 int pFMU_RunLocBasedAsmcAuto(struct FMUProc *proc) {
-
+  int result = no_yield;
   int x = gActiveUnit->xPos;
   int y = gActiveUnit->yPos;
   gActiveUnit->xPos = proc->xTo;
@@ -51,21 +50,16 @@ int pFMU_RunLocBasedAsmcAuto(struct FMUProc *proc) {
   DepleteRepelByStep();
 
   if (FMU_RunTrapASMC_Auto(proc)) {
-    gActiveUnit->xPos = x;
-    gActiveUnit->yPos = y;
-    return yield;
+    result = yield;
   }
-
-  if (RunMiscBasedEvents(proc->xTo,
-                         proc->yTo)) { // 8083aa4 T EvCheck0B_AREA directly uses
-                                       // gActiveUnit coordinates
-    gActiveUnit->xPos = x;
-    gActiveUnit->yPos = y;
-    return yield;
+  // 8083aa4 T EvCheck0B_AREA directly uses
+  // gActiveUnit coordinates
+  else if (RunMiscBasedEvents(proc->xTo, proc->yTo)) {
+    result = yield;
   }
   gActiveUnit->xPos = x;
   gActiveUnit->yPos = y;
-  return no_yield;
+  return result;
 }
 
 int pFMU_RunLocBasedAsmcAutoAndUpdateCoord(struct FMUProc *proc) {

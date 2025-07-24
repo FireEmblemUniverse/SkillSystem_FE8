@@ -136,7 +136,7 @@ MenuProc* StartMenuAt(const MenuDefinition*, MenuGeometry, Proc* parent); //! FE
 MenuProc* StartMenuExt(const MenuDefinition*, MenuGeometry, int backBgId, u16 baseTile, int frontBgId, int idk, Proc* parent); //! FE8U = 0x804ECB1
 
 Proc* EndMenu(MenuProc*); //! FE8U = 0x804EEA9
-void EndAllMenus(MenuProc*); //! FE8U = 0x804EF21
+void EndAllMenus(void); //! FE8U = 0x804EF21
 
 // internal stuff
 // Menu_CallDefinedConstructors //! FE8U = 0x804EF39

@@ -103,7 +103,7 @@ void pFMU_MainLoop(struct FMUProc *proc) {
 
   if (exit_early) {
     proc->yield = true;
-    proc->countdown = 1;
+    proc->countdown += 1;
   }
 
   if (eventProc) {
@@ -217,7 +217,7 @@ void pFMU_MainLoop(struct FMUProc *proc) {
   u16 iKeyUse = gKeyState.pressedKeys; // | gKeyState.prevKeys;
   if (!proc->yield) {
     if (pFMU_HandleKeyMisc(proc, iKeyUse) == yield) {
-      proc->countdown = 3;
+      proc->countdown += 3;
       proc->yield = true;
       proc->startTime = GetGameClock();
       return;
@@ -263,6 +263,7 @@ void pFMU_MainLoop(struct FMUProc *proc) {
           iKeyCur = FMU_FilterMovementInput(proc, iKeyCur);
           int facing = proc->smsFacing;
           pFMU_MoveUnit(proc, iKeyCur);
+          proc->countdown += 2;
 
           if (proc->smsFacing == facing) { // if we are turning directions,
                                            // don't run events again
@@ -271,11 +272,12 @@ void pFMU_MainLoop(struct FMUProc *proc) {
                   (struct EventEngineProc *)ProcFind(&gProc_MapEventEngine);
               if (eventProc) {
                 proc->yield = true;
-                proc->countdown = 3;
+
                 if (FreeMoveRam->pause || FreeMoveRam->silent ||
                     eventProc->evStallTimer || eventProc->pUnitLoadData ||
                     eventProc->activeTextType) {
-                  proc->countdown = 2;
+
+                  proc->countdown += 2;
                   proc->range_event = true;
                 }
               }
@@ -559,7 +561,7 @@ int FMU_HandleContinuedMovement(void) {
   iKeyUse |= proc->curInput;
   proc->curInput = 0;
   if (pFMU_HandleKeyMisc(proc, iKeyUse) == yield) {
-    proc->countdown = 3;
+    proc->countdown += 3;
     proc->yield = true;
   }
 
@@ -581,6 +583,7 @@ int FMU_HandleContinuedMovement(void) {
   if (!gKeyState.pressedKeys && !gKeyState.heldKeys) {
     iKeyUse = 0;
   }
+
   if ((iKeyUse & 0xF0) == 0) {
     // if we didn't press a key recently, use whatever is held down
     iKeyUse |=
@@ -654,7 +657,7 @@ int FMU_HandleContinuedMovement(void) {
           eventProc->activeTextType) {
         proc->yield = true;
         proc->yield_move = true;
-        proc->countdown = 2;
+        proc->countdown += 2;
         proc->range_event = true;
       }
     }
@@ -806,6 +809,7 @@ int pFMU_MoveUnit(struct FMUProc *proc, u16 iKeyCur) { // Label 1
         if (gMapFog[y][x]) {
           proc->end_after_movement = true;
         }
+        proc->countdown += 4;
         MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
         struct MUProc *muProc = MU_GetByUnit(gActiveUnit);
         MU_EnableAttractCamera(muProc);
