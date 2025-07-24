@@ -168,7 +168,7 @@ int ReplaceMoveCommand_OnSelect(struct MenuProc *menu,
   int *MemorySlot3 = (int *)0x30004C4;
   int *MemorySlot4 = (int *)0x30004C8;
 
-  *MemorySlot1 = (void *)proc->unit;
+  *MemorySlot1 = (int)proc->unit;
   *MemorySlot3 = 0xF8;
   *MemorySlot4 = proc->moveReplacement;
 
@@ -186,9 +186,10 @@ int ReplaceMoveCommand_OnSelect(struct MenuProc *menu,
 
 // stuff from A00AD0 HelpTextBubble
 // 203E784
-extern void *gHelpBox_RMenu; // RMenu(up,down,left,right,xcoord,ycoord,SlotID,Looper,Getter)
-                             // "POIN up down left right; BYTE xcoord ycoord;
-                             // SHORT SlotID; POIN Looper|1 Getter|1"
+extern void *
+    gHelpBox_RMenu; // RMenu(up,down,left,right,xcoord,ycoord,SlotID,Looper,Getter)
+                    // "POIN up down left right; BYTE xcoord ycoord;
+                    // SHORT SlotID; POIN Looper|1 Getter|1"
 
 extern void *gText_HelpBox;           // 0x203E794
 extern void *gText_HelpBoxTextOffset; //  0x203E7AC
@@ -316,7 +317,7 @@ GetStringFromIndex(GetItemDescId(proc->moveReplacement)));
   Text_Display(&handles[i], &gBG0MapBuffer[9][11]);
   i++;
 
-  char *strName = &"Str";
+  char *strName = (void *)&"Str";
   width = (Text_GetStringTextWidth(strName) + 8 + 8) / 8;
   Text_InitClear(&handles[i], width);
   handles[i].tileWidth = width;
@@ -326,7 +327,7 @@ GetStringFromIndex(GetItemDescId(proc->moveReplacement)));
   Text_Display(&handles[i], &gBG0MapBuffer[11][11]);
   i++;
 
-  char *magName = &"Mag";
+  char *magName = (void *)&"Mag";
   width = (Text_GetStringTextWidth(magName) + 8 + 8) / 8;
   Text_InitClear(&handles[i], width);
   handles[i].tileWidth = width;
