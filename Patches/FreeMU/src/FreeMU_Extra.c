@@ -55,8 +55,7 @@ bool FMU_CheckForIce(struct FMUProc *proc, int x,
           // proc->yield = true;
           // proc->countdown = 20;
           // MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
-          proc->xTo = x;
-          proc->yTo = y;
+          UpdateDestCoord(proc, x, y);
 
           struct MUProc *muProc = MU_GetByUnit(gActiveUnit);
           if (!muProc) {
@@ -93,8 +92,7 @@ bool FMU_CheckForLedge(struct FMUProc *proc, int x, int y) {
         proc->ledgeX = x;
         proc->ledgeY = y - 1;
         // MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
-        proc->xTo = x;
-        proc->yTo = y;
+        UpdateDestCoord(proc, x, y);
 
         return false;
 

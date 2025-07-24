@@ -458,6 +458,13 @@ unsigned GetPhaseAbleUnitCount(unsigned faction) {
 }
 */
 
+void UpdateDestCoord(struct FMUProc *proc, int x, int y) {
+  gActionData.xMove = x;
+  gActionData.yMove = y;
+  proc->xTo = x;
+  proc->yTo = y;
+}
+
 void FMU_InitVariables(struct FMUProc *proc) {
   pFMU_OnInit(proc);
   FMU_ResetLCDIO();
@@ -480,8 +487,7 @@ void FMU_InitVariables(struct FMUProc *proc) {
   proc->updateSMS = false;
   proc->xCur = gActiveUnit->xPos;
   proc->yCur = gActiveUnit->yPos;
-  proc->xTo = gActiveUnit->xPos;
-  proc->yTo = gActiveUnit->yPos;
+  UpdateDestCoord(proc, gActiveUnit->xPos, gActiveUnit->yPos);
   proc->usedLedge = false;
   proc->usedIce = false;
   proc->end_after_movement = false;
@@ -644,8 +650,7 @@ int FMU_HandleContinuedMovement(void) {
   ctrProc->yPos = y;
   ctrProc->xPos2 = x;
   ctrProc->yPos2 = y;
-  proc->xTo = x;
-  proc->yTo = y;
+  UpdateDestCoord(proc, x, y);
   if (!pFMU_RunLocBasedAsmcAutoAndUpdateCoord(proc)) {
     struct EventEngineProc *eventProc =
         (struct EventEngineProc *)ProcFind(&gProc_MapEventEngine);
@@ -786,8 +791,7 @@ int pFMU_MoveUnit(struct FMUProc *proc, u16 iKeyCur) { // Label 1
             MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
             struct MUProc *muProc = MU_GetByUnit(gActiveUnit);
             MU_EnableAttractCamera(muProc);
-            proc->xTo = x;
-            proc->yTo = y;
+            UpdateDestCoord(proc, x, y);
             return yield;
           }
         }
@@ -809,8 +813,7 @@ int pFMU_MoveUnit(struct FMUProc *proc, u16 iKeyCur) { // Label 1
         MuCtr_StartMoveTowards(gActiveUnit, x, y, 0x10, 0x0);
         struct MUProc *muProc = MU_GetByUnit(gActiveUnit);
         MU_EnableAttractCamera(muProc);
-        proc->xTo = x;
-        proc->yTo = y;
+        UpdateDestCoord(proc, x, y);
         return yield;
       }
     } else {

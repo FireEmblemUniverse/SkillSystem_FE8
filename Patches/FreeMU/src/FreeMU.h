@@ -209,6 +209,7 @@ const void MuCtr_OnEnd(Proc* proc);                                       //! FE
 extern int CenterCameraOntoPosition(struct Proc* parent, int x, int y);
 extern u8 MapEventEngineExists(void); 
 void FMU_StartPlayerPhase(void);
+void UpdateDestCoord(struct FMUProc *proc, int x, int y); 
 
 void FMU_EnableDR(void);
 void pFMU_DoNothing(struct Proc* proc);
