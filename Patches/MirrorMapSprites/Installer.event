@@ -16,5 +16,7 @@ WORD FLIP_ENEMY|FLIP_FOURTH
 PUSH 
 ORG 0x2723C
 callHackNew(SetMirrorSpriteHook)
+ORG $27390 
+callHackNew_r4(InitSpriteHook)
 POP 
 

@@ -59,7 +59,11 @@
 #define callHackNew_r0(offset) 	"BYTE $01 $48 $86 $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
 #define callHackNew_r1(offset) 	"BYTE $01 $49 $8E $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
 #define callHackNew_r2(offset) 	"BYTE $01 $4A $96 $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
-#define callHackNew(offset) 		"BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+#define callHackNew(offset)     "BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+#define callHackNew_r4(offset) 	"BYTE $01 $4C $A6 $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+#define callHackNew_r5(offset) 	"BYTE $01 $4D $AE $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+#define callHackNew_r6(offset) 	"BYTE $01 $4E $B6 $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
+#define callHackNew_r7(offset) 	"BYTE $01 $4F $BE $46 $00 $F8 $01 $E0; POIN (offset|0x1); PROTECT CURRENTOFFSET-12 CURRENTOFFSET-1"
 
 
 // Pokemblem stuff: 
