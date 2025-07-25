@@ -72,6 +72,7 @@ DigChapterTransition(ChapterID, SSAnneCh, 19,3)
 
 GenericDisappearEffect(16, MewTruckEvent) 
 MewTruckEvent:
+PauseFreeMovement
 ENUT MewFledFlag 
 ENUT HideUnitIconsFlag
 EVBIT_MODIFY 1 // cannot scene skip 
@@ -93,6 +94,7 @@ Text(MewAlertedText)
 SCOORD sB [39,5] 
 CALL MyWarpOutEvent
 DISA 0xD0 
+STAL 22
 ENUF HideUnitIconsFlag
 NoFade 
 ENDA 

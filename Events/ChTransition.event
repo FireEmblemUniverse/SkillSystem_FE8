@@ -612,7 +612,11 @@ ENUF ViridianGymClosedFlag
 LABEL 10 // Defeated Giovanni already 
 ENUF PewterGymClosedFlag 
 ENUF CeruleanGymClosedFlag 
-ENUF VermilionGymClosedFlag
+
+CHECK_EVENTID SurgePowerPlantFlag 
+BEQ 12 sC s0 
+    ENUF VermilionGymClosedFlag
+LABEL 12 
 ENUF FuschiaGymClosedFlag 
 ENUF CeladonGymClosedFlag 
 ENUF SaffronGymClosedFlag 
@@ -1227,8 +1231,45 @@ NoFade
 ENDA 
 
 
+IsPowerOut:
+CHECK_EVENTID SurgePowerPlantFlag
+BNE 0 sC s0 
+CHECK_EVENTID StrengthBoulderFlag
+BEQ 0 sC s0 
+// Power is out for these areas after getting strength 
+CHECK_CHAPTER_NUMBER
+SVAL s1 VermilionCh 
+BEQ 1 sC s1 
+SVAL s1 CeruleanCh 
+BEQ 1 sC s1 
+SVAL s1 LavenderCh
+BEQ 1 sC s1 
+SVAL s1 SaffronCh
+BEQ 1 sC s1 
+
+GOTO 0 
+LABEL 1 
+SVAL sC 1 
+GOTO 99 
+LABEL 0 
+SVAL sC 0 
+LABEL 99 
+NoFade 
+ENDA 
+
+
+PowerOutEvent: 
+CALL IsPowerOut 
+BNE 99 sC s0 
+TutText(PowerOutText)
+CALL EventBEnd 
+LABEL 99 
+NoFade 
+ENDA 
+
 
 VisitPokecenter:
+CALL PowerOutEvent
 CHECK_COORDS 0x7FFF
 SADD rB rC r0 
 
@@ -1247,6 +1288,7 @@ Write_Byte(CurrentChapter)
 Write_Byte(TeleportChapter) // teleport chapter needs to know where you last visited 
 CALL HandleProtag 
 MNC2 PCBoxCh 
+LABEL 99 
 NoFade 
 ENDA 
 
