@@ -149,9 +149,23 @@ static const struct MenuDefinition Menu_ReplaceMoveDebug = {
         (void *)(BPressForgetOldMoveMenu), // Now in the proc call routine
 };
 
+int DoesUnitKnowMoveAlready(struct Unit *unit, int moveID) {
+  for (int i = 0; i < 5; ++i) {
+    if (unit->ranks[i] == moveID) {
+      return true;
+    }
+  }
+  return false;
+}
+
 extern const ProcCode gProc_8A01650[];
 int ReplaceMoveCommand_OnSelect(struct MenuProc *menu,
                                 struct MenuCommandProc *command) {
+  int *gVeslyUnit = (int *)0x30017BC;
+  u16 *gVeslySkill = (u16 *)0x0202BCDE;
+  if (DoesUnitKnowMoveAlready((struct Unit *)*gVeslyUnit, *gVeslySkill)) {
+    return ME_END;
+  }
   struct ReplaceMoveProc *proc =
       (void *)ProcStart(Proc_ReplaceMove, ROOT_PROC_3);
   // struct ReplaceMoveProc* proc2 = (void*) ProcStart(&gProc_8A01650[0],
@@ -160,8 +174,6 @@ int ReplaceMoveCommand_OnSelect(struct MenuProc *menu,
   SMS_UpdateFromGameData();
   MU_EndAll();
 
-  int *gVeslyUnit = (int *)0x30017BC;
-  int *gVeslySkill = (int *)0x0202BCDE;
   proc->moveReplacement = *gVeslySkill;    // Short
   proc->unit = (struct Unit *)*gVeslyUnit; // Struct UnitRamPointer
 
