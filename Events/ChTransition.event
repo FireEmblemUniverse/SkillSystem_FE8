@@ -1236,23 +1236,26 @@ CHECK_EVENTID SurgePowerPlantFlag
 BNE 0 sC s0 
 CHECK_EVENTID StrengthBoulderFlag
 BEQ 0 sC s0 
+
 // Power is out for these areas after getting strength 
 CHECK_CHAPTER_NUMBER
+SADD sA sC s0 
 SVAL s1 VermilionCh 
-BEQ 1 sC s1 
+BEQ 1 sA s1 
 SVAL s1 CeruleanCh 
-BEQ 1 sC s1 
+
+BEQ 1 sA s1 
 SVAL s1 LavenderCh
-BEQ 1 sC s1 
+BEQ 1 sA s1 
 SVAL s1 SaffronCh
-BEQ 1 sC s1 
+BEQ 1 sA s1 
 
 GOTO 0 
 LABEL 1 
-SVAL sC 1 
+SVAL s1 1 
 GOTO 99 
 LABEL 0 
-SVAL sC 0 
+SVAL s1 0 
 LABEL 99 
 NoFade 
 ENDA 
@@ -1260,7 +1263,8 @@ ENDA
 
 PowerOutEvent: 
 CALL IsPowerOut 
-BNE 99 sC s0 
+BEQ 99 s1 s0 
+EVBIT_MODIFY 1 
 TutText(PowerOutText)
 CALL EventBEnd 
 LABEL 99 
@@ -1437,6 +1441,7 @@ NoFade
 ENDA 
 
 ReviveAndSaveEvent:
+CALL PowerOutEvent
 ReviveParty 
 CALL SaveWithHeal 
 NoFade 

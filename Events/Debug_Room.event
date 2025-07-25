@@ -585,15 +585,16 @@ ENUT RematchNotify2
 ENUT MoltresFledFlag  
 ENUT ArticunoFledFlag 
 ENUT ZapdosFledFlag 
-// ENUT MewFledFlag 
+ENUT MewFledFlag 
 ENUT CannotEvolveFlag 
+// ENUT SurgePowerPlantFlag 
 
 //ENUF CasualModeFlag 
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(12, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(5, YCoordNewArea)  
+Write_Byte(7, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(18, YCoordNewArea)  
 
 //Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
 //Write_Byte(18, YCoordNewArea) 
@@ -610,7 +611,7 @@ Write_Byte(5, YCoordNewArea)
 ENUT MissingnoFlag
 //MNC2 CinnabarCh 
 //MNC2 VermilionCh
-MNC2 SSAnneCh
+MNC2 VermilionCh
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh
