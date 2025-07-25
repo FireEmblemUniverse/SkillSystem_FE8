@@ -53,7 +53,6 @@
 
 [LoadBlankFace] = [LoadFace][0x01][0x1]
 [LoadOak] = [LoadFace][0x99][0x1]
-[LoadBill] = [LoadFace][0x99][0x1]
 [LoadGaryPoint] = [LoadFace][0x9A][0x1]
 [LoadGaryShrug] = [LoadFace][0x9B][0x1]
 [LoadGaryBattle] = [LoadFace][0x9C][0x1]
@@ -77,6 +76,10 @@
 [LoadRed] = [LoadFace][0xB2][0x1]
 [LoadProtag] = [LoadFace][0xB3][0x1]
 [LoadGreen] = [LoadFace][0xB4][0x1]
+[LoadBill] = [LoadFace][0xB5][0x1]
+[LoadKoichi] = [LoadFace][0xB6][0x1]
+[LoadFuji] = [LoadFace][0xB7][0x1]
+
 [LoadFlareon] = [LoadFace][0x88][0x1]
 [LoadMewtwo] = [LoadFace][0x96][0x1]
 [LoadMew] = [LoadFace][0x97][0x1]

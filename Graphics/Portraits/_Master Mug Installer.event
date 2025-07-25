@@ -209,6 +209,32 @@ GreenData:
 #incbin "Dmp/Green_Eden_minimug.dmp" 
 setMugEntry(180, GreenData, 3, 6, 3, 4)
 
+ALIGN 16 
+BillData: 
+#incbin "Dmp/Bill_Eden_mug.dmp" 
+#incbin "Dmp/Bill_Eden_frames.dmp" 
+#incbin "Dmp/Bill_Eden_palette.dmp" 
+#incbin "Dmp/Bill_Eden_minimug.dmp" 
+setMugEntry(181, BillData, 3, 5, 3, 3)
+
+
+ALIGN 16 
+KoichiData: 
+#incbin "Dmp/Koichi_Eden_mug.dmp" 
+#incbin "Dmp/Koichi_Eden_frames.dmp" 
+#incbin "Dmp/Koichi_Eden_palette.dmp" 
+#incbin "Dmp/Koichi_Eden_minimug.dmp" 
+setMugEntry(182, KoichiData, 2, 5, 2, 3)
+
+ALIGN 16 
+FujiData: 
+#incbin "Dmp/Fuji_Eden_mug.dmp" 
+#incbin "Dmp/Fuji_Eden_frames.dmp" 
+#incbin "Dmp/Fuji_Eden_palette.dmp" 
+#incbin "Dmp/Fuji_Eden_minimug.dmp" 
+setMugEntry(183, FujiData, 3, 6, 3, 4)
+
+
 
 // Reserved 
 ALIGN 16 
