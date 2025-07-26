@@ -215,6 +215,8 @@ RandomizeEnemyCoords(Sea, Range(0,0,5,5), Range(16,9,22,12))
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
 
+CHECK_EVENTID StrengthBoulderFlag 
+BEQ 27 sC s0 
 CHECK_EVENTID BlaineSeafoamFlag 
 BNE 27 sC s0 
 LOAD1 1 BlaineUnitGroup 

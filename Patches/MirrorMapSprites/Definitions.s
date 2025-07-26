@@ -19,4 +19,5 @@ SET_FUNC __aeabi_idiv,    __divsi3
 SET_FUNC Div, __divsi3
 SET_FUNC Mod, __modsi3
 SET_DATA classTablePoin, 0x8017AB8 
+SET_DATA gUnitSpriteSlots, 0x2033f40 
 

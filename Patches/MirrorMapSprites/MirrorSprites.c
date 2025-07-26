@@ -116,6 +116,45 @@ void SetMirrorSpriteInSmsHandle(struct Unit *unit,
   }
 }
 
+// 0x2033F40 gUnitSpriteSlots changed to 0x201F148 gUnk_SoundRoom_0201F148
+// // Make SMS_RegisterUsage return SMS ram+index in r2
+// needs new SMS table
+// size changed to 0xFF
+extern u8 gUnitSpriteSlots[0xD0];
+extern int gSMS16xGfxIndexCounter;
+extern int gSMS32xGfxIndexCounter;
+int UseUnitSprite(u32 id) {
+  if (gUnitSpriteSlots[id] == 0xFF) {
+    Decompress(GetInfo(id).sheet, gGenericBuffer);
+
+    switch (GetInfo(id).size) {
+    case UNIT_ICON_SIZE_16x16:
+      gUnitSpriteSlots[id] =
+          ApplyUnitSpriteImage16x16(gSMS16xGfxIndexCounter, id) / 2;
+      gSMS16xGfxIndexCounter -= 1;
+      break;
+
+    case UNIT_ICON_SIZE_16x32:
+      gUnitSpriteSlots[id] =
+          ApplyUnitSpriteImage16x32(gSMS32xGfxIndexCounter, id) / 2;
+      gSMS32xGfxIndexCounter += 2;
+      break;
+
+    case UNIT_ICON_SIZE_32x32:
+      if ((gSMS32xGfxIndexCounter & 0x1E) == 0x1E)
+        gSMS32xGfxIndexCounter += 2;
+
+      gUnitSpriteSlots[id] =
+          ApplyUnitSpriteImage32x32(gSMS32xGfxIndexCounter, id) / 2;
+      gSMS32xGfxIndexCounter += 4;
+      break;
+    }
+
+    gSMSSyncFlag++;
+  }
+  return gUnitSpriteSlots[id] << 1;
+}
+
 /*
         smsHandle->config = GetInfo(GetUnitSMSId(unit)).size;
 
