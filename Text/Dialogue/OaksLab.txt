@@ -57,7 +57,7 @@ Error.[N]
 Please send report.[A][X]
 
 ## WhosTheKidText 
-[OpenFarLeft][LoadFace][Protag][OpenMidRight][LoadOak][OpenLeft][LoadGaryShrug][OpenLeft]So who's the kid?[A][CloseSpeechSlow][OpenMidRight]This is [Tact], your new Neighbour.[A][NL]
+[OpenFarLeft][LoadProtag][OpenMidRight][LoadOak][OpenLeft][LoadGaryShrug][OpenLeft]So who's the kid?[A][CloseSpeechSlow][OpenMidRight]This is [Tact], your new Neighbour.[A][NL]
 I mentioned they were coming, [NL]
 remember?[A][NL]
 [OpenLeft]Tcch.[A][NL]
@@ -88,12 +88,12 @@ Uh oh![A][X]
 I said just one![A][X]
 
 ## FirstGaryDefeat
-[OpenMidLeft][LoadGaryPoint][OpenMidLeft]That wasn't fair![NL]
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadGaryPoint][OpenMidRight]That wasn't fair![NL]
 You two teamed up on me![A][NL]
-Tcch... losers.[A][OpenMidLeft][ClearFace][OpenMidLeft][....][X]
+Tcch... losers.[A][OpenMidRight][ClearFace][OpenMidRight][....][X]
 
 ## OakFirstGaryDefeat 
-[OpenMidRight][LoadOak][OpenMidRight]Sorry about him.[NL]
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadOak][OpenMidRight]Sorry about him.[NL]
 He's a real brat.[A][NL]
 Ah, parenting.[A][CloseSpeechSlow][OpenMidRight][MoveRight][OpenRight]Oh! Speaking of.[NL]
 Your mother left this for you.[A][X]
@@ -103,30 +103,30 @@ Your mother left this for you.[A][X]
 
 
 ## SpeedRunnerText
-[OpenMidRight][LoadOak][OpenMidRight][FastPrint]Oh, a speedrunner?[NL]
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadOak][OpenMidRight][FastPrint]Oh, a speedrunner?[NL]
 I won't keep you, then.[A][X]
 
 
 ## PlaytesterMessage
-[OpenMidRight][LoadOak][OpenMidRight]Oh, [Tact]?[NL]
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadOak][OpenMidRight]Oh, [Tact]?[NL]
 Well, that's a surprise.[A][NL]
 Here's something extra[NL]
 special, just for you.[A][X]
 
 ## ChallengeRunMessage
-[OpenMidRight][LoadOak][OpenMidRight]Hello, [Tact]. You [ToggleRed]cannot[NL]
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadOak][OpenMidRight]Hello, [Tact]. You [ToggleRed]cannot[NL]
 capture Pokémon[ToggleRed] in this mode.[A][N]
 But you may still struggle through...[A][X]
 
 ## LittleCupMessageText
-[OpenMidRight][LoadOak][OpenMidRight]Hello, [Tact]. You [ToggleRed]cannot evolve[NL]
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadOak][OpenMidRight]Hello, [Tact]. You [ToggleRed]cannot evolve[NL]
 Pokémon[ToggleRed] in this mode.[A][N]
 You cannot catch single-[N]
 stage Pokémon either.[A][N]
 But you may still struggle through...[A][X]
 
 ## VeslyMessageText
-[OpenMidRight][LoadOak][OpenMidRight]Hello, almighty [Tact]. You [ToggleRed]cannot capture/[NL]
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadOak][OpenMidRight]Hello, almighty [Tact]. You [ToggleRed]cannot capture/[NL]
 evolve Pokémon[ToggleRed] in this mode.[A][N]
 Yes, I beat Lunatic mode like this.[N]
 So it's possible.[A][X]
