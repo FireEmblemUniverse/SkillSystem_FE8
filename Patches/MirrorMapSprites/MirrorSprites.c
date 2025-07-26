@@ -120,14 +120,54 @@ void SetMirrorSpriteInSmsHandle(struct Unit *unit,
 // // Make SMS_RegisterUsage return SMS ram+index in r2
 // needs new SMS table
 // size changed to 0xFF
-extern u8 gUnitSpriteSlots[0xD0];
+extern const UnitIconWait NewStandingMapSpriteTable[];
+extern void *FMU_idleSMSGfxTable_left[0xFF];
+extern void *FMU_idleSMSGfxTable_right[0xFF];
+extern void *FMU_idleSMSGfxTable_up[0xFF];
+extern UnitIconWait unit_icon_wait_table[];
+#define GetInfo(id) (unit_icon_wait_table[(id) & ((1 << 7) - 1)])
+
+extern u8 gUnitSpriteSlots[0xFF];
 extern int gSMS16xGfxIndexCounter;
 extern int gSMS32xGfxIndexCounter;
 int UseUnitSprite(u32 id) {
-  if (gUnitSpriteSlots[id] == 0xFF) {
-    Decompress(GetInfo(id).sheet, gGenericBuffer);
+  int dir = (id & 0xFF00) >> 8;
+  id &= 0xFF;
+  u16 size = NewStandingMapSpriteTable[id].size;
+  u8 width = size < 2 ? 16 : 32;
+  u8 height = size > 0 ? 32 : 16;
+  u32 srcOffs[3] = {0, 0, 0};
+  int frame = GetGameClock() % 72;
+  // return;
+  srcOffs[0] = (srcOffs[0] << (7 + size)) * 3;
+  srcOffs[1] = (srcOffs[0] << ((7 + size)) * 3 * 2);
+  srcOffs[2] = (srcOffs[0] << ((7 + size)) * 3 * 4);
+  void *data = NewStandingMapSpriteTable[id].sheet;
 
-    switch (GetInfo(id).size) {
+  if (gUnitSpriteSlots[id] == 0xFF) {
+    switch (dir) {
+    case 0: {
+      data = NewStandingMapSpriteTable[id].sheet;
+      break;
+    } // down
+    case 1: {
+      data = FMU_idleSMSGfxTable_left[id];
+      break;
+    }
+    case 2: {
+      data = FMU_idleSMSGfxTable_right[id];
+      break;
+    }
+    case 3: {
+      data = FMU_idleSMSGfxTable_up[id];
+      break;
+    }
+    default:
+    }
+
+    Decompress(data, gGenericBuffer);
+
+    switch (size) {
     case UNIT_ICON_SIZE_16x16:
       gUnitSpriteSlots[id] =
           ApplyUnitSpriteImage16x16(gSMS16xGfxIndexCounter, id) / 2;
@@ -152,6 +192,8 @@ int UseUnitSprite(u32 id) {
 
     gSMSSyncFlag++;
   }
+  asm("mov r11, r11");
+  __asm__("mov r2, %[val]\n" : : [val] "r"(id) : "r2");
   return gUnitSpriteSlots[id] << 1;
 }
 

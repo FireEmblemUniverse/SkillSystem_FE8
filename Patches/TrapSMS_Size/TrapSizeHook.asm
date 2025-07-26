@@ -16,10 +16,12 @@ strh r0, [r5, #8]
 @ldrh r0, [r2] 
 @strb r0, [r5, #0xB] 
 
-ldr r3, =gSMSGfxIndexLookup 
-ldr r3, [r3] 
+@ldr r3, =gSMSGfxIndexLookup 
+@ldr r3, [r3] 
 @ r2 is provided by an edit to SMS_RegisterUsage
-sub r2, r3 @ SMS index 
+@sub r2, r3 @ SMS index 
+
+@ r2 is provided by UseUnitSprite in MirrorSprites.c 
 
 ldr r3, =POIN_SMS_Table @ POIN SMS table 
 ldr r3, [r3] 
