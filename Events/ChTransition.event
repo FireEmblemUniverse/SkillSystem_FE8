@@ -620,7 +620,12 @@ LABEL 12
 ENUF FuschiaGymClosedFlag 
 ENUF CeladonGymClosedFlag 
 ENUF SaffronGymClosedFlag 
-ENUF CinnabarGymClosedFlag 
+
+
+CHECK_EVENTID BlaineSeafoamFlag 
+BEQ 17 sC s0 
+    ENUF CinnabarGymClosedFlag
+LABEL 17 
 
 LABEL 99 
 NoFade 

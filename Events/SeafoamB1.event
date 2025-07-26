@@ -45,11 +45,32 @@ AllTrainersPostBattleTalk
 END_MAIN
 
 
+BlaineEvent:
+EVBIT_MODIFY 4 
+ASMC PauseFreeMovementASMC
+ENUT HideUnitIconsFlag
+CAM1 [13,4]
+CURSOR_FLASHING GymLeader 
+STAL 40 
+CURE
+MOVE 3 GymLeader [13,6]
+UNCR(GymLeader, 1<<24)
+ENUN
+SVAL s1 GymLeader 
+SVAL s3 2 // down
+ASMC SetUnitFacingASMC
+Text(BlaineSeafoamText)
+FADI 8 
+DISA GymLeader 
+ENUF HideUnitIconsFlag
+FADU 8 
+NoFade 
+ENDA 
 
 LocationBasedEvents:
 House(0, ToRoute20E, 6, 22)
 House(0, ToRoute20W, 32, 22)
-House(0, ToSeafoamB2W, 10,6)
+House(0, ToSeafoamB2W, 6,5)
 House(0, ToSeafoamB2E, 31,4)
 END_MAIN
 
@@ -63,12 +84,13 @@ AREA 0 ToSeafoamB2MidHole [21,8][21,8]
 AREA 0 ToSeafoamB2EHole [30,8][30,8] 
 AREA 0 DropBoulderInWestHoleEvent [19,8][23,10] 
 AREA 0 DropBoulderInEastHoleEvent [28,6][32,10] 
+AREA BlaineSeafoamFlag BlaineEvent [12,7][14,8] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
 EscapeTileEntry(6,22) 
 EscapeTileEntry(32,22) 
-EscapeTileEntry(10,6) 
+EscapeTileEntry(6,5) 
 EscapeTileEntry(31,4) 
 EscapeTileTerminator ; } 
 #endif 
@@ -101,7 +123,8 @@ ForcedChapterTransitionHole(SeafoamB2Ch, 29,6)
 Traps1:
 //CoinsTrap(54, 12,ChapterID*2,1080)
 //CoinsTrap(57,15,(ChapterID*2)+1,600)
-
+// RaftTrap(13, 4)
+RaftTrap(13, 5)
 
 //CutBush(12,10)
 //RockSmash(29,9)
@@ -191,6 +214,15 @@ RandomizeEnemyCoords(Sea, Range(0,0,5,5), Range(16,9,22,12))
 
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
+
+CHECK_EVENTID BlaineSeafoamFlag 
+BNE 27 sC s0 
+LOAD1 1 BlaineUnitGroup 
+ENUN 
+UNCM(GymLeader, 1<<24) // Shake 
+MarkTrainerAsDefeated(GymLeader) 
+LABEL 27 
+
  // Bushes  
 //LOAD1 0x1 HumanTrainers
 ENUN 
@@ -231,7 +263,9 @@ Units1: //only used for a pointless POIN at start
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
 
-
+BlaineUnitGroup:
+UNIT GymLeader BlaineID 0x0 Level(LVFACEUP, Enemy, 1)   [13,4] 0	0x0 0x01 REDA13R4 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 
 
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
