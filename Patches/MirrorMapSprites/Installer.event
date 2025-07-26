@@ -18,5 +18,9 @@ ORG 0x2723C
 callHackNew(SetMirrorSpriteHook)
 ORG $27390 
 callHackNew_r4(InitSpriteHook)
+
+ORG $2722c
+callHackNew(RefreshUnitSprite_DirectionHook)
+
 POP 
 

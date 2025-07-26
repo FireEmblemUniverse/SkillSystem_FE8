@@ -127,6 +127,12 @@ extern void *FMU_idleSMSGfxTable_up[0xFF];
 extern UnitIconWait unit_icon_wait_table[];
 #define GetInfo(id) (unit_icon_wait_table[(id) & ((1 << 7) - 1)])
 
+extern int GetUnitFacing(struct Unit *unit);
+int GetUnitSMSAndDir(struct Unit *unit) {
+  int dir = GetUnitFacing(unit);
+  return unit->pClassData->SMSId | (dir << 8);
+};
+
 extern u8 gUnitSpriteSlots[0xFF];
 extern int gSMS16xGfxIndexCounter;
 extern int gSMS32xGfxIndexCounter;
@@ -192,7 +198,7 @@ int UseUnitSprite(u32 id) {
 
     gSMSSyncFlag++;
   }
-  asm("mov r11, r11");
+  // asm("mov r11, r11");
   __asm__("mov r2, %[val]\n" : : [val] "r"(id) : "r2");
   return gUnitSpriteSlots[id] << 1;
 }

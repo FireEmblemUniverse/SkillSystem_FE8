@@ -10,7 +10,8 @@ POP
 
 ALIGN 4 
 TurnCalcLoop_Silent: // Effects that do not pause the game 
-POIN ProcessDebuffs ArmorMarch_StartOfTurn VigorDanceReset UpdateSMSDir_All// Standalone things that loop through all units and do not pause the game 
+POIN ProcessDebuffs ArmorMarch_StartOfTurn VigorDanceReset  // Standalone things that loop through all units and do not pause the game 
+//UpdateSMSDir_All
 WORD 0 
 
 

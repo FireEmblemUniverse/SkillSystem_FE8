@@ -22,6 +22,21 @@ pop {r0}
 bx r0 
 .ltorg 
 
+.global RefreshUnitSprite_DirectionHook
+.type RefreshUnitSprite_DirectionHook, %function 
+RefreshUnitSprite_DirectionHook: 
+push {lr} 
+bl GetUnitSMSAndDir
+ldr r3, =0x80267fc 
+mov lr, r3 
+.short 0xF800 @ UseUnitSprite 
+mov r4, r0 
+mov r0, r6 
+pop {r1} 
+bx r1 
+.ltorg 
+
+
 .global InitSpriteHook
 .type InitSpriteHook, %function 
 InitSpriteHook: 
