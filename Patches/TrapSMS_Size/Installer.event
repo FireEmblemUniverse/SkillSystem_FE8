@@ -2,7 +2,7 @@
 
 PUSH 
 ORG $2733C
-jumpToHack(TrapSizeHook|1) 
+// jumpToHack(TrapSizeHook|1) // now in danger bones 
 
 ORG $268B0 
 SHORT $1832 $7810 // Make SMS_RegisterUsage return SMS ram+index in r2 

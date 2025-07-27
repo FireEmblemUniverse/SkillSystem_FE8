@@ -31,7 +31,6 @@ ORG FreeSpace
     MESSAGE Used table space ends at currentOffset
 	#include "Graphics/IntegratedInstaller.event" 	
 	#include "Patches/ASMCs_Installer.event"
-	#include "../asm/ProcMonitor/Installer.event"
 	
 	#include "Patches/DebugCommand/Debug.lyn.event"
     //Engine Hacks

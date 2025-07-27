@@ -1,0 +1,166 @@
+
+#define OVERWRITE_LIGHTRUNE_PAL 
+// #define _VERTICAL_ // Make shaking map sprites bob up and down instead of horizontally 
+#define ShakeSpeed 4 // 0 = fastest, 1 = very fast, 2 = fast, 3 = normal, 4 = slow, 5 = very slow 
+#define DisableDangerBonesFlag 0x128 
+
+ALIGN 4 
+ShakeIt: // Enemies will shake if they could attack the tile you're moving to 
+WORD 0 // 1 for True, 0 for False 
+Pal_4th: // Enemies will change palette if they could attack the tile you're moving to 
+WORD 1 // 1 for True, 0 for False 
+ShakeSpeed_Link:
+WORD ShakeSpeed 
+DangerBonesDisabledFlag:
+#ifdef _FE8_ 
+WORD DisableDangerBonesFlag
+#include "Data/FE8.lyn.event" 
+#include "Data/FE8_AsmHooks.lyn.event" 
+#endif 
+#ifdef _FE7_ 
+WORD 0x9F
+#include "Data/FE7.lyn.event" 
+#include "Data/FE7_AsmHooks.lyn.event" 
+#endif 
+#ifdef _FE6_ 
+WORD 0x9F 
+gPal_DangerBones:
+BYTE $0d $36 $4d $12 $a9 $11 $12 $11 $ae $21 $56 $4e $54 $2e $b3 $11 $f2 $49 $a5 $14 $28 $21 $0b $49 $ab $49 $14 $21 $32 $0a $52 $4a
+//BYTE $90 $1D $0D $00 $18 $25 $DC $2D $0E $00 $F6 $00 $5F $36 $0C $00 $15 $00 $1C $00 $1F $00 $C7 $01 $5F $01 $50 $00 $1F $46 $08 $00
+#include "Data/FE6.lyn.event" 
+#include "Data/FE6_AsmHooks.lyn.event" 
+#endif 
+
+
+
+#ifndef callHackNew
+	#define callHackNew(offset) "BYTE $01 $4B $9E $46 $00 $F8 $01 $E0; POIN (offset|0x1)"
+    #define jumpToHack(offset) "BYTE 0x00 0x4B 0x18 0x47; POIN (offset|0x1); PROTECT CURRENTOFFSET-8 CURRENTOFFSET-1"
+#endif 
+
+
+PUSH 
+
+#ifdef _FE6_ 
+
+ORG $1B3FE
+SHORT $46c0
+jumpToHack(Hook_PlayerPhase_InitUnitMovementSelect_FE6) // Finish danger bones if needed 
+
+
+ORG $1b034
+jumpToHack(Hook_PlayerPhase_Suspend_FE6) 
+
+ORG $2AD54 // in UpdatePathArrowWithCursor 802FF80 / 802Ad28 
+callHackNew(UpdateVisualsForEnemiesWhoCanAttackTile)
+SHORT $46c0 
+
+
+ORG $161E0 // EnsureCameraOntoPosition 
+callHackNew(Hook_EnsureCameraOntoPosition) 
+
+#endif 
+
+#ifdef _FE7_ 
+ORG $1c57E
+SHORT $46c0
+jumpToHack(Hook_PlayerPhase_InitUnitMovementSelect_FE7) // Finish danger bones if needed 
+
+#ifdef OVERWRITE_LIGHTRUNE_PAL
+ORG $258D1 
+BYTE $C0 // use player palette 
+#endif 
+
+ORG $1c17c
+jumpToHack(Hook_PlayerPhase_Suspend_FE7) 
+
+
+ORG $2FFAC // in UpdatePathArrowWithCursor 802FF80 / 802Ad28 
+callHackNew(UpdateVisualsForEnemiesWhoCanAttackTile)
+SHORT $46c0 
+
+ORG $15D00 // EnsureCameraOntoPosition 
+callHackNew(Hook_EnsureCameraOntoPosition) 
+
+
+ORG $25964 
+jumpToHack(Hook_PutUnitSpritesOam_FE7) // Shake speed 
+SHORT $46C0 
+
+#ifdef OVERWRITE_LIGHTRUNE_PAL
+ORG $194634
+BYTE $0d $36 $4d $12 $a9 $11 $12 $11 $ae $21 $56 $4e $54 $2e $b3 $11 $f2 $49 $a5 $14 $28 $21 $0b $49 $ab $49 $14 $21 $32 $0a $52 $4a
+//BYTE $90 $1D $0D $00 $18 $25 $DC $2D $0E $00 $F6 $00 $5F $36 $0C $00 $15 $00 $1C $00 $1F $00 $C7 $01 $5F $01 $50 $00 $1F $46 $08 $00
+ORG $379A1C
+#incbin "Data/Fourth_Allegiance_Light_Rune_Topazlight-stand.dmp"
+#endif
+
+
+#endif 
+
+
+#ifdef _FE8_ 
+ORG $1cc20 
+callHackNew(Hook_PlayerPhase_InitUnitMovementSelect) // Finish danger bones if needed 
+
+
+#ifdef OVERWRITE_LIGHTRUNE_PAL
+ORG $2733c 
+jumpToHack(Hook_RefreshUnitSprites) // Fix light rune palette 
+#endif 
+
+
+ORG $1c894
+jumpToHack(Hook_PlayerPhase_Suspend) // Start calcing danger bones 
+
+
+ORG $32EE0 // in UpdatePathArrowWithCursor 
+callHackNew(UpdateVisualsForEnemiesWhoCanAttackTile) // Start shaking/palette swap 
+SHORT $46c0 
+
+ORG $15E2c // 8015e0c EnsureCameraOntoPosition 
+callHackNew(Hook_EnsureCameraOntoPosition) // Undo shaking/palette changes 
+
+ORG $273F8 
+callHackNew(Hook_PutUnitSpritesOam) // Shake speed 
+SHORT $46c0 
+
+#ifdef OVERWRITE_LIGHTRUNE_PAL
+ORG $59eec0
+BYTE $0d $36 $4d $12 $a9 $11 $12 $11 $ae $21 $56 $4e $54 $2e $b3 $11 $f2 $49 $a5 $14 $28 $21 $0b $49 $ab $49 $14 $21 $32 $0a $52 $4a
+//BYTE $90 $1D $0D $00 $18 $25 $DC $2D $0E $00 $F6 $00 $5F $36 $0C $00 $15 $00 $1C $00 $1F $00 $C7 $01 $5F $01 $50 $00 $1F $46 $08 $00
+ORG $1C068C
+#incbin "Data/Fourth_Allegiance_Light_Rune_Topazlight-stand.dmp"
+#endif
+
+#ifdef _VERTICAL_ 
+// Vertical instead of Horizontal shaking 
+ORG $27440 
+SHORT $18eD $2180 $0089 $1860 
+// add r5, r3 
+// mov r1, #0x80 
+// lsl r1, #2 
+// add r0, r4, r1 
+
+ORG $27464 
+SHORT $18eD $2180 $0089 $1860 
+
+ORG $27488 
+SHORT $18eD $1c20 $3808 
+
+ORG $274B0
+SHORT $18eD $2180 $0089 $1860 
+
+ORG $274D0
+SHORT $18eD $2180 $0089 $1860 
+
+ORG $274F8
+SHORT $18eD $1c20 $3808 
+#endif 
+#endif 
+
+
+POP 
+
+
+

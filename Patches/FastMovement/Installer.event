@@ -24,9 +24,9 @@ PUSH
 // This part hooks PlayerPhase_InitUnitMovementSelect at 801CC1C 
 // If global flag 0xAA is ON, it will not display movement/attack range when
 // a unit is selected 
-ORG 0x1CC24 
-callHack_r3(DecideToHideActiveUnitRangeDisplay) 
-PROTECT $1cc24 $1cc24+11
+// ORG 0x1CC24 
+// callHack_r3(DecideToHideActiveUnitRangeDisplay) 
+// PROTECT $1cc24 $1cc24+11
 // This hooks CheckEventDefinitions at 8082EC4
 // If we're checking for "when player has decided to move" 
 //ORG 0x82EEC 
