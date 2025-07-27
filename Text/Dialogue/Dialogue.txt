@@ -2021,7 +2021,7 @@ faint! Let's go![A][X]
 Did your Pokémon die?[A][N]
 You think you're tough, playing[N]
 a Nuzlocke, do you?[A][N]
-[LoadGaryPoint]You're weak! I'm going[N] 
+[LoadGaryPoint]You're weak! I'm going[N]
 to destroy you.[A][N]
 [LoadGaryShrug]But hey, look on the[N]
 bright side.[A][N]
@@ -3338,7 +3338,7 @@ for the Pokémon League![A][N]
 Come on![A][X]
 
 ## GaryRoute22DefeatText
-[OpenMidLeft][LoadProtag][LoadGaryPoint]What!?[N]
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadGaryPoint][OpenMidRight]What!?[N]
 I was just careless, you![A][Clear]
 [LoadGaryShrug]That loosened me up.[N]
 I'm ready for the Pokémon League![A][N]
@@ -3365,6 +3365,59 @@ to tone down his hijinks.[A][N]
 Ah, how proud I am of him.[N]
 I hear he hasn't lost to anyone yet![N]
 I'll be seeing you, [Tact].[A][X]
+
+
+## MomWelcomeHomeText
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadMom][OpenMidRight]Oh, [Tact].[A][N]
+You should take a quick rest.[A][X]
+
+## MomViridianText
+[OpenMidRight][LoadMom][OpenMidRight]Did you reach Viridian City safely?[N]
+Oh, my little [Tact] is all grown up...[A][N]
+All boys leave home some day.[N]
+It said so on TV.[A][N]
+It feels like just yesterday you were playing[N]
+with Poké Dolls in the living room.[A][N]
+Be safe out there, sweetie.[N]
+And remember to wash your clothes![A][X]
+
+
+## MomCinnabarText
+[OpenMidRight][LoadMom][OpenMidRight]Hi, sweetie! I hear you’ve[N]
+almost collected all the Gym Badges![A][N]
+You’ve come so far. I’m so proud of you![A][N]
+It must be exhausting, but I hope you're[N]
+still taking care of yourself out there.[A][N]
+If you’re ever passing through Pallet Town,[N]
+stop by - I have a little something for you.[A][X]
+
+## MomGiveItemText
+[OpenMidRight][LoadMom][OpenMidRight]You’ve come such a long way, sweetie.[N]
+I’m so proud of everything you’ve done![A][N]
+I put aside some money for you...[A][N]
+And please take this. Just a little[N]
+something from your biggest fan.[A][X]
+
+
+
+## MomPostLeagueText
+[OpenMidRight][LoadMom][OpenMidRight][Tact], you’re home![N]
+I saw your League victory on TV![A][N]
+You must be exhausted...[N]
+Come, take a quick rest, dear.[A][X]
+
+
+
+
+
+## SafariTroubleText
+[OpenMidRight][LoadMom][OpenMidRight]Oh, [Tact]![A][N]
+One of Oak's aides mentioned you'd[N]
+reached Fuchsia City...[A][N]
+The news said that powerful Pokémon have[N]
+been scaring tourists in the Safari Zone.[A][N]
+Do be careful, sweetie.[N]
+And remember to eat properly![A][X]
 
 
 ## VRB1_0xE0_BQ // battle girl 

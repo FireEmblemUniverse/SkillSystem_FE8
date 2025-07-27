@@ -171,11 +171,21 @@ RandomizeEnemyCoords(Shallow, Range(0,0,5,5), Range(12,9,27,14)) //Water patch
 UnmarkTrainerAsDefeated(0xEE)
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
+
  // Bushes  
 //LOAD1 0x1 HumanTrainers
 //ENUN 
 //AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
 CALL SetBushHpEvent
+
+
+CHECK_EVENTID SafariTroubleFlag
+BNE 99 sC s0 // if we already were notified the 2nd time, exit 
+ShowMap
+SVAL s2 SafariTroubleText
+CALL Telephone_Normal
+ENUT SafariTroubleFlag 
+
 
 LABEL 0x63
 NoFade

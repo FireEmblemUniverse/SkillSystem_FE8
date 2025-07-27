@@ -442,7 +442,7 @@ CHECK_EVENTID RematchNotify2
 BNE 99 sC s0 // if we already were notified the 2nd time, exit 
 ShowMap
 SVAL s2 OakNotifyRematches2Text
-CALL TelephoneEvent
+CALL Telephone_Tut
 ENUT RematchNotify2 
 ENUT RematchNotify1 
 
@@ -452,7 +452,7 @@ CHECK_EVENTID RematchNotify1
 BNE 99 sC s0 // if we were notified the 1st time already, exit 
 ShowMap
 SVAL s2 OakNotifyRematchesText
-CALL TelephoneEvent
+CALL Telephone_Tut
 ENUT RematchNotify1 
 
 

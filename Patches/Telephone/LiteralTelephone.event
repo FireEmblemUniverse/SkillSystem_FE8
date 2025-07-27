@@ -41,6 +41,21 @@ TelephoneChance:
 BYTE 25
 
 
+ALIGN 4 
+Telephone_Normal:
+TEXTSTART 
+CALL TelephoneEvent 
+NoFade 
+ENDA 
+
+Telephone_Tut:
+TUTORIALTEXTBOXSTART 
+CALL TelephoneEvent 
+NoFade 
+ENDA 
+
+
+
 ALIGN 4
 TelephoneEvent: // memory slot 2 has text id to show 
 ASMC DrawCallGfx2
@@ -59,9 +74,9 @@ ASMC DrawCallGfx2
 //RANDOMNUMBER 15
 //SADD s2 s2 sC
 
-EVBIT_MODIFY 1
+EVBIT_MODIFY 4
 CenterTutorialTextBox
-TUTORIALTEXTBOXSTART 
+ 
 TEXTSHOW (-1)
 TEXTEND
 REMA
