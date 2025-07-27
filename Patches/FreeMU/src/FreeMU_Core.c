@@ -1237,6 +1237,9 @@ void UpdateSMSDir(struct Unit *unit, u8 smsID, int facing) {
 }
 
 void UpdateSMSDir_All(void) {
+  if (gChapterData.turnNumber > 1) {
+    return;
+  }
   struct Unit *unit = NULL;
   u8 smsID;
   int dir;

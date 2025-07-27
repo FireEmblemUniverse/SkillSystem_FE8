@@ -78,6 +78,7 @@ b Exit
 // same as #define ActionInRange "BYTE 0x05 0x64 0xFF 0x00; WORD 0x00000000; WORD 0x00000000; WORD 0x00000000" //Attacks in range
 
 #define DoNothingAI DoNothing 
+#define DoNothingBoss [21, 21, 0, 32] 
 
 #define SafeZoneAI2 23 
 #define BushAI [21,21, 4, 32] // will not use vulns or have staves used on them

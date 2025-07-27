@@ -108,6 +108,7 @@ ENDA
 
 ALIGN 4
 LocationBasedEvents:
+House(0,VisitViridianPokecenter, 23,23)
 House(0,ViridianUpperHouseEvent, 21,11)
 House(0x16, OldManHouseEvent, 21,18) 
 House(ViridianGymClosedFlag,EnterGym,30,10) 
@@ -120,6 +121,13 @@ House(0,HouseEvent,6,24)
 Seize(10,2)
 */
 END_MAIN
+
+VisitViridianPokecenter:
+ENUT VisitedViridianPokecenterFlag
+CALL VisitPokecenter
+NoFade 
+ENDA 
+
 
 ViridianUpperHouseEvent: 
 CHECK_EVENTID VolcanobadgeObtained 
@@ -297,7 +305,7 @@ BlankExamineTrap(26,10, ViridianGymText)
 //BlankExamineTrap(30,10, DoorLockedText) // Gym 
 //EnterWallTrap(21,11, ViridianUpperHouseText) 
 //EnterWallTrap(21,18, ViridianGrumpyManText) 
-Save(23,24) // 1N of Pokecenter - you can save while adjacent 
+// Save(23,24) // 1N of Pokecenter - you can save while adjacent 
 //SaveCost(24,26)
 CutBush(13,5)
 
@@ -405,6 +413,20 @@ CHECK_EVENTID PurchasedPsyduckFlag
 BEQ 34 sC s0 
 DISA OaksAidePkmn 
 LABEL 34 
+
+CHECK_EVENTID VisitedViridianPokecenterFlag
+BEQ 28 sC s0 // after visiting the pokecenter for the first time, Mom calls  
+CHECK_EVENTID ViridianMomCallFlag
+BNE 28 sC s0 // if we already were notified 
+ShowMap
+SVAL s2 MomViridianText
+CALL Telephone_Normal
+ENUT ViridianMomCallFlag 
+LABEL 28 
+
+
+
+
 
 CHECK_EVENTID EarthbadgeObtained
 BNE 1 sC s0 

@@ -349,6 +349,17 @@ AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds
 RandomizeEnemyCoords(Sea, Range(0,0,5,5), Range(23,14,23,23)) 
 LABEL 2 
 
+CHECK_EVENTID VolcanobadgeObtained
+BEQ 28 sC s0 // after defeating Blaine, mom calls  
+CHECK_EVENTID CinnabarMomCallFlag
+BNE 28 sC s0 // if we already were notified 
+ShowMap
+SVAL s2 MomViridianText
+CALL Telephone_Normal
+ENUT CinnabarMomCallFlag 
+LABEL 28 
+
+
 
 LABEL 0x63
 MarkTrainerAsDefeated(0xE0)

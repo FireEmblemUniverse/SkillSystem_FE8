@@ -150,7 +150,7 @@ ENDA
 
 ALIGN 32
 LocationBasedEvents:
-House(0,VisitPokecenter,6,7) 
+House(0,VisitHome,6,7) 
 
 House(0,VisitGaryHouse,15,7) //gary's house 
 //House(0,VisitPokecenter,16,13) //oak's lab 
@@ -163,6 +163,12 @@ House(0,HouseEvent,6,24)
 Seize(10,2)
 */
 END_MAIN
+
+VisitHome:
+Text(MomWelcomeHomeText)
+CALL VisitPokecenter
+NoFade 
+ENDA 
 
 
 TutMsg1: 

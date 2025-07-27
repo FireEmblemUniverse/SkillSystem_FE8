@@ -1,6 +1,6 @@
 #define ChapterID SafariECh
 #define GenericA UnitSafariWild
-#define GenericB UnitSafariWild
+#define GenericB UnitRoute16Wild
 #define ClassA ClassSafariWildA
 #define ClassB ClassSafariWildD
 #define ClassC ClassSafariWildE
@@ -49,9 +49,18 @@ Reinforce(0xF4, 1, ReinforcementUnits_Water, 8, 4)
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CHAR 0 SafariKogaEvent [0x0, GymLeader] 0 // NPC
 AllTrainersPostBattleTalk
 END_MAIN
 
+SafariKogaEvent: 
+SVAL s1 GymLeader 
+SVAL s3 3 // up
+ASMC SetUnitFacingASMC
+Text(KogaSafariText2)
+
+NoFade 
+ENDA 
 
 
 LocationBasedEvents:
@@ -65,6 +74,7 @@ AFEV 0 GlobalAfev 0
 //AFEV 0 RefreshIfNotInDanger 0 
 AREA 0 ToSafariS [0,21] [0,22] 
 AREA 0 ToSafariN [0,4] [0,5] 
+AREA KogaSafariFlag KogaSafariEvent [3,21][17,24] 
 END_MAIN
 #ifdef MultiTileMarker_Installer
 { ; MultiTileEntry(ChapterID) 
@@ -75,6 +85,46 @@ EscapeTileEntry(0,5)
 EscapeTileTerminator ; } 
 #endif 
 
+
+KogaSafariEvent:
+EVBIT_MODIFY 4 
+ASMC PauseFreeMovementASMC
+ENUT HideUnitIconsFlag
+
+
+// gets rid of danger radius, but flashes the map red for a frame or so 
+// UnsetDangerRadius(GymLeaderPkmn)
+// VCWF 1 // Fog 
+// ASMC 0x801a1f5
+// VCWF 0 // Fog 
+
+
+CAM1 [15,18]
+CURSOR_FLASHING GymLeader 
+STAL 40 
+CURE
+EVBIT_T 9 
+MOVE 8 GymLeaderPkmn [13,12]
+MOVE 8 GymLeader [13,13]
+ENUN
+SVAL s1 GymLeader 
+SVAL s3 3 // up
+ASMC SetUnitFacingASMC
+SVAL s1 GymLeaderPkmn 
+SVAL s3 3 // up
+ASMC SetUnitFacingASMC
+Text(KogaSafariText)
+CURSOR_FLASHING GymLeaderPkmn 
+STAL 20 
+CURE 
+SelfDamageLikePoison(BossPkmn, 5)
+SetUnitStatus(BossPkmn, BadStatus, 0x41)
+STAL 20 
+ENUF HideUnitIconsFlag
+VCWF 0 // Fog off 
+UNCR(0x7fff, 0x42) 
+NoFade 
+ENDA 
 
 ToSafariS:
 ChapterTransition(SafariSCh, 38,11)
@@ -145,8 +195,11 @@ LOAD1 0x1 EnemyUnitsB
 ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(29,1,39,7)) //NE patch 
 
+CHECK_EVENTID KogaSafariFlag 
+BEQ 26 sC s0 
 LOAD1 0x1 EnemyUnitsC
 ENUN
+LABEL 26 
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(6,8,25,16)) //W patch 
 LOAD1 0x1 EnemyUnitsD
 ENUN
@@ -160,6 +213,21 @@ ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(8,9,14,15)) //
 
 UnmarkTrainerAsDefeated(0xEE)
+
+CHECK_EVENTID KogaSafariFlag 
+BNE 27 sC s0 
+DISA BossPkmn
+DISA GenericB
+DISA GenericB // to avoid SMS capacity 
+ENUT HideUnitIconsFlag
+LOAD1 1 KogaUnitGroup 
+ENUN 
+MarkTrainerAsDefeated(GymLeader) 
+// MarkTrainerAsDefeated(GymLeaderPkmn) // to avoid the ! icon, but makes talk bubble appear instead 
+// MarkTrainerAsDefeated(BossPkmn) 
+LABEL 27 
+
+
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  
 //LOAD1 0x1 HumanTrainers
@@ -170,6 +238,15 @@ CALL SetBushHpEvent
 LABEL 0x63
 NoFade
 ENDA
+
+
+KogaUnitGroup:
+UNIT GymLeader KogaID 0x0 Level(LVFACEUP, Enemy, 1)   [15,18] 0	0x0 0x01 REDA15R18 [0x0,0x0,0x0,0x0] DoNothing
+UNIT GymLeaderPkmn VenomothID 0x0 Level(0, Enemy, 1)   [15,17] 0	0x0 0x01 REDA15R17 [RedGem,0x0,0x0,0x0] DoNothingBoss
+UNIT BossPkmn KangaskhanID 0x0 Level(0, Enemy, 1) [13,11]  0b 0x0	0x1 REDA13R11 [Tackle, 0x0,0x0,0x0] DoNothingBoss
+UNIT 
+// maybe some cutscene of him KO'ing the Kangaskhan 
+
 
 // Scyther, Tauros, Kangaskhan as rare & leaders 
 // S has Dragonair that summons water mons 
@@ -185,7 +262,7 @@ UNIT
 
 EnemyUnitsB:
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericB ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF1 BushID 0x0 Level(0, Enemy, 1)   [0,4]  0b	0x0 0x01 REDA0R4  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
@@ -196,12 +273,12 @@ UNIT
 
 EnemyUnitsD:
 UNIT GenericA ClassA 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
-UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericB ClassB 0x0 Level(0, Enemy, 1)   [0,1] 001b	0x0 0x01 REDA0R1 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF3 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
 EnemyUnitsE:
-UNIT GenericA ClassC 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+// UNIT GenericA ClassC 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF4 SuspiciousWaterID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 
@@ -216,7 +293,7 @@ UNIT
 
 
 BossUnit:
-UNIT 0xEE KangaskhanID 0x0 Level(0, Enemy, 1) [0,0]  0b 0x0	0x1 REDA0R0 [Ember, Tackle,0x0,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
+UNIT BossPkmn KangaskhanID 0x0 Level(0, Enemy, 1) [0,0]  0b 0x0	0x1 REDA0R0 [Ember, Tackle,0x0,0x0] TrainerAI  // Trainer has its 1st wep removed when summoning 
 UNIT 
 
 BossSummons: 

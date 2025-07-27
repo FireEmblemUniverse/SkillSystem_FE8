@@ -420,13 +420,17 @@ String("V1.15.00             July 2025") ; BYTE 0; POP // this overflows into th
 #define BillMtMoonFlag 0xF3 
 #define SurgePowerPlantFlag 0xF4 
 #define BlaineSeafoamFlag 0xF5 
-// #define SafariTroubleFlag 0xF6
-#define SafariTroubleFlag 0x12D 
+#define KogaSafariFlag 0xF6 
 #define SkipCutscenesFlag 0xF7
-// 0xF5 - 0x10C free 
+// 0xF7 - 0x10C free 
+
+// New flags 0x12D - 0x22D or more even 
+#define VisitedViridianPokecenterFlag 0x12D 
+#define ViridianMomCallFlag 0x12E
+#define SafariTroubleFlag 0x12F
+#define CinnabarMomCallFlag 0x130
 
 
-// New flags 0x12D - 0x22D 
  
 
 // Pewter City: visit gym with flag 0x12C 
@@ -477,9 +481,13 @@ String("V1.15.00             July 2025") ; BYTE 0; POP // this overflows into th
 #define OaksAide 0xEA 
 #define OaksAide2 0xEC // used in Saffron for Hitmons 
 #define GymLeader 0xEC 
+#define GymLeaderPkmn 0xEA
 #define OaksAidePkmn 0xEB
 #define OaksAidePkmn2 0xED
 #define OaksAideClass gentlemanID 
+
+
+#define BossPkmn 0xEE 
 
 // Flags 
 #define DebugPlaceUnitsFlag 0xAA 
