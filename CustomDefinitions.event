@@ -28,6 +28,13 @@
 
 #define TESTING_RANGES
 
+
+#define StalVar(Min, Default) "BYTE $4B $0D Default Min; POIN StalVariableSleep|1; STAL 1" 
+// ASMC returns EVC_ADVANCE_YIELD but STAL returns EVC_STOP_YIELD - we need the latter, so we call STAL the next frame 
+#define StalVar(Default) "BYTE $4B $0D Default 0; POIN StalVariableSleep|1; STAL 1" 
+
+
+
 // Config options 
 #define INSTALL_FMU 
 #define ENABLE_FMU 
@@ -191,6 +198,7 @@ String("V1.15.00             July 2025") ; BYTE 0; POP // this overflows into th
 #define PokedexCaughtFlagOffset 0x1C0 // RegisterPokemon in trap rework because most pokemblem ram usage is there i guess 
 #define PokedexSeenFlagOffset 0x1E0 
 #define HelpMsgFlagOffset 0x200 // until 0x220 
+#define EventFlags 0x220 // until 0x240 is 256 flags 
 
 
 #define BuffDepletePerTurnAmount 2 // -2 from buffs per turn 
@@ -412,9 +420,14 @@ String("V1.15.00             July 2025") ; BYTE 0; POP // this overflows into th
 #define BillMtMoonFlag 0xF3 
 #define SurgePowerPlantFlag 0xF4 
 #define BlaineSeafoamFlag 0xF5 
-#define SafariTroubleFlag 0xF6
+// #define SafariTroubleFlag 0xF6
+#define SafariTroubleFlag 0x12D 
 #define SkipCutscenesFlag 0xF7
 // 0xF5 - 0x10C free 
+
+
+// New flags 0x12D - 0x22D 
+ 
 
 // Pewter City: visit gym with flag 0x12C 
 

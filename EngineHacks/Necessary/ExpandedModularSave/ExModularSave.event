@@ -257,4 +257,19 @@ gSuspendSaveChunks:
 #include "NewFlag.lyn.event" 
 #include "ExModularSaveInternals.event"
 
+PUSH 
+ORG $83CC0 
+callHackNew_r1(SetGlobalFlag_Hook) 
+
+ORG $83CFC 
+callHackNew(UnsetGlobalFlag_Hook) 
+SHORT $46c0 
+
+ORG $83D50
+callHackNew_r1(CheckGlobalFlag_Hook) 
+SHORT $46c0 
+
+POP 
+
+
 #endif // EXPANDED_MODULAR_SAVE
