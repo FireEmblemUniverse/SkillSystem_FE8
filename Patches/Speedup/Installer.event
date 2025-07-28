@@ -16,6 +16,11 @@
 // ASMC returns EVC_ADVANCE_YIELD but STAL returns EVC_STOP_YIELD - we need the latter, so we call STAL the next frame 
 // #define StalVar(Default) "BYTE $4B $0D Default 0; POIN StalVariableSleep|1; STAL 1" 
 
+PUSH 
+ORG $DC9C 
+callHackNew(EvBitModify_Hook) // Make scenes skippable if x flag is on 
+
+POP 
 
 ALIGN 4 
 SpeedupFlag_Link:

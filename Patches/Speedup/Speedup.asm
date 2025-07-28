@@ -7,6 +7,36 @@
 .equ CheckEventId,0x8083da8
 .equ gKeyState, 0x2024CC0
 
+.global EvBitModify_Hook 
+.type EvBitModify_Hook, %function 
+EvBitModify_Hook: 
+push {lr} 
+mov r4, r0 @ vanilla uses r4 
+ldr r0, =SkippableCutscenesFlag 
+lsl r0, #16 
+lsr r0, #16 
+blh CheckEventId 
+cmp r0, #0 
+beq Vanilla_EvBitModify
+mov r0, #0 
+mov r2, r4 
+mov r3, #0 @ allow skipping 
+mov r4, #0 
+b Exit_EvBitModify_Hook
+Vanilla_EvBitModify: 
+mov r2, r4 
+ldr r0, [r2, #0x38] 
+ldrh r3, [r0, #2] 
+ldrh r4, [r2, #0x3C] 
+lsr r0, r4, #2 
+mov r1, #1 
+and r0, r1 
+
+Exit_EvBitModify_Hook:
+pop {r1} 
+bx r1 
+.ltorg 
+
 .global ProcVariableSleep
 .type ProcVariableSleep, %function 
 ProcVariableSleep: @ based on ProcCmd_SLEEP from decomp 

@@ -1,11 +1,12 @@
 
-#define GameOptionsMaxEntries 0x13 // There are a couple places where the game checks the size of this table. 
-#define NumberOfOptionsToDisplay 11 
+#define GameOptionsMaxEntries 0x14 // There are a couple places where the game checks the size of this table. 
+#define NumberOfOptionsToDisplay 12 
 
 #define AutosaveOpt 0x11 // New entries start at 0x11 
 #define HelpInfoOpt 0x12 
 #define TurboOpt 0x13 
-#define DangerRadiusOpt 0x14 
+#define CutscenesOpt 0x14 
+// #define DangerRadiusOpt 0x15 
 
 
 // CustomDefinitions 
@@ -24,6 +25,16 @@ QuicksaveCheckCurrentOption:
 BYTE  QuicksaveToggleFlag $20 // mov r0, #Index
 GenericCheckCurrentOptionCode
 
+
+ALIGN 4
+CutscenesToggleFunc:
+BYTE  SkippableCutscenesFlag $20 // mov r0, #Index
+GenericToggleFunctionCode
+
+ALIGN 4
+CutscenesCheckCurrentOption:
+BYTE  SkippableCutscenesFlag $20 // mov r0, #Index
+GenericCheckCurrentOptionCode
 
 ALIGN 4
 DangerRadiusToggleFunc:
@@ -61,8 +72,8 @@ ALIGN 4
 GameOptionsOrderList:
 //BYTE AnimationOpt
 BYTE AutosaveOpt
-//BYTE DangerRadiusOpt
 BYTE HelpInfoOpt
+BYTE CutscenesOpt
 BYTE TurboOpt 
 BYTE GameSpeedOpt 
 BYTE TextSpeedOpt 
@@ -80,9 +91,9 @@ BYTE 0 0  // Terminator?
 
 
 // Set text/position/icon/checkCurrent / toggle routine for the entry 
-GameOptionsEntry(AutosaveOpt, QuicksaveText, PlayerPhaseHelpText, PlayerPhaseText, 368, ManualHelpText, ManualText, 1167, 0x12, QuicksaveCheckCurrentOption, QuicksaveToggleFunc) 
+GameOptionsEntry(AutosaveOpt, QuicksaveText, PlayerPhaseHelpText, PlayerPhaseText, 368, ManualHelpText, ManualText, 1167, 0x12, QuicksaveCheckCurrentOption, QuicksaveToggleFunc) // 0x12 is icon 
 GameOptionsEntry(TurboOpt, TurboText, TurboHelpText, HelpInfoDisableText, 368, TurboHelpText, HelpInfoEnableText, 1167, 0x14, TurboCheckCurrentOption, TurboToggleFunc) 
-//GameOptionsEntry(DangerRadiusOpt, DangerRadiusText, DangerRadiusHelpText, DangerRadiusAutoText, 368, DangerRadiusManualHelpText, DangerRadiusManualText, 1167, 0x14, DangerRadiusCheckCurrentOption, DangerRadiusToggleFunc) 
+GameOptionsEntry(CutscenesOpt, CutscenesText, CutscenesDefaultHelpText, CutscenesDefaultText, 368, CutscenesSkippableHelpText, CutscenesSkippableText, 1167, 0x1C, CutscenesCheckCurrentOption, CutscenesToggleFunc) 
 GameOptionsEntry(HelpInfoOpt, HelpInfoText, HelpInfoHelpText, HelpInfoEnableText, 368, HelpInfoDisableHelpText, HelpInfoDisableText, 1167, 0x4, HelpInfoCheckCurrentOption, HelpInfoToggleFunc) 
 
 
