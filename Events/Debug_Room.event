@@ -560,7 +560,7 @@ ENUT DomeFossilFlag
 ENUT PokefluteFlag
 
 ENUT SilphCoDefeated
-ENUT BoulderbadgeObtained 
+// ENUT BoulderbadgeObtained 
 ENUT CascadebadgeObtained 
 ENUT ThunderbadgeObtained 
 ENUT RockSmashFlag
@@ -594,7 +594,7 @@ ENUT CannotEvolveFlag
 
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
-Write_Byte(23, XCoordNewArea)    // Placeholder chapter does not use this 
+Write_Byte(12, XCoordNewArea)    // Placeholder chapter does not use this 
 Write_Byte(19, YCoordNewArea)  
 
 //Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
@@ -612,7 +612,7 @@ Write_Byte(19, YCoordNewArea)
 // ENUT MissingnoFlag
 //MNC2 CinnabarCh 
 //MNC2 VermilionCh
-MNC2 CeruleanCaveB1Ch
+MNC2 ViridianCh
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh
