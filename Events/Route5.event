@@ -179,8 +179,6 @@ AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels
 
 CHECK_EVENTID EarthbadgeObtained 
 BNE 27 sC s0 
-CHECK_EVENTID MistyRoute5Flag 
-BNE 27 sC s0 
 LOAD1 1 GymLeaderUnitGroup 
 ENUN 
 MarkTrainerAsDefeated(GymLeader) 
