@@ -3,6 +3,7 @@
 #include "../../ASM/Debugger/Installer.event" 
 #include "../../ASM/ProcMonitor/Installer.event" 
 #include "DangerBones/Installer.event" 
+#include "PortraitGetter/Installer.event" 
 #include "MirrorMapSprites/Installer.event" 
 #include "ChallengeRunMenu/Installer.event" 
 #include "HexEditor/Installer.event" 

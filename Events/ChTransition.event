@@ -659,6 +659,7 @@ LoadAndPlaceProtag:
 CHECK_EVENTID GirlProtagFlag 
 BEQ 0 sC s0 
 LOAD1 1 ProtagUnitGroupFemale
+UNCM(ProtagID, 1<<23) // Portrait id+1
 GOTO 1 
 LABEL 0 
 LOAD1 1 ProtagUnitGroupMale 
@@ -681,7 +682,6 @@ SVAL r1 0xFD //1st player unit
 SVAL r3 0x11 	// Y coord 
 SVAL r4 0x03 	// Byte
 ASMC SetUnitStatus
-
 MOVENEXTTO 	(-1) ProtagID 0xFD 
 ENUN 
 CAM1 0xFD 

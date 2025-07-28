@@ -399,7 +399,8 @@ BNE 29 sC s0
 LOAD1 1 Units21
 LABEL 29 
 */
-
+CHECK_EVENTID BoulderbadgeObtained
+BNE 27 sC s0 
 CHECK_EVENTID ViridianBrockFlag
 BNE 27 sC s0 
 LOAD1 1 GymLeaderUnitGroup
