@@ -1093,10 +1093,6 @@ you've completed my gym.[A][NL]
 [ToggleSmile]The others won't be[NL]
 quite so easy.[A][X]
 
-## MistyWaitText
-[OpenMidRight][LoadMisty][OpenMidRight]Wait![NL]
-Take this.[A][X]
-
 ## BrockDryingPanText
 [OpenMidRight][LoadBrock][OpenMidRight]Wait![NL]
 Take this.[A][X]
@@ -1108,13 +1104,6 @@ I am sad to part with it, but[NL]
 I know you'll take good care of it.[A][NL]
 Good luck, [Tact]![A][LoadOverworldFaces][X]
 
-
-## MistyRewardText
-[OpenMidLeft][LoadProtag][OpenMidRight][LoadMisty][OpenMidRight][ToggleSmile]This soothing ring will restore[NL]
-your health every turn.[A][NL]
-I'm going to teach my Starmie Renewal,[NL]
-so I don't really need it anymore.[A][NL]
-Keep at it, [Tact]![A][LoadOverworldFaces][X]
 
 ## PokemonCapturedText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Pokémon captured.[NL]
@@ -1179,6 +1168,50 @@ I guess you've earned this.[A][NL]
 symbol of your victory.[A][NL]
 Show it off - you've[NL]
 done well.[A][X]
+
+
+## MistyRewardText
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadMisty][OpenMidRight][ToggleSmile]This soothing ring will restore[NL]
+your health every turn.[A][NL]
+I'm going to teach my Starmie Renewal,[NL]
+so I don't really need it anymore.[A][NL]
+Keep at it, [Tact]![A][LoadOverworldFaces][X]
+## MistyWaitText
+[OpenMidRight][LoadMisty][OpenMidRight]Wait![NL]
+Take this.[A][X]
+
+## MistyRematchText
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadMisty][OpenMidRight][ToggleSmile]Hey, do you have a favorite[N]
+scenic spot?[A][N]
+I especially love the Cape along[N]
+along Route 25![A][N]
+I've got so many memories of[N]
+things along that coast...[A][N]
+What kinds of memories? Pfft![N]
+Like I'd tell you![A][X]
+
+## MistyRematchDefeatText
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadMisty][OpenMidRight]Hey, did you hear? If you take[N]
+a stroll along Route 25 with your[A][N]
+partner and stare into the pool of[N]
+water, you get to make a true-love wish![A][N]
+You didn't hear about that?[N]
+Really?[A] [ToggleSmile]Well, that would be[N]
+because I just made it up! Ha ha ha![A][X]
+
+
+## MistyRoute1Text
+[OpenMidLeft][LoadJenny][OpenMidRight][LoadMisty][OpenMidRight]Officer, I’m telling you.[N]
+Some kid with a Pikachu stole my bike![A][N]
+[OpenMidLeft]I'll file a report...[A][N]
+[OpenMidRight]Just ran off with it like it was his![N]
+Who even does that?![A][N]
+It was brand new![N]
+I saved up for weeks![A][LoadOverworldFaces][N]
+[OpenFarLeft][LoadProtag][OpenMidRight][MoveRight][OpenRight]Hey... wait a second.[N]
+You kinda look like him.[A][CloseSpeechSlow][N]
+[MoveLeft][OpenLeft]Same scruffy hair, same guilty face...[A][CloseSpeechSlow][N]
+[MoveRight][OpenRight]Hmph. You better not be him.[A][X]
 
 ## SaveCostText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Save for [G][Gold]?[NL]
@@ -3848,25 +3881,6 @@ Pewter Gym's design is my pride.[A][N]
 The tricks aren't much, but you can't[N]
 deny that when you enter, the design[A][N]
 has a breathtaking impact, right?[A][X]
-
-## MistyRematchText
-[OpenMidLeft][LoadProtag][OpenMidRight][LoadMisty][OpenMidRight][ToggleSmile]Hey, do you have a favorite[N]
-scenic spot?[A][N]
-I especially love the Cape along[N]
-along Route 25![A][N]
-I've got so many memories of[N]
-things along that coast...[A][N]
-What kinds of memories? Pfft![N]
-Like I'd tell you![A][X]
-
-## MistyRematchDefeatText
-[OpenMidLeft][LoadProtag][OpenMidRight][LoadMisty][OpenMidRight]Hey, did you hear? If you take[N]
-a stroll along Route 25 with your[A][N]
-partner and stare into the pool of[N]
-water, you get to make a true-love wish![A][N]
-You didn't hear about that?[N]
-Really?[A] [ToggleSmile]Well, that would be[N]
-because I just made it up! Ha ha ha![A][X]
 
 
 
