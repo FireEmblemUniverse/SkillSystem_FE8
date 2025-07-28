@@ -421,7 +421,9 @@ String("V1.15.00             July 2025") ; BYTE 0; POP // this overflows into th
 #define SurgePowerPlantFlag 0xF4 
 #define BlaineSeafoamFlag 0xF5 
 #define KogaSafariFlag 0xF6 
-#define SkipCutscenesFlag 0xF7
+#define KogaSafariFlag2 0xF7 
+
+#define SkippableCutscenesFlag 0xFF
 // 0xF7 - 0x10C free 
 
 // New flags 0x12D - 0x22D or more even 
@@ -435,7 +437,7 @@ String("V1.15.00             July 2025") ; BYTE 0; POP // this overflows into th
 
 // Pewter City: visit gym with flag 0x12C 
 
-#define PewterGymClosedFlag 0x12C // final flag 
+#define PewterGymClosedFlag 0x12C // final vanilla flag 
 #define CeruleanGymClosedFlag 0x12B 
 #define VermilionGymClosedFlag 0x12A
 #define FuschiaGymClosedFlag 0x129 

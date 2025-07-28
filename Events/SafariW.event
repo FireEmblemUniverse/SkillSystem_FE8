@@ -1,6 +1,6 @@
 #define ChapterID SafariWCh
 #define GenericA UnitSafariWild
-#define GenericB UnitSafariWild
+#define GenericB UnitRoute16Wild
 #define ClassA ClassSafariWildA
 #define ClassB ClassSafariWildB
 #define ClassC ClassSafariWildE
@@ -49,10 +49,20 @@ Reinforce(0xF4, 1, ReinforcementUnits_Water, 8, 4)
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CHAR 0 SafariKogaEvent [0x0, GymLeader] 0 // NPC
 AllTrainersPostBattleTalk
 END_MAIN
 
-
+SafariKogaEvent: 
+CHECK_EVENTID KogaSafariFlag2
+BNE 99 sC s0 
+Text(KogaSafariText3)
+GiveItemWithDurability_Rand(0, SkillScroll, VantagePlusID)
+ENUT KogaSafariFlag2
+LABEL 99 
+Text(KogaSafariText4)
+NoFade 
+ENDA 
 
 LocationBasedEvents:
 House(RockSmashFlag, RockSmashEvent, 8,7)
@@ -112,8 +122,8 @@ SignATrap(31,25, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 
 EnterWallTrap(15,18, SafariWHouse_AText)
 
-//CutBush(12,10)
-//RockSmash(29,9)
+// CutBush(28,20)
+RockSmash(28,20)
 
 //StrengthBoulder(4,3)
 
@@ -159,9 +169,13 @@ LOAD1 0x1 EnemyUnitsB
 ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(32,6,35,11)) //NE patch 
 
+CHECK_EVENTID KogaSafariFlag2 
+BEQ 26 sC s0 
 LOAD1 0x1 EnemyUnitsC
 ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(4,24,23,30)) //SW patch 
+LABEL 26 
+
 LOAD1 0x1 EnemyUnitsD
 ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(30,19,35,30)) //SE patch 
@@ -173,6 +187,22 @@ LOAD1 0x1 BossUnit
 ENUN
 RandomizeEnemyCoords(Grass, Range(0,0,5,5), Range(4,24,23,30)) //
 UnmarkTrainerAsDefeated(0xEE)
+
+
+
+CHECK_EVENTID KogaSafariFlag2 
+BNE 27 sC s0 
+DISA BossPkmn
+DISA GenericB // to avoid SMS capacity 
+ENUT HideUnitIconsFlag
+LOAD1 1 KogaUnitGroup 
+ENUN 
+MarkTrainerAsDefeated(GymLeader) 
+// MarkTrainerAsDefeated(GymLeaderPkmn) // to avoid the ! icon, but makes talk bubble appear instead 
+// MarkTrainerAsDefeated(BossPkmn) 
+LABEL 27 
+
+
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
  // Bushes  
 //LOAD1 0x1 HumanTrainers
@@ -184,9 +214,17 @@ LABEL 0x63
 NoFade
 ENDA
 
+
+KogaUnitGroup:
+UNIT GymLeader KogaID 0x0 Level(LVFACEDOWN, Enemy, 1)   [15,18] 0	0x0 0x01 REDA16R27 [0x0,0x0,0x0,0x0] DoNothing
+UNIT GymLeaderPkmn VenomothID 0x0 Level(0, Enemy, 1)   [15,17] 0	0x0 0x01 REDA17R27 [RedGem,0x0,0x0,0x0] DoNothingBoss
+// UNIT BossPkmn ScytherID 0x0 Level(0, Enemy, 1) [13,11]  0b 0x0	0x1 REDA13R11 [Tackle, 0x0,0x0,0x0] DoNothingBoss
+UNIT 
+
+
 EnemyUnitsA:
 //   UnitID  			ClassID    		Comm   Level,Alleg,AutoL  Coords Spec,ItemD,Mons n/a REDAShort	 ItemWord 			AIWord 
-UNIT GenericA ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
+UNIT GenericB ClassB 0x0 Level(0, Enemy, 1)   [0,0] 001b	0x0 0x01 REDA0R0 [0x0,0x0,0x0,0x0] AttackInRangeAI
 UNIT 0xF0 BushID 0x0 Level(0, Enemy, 1)   [0,3]  0b	0x0 0x01 REDA0R3  [0x0,0x0,0x0,0x0] BushAI
 UNIT 
 

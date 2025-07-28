@@ -41,6 +41,8 @@ ViridianBrockEvent:
 ENUT ViridianBrockFlag
 EVBIT_MODIFY 4 
 Text(BrockViridianText)
+GiveItemWithDurability_Rand(0, JellyDonut, 3) 
+Text(BrockViridianText2)
 FADI 8 
 DISA GymLeader 
 FADU 8
@@ -539,7 +541,7 @@ UNIT
 
 
 GymLeaderUnitGroup:
-UNIT GymLeader BrockID 0x0 Level(LVFACERIGHT, Enemy, 1) [9,17]  0b 0x0	0x1 REDA9R17 [0x0,0x0,0x0,0x0] DoNothing
+UNIT GymLeader BrockID 0x0 Level(LVFACELEFT, Enemy, 1) [9,17]  0b 0x0	0x1 REDA9R17 [0x0,0x0,0x0,0x0] DoNothing
 UNIT
 
 

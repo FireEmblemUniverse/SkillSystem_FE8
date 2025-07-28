@@ -110,7 +110,7 @@ SignATrap(41,27, ChapterID, 0x0) // Can use ChapterID as the flagID if only usin
 EnterWallTrap(37,5, SafariNHouseText)
 
 
-//CutBush(12,10)
+CutBush(20,27)
 //RockSmash(29,9)
 
 //StrengthBoulder(4,3)

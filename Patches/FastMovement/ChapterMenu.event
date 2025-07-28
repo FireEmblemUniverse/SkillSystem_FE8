@@ -127,23 +127,23 @@ WORD  0x0
 WORD  0x0
 
 // Toy Box 
-WORD  0x0
-SHORT 0x9B7
-SHORT 0x9B8
-BYTE  0x4
-BYTE  0x75
-SHORT 0x0
-#ifdef TOY_BOX_USABLE_ONLY_IF_FLAG_AB_IS_ON 
-POIN DisplayIfFlagAB
-#endif 
-#ifndef TOY_BOX_USABLE_ONLY_IF_FLAG_AB_IS_ON 
-WORD  0x804F449 // Always usable 
-#endif 
-WORD  0x0
-POIN  ToggleFlagAA
-WORD  0x0
-WORD  0x0
-WORD  0x0
+// WORD  0x0
+// SHORT 0x9B7
+// SHORT 0x9B8
+// BYTE  0x4
+// BYTE  0x75
+// SHORT 0x0
+// #ifdef TOY_BOX_USABLE_ONLY_IF_FLAG_AB_IS_ON 
+// POIN DisplayIfFlagAB
+// #endif 
+// #ifndef TOY_BOX_USABLE_ONLY_IF_FLAG_AB_IS_ON 
+// WORD  0x804F449 // Always usable 
+// #endif 
+// WORD  0x0
+// POIN  ToggleFlagAA
+// WORD  0x0
+// WORD  0x0
+// WORD  0x0
 
 // Travel: Dig, Teleport, Fly, EscapeRope 
 WORD  0x0

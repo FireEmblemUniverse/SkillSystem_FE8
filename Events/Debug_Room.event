@@ -305,9 +305,9 @@ ENUT GirlProtagFlag
 SetTactName(VeslyName)
 ASMC SaveGameSeed
 
-ENUT RandomizeBaseStatsFlag
-ENUT RandomizeWeaponStatsFlag
-ENUT RandomizeFoundItemsFlag
+// ENUT RandomizeBaseStatsFlag
+// ENUT RandomizeWeaponStatsFlag
+// ENUT RandomizeFoundItemsFlag
 ENUT DisableTutMsgsFlag
 
 //ENUT CannotEvolveFlag
