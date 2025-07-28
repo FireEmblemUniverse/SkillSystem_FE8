@@ -85,10 +85,10 @@ setMugEntry(159, MistyData, 3, 6, 3, 4)
 
 ALIGN 16 
 LtSurgeData: 
-#incbin "Dmp/Surge_Eden_Specs_mug.dmp" 
-#incbin "Dmp/Surge_Eden_Specs_frames.dmp" 
-#incbin "Dmp/Surge_Eden_Specs_palette.dmp" 
-#incbin "Dmp/Surge_Eden_Specs_minimug.dmp" 
+#incbin "Dmp/Surge_Eden_mug.dmp" 
+#incbin "Dmp/Surge_Eden_frames.dmp" 
+#incbin "Dmp/Surge_Eden_palette.dmp" 
+#incbin "Dmp/Surge_Eden_minimug.dmp" 
 setMugEntry(165, LtSurgeData, 2, 5, 2, 3)
 
 ALIGN 16 
