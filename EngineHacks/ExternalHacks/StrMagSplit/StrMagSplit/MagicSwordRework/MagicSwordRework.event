@@ -36,8 +36,11 @@
 
 	ORG 0x2AA4E
 	BYTE $68 $68 $C0 $46
+    ORG $2aa68 
+    SHORT $46c0 
+    
 	ORG 0x2AA6C
-	BYTE $68 $68 $C0 $46
+	// BYTE $68 $68 $C0 $46
 	
 	ORG 0x2A8B8
 	BYTE $68 $68 $C0 $46

@@ -1,4 +1,4 @@
-// PROTECT $267FC $268f0
+// PROTECT $114F8
 // PROTECT $1cc10 $1cc30
 // PROTECT $27330 $2734c
 //PROTECT $144F944
@@ -433,6 +433,7 @@ String("V1.15.00             July 2025") ; BYTE 0; POP // this overflows into th
 #define CinnabarMomCallFlag 0x130
 #define MomGaveItemFlag 0x131
 #define ErikaRoute14Flag 0x132 
+#define SabrinaCeruleanCaveFlag 0x133 
 
  
 

@@ -41,10 +41,19 @@ END_MAIN
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CHAR 0 SabrinaEvent [0x0, GymLeader] 0 
 AllTrainersPostBattleTalk
 END_MAIN
 
-
+SabrinaEvent: 
+Text(SabrinaCeruleanCaveText) 
+ENUT SabrinaCeruleanCaveFlag 
+GiveItemWithDurability_Rand(0, SpellScroll, Psystrike) 
+FADI 8 
+DISA GymLeader 
+FADU 8
+NoFade 
+ENDA 
 
 LocationBasedEvents:
 House(0, ToRoute4E, 33,22) 
@@ -179,6 +188,13 @@ RandomizeEnemyCoords(Sea, Range(0,0,5,5), Range(9,1,38,15))
 
 AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds  
 
+CHECK_EVENTID SabrinaCeruleanCaveFlag
+BNE 27 sC s0 
+LOAD1 1 GymLeaderUnitGroup 
+ENUN 
+MarkTrainerAsDefeated(GymLeader) 
+LABEL 27 
+
 LABEL 0x63
 NoFade
 ENDA
@@ -212,6 +228,10 @@ ALIGN 4
 Units1: //only used for a pointless POIN at start 
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
 UNIT 
+
+GymLeaderUnitGroup:
+UNIT GymLeader SabrinaID 0x0 Level(LVFACEDOWN, Enemy, 1) [23,17]  0b 0x0	0x1 REDA23R17 [0x0,0x0,0x0,0x0] DoNothing
+UNIT
 
 // no reinforcements. 6 unique classes 
 EnemyUnitsA: 
