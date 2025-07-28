@@ -594,7 +594,7 @@ ENUT CannotEvolveFlag
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
 Write_Byte(8, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(20, YCoordNewArea)  
+Write_Byte(10, YCoordNewArea)  
 
 //Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
 //Write_Byte(18, YCoordNewArea) 
@@ -611,7 +611,7 @@ Write_Byte(20, YCoordNewArea)
 ENUT MissingnoFlag
 //MNC2 CinnabarCh 
 //MNC2 VermilionCh
-MNC2 SafariECh
+MNC2 PalletCh
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh

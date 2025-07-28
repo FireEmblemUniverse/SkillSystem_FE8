@@ -354,7 +354,7 @@ BEQ 28 sC s0 // after defeating Blaine, mom calls
 CHECK_EVENTID CinnabarMomCallFlag
 BNE 28 sC s0 // if we already were notified 
 ShowMap
-SVAL s2 MomViridianText
+SVAL s2 MomCinnabarText
 CALL Telephone_Normal
 ENUT CinnabarMomCallFlag 
 LABEL 28 

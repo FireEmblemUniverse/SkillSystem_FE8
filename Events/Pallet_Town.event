@@ -165,8 +165,25 @@ Seize(10,2)
 END_MAIN
 
 VisitHome:
-//CinnabarMomCallFlags
+CHECK_EVENTID CinnabarMomCallFlag
+BEQ 0 sC s0 
+CHECK_EVENTID MomGaveItemFlag 
+BNE 0 sC s0 
+Text(MomGiveItemText)
+ENUT MomGaveItemFlag 
+SVAL r3 20000 
+GIVETOMAIN 0 
+GiveItemWithDurability_Rand(0, SpellScroll, Rest)
+LABEL 0 
+
+CHECK_EVENTID CompletedPokemonLeague
+BEQ 1 sC s0 
+Text(MomPostLeagueText)
+GOTO 10 
+LABEL 1
+
 Text(MomWelcomeHomeText)
+LABEL 10
 CALL VisitPokecenter
 NoFade 
 ENDA 

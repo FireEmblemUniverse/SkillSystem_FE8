@@ -431,6 +431,7 @@ String("V1.15.00             July 2025") ; BYTE 0; POP // this overflows into th
 #define ViridianMomCallFlag 0x12E
 #define SafariTroubleFlag 0x12F
 #define CinnabarMomCallFlag 0x130
+#define MomGaveItemFlag 0x131
 
 
  
