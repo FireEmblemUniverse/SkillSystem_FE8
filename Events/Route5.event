@@ -41,10 +41,15 @@ Reinforce(0xF1, 1, ReinforcementUnits, 5, 4)
 
 CharacterBasedEvents:
 CharacterEventBothWays(0,GlobalTalkEvent, 0xFF, Ephraim)
+CharacterEventBothWays(0,MistyEvent, 0, GymLeader)
 AllTrainersPostBattleTalk
 END_MAIN
 
-
+MistyEvent: 
+Text(MistyRoute5Text)
+ENUT MistyRoute5Flag 
+NoFade 
+ENDA 
 
 LocationBasedEvents:
 House(0, DaycareHouse, 13,25) 
@@ -112,7 +117,7 @@ CutBush(16,0)
 
 RockSmash(12,3)
 RockSmash(15,3)
-RockSmash(17,22)
+// RockSmash(17,22)
 //StrengthBoulder(4,3)
 
 //RedPokeballTrap(16,35, ChapterID*2, SuperPotion)
@@ -169,6 +174,19 @@ AutoLevelUnits(WildLvl, True, 0x50FF) // Wilds
 LOAD1 0x1 HumanTrainers
 ENUN 
 AutoLevelUnits(TrainerL, True, 0xE0EF) // Trainers given visible levels 
+
+
+
+CHECK_EVENTID EarthbadgeObtained 
+BNE 27 sC s0 
+CHECK_EVENTID MistyRoute5Flag 
+BNE 27 sC s0 
+LOAD1 1 GymLeaderUnitGroup 
+ENUN 
+MarkTrainerAsDefeated(GymLeader) 
+LABEL 27 
+
+
 CALL SetBushHpEvent
 
 LABEL 0x63
@@ -203,6 +221,10 @@ ALIGN 4
 
 Units1: //only used for a pointless POIN at start 
 UNIT Seth  0x7 0x1 0xA1     [0,0] 0b 0x0 0x0 0x0 [0x2,0x3,0x4,0x5] [0x0,0x0,0x0,0x0]
+UNIT 
+
+GymLeaderUnitGroup:
+UNIT GymLeader MistyID 0x0 Level(LVFACEDOWN, Enemy, 1)   [17,22] 0	0x0 0x01 REDA17R22 [0x0,0x0,0x0,0x0] DoNothing
 UNIT 
 
 // Wilds - SpearowID	BellsproutID

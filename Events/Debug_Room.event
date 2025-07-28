@@ -301,7 +301,7 @@ ENUT DebugPlaceUnitsFlagMenu
 
 
 ENUF SkipIntroFlag
-// ENUT GirlProtagFlag
+ENUT GirlProtagFlag
 SetTactName(VeslyName)
 ASMC SaveGameSeed
 
@@ -560,7 +560,7 @@ ENUT DomeFossilFlag
 ENUT PokefluteFlag
 
 ENUT SilphCoDefeated
-// ENUT BoulderbadgeObtained 
+ENUT BoulderbadgeObtained 
 ENUT CascadebadgeObtained 
 ENUT ThunderbadgeObtained 
 ENUT RockSmashFlag
@@ -568,11 +568,11 @@ ENUT CutHmFlag
 ENUT StrengthBoulderFlag
 
 ENUT SoulbadgeObtained 
-// ENUT RainbowbadgeObtained 
+ENUT RainbowbadgeObtained 
 ENUT MarshbadgeObtained
 Write_Byte(SquirtleID, GaryStarterClass) 
 ENUT VolcanobadgeObtained 
-ENUT EarthbadgeObtained 
+// ENUT EarthbadgeObtained 
 ENUT FlyFlag
 ENUT SaffronArrived
 ENUT CinnabarArrived
@@ -595,7 +595,7 @@ ENUT CannotEvolveFlag
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
 Write_Byte(5, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(2, YCoordNewArea)  
+Write_Byte(21, YCoordNewArea)  
 
 //Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
 //Write_Byte(18, YCoordNewArea) 
@@ -612,7 +612,7 @@ Write_Byte(2, YCoordNewArea)
 // ENUT MissingnoFlag
 //MNC2 CinnabarCh 
 //MNC2 VermilionCh
-MNC2 Route1Ch
+MNC2 Route5Ch
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh

@@ -1213,6 +1213,20 @@ You kinda look like him.[A][CloseSpeechSlow][N]
 [MoveLeft][OpenLeft]Same scruffy hair, same guilty face...[A][CloseSpeechSlow][N]
 [MoveRight][OpenRight]Hmph. You better not be him.[A][X]
 
+## MistyRoute5Text
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadMisty][OpenMidRight][ToggleSmile]Oh, hi [Tact]! I've been helping[N]
+out around the daycare lately.[A][N]
+Baby Pokémon are[N]
+just too cute![A][N]
+I want to raise one[N]
+from an Egg someday![A][N]
+But for now I’m just saving[N]
+up for a new bike.[A][N]
+Honestly, being around[N]
+all these cuties...[A][N]
+I could watch them[N]
+wobble around all day![A][X]
+
 ## SaveCostText
 [OpenLeft][LoadDex][OpenLeft][FastPrint]Save for [G][Gold]?[NL]
 [Yes][X]
@@ -1677,14 +1691,14 @@ Drat![NL]
 A ZUBAT bit me back in that cave.[A][X]
 
 ## DaycareHouseText
-Brock's Daycare service.[N]
-Closed.[A][X]
-//I run the DAY-CARE service.[A][NL]
-//You'd like me to raise one of[NL]
-//your Pokémon?[A][2NL]
-//I can put you down on the wait list,[NL]
-//but it's several months long...[A][NL]
-//Sorry, but could you come back later?[A][X]
+//Brock's Daycare service.[N]
+//Closed.[A][X]
+I run the DAY-CARE service.[A][NL]
+You'd like me to raise one of[NL]
+your Pokémon?[A][2NL]
+I can put you down on the wait list,[NL]
+but it's several months long...[A][NL]
+Sorry, but could you come back later?[A][X]
 
 
 ## UndergroundPassText
