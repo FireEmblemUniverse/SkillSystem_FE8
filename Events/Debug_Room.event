@@ -568,7 +568,7 @@ ENUT CutHmFlag
 ENUT StrengthBoulderFlag
 
 ENUT SoulbadgeObtained 
-ENUT RainbowbadgeObtained 
+// ENUT RainbowbadgeObtained 
 ENUT MarshbadgeObtained
 Write_Byte(SquirtleID, GaryStarterClass) 
 ENUT VolcanobadgeObtained 
@@ -595,7 +595,7 @@ ENUT CannotEvolveFlag
 //ASMC FillPokedex // 3e2F4 
 //ASMC SeePokedex
 Write_Byte(8, XCoordNewArea)    // Placeholder chapter does not use this 
-Write_Byte(10, YCoordNewArea)  
+Write_Byte(15, YCoordNewArea)  
 
 //Write_Byte(15, XCoordNewArea)    // Placeholder chapter does not use this 
 //Write_Byte(18, YCoordNewArea) 
@@ -609,10 +609,10 @@ Write_Byte(10, YCoordNewArea)
 //MNC2 Route5Ch
 //MNC2 CeladonCh
 //MNC2 ViridianForestSCh
-ENUT MissingnoFlag
+// ENUT MissingnoFlag
 //MNC2 CinnabarCh 
 //MNC2 VermilionCh
-MNC2 SaffronCh
+MNC2 Route14Ch
 //SetUnitStatus(1, Exp, 99)
 //MNC2 CeruleanGymCh
 //MNC2 PewterGymCh
