@@ -47,10 +47,10 @@ AllTrainersPostBattleTalk
 END_MAIN
 
 MrFujievent:
-BottomWallText(MrFujiText)
+Text(MrFujiText)
 EVBIT_MODIFY 4 
 TutText(ObtainedPokefluteText)
-BottomWallText(MrFujiText2)
+Text(MrFujiText2)
 NoFade 
 ENDA 
 
@@ -260,7 +260,7 @@ UNIT 0xE1 rocket_fID 0x0 Level(LVFACELEFT, Enemy, 1) [12,7]  0b 0x0	0x1 REDA12R7
 UNIT 
 
 MrFujiUnit:
-UNIT 0xE2 mrfujiID 0x0 Level(0, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R4 [0x0,0x0,0x0,0x0] DoNothing
+UNIT 0xE2 mrfujiID 0x0 Level(LVFACEUP, Enemy, 1) [10,4]  0b 0x0	0x1 REDA10R4 [0x0,0x0,0x0,0x0] DoNothing
 UNIT 
 
 

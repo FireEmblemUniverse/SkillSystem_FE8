@@ -2100,7 +2100,7 @@ Hmm? I'm here[N]
 doing a job.[A][X]
 
 ## MrFujiText
-Heh?[N]
+[OpenMidLeft][LoadProtag][OpenRight][LoadFuji][OpenRight]Heh?[N]
 You came to save me?[A][N]
 Thank you. But, I came here of my[N]
 own free will.[A][N]
@@ -2116,7 +2116,7 @@ Here, take this.[A][X]
 Obtained Pokéflute.[A][X]
 
 ## MrFujiText2
-Use it to wake up[N]
+[OpenMidLeft][LoadProtag][OpenRight][LoadFuji][OpenRight]Use it to wake up[N]
 sleeping Pokémon.[A][X]
 
 ## MrFujiText3
@@ -3037,19 +3037,19 @@ Pokémon exist for Team Rocket![A][N]
 I must go, but I shall return![A][X]
 
 
-## KiyoChallengeText
-I am the KARATE MASTER![N]
+## KoichiChallengeText
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadKoichi][OpenMidRight]I am the KARATE MASTER![N]
 I am always ready to spar![A][N]
 You wish to challenge me?[N]
 Expect no mercy![A][N]
 Fwaaa![A][X]
 
-## KiyoDefeatText
-Hwa![N]
+## KoichiDefeatText
+[OpenMidLeft][LoadProtag][OpenMidRight][LoadKoichi][OpenMidRight]Hwa![N]
 Arrgh! Beaten![A][N]
 Spar with me anytime.[A][X]
 
-## KiyoTalkText
+## KoichiTalkText
 Never lose focus![N]
 Never falter![A][X]
 
