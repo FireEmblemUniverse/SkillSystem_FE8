@@ -157,7 +157,7 @@ strh r0, [r7, #4] @final damage
 
 @now to check for a crit
 ldrh r0, [r7, #0xc] @crit rate
-mov r1, #0
+mov r1, r4
 blh d100Result
 cmp r0, #1
 bne End
