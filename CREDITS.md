@@ -12,7 +12,7 @@ SkillSystems - circles, Sme, & others
 Trap Rework - Sme
 Gaiden Magic - Snek, Gamma 
 Equippable Accessories - Kirb 
-FreeMovement - Sme (eventually to be inserted)
+FreeMovement - Mokha, Sme
 Map/chapter transitions - Huichelaar
 
 # Special Thanks
