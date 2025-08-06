@@ -4,9 +4,9 @@
 
 ALIGN 4 
 HeldButtonSpeed: 
-WORD 1 
+WORD 2
 DefaultSpeed:
-WORD 3 // 4 
+WORD 4 // go up a pixel every 4 frames 
 Width_BigChar: 
 WORD 12 // 8 is overlapping, 12 has no overlap, more than 12 has some space between characters 
 DarkenAmount: // default 
@@ -22,41 +22,41 @@ WORD 0 // 1 for enabled
 #define LyonStoneCG 2 
 #define DemonKingCG 5
 
-#define BlackBG 0x35 
-#define BurningBG 0x2B 
+
 #define PondBG 0x21 
+#define BurningBG 0x2B 
+#define BlackBG 0x35 
+#define RandomBG 0x37 
  
 
 #define BG_Type 1
 #define CG_Type 2 
 
+
+#define CreditsEntryBG(header, body, bgID, darkenAmount) "POIN header body; BYTE bgID BG_Type darkenAmount 0" 
+#define CreditsEntryBG(header, body, bgID) "POIN header body; BYTE bgID BG_Type 0 0" 
+#define CreditsEntryCG(header, body, cgID, darkenAmount) "POIN header body; BYTE cgID CG_Type darkenAmount 0" 
+#define CreditsEntryCG(header, body, cgID) "POIN header body; BYTE cgID CG_Type 0 0" 
+#define CreditsEntry(header, body) "POIN header body; BYTE 0xFF 0 0 0" 
+#define CreditsEnd "WORD 0 0 (-1) 0 0 (-1) 0 0 (-1)" 
+
 ALIGN 4 
 gCreditsData: 
-POIN header1 body1; 
-BYTE LyonStoneCG // bg or cg ID
-BYTE CG_Type // bg or cg type (1 or 2) 
-BYTE 0x80 // darken amount (or 0 for default) 
-BYTE 0; 
+CreditsEntryBG(HeadDevelopment, BodyDevelopment, BurningBG) 
+CreditsEntry(HeadLeadArtists, BodyLeadArtists) 
+CreditsEntryBG(HeadAdditionalArt, BodyAdditionalArt, RandomBG) 
+CreditsEntryBG(HeadSystems, BodySystems, RandomBG) 
+CreditsEntryBG(Head7743, Body7743, RandomBG) 
+CreditsEntry(HeadDecomp, BodyDecomp)
+CreditsEntryCG(HeadEarlyPlaytesters, BodyEarlyPlaytesters, DemonKingCG)  
+CreditsEntry(HeadInterns, BodyInterns) 
+CreditsEntryCG(HeadMisc, BodyMisc, 6) 
+CreditsEntryCG(HeadSkillsysContributors, BodySkillsysContributors, 3) 
  
-POIN header2 body2; 
-BYTE PondBG BG_Type 0 0; 
-
-POIN header3 body3; 
-BYTE DemonKingCG CG_Type 0x80 0; 
-
-POIN header4 body4; 
-BYTE BurningBG BG_Type 0 0; 
-   
-POIN emptyString emptyStringLong; 
-WORD (-1)  
-
-POIN theEnd emptyString; 
-BYTE BlackBG BG_Type 0 0  
-
-POIN emptyString emptyStringLong; 
-WORD (-1)  
-// POIN emptyString emptyStringLong 
-WORD 0 0 0xFF 0 0 0xFF 0 0 0xFF 0 0 0xFF // Terminator 
+CreditsEntry(emptyString, emptyStringLong)
+CreditsEntryBG(theEnd, emptyString, BlackBG)
+CreditsEntry(emptyString, emptyStringLong)
+CreditsEnd // Terminator 
 
 
 #define NL "BYTE 1;"
@@ -72,68 +72,195 @@ WORD 0 0 0xFF 0 0 0xFF 0 0 0xFF 0 0 0xFF // Terminator
 theEnd: 
 txt("  T h e   E n d") 
 
-// with notepad++, replace (ctrl+h) your line endings with \\ 
+// with notepad++, replace (ctrl+h) (extended) your line endings with \\ 
+/* \r\n */ // find 
+/* \\\\\r\n */ // replace line ends with two backslashes followed by line end 
+// replace in selection 
+// then, replace all space \\\\ 
 
-header1: 
-txt("Patches"); BYTE 0 
-body1: 
-txt(" Casual Mode: Circles, 7743\\
-Danger Zone: Circles\\
-Unlock Mode Select: Doesnt\\
-Tutorial Disabler: 7743\\
-Fix REDAs: 7743\\
-BattleStatsAnimsOff: Tequila\\
-HP Bars: Circles, Tequila\\
-Show Heal Amount: Tequila\\
-Hard Mode Unlock: 7743\\
-Skip Intro: Gryz\\"); BYTE 0 
+HeadDevelopment: 
+txt("Development"); 
 
-header2: 
-txt("Animations"); BYTE 0 
-
-body2: 
-txt(" Alm_T1 animation by Nuramon, HyperGammaSpaces\\
-Alm_T2 animation by Nuramon\\
-Ike_Lord animation by xxx_Drama\\
-Ike_Ranger animation by Mikey, Khrene, Khardros\\
-Leif_Lord animation by Obsidian_Daddy, Jj09\\
-Marth_Slash animation by Caim Van Fang, Seliost1\\
-Seliph animation by Obsidian, Zoramine, Eretein\\
-T1_Lancer animation by Memae, Skitty, BwdYeti, MOJ\\
-Trueblade animation by Dinar87, RobertFPY\\
-Katarina_Fencer animation by GabrielKnight, 7743\\
-Dragoon animation by MercLord, NYZGamer, Maiser6\\"); BYTE 0  
-
-header3: 
-txt("Class Sprites"); BYTE 0 
-
-body3: 
-txt(" Alm sprites by Norikins\\
-AngelSMS by Unknown\\
-ArcanistSMS by Norikins\\
-BaronSMS by Topazlight, Nuramon, Its_Just_Jay\\
-BlackDragonSMS by L95\\
-CantorSMS by Ryn\\
-BoxerSMS by ShadowAllyX\\
-BrighidSMS by Shin19\\
-Cantor2SMS by Norikins\\
-ChickenSMS by Pikmin1211\\"); BYTE 0 
+BodyDevelopment: 
+txt(" By Vesly\\
+  "); 
 
 
-header4: 
-txt("Portraits"); BYTE 0 
-body4: 
-txt(" Marth portrait by Lenh\\
-Jagen portrait by Thorn\\
-Caeda portrait by Nickt, Blueyguy\\
-Cain portrait by Xenith, Nickt, Blaze\\
-Abel portrait by LuminescentBlade\\
-Draug portrait by Thorn\\
-Gordin portrait by Thorn\\
-Wrys portrait by Thorn\\
-Ogma portrait by Thorn\\"); BYTE 0 
+HeadLeadArtists:
+txt("Lead Artists")
+
+BodyLeadArtists:
+txt(" Eden\\
+redppr\\
+Lukirioh\\
+Jester252\\
+Akim2007\\
+N426\\
+Zaim\\
+  \\
+  ")
 
 
+HeadSystems: 
+txt("Systems"); 
+BodySystems: 
+txt(" DangerRadius - Huichelaar\\
+Capture - Tequila\\
+EffectivenessRework - Tequila\\
+SkillSystems - circles, Sme, & others\\
+Trap Rework - Sme\\
+Gaiden Magic - Snek, Gamma\\
+Equippable Accessories - Kirb\\
+FreeMovement - Mokha, Sme\\
+Map/chapter transitions - Huichelaar\\
+  \\
+  "); 
+
+Head7743: 
+txt("Special Thanks")
+Body7743: 
+txt( "7743, without whom this project\\
+would not be possible. He's added many\\
+features and patches to FEBuilder that\\
+I greedily requested, and has always\\
+offered support when I was having trouble.\\
+  \\
+  ") 
+
+
+HeadDecomp: 
+txt("Decomp wizards"); BYTE 0 
+BodyDecomp: 
+txt(" Eebit\\
+Mokha\\
+StanH\\
+laqieer\\
+jiangzhengwenjz\\
+NoahNelson\\
+camthesaxman\\
+BlueAnthem37510\\
+RevoSucks\\
+CT075\\
+minirop\\
+Kirb\\
+  \\
+  "); BYTE 0 
+
+
+HeadInterns: 
+txt("Unpaid Interns")
+
+BodyInterns: 
+txt(" FabulaFares\\
+ScubaLuigi\\
+ChilanBerry\\
+Rurouni\\
+...and everyone else mentioned in this credits.\\
+  \\
+  ") 
+
+HeadAdditionalArt:
+txt("More Art")
+
+BodyAdditionalArt:
+txt(" SD9k\\
+Zoramine\\
+Aqua\\
+Epicer\\
+Gabriel Knight\\
+HusbandoEmblem\\
+Halbreadier\\
+  \\
+  ") 
+
+HeadEarlyPlaytesters:
+txt("Playtesters")
+
+BodyEarlyPlaytesters:
+txt(" Akim, Ariadna, Aqua, BayouPup, bpat,\\
+bowser for lesbians, ChilanBerry, Contro,\\
+darknight97, Elzaim, FabulaFares, FickleRick,\\
+FlamingZelda, Fpkfor, Gaston, Miki Brock,\\
+Leche, Luis, Kyle, Missiri, LackadasicalDerp,\\
+MournfulRelic, Paulean, Pf987, Piku, Rurouni,\\
+Scub, Tbone, TheIcyCharmander, mitltl\\
+ImportedCheese, TheGreatUncleYga, YourHiro\\
+  \\
+  ")
+
+
+HeadMisc:
+txt("Misc.")
+BodyMisc:
+txt(" AI4 as group ai - PhantomSentine\\
+Examine item fix - Sme\\
+Fates exp - Crazycolorz5\\
+EventParameters - Snek\\
+Full Heal item - MintX\\
+Hide portraits during promotion - Tequila\\
+CheckInDanger - Stanh\\
+16 Tracks/12 Sounds Fix (credit Agro/Brendor)\\
+256 Col Title Screen - Leonarth\\
+Anti-Huffman - Hextator\\
+CSA - Hextator, Circles\\
+CasualMode - circles\\
+CG Fade Fix - 7743\\
+Ch titles as text - circles\\
+CompareTactName - 7743\\
+Convert MemorySlot to String - 7743\\
+Count Units in Range - 7743\\
+DisablePrepStore - 7743\\
+DisableStatusScreenForClasses - 7743\\
+Disable Enemy Control Glitch - Brendon, 7743\\
+Display 10-Divided CG - 7743\\
+Drumfix - circles\\
+remove control enemy - Brendor\\
+Split menu - Stan, circles\\
+Escape - ngmansion, aera\\
+Fix LZ77 - Tequila\\
+GetPressedKeys - Shuusuke, 7743\\
+GetDifficulty - 7743\\
+GetUnitDistance - Snakey1\\
+HigherPromoBonuses - Scraiza\\
+RescueEvent - circles\\
+EMS - Stan\\
+Ai & LeaderAI fix - Stan\\
+Battle Stats - Tequila\\
+UNCM - Tequila\\
+AIDangerMapFix - Gamma\\
+HPBars - Circles, Tequila\\
+ImprovedSoundMixer - ipatix\\
+MagicSwordRework - Sme\\
+MMB - Zane\\
+NarrowFont - Scraiza\\
+RNGRandomizer - TR143\\
+PreventTradingCertainItems - Circles, Pawkkie\\
+Reserve Tact TextID - 7743\\
+SendAll - 7743\\
+ShowEmoticon - 7743, Kenpuku\\
+Sound_NIMAP - circles, Alusq\\
+Submenu - 7743\\
+UnitActionRework - Stanh\\
+L-Button Cycling - Aura Wolf\\
+Telephone - Sme\\
+Mirror Map Sprite - Contro\\
+  \\
+  ") 
+
+HeadSkillsysContributors:
+txt("SkillSys")
+
+BodySkillsysContributors:
+txt(" Sme, circleseverywhere, Pikmin1211, Snakey1,\\
+Tequila, Colorz, 7743, StanH, Leonarth,\\
+Teraspark, Zeta, Kirb, Vesly, Dragz, Ditto,\\
+JesterWizard, Rossendale, Darrman, SD9k,\\
+kao, blademaster, Ganzap, Mikey Seregon,\\
+Jopettajah, RobertFPY, Someone, Blaze,\\
+vlak, 2WB, Alice, VelvetKitsune, Zaim,\\
+Reds, Dragz, Monkeybard\\
+  \\
+  ")
 
 emptyString: 
 txt("  "); BYTE 0 // should be 2 or more spaces lol 
@@ -151,7 +278,6 @@ txt("  \\
 
 
 // #define TESTING_CREDITS 
-#define SetBg(background) "SVAL 0x2 background; CALL $9EE2E8"
 
 PUSH 
 

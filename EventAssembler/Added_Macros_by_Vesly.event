@@ -18,6 +18,8 @@
 #define TutTextAutoFade(background,textID) "MUSI; SMOV 0x2 background; CALL $9EE2E8; TutText(textID); MUNO; CALL $9EE2C4"
 #define TutText(background,textID) "MUSI; SMOV 0x2 background; CALL $9EE2E8; TutText(textID); MUNO"
 
+#define SetBg(background) "SVAL 0x2 background; CALL $9EE2E8"
+#define SetBG(background) "SVAL 0x2 background; CALL $9EE2E8"
 
 #define WallText(text) "SVAL 0xB 0xFFFFFFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered 
 #define BottomWallText(text) "SVAL 0xB 0x00B0FFFF; SOLOTEXTBOXSTART; TEXTSHOW text; TEXTEND; REMA" // Centered along bottom of screen 

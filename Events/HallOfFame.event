@@ -103,8 +103,12 @@ ENUF BrunoDefeatedTemp
 ENUF AgathaDefeatedTemp 
 ENUF LanceDefeatedTemp 
 ENUF ChampionDefeatedTemp 
-FADU 16 
-TEXTSTART 
+// FADU 16 
+EVBIT_MODIFY 1 // stop here 
+FADI 2 
+SetBG(0x35)
+// FADI 16 
+// BGM 
 ASMC StartCreditsProc_ASMC 
 
 

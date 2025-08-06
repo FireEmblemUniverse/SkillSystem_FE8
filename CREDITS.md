@@ -18,6 +18,9 @@ Map/chapter transitions - Huichelaar
 # Special Thanks
 7743, without whom this project would not be possible. He’s added many features and patches to FEBuilder that I greedily requested, and has always offered support when I was having trouble.
 
+# Decomp contributors 
+Eebit, Mokha, StanH, laqieer, jiangzhengwenjz, NoahNelson, camthesaxman, BlueAnthem37510, RevoSucks, CT075, minirop, Kirb  
+
 # Learnsets 
 FabulaFares, ScubaLuigi, ChilanBerry, Rurouni
 
@@ -104,7 +107,7 @@ TheGreatUncleYga
 YourHiro 
 
 # Additional Thanks to: 
-Sme, Tequila, Pikmin1211
+Sme, Tequila, Pikmin1211, Contro, Eebit 
 
 # Patches
 

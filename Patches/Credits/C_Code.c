@@ -566,7 +566,7 @@ signed char * GetNextLineOfType(CreditsTextProc * proc, int type, int slot)
     }
     return str;
 }
-
+void InitNextBG(CreditsTextProc * proc, int slot);
 signed char * GetNextStrLine(CreditsTextProc * proc, int slot)
 {
     int id = proc->id;
@@ -593,6 +593,7 @@ signed char * GetNextStrLine(CreditsTextProc * proc, int slot)
             {
                 proc->textType = HeaderType; // next one will be body
                 proc->id++;                  // which gCreditsData[proc->id] entry we're on
+                InitNextBG(proc, slot);
             }
             return str;
             break;
@@ -698,10 +699,15 @@ void InitNextBG(CreditsTextProc * proc, int slot)
     {
         return;
     }
-    if (bg == 0xFF || bg == proc->bg)
-    {
-        return;
+
+    if (bg != 0x37)
+    { // random bg
+        if (bg == 0xFF || bg == proc->bg)
+        {
+            return;
+        }
     }
+
     proc->bg = bg;
     proc->darkenAmount = darkenAmount;
     struct ConvoBackgroundFadeProc * otherProc = Proc_Start(gUnknown_08591E00_FadeBGs, (void *)3);
@@ -780,7 +786,7 @@ int TryAdvanceID(CreditsTextProc * proc)
             if (proc->slotIndex[slot] < 0)
             {
                 InitNextLine(proc, slot);
-                InitNextBG(proc, slot);
+                // InitNextBG(proc, slot);
             }
         }
     }
@@ -849,6 +855,7 @@ void StartCreditsProc_ASMC(ProcPtr parent)
     proc->holding = 0;
     proc->bg = 0xFF;
     proc->darkenAmount = 0;
+    InitNextBG(proc, 0);
 }
 
 extern int HeldButtonSpeed;
