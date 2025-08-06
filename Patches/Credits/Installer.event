@@ -1,0 +1,188 @@
+
+#include "EAstdlib.event" 
+#include "C_Code.lyn.event" 
+
+ALIGN 4 
+HeldButtonSpeed: 
+WORD 1 
+DefaultSpeed:
+WORD 3 // 4 
+Width_BigChar: 
+WORD 12 // 8 is overlapping, 12 has no overlap, more than 12 has some space between characters 
+DarkenAmount: // default 
+// WORD 0xC0 // Backgrounds are 25% darker during credits 
+// WORD 0x80 // 50% darker 
+WORD 0x60 // 62.5% darker 
+// WORD 0x40 // 75% darker 
+SkipWithStartEnabled:
+WORD 0 // 1 for enabled 
+
+
+
+#define LyonStoneCG 2 
+#define DemonKingCG 5
+
+#define BlackBG 0x35 
+#define BurningBG 0x2B 
+#define PondBG 0x21 
+ 
+
+#define BG_Type 1
+#define CG_Type 2 
+
+ALIGN 4 
+gCreditsData: 
+POIN header1 body1; 
+BYTE LyonStoneCG // bg or cg ID
+BYTE CG_Type // bg or cg type (1 or 2) 
+BYTE 0x80 // darken amount (or 0 for default) 
+BYTE 0; 
+ 
+POIN header2 body2; 
+BYTE PondBG BG_Type 0 0; 
+
+POIN header3 body3; 
+BYTE DemonKingCG CG_Type 0x80 0; 
+
+POIN header4 body4; 
+BYTE BurningBG BG_Type 0 0; 
+   
+POIN emptyString emptyStringLong; 
+WORD (-1)  
+
+POIN theEnd emptyString; 
+BYTE BlackBG BG_Type 0 0  
+
+POIN emptyString emptyStringLong; 
+WORD (-1)  
+// POIN emptyString emptyStringLong 
+WORD 0 0 0xFF 0 0 0xFF 0 0 0xFF 0 0 0xFF // Terminator 
+
+
+#define NL "BYTE 1;"
+#define NL2 "BYTE 1 1;"
+
+
+    
+#ifndef txt
+#inctbl "fe8TR" "fe8_tr.tbl"
+    #define txt(string2) STRING string2 "fe8TR"; BYTE 0 0; // fe6 version 
+#endif 
+
+theEnd: 
+txt("  T h e   E n d") 
+
+// with notepad++, replace (ctrl+h) your line endings with \\ 
+
+header1: 
+txt("Patches"); BYTE 0 
+body1: 
+txt(" Casual Mode: Circles, 7743\\
+Danger Zone: Circles\\
+Unlock Mode Select: Doesnt\\
+Tutorial Disabler: 7743\\
+Fix REDAs: 7743\\
+BattleStatsAnimsOff: Tequila\\
+HP Bars: Circles, Tequila\\
+Show Heal Amount: Tequila\\
+Hard Mode Unlock: 7743\\
+Skip Intro: Gryz\\"); BYTE 0 
+
+header2: 
+txt("Animations"); BYTE 0 
+
+body2: 
+txt(" Alm_T1 animation by Nuramon, HyperGammaSpaces\\
+Alm_T2 animation by Nuramon\\
+Ike_Lord animation by xxx_Drama\\
+Ike_Ranger animation by Mikey, Khrene, Khardros\\
+Leif_Lord animation by Obsidian_Daddy, Jj09\\
+Marth_Slash animation by Caim Van Fang, Seliost1\\
+Seliph animation by Obsidian, Zoramine, Eretein\\
+T1_Lancer animation by Memae, Skitty, BwdYeti, MOJ\\
+Trueblade animation by Dinar87, RobertFPY\\
+Katarina_Fencer animation by GabrielKnight, 7743\\
+Dragoon animation by MercLord, NYZGamer, Maiser6\\"); BYTE 0  
+
+header3: 
+txt("Class Sprites"); BYTE 0 
+
+body3: 
+txt(" Alm sprites by Norikins\\
+AngelSMS by Unknown\\
+ArcanistSMS by Norikins\\
+BaronSMS by Topazlight, Nuramon, Its_Just_Jay\\
+BlackDragonSMS by L95\\
+CantorSMS by Ryn\\
+BoxerSMS by ShadowAllyX\\
+BrighidSMS by Shin19\\
+Cantor2SMS by Norikins\\
+ChickenSMS by Pikmin1211\\"); BYTE 0 
+
+
+header4: 
+txt("Portraits"); BYTE 0 
+body4: 
+txt(" Marth portrait by Lenh\\
+Jagen portrait by Thorn\\
+Caeda portrait by Nickt, Blueyguy\\
+Cain portrait by Xenith, Nickt, Blaze\\
+Abel portrait by LuminescentBlade\\
+Draug portrait by Thorn\\
+Gordin portrait by Thorn\\
+Wrys portrait by Thorn\\
+Ogma portrait by Thorn\\"); BYTE 0 
+
+
+
+emptyString: 
+txt("  "); BYTE 0 // should be 2 or more spaces lol 
+emptyStringLong: // bunch of blank lines while above text finishes displaying  
+txt("  \\
+  \\
+  \\
+  \\
+  \\
+  \\
+  \\
+  "); BYTE 0 
+
+
+
+
+// #define TESTING_CREDITS 
+#define SetBg(background) "SVAL 0x2 background; CALL $9EE2E8"
+
+PUSH 
+
+ORG $B65F8 
+SHORT $E002 // b 0x80b6600 
+SHORT 0 0 0 // so FEBuilder will recognize the CG patch 
+WORD $46C04778 $E59FC000 $E12FFF1C
+POIN DisplayCGfx
+
+#ifdef TESTING_CREDITS
+ORG $8B0917
+// BYTE 1 // fade to black //map 
+
+ORG $9EEBFC // Prologue start event 
+FADI 4 // slow fade to black (optional)
+ASMC StartCreditsProc_ASMC
+
+// direct to background 
+// SetBg(0)
+// Text(0x9df) 
+// FADI 4 
+
+// direct to title 
+MNTS 0
+
+// direct to map 
+// CLEAN 
+// FADU 4 
+NoFade 
+ENDA 
+#endif 
+
+
+POP 
