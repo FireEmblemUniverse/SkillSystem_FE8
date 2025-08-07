@@ -42,15 +42,15 @@ WORD 0 // 1 for enabled
 
 ALIGN 4 
 gCreditsData: 
-CreditsEntryBG(HeadDevelopment, BodyDevelopment, BurningBG) 
+CreditsEntryBG(HeadDevelopment, BodyDevelopment, 0x3D) 
 CreditsEntry(HeadLeadArtists, BodyLeadArtists) 
-CreditsEntryBG(HeadAdditionalArt, BodyAdditionalArt, RandomBG) 
+CreditsEntryBG(HeadAdditionalArt, BodyAdditionalArt, 0x41) 
 CreditsEntryBG(HeadSystems, BodySystems, RandomBG) 
-CreditsEntryBG(Head7743, Body7743, RandomBG) 
+CreditsEntryBG(Head7743, Body7743, 0x46) 
 CreditsEntry(HeadDecomp, BodyDecomp)
-CreditsEntryCG(HeadEarlyPlaytesters, BodyEarlyPlaytesters, DemonKingCG)  
+CreditsEntryCG(HeadEarlyPlaytesters, BodyEarlyPlaytesters, DemonKingCG, 0x100)  
 CreditsEntry(HeadInterns, BodyInterns) 
-CreditsEntryCG(HeadMisc, BodyMisc, 6) 
+CreditsEntryCG(HeadMisc, BodyMisc, 6, 0x100) 
 CreditsEntryCG(HeadSkillsysContributors, BodySkillsysContributors, 3) 
  
 CreditsEntry(emptyString, emptyStringLong)
@@ -155,7 +155,9 @@ txt(" FabulaFares\\
 ScubaLuigi\\
 ChilanBerry\\
 Rurouni\\
-...and everyone else mentioned in this credits.\\
+ImportedCheese\\
+...and everyone else mentioned\\
+    in these credits.\\
   \\
   ") 
 
@@ -184,7 +186,7 @@ FlamingZelda, Fpkfor, Gaston, Miki Brock,\\
 Leche, Luis, Kyle, Missiri, LackadasicalDerp,\\
 MournfulRelic, Paulean, Pf987, Piku, Rurouni,\\
 Scub, Tbone, TheIcyCharmander, mitltl\\
-ImportedCheese, TheGreatUncleYga, YourHiro\\
+TheGreatUncleYga, YourHiro\\
   \\
   ")
 

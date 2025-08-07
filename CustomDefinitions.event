@@ -1,4 +1,4 @@
-// PROTECT $114F8
+
 // PROTECT $1cc10 $1cc30
 // PROTECT $27330 $2734c
 //PROTECT $144F944
@@ -93,7 +93,7 @@ String("V1.16.00           August 2025") ; BYTE 0; POP // this overflows into th
 #include "Events/DefinitionsUnitAndClass.event" 
 
 #include "Enumerate/ClassIDList.enu.event"
-
+#include "Graphics/BGs/GeneratedDefinitions.event" 
 #include "Enumerate/ClassSpriteList.enu.event"
 #include "Enumerate/ItemIcons.event"
 #include "EngineHacks/ExternalHacks/AccessoriesAndForging/AccessoryEffectDefinitions.event"

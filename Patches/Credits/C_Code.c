@@ -23,12 +23,6 @@ typedef struct
     /* 00 */ PROC_HEADER;
     s8 slotIndex[LinesBuffered]; // indexed by stringID & 0xF;
     u8 strLen[LinesBuffered];
-    u16 usedRows;         // bitfield of which obj vram lines are taken up or free to use
-    u16 textTypeBitfield; // bitfield of which lines are header (unset) or body (set)
-    u16 indentBitfield;
-    int firstLineIndex;
-    int y;
-    u32 clock;
     s8 textType; // Header or Body
     u8 bottomHalf;
     s8 strLine;
@@ -36,19 +30,30 @@ typedef struct
     u8 id;
     u8 bg;
     u8 holding;
+    u8 bgType;
     u8 darkenAmount;
+    u8 prevDarkenAmount;
+    u16 usedRows;         // bitfield of which obj vram lines are taken up or free to use
+    u16 textTypeBitfield; // bitfield of which lines are header (unset) or body
+                          // (set)
+    u16 indentBitfield;
+    int firstLineIndex;
+    int y;
+    u32 clock;
     int totalSprites;
 } CreditsTextProc;
 
 #define SPRITE_OFFSCREEN_Y -16
 //
 #define CreditsText_VRAMTile 0 // 0x280
-// #define CreditsTextVRAM (OBJ_VRAM0 + (CreditsText_VRAMTile << 5)) // 0x6010000
+// #define CreditsTextVRAM (OBJ_VRAM0 + (CreditsText_VRAMTile << 5)) //
+// 0x6010000
 #define CreditsTextVRAM (VRAM + (CreditsText_VRAMTile << 5)) // 0x6010000
 extern const u16 sSprite_08A2EF48[];
 extern struct Font * gActiveFont;
 // gObject_32x16
-u16 const sSprite_08A2EF48_new[] = // see gSprite_UiSpinningArrows_Horizontal and sSprite_08A2EF48
+u16 const sSprite_08A2EF48_new[] = // see gSprite_UiSpinningArrows_Horizontal
+                                   // and sSprite_08A2EF48
     {
         1,                                                       // number of entries
         OAM0_SHAPE_16x32 | OAM0_DOUBLESIZE | OAM0_AFFINE_ENABLE, //
@@ -56,7 +61,8 @@ u16 const sSprite_08A2EF48_new[] = // see gSprite_UiSpinningArrows_Horizontal an
         0, // OAM2_CHR(CreditsText_VRAMTile),
     };
 
-u16 const sSprite_08A2EF48_works[] = // see gSprite_UiSpinningArrows_Horizontal and sSprite_08A2EF48
+u16 const sSprite_08A2EF48_works[] = // see gSprite_UiSpinningArrows_Horizontal
+                                     // and sSprite_08A2EF48
     {
         1,                                                       // number of entries
         OAM0_SHAPE_16x16 | OAM0_DOUBLESIZE | OAM0_AFFINE_ENABLE, //
@@ -64,7 +70,8 @@ u16 const sSprite_08A2EF48_works[] = // see gSprite_UiSpinningArrows_Horizontal 
         0, // OAM2_CHR(CreditsText_VRAMTile),
     };
 
-u16 const sSprite_08A2EF48_big[] = // see gSprite_UiSpinningArrows_Horizontal and sSprite_08A2EF48
+u16 const sSprite_08A2EF48_big[] = // see gSprite_UiSpinningArrows_Horizontal
+                                   // and sSprite_08A2EF48
     {
         1,                                                       // number of entries
         OAM0_SHAPE_16x32 | OAM0_DOUBLESIZE | OAM0_AFFINE_ENABLE, //
@@ -142,8 +149,8 @@ void InitCreditsBodyText(CreditsTextProc * proc, signed char * str, int rowID)
 {
     signed char * iter;
     int line = 0; // current one
-    // I guess it doesn't really matter that they all share a text handle because they are never redrawn, just moved
-    // up the screen with PutSprite
+    // I guess it doesn't really matter that they all share a text handle because
+    // they are never redrawn, just moved up the screen with PutSprite
     int curX = 0;
     struct Text * th = gStatScreen.text;
     if (str && *str)
@@ -185,7 +192,8 @@ void InitCreditsBodyText(CreditsTextProc * proc, signed char * str, int rowID)
             {
                 break;
             }
-            iter = (void *)Text_DrawCharacterAscii_BL(&th[line], (void *)iter); // 160k cycles
+            iter = (void *)Text_DrawCharacterAscii_BL(&th[line],
+                                                      (void *)iter); // 160k cycles
             // iter = Text_DrawCharacter(&th[line], iter); // 278k cycles
         }
     }
@@ -220,7 +228,8 @@ void PutBigLetter(
     oam2 += adjustedCharId * 2 + OAM2_LAYER(layer) + OAM2_PAL(palID);
     PutSpriteExt(4, (x & 0x1FF) + (matrixId << 9), y & 0x1FF, object, oam2);
 }
-// int layer = 1; // sub_80B2A14 uses oam2 layer 1 for first letter and layer 2 after that
+// int layer = 1; // sub_80B2A14 uses oam2 layer 1 for first letter and layer 2
+// after that
 
 unsigned int strlen(const char *);
 
@@ -296,10 +305,26 @@ int GetDarkenAmount(void)
     }
     return darkenAmount;
 }
+int GetPrevDarkenAmount(void)
+{
+    CreditsTextProc * proc = Proc_Find(ProcScr_CreditsText);
+    int darkenAmount = 0;
+    if (proc)
+    {
+        darkenAmount = proc->prevDarkenAmount;
+    }
+    if (!darkenAmount)
+    {
+        darkenAmount = DarkenAmount;
+    }
+    return darkenAmount;
+}
+
 struct ProcCmd const gUnknown_08591E00_FadeBGs[];
+struct ProcCmd const gFade256Cols[];
 void CreditsTextLoop(CreditsTextProc * proc)
 {
-    if (!Proc_Find(gUnknown_08591E00_FadeBGs))
+    if (!Proc_Find(gUnknown_08591E00_FadeBGs) && !Proc_Find(gFade256Cols))
     {
         int darkenAmount = GetDarkenAmount();
         WriteFadedPaletteFromArchive(darkenAmount, darkenAmount, darkenAmount, 0x0000FFFF);
@@ -630,6 +655,66 @@ extern void sub_800ED50(struct ConvoBackgroundFadeProc * otherProc);
 extern void sub_800EEE8(struct ConvoBackgroundFadeProc * otherProc);
 extern void sub_800EF48(struct ConvoBackgroundFadeProc * otherProc);
 
+void sub_800ED50_new(struct ConvoBackgroundFadeProc * proc)
+{
+    SetBackgroundTileDataOffset(BG_3, 0x8000); // restore to default just in case it's after 256 cols
+    gLCDControlBuffer.bg3cnt.colorMode = 0;    // 256-col mode.
+    gLCDControlBuffer.bldcnt.target2_bd_on = false;
+    EventShowTextBgDirect(proc->unkType, proc->bgIndex);
+    ArchiveCurrentPalettes();
+    WriteFadedPaletteFromArchive(0, 0, 0, 0x0000FFFF); // start faded to black
+    // same as this function except deals with 224/256 cols patch
+    // except also has BG_SetPosition(BG_0, 0, 0); and does 8 palette rows instead
+    // of 6
+    /*
+    switch (proc->unkType) {
+    case 0:
+    case 3:
+    case 4:
+    case 5:
+      while (1) {
+      } // oh
+
+    case 1:
+      if (proc->bgIndex == BG_RANDOM)
+        proc->bgIndex = NextRN_N(BG_BLANK);
+
+      // Loading Background Tile Graphics
+
+      Decompress(gConvoBackgroundData[proc->bgIndex].gfx,
+                 (void *)(VRAM + GetBackgroundTileDataOffset(BG_3)));
+
+      // Loading Background Tile Arrangement
+
+      CallARM_FillTileRect(gBG3TilemapBuffer,
+                           gConvoBackgroundData[proc->bgIndex].tsa,
+                           0x8000 // base palette is bg palette 8
+      );
+
+      // Loading Background Palettes
+
+      ApplyPalettes(gConvoBackgroundData[proc->bgIndex].pal, 8, 6);
+
+      BG_EnableSyncByMask(BG3_SYNC_BIT);
+      EnablePaletteSync();
+
+      gPaletteBuffer[0] = 0;
+
+      break;
+
+    case 2:
+      DisplayCGfx(gBG3TilemapBuffer, GetBackgroundTileDataOffset(BG_3), 8, 6,
+                  proc->bgIndex);
+
+      BG_EnableSyncByMask(BG3_SYNC_BIT);
+      EnablePaletteSync();
+
+      break;
+    }*/
+
+    SetDispEnable(FALSE, FALSE, TRUE, TRUE, TRUE);
+}
+
 struct ProcCmd const gUnknown_08591E00_FadeBGs[] = {
     PROC_YIELD,
 
@@ -639,7 +724,7 @@ struct ProcCmd const gUnknown_08591E00_FadeBGs[] = {
     PROC_CALL(sub_800EBB0),
     PROC_YIELD,
 
-    PROC_CALL(sub_800ED50),
+    PROC_CALL(sub_800ED50), // EventShowTextBgDirect
     PROC_CALL(ArchiveCurrentPalettes),
     PROC_YIELD,
 
@@ -662,6 +747,12 @@ struct CGDataEnt const * GetCGFix(int id)
     return sCGDataTable + id;
 }
 
+extern struct gfx_set const * const sConvoBackgroundData;
+struct gfx_set const * GetBGData(int id)
+{
+    return sConvoBackgroundData + id;
+}
+
 void ModifySaveLinkArenaStruct2B(void * buf, int val);
 //! FE8U = 0x080B65F8
 void DisplayCGfx(u16 * tm, int offset, int palId, int palCount, int idx)
@@ -675,7 +766,8 @@ void DisplayCGfx(u16 * tm, int offset, int palId, int palCount, int idx)
         Decompress(cgEnt->img[i], (void *)(VRAM + offset + i * 0x800));
     }
 
-    // TODO: Seems like this should use the "TILEREF" macro, but the order doesn't match
+    // TODO: Seems like this should use the "TILEREF" macro, but the order doesn't
+    // match
     CallARM_FillTileRect(tm, cgEnt->tsa, (u16)((palId << 12) + ((u32)(offset << 0x11) >> 0x16)));
 
     ApplyPalettes(cgEnt->pal, palId, palCount);
@@ -685,6 +777,81 @@ void DisplayCGfx(u16 * tm, int offset, int palId, int palCount, int idx)
         ModifySaveLinkArenaStruct2B(NULL, idx);
     }
 }
+
+int IsImg256Col(int type, int id)
+{
+    const struct CGDataEnt * cgEnt;
+    cgEnt = (void *)GetCGFix(id);
+
+    const struct gfx_set * bgEnt;
+    bgEnt = GetBGData(id);
+    switch (type)
+    {
+        case 1:
+        {
+            return (int)bgEnt->tsa <= 1;
+            break;
+        }
+        case 2:
+        {
+            return (int)cgEnt->tsa <= 1;
+            break;
+        }
+    }
+    return false;
+}
+
+// GetPrevDarkenAmount
+void fadePalettesOut(struct ConvoBackgroundFadeProc * proc)
+{
+    int currentFadeStep = (proc->fadeTimer += proc->fadeSpeed);
+    int startLevel = GetPrevDarkenAmount(); // typically 0x100
+    int totalSteps = startLevel;            // since we want to fade from startLevel to 0
+
+    if (currentFadeStep > totalSteps)
+        currentFadeStep = totalSteps;
+
+    // Fade from startLevel to 0 over totalSteps
+    int darkenAmount = startLevel - ((currentFadeStep * startLevel) / totalSteps);
+
+    WriteFadedPaletteFromArchive(darkenAmount, darkenAmount, darkenAmount, 0x0000FFFF);
+
+    if (currentFadeStep >= totalSteps)
+    {
+        proc->fadeTimer = 0;
+        Proc_Break(proc);
+    }
+}
+void fadePalettesIn(struct ConvoBackgroundFadeProc * proc)
+{
+    int currentFadeStep = (proc->fadeTimer += proc->fadeSpeed);
+    int finalLevel = GetDarkenAmount(); // typically 0x100 (fully visible)
+    int totalSteps = finalLevel;        // we fade from 0 to finalLevel
+
+    if (currentFadeStep > totalSteps)
+        currentFadeStep = totalSteps;
+
+    // Fade from black (0) to finalLevel over totalSteps
+    int darkenAmount = (currentFadeStep * finalLevel) / totalSteps;
+
+    WriteFadedPaletteFromArchive(darkenAmount, darkenAmount, darkenAmount, 0x0000FFFF);
+
+    if (currentFadeStep >= totalSteps)
+        Proc_Break(proc);
+}
+
+void brkpnt(void)
+{
+    asm("mov r11, r11");
+}
+struct ProcCmd const gFade256Cols[] = {
+    PROC_YIELD,
+    PROC_REPEAT(fadePalettesOut),
+    PROC_CALL(sub_800EF48),     // disable blending
+    PROC_CALL(sub_800ED50_new), // EventShowTextBgDirect
+    PROC_REPEAT(fadePalettesIn),
+    PROC_END,
+};
 
 void InitNextBG(CreditsTextProc * proc, int slot)
 {
@@ -708,15 +875,44 @@ void InitNextBG(CreditsTextProc * proc, int slot)
         }
     }
 
+    int CanFadeBetweenImgs = true;
+    if (IsImg256Col(type, bg) || IsImg256Col(proc->bgType, proc->bg))
+    {
+        CanFadeBetweenImgs = false;
+    }
+    proc->prevDarkenAmount = proc->darkenAmount;
+
+    proc->bgType = type;
     proc->bg = bg;
     proc->darkenAmount = darkenAmount;
-    struct ConvoBackgroundFadeProc * otherProc = Proc_Start(gUnknown_08591E00_FadeBGs, (void *)3);
-    otherProc->fadeType = 0;   // 0, 1, or 2
-    otherProc->unkType = type; // 0 = broken, 1 = bg text, 2 = cg text
-    otherProc->bgIndex = bg;
-    otherProc->fadeSpeed = 2;
-    otherProc->fadeTimer = 0;
-    otherProc->pEventEngine = (void *)proc;
+    Proc_EndEach(gUnknown_08591E00_FadeBGs);
+    Proc_EndEach(gFade256Cols);
+
+    if (CanFadeBetweenImgs)
+    {
+
+        struct ConvoBackgroundFadeProc * otherProc = Proc_Start(gUnknown_08591E00_FadeBGs, (void *)3);
+        otherProc->fadeType = 0;   // 0, 1, or 2
+        otherProc->unkType = type; // 0 = broken, 1 = bg text, 2 = cg text
+        otherProc->bgIndex = bg;
+        otherProc->fadeSpeed = 2;
+        otherProc->fadeTimer = 0;
+        otherProc->pEventEngine = (void *)proc;
+    }
+    else
+    {
+
+        struct ConvoBackgroundFadeProc * otherProc = Proc_Start(gFade256Cols, (void *)3);
+        otherProc->fadeType = 0;   // 0, 1, or 2
+        otherProc->unkType = type; // 0 = broken, 1 = bg text, 2 = cg text
+        otherProc->bgIndex = bg;
+        otherProc->fadeSpeed = 5;
+        otherProc->fadeTimer = 0;
+        otherProc->pEventEngine = (void *)proc;
+        // gLCDControlBuffer.bg3cnt.colorMode = 0; // 256-col mode.
+        // gLCDControlBuffer.bldcnt.target2_bd_on = false;
+        // EventShowTextBgDirect(proc->bgType, proc->bg);
+    }
 
     // ReputConvoBg_unused(bg);
 }
@@ -854,7 +1050,10 @@ void StartCreditsProc_ASMC(ProcPtr parent)
     proc->totalSprites = 0;
     proc->holding = 0;
     proc->bg = 0xFF;
+    proc->bgType = 0xFF;
     proc->darkenAmount = 0;
+    proc->prevDarkenAmount = 0;
+    ArchiveCurrentPalettes(); // just in case
     InitNextBG(proc, 0);
 }
 
