@@ -1,8 +1,27 @@
+
+
+#define AreaBGEntry(chID, gfx, pal) "PUSH; ORG AreaBGTable + (4 * chID); POIN gfx; ORG gAreaBgPal + (4 * chID); POIN pal; POP" 
 // Area BGs
 ALIGN 4
 AreaBGTable:
+FILL 4*MAX_CHAPTERS
+// ORG AreaBGTable
+
+ALIGN 4 
+gAreaBgPal:
+FILL 4*MAX_CHAPTERS
+// ORG gAreaBgPal
+
+
+AreaBGEntry(OaksLabCh, 0, 0) 
+AreaBGEntry(PalletCh, Pallet_Ash_house_BGData, Pallet_Ash_house_BGPal) 
+
+
+
+
 POIN Route3 //Oak's lab 
-POIN Pallet
+
+// POIN Pallet
 POIN Route1
 POIN viridiancity
 POIN Route2s
@@ -25,44 +44,9 @@ POIN cerulean
 POIN route24
 POIN Pokecenter
 POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
-POIN Pokecenter
+
+
+
 
 
 // Palettes

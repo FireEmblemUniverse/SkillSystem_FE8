@@ -17,7 +17,7 @@ lsr   r7, #0x18
 
 @ Update TSA
 ldr   r1, =gpBG2MapBuffer
-mov   r5, #0xE0
+mov   r5, #0x20
 lsl   r5, #0x8                            @ Palette
 lsr   r2, r6, #0x3
 add   r2, #0x1E

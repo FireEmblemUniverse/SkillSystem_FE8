@@ -1,4 +1,4 @@
-@ Mostly mimic 0x20778, but load palette in slot 0xF
+@ Mostly mimic 0x20778, but load palette in slot 0x3
 .thumb
 .set    gpBG0MapBuffer, 0x02022CA8
 .set    BG_Fill, 0x08001221
@@ -14,7 +14,7 @@ ldr   r6, =BG_Fill
 bl    GOTO_R6
 
 mov   r0, #0x8
-mov   r1, #0xF                    @ Paletteslot 15
+mov   r1, #0x3                    @ Paletteslot 15
 ldr   r6, =0x080895B5
 bl    GOTO_R6
 
@@ -32,7 +32,7 @@ bl    GOTO_R6
 
 ldr   r0, =0x246
 add   r0, r4
-mov   r1, #0xF                    @ Paletteslot 15
+mov   r1, #0x3                    @ Paletteslot 3
 mov   r2, r5
 ldr   r6, =0x080896FD
 bl    GOTO_R6

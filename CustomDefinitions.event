@@ -22,7 +22,7 @@
 // Comment out for public releases
 #define DEBUG_MODE 
 
-
+#define MAX_CHAPTERS 127 // for fill 
 
 #define USE_DEBUGGER 
 

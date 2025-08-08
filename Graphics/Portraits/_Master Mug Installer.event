@@ -202,19 +202,19 @@ setMugEntry(179, RedData, 3, 5, 3, 3)
 
 
 ALIGN 16 
-GreenData: 
-#incbin "Dmp/Green_Eden_mug.dmp" 
-#incbin "Dmp/Green_Eden_frames.dmp" 
-#incbin "Dmp/Green_Eden_palette.dmp" 
-#incbin "Dmp/Green_Eden_minimug.dmp" 
-setMugEntry(180, GreenData, 3, 6, 3, 4)
+LeafData: 
+#incbin "Dmp/Leaf_Eden_mug.dmp" 
+#incbin "Dmp/Leaf_Eden_frames.dmp" 
+#incbin "Dmp/Leaf_Eden_palette.dmp" 
+#incbin "Dmp/Leaf_Eden_minimug.dmp" 
+setMugEntry(180, LeafData, 3, 6, 3, 4)
 
 ALIGN 16 
 BillData: 
-#incbin "Dmp/Bill_Eden_Eevee_mug.dmp" 
-#incbin "Dmp/Bill_Eden_Eevee_frames.dmp" 
-#incbin "Dmp/Bill_Eden_Eevee_palette.dmp" 
-#incbin "Dmp/Bill_Eden_Eevee_minimug.dmp" 
+#incbin "Dmp/Bill_Eden_mug.dmp" 
+#incbin "Dmp/Bill_Eden_frames.dmp" 
+#incbin "Dmp/Bill_Eden_palette.dmp" 
+#incbin "Dmp/Bill_Eden_minimug.dmp" 
 setMugEntry(181, BillData, 3, 5, 3, 3)
 
 
@@ -236,10 +236,10 @@ setMugEntry(183, FujiData, 3, 6, 3, 4)
 
 ALIGN 16 
 MomData: 
-#incbin "Dmp/Joy_Eden_mug.dmp" 
-#incbin "Dmp/Joy_Eden_frames.dmp" 
-#incbin "Dmp/Joy_Eden_palette.dmp" 
-#incbin "Dmp/Joy_Eden_minimug.dmp" 
+#incbin "Dmp/Delia_Eden_mug.dmp" 
+#incbin "Dmp/Delia_Eden_frames.dmp" 
+#incbin "Dmp/Delia_Eden_palette.dmp" 
+#incbin "Dmp/Delia_Eden_minimug.dmp" 
 setMugEntry(184, MomData, 3, 6, 3, 4)
 
 ALIGN 16 
@@ -256,7 +256,7 @@ JoyData:
 #incbin "Dmp/Joy_Eden_frames.dmp" 
 #incbin "Dmp/Joy_Eden_palette.dmp" 
 #incbin "Dmp/Joy_Eden_minimug.dmp" 
-setMugEntry(186, JennyData, 3, 6, 3, 4)
+setMugEntry(186, JoyData, 3, 6, 3, 4)
 
 ALIGN 16 
 DaisyData: 
@@ -268,11 +268,19 @@ setMugEntry(187, DaisyData, 3, 6, 3, 4)
 
 ALIGN 16 
 WardenData: 
-#incbin "Dmp/Daisy_Eden_mug.dmp" 
-#incbin "Dmp/Daisy_Eden_frames.dmp" 
-#incbin "Dmp/Daisy_Eden_palette.dmp" 
-#incbin "Dmp/Daisy_Eden_minimug.dmp" 
+#incbin "Dmp/Kaiser_Eden_mug.dmp" 
+#incbin "Dmp/Kaiser_Eden_frames.dmp" 
+#incbin "Dmp/Kaiser_Eden_palette.dmp" 
+#incbin "Dmp/Kaiser_Eden_minimug.dmp" 
 setMugEntry(188, WardenData, 3, 6, 3, 4)
+
+ALIGN 16 
+GunData: 
+#incbin "Dmp/Gun_Kaiser_Eden_mug.dmp" 
+#incbin "Dmp/Gun_Kaiser_Eden_frames.dmp" 
+#incbin "Dmp/Gun_Kaiser_Eden_palette.dmp" 
+#incbin "Dmp/Gun_Kaiser_Eden_minimug.dmp" 
+setMugEntry(189, GunData, 3, 6, 3, 4)
 
 
 ALIGN 16 
@@ -281,7 +289,7 @@ JamesData:
 #incbin "Dmp/James_Eden_frames.dmp" 
 #incbin "Dmp/James_Eden_palette.dmp" 
 #incbin "Dmp/James_Eden_minimug.dmp" 
-setMugEntry(189, JamesData, 3, 5, 3, 3)
+setMugEntry(190, JamesData, 3, 5, 3, 3)
 
 ALIGN 16 
 JessieData: 
@@ -289,7 +297,7 @@ JessieData:
 #incbin "Dmp/Jessie_Eden_frames.dmp" 
 #incbin "Dmp/Jessie_Eden_palette.dmp" 
 #incbin "Dmp/Jessie_Eden_minimug.dmp" 
-setMugEntry(190, JessieData, 3, 5, 3, 3)
+setMugEntry(191, JessieData, 3, 5, 3, 3)
 
 
 

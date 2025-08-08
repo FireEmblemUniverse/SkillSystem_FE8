@@ -25,8 +25,8 @@ bl    GOTO_R5
 ldr   r0, =VersusBGPalette
 lsl   r6, r7, #0x5
 add   r0, r6                              @ Change VSBG palette
-mov   r1, #0x1C
-lsl   r1, #0x4                            @ Overwrite BG palette 14
+mov   r1, #0x2
+lsl   r1, #0x5                            @ Overwrite BG palette 2
 mov   r2, #0x20                           @ Load only one palette (1 short per colour)
 ldr   r5, =CopyToPaletteBuffer
 bl    GOTO_R5
@@ -34,7 +34,7 @@ bl    GOTO_R5
 
 @ Init TSA (zigzag tiles)
 ldr   r1, =gpBG2MapBuffer
-mov   r7, #0xE0
+mov   r7, #0x20
 lsl   r7, #0x8                            @ Palette
 mov   r2, #0x1C
 lsl   r3, r2, #0x1

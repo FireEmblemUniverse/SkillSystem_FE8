@@ -14,12 +14,22 @@ ldr   r5, =UnLZ77Decompress
 bl    GOTO_R5
 
 @ Load AreaBG palette
-bl    GetAreaBGPalette                        
-mov   r1, #0x0                            @ Overwrite BG palette 0-13
-mov   r2, #0x1C
-lsl   r2, #0x4                            @ Load 14 palettes (1 short per colour)
+bl    GetAreaBGPalette             
+mov r4, r0            
+mov   r1, #0x0  @ Overwrite BG palette 0-1, 4-15
+mov r2, #2 @ 2 palette rows  
+lsl r2, #5 
+@ // Leave paletteslot 2 and 3 empty for text and chatbubble if 224-col BG.
 ldr   r5, =CopyToPaletteBuffer
 bl    GOTO_R5
+mov r0, #0x40 
+add r0, r4 
+mov r1, #4 @ start at row 4 
+lsl r1, #5 
+mov r2, #0xC @ 0xC rows 
+lsl r2, #5 
+bl GOTO_R5 
+
 
 @ Set up Screenblock (TSA)
 ldr   r1, =gpBG1MapBuffer

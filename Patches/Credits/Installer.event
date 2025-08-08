@@ -40,22 +40,38 @@ WORD 0 // 1 for enabled
 #define CreditsEntry(header, body) "POIN header body; BYTE 0xFF 0 0 0" 
 #define CreditsEnd "WORD 0 0 (-1) 0 0 (-1) 0 0 (-1)" 
 
+// Pewter_Gym_anime_BG
+// Ceruleancity2_old_BG
+// Vermilion_Gym_JN_BG
+// Pokemon_Ninja_School_BG
+// Celadon_Gym_JN_BG
+// SaffronGym_BG
+// Cinnabar_Gym_Battlefield_BG
+// Viridian_Gym_anime_BG
+// Elite_Four_PO_BG or Champion_League_Stadium_BG
+// Pallet_Ash_house_BG
+
 ALIGN 4 
 gCreditsData: 
-CreditsEntryBG(HeadDevelopment, BodyDevelopment, 0x3D) 
+CreditsEntryBG(HeadDevelopment, BodyDevelopment, Kanto_Route_1_overview_SM_BG) 
 CreditsEntry(HeadLeadArtists, BodyLeadArtists) 
-CreditsEntryBG(HeadAdditionalArt, BodyAdditionalArt, 0x41) 
-CreditsEntryBG(HeadSystems, BodySystems, RandomBG) 
-CreditsEntryBG(Head7743, Body7743, 0x46) 
-CreditsEntry(HeadDecomp, BodyDecomp)
-CreditsEntryCG(HeadEarlyPlaytesters, BodyEarlyPlaytesters, DemonKingCG, 0x100)  
-CreditsEntry(HeadInterns, BodyInterns) 
-CreditsEntryCG(HeadMisc, BodyMisc, 6, 0x100) 
-CreditsEntryCG(HeadSkillsysContributors, BodySkillsysContributors, 3) 
+CreditsEntryBG(HeadAdditionalArt, BodyAdditionalArt, Pewter_Gym_anime_BG) 
+CreditsEntryBG(HeadDecomp, BodyDecomp, Ceruleancity2_old_BG)
+CreditsEntryBG(HeadSystems, BodySystems, Vermilion_Gym_JN_BG) 
+CreditsEntryBG(Head7743, Body7743, Celadon_Gym_JN_BG ) 
+
+CreditsEntryBG(HeadEarlyPlaytesters, BodyEarlyPlaytesters, Pokemon_Ninja_School_BG)  
+CreditsEntryBG(HeadInterns, BodyInterns, SaffronGym_BG) 
+CreditsEntryBG(HeadMisc, BodyMisc, Cinnabar_Gym_Battlefield_BG) 
+CreditsEntryBG(HeadMisc, BodyMisc2, Viridian_Gym_anime_BG) 
+CreditsEntryBG(HeadSkillsysContributors, BodySkillsysContributors, Champion_League_Stadium_BG) 
  
 CreditsEntry(emptyString, emptyStringLong)
-CreditsEntryBG(theEnd, emptyString, BlackBG)
-CreditsEntry(emptyString, emptyStringLong)
+CreditsEntryBG(theEnd, emptyString, Pallet_Ash_house_BG)
+CreditsEntry(emptyString, emptyString)
+CreditsEntry(emptyString, emptyString)
+CreditsEntryBG(emptyString, emptyStringMed, BlackBG)
+// CreditsEntry(emptyString, emptyString)
 CreditsEnd // Terminator 
 
 
@@ -220,7 +236,13 @@ remove control enemy - Brendor\\
 Split menu - Stan, circles\\
 Escape - ngmansion, aera\\
 Fix LZ77 - Tequila\\
-GetPressedKeys - Shuusuke, 7743\\
+  \\
+  ")
+
+HeadMisc2:
+txt("Misc.")
+BodyMisc2:
+txt(" GetPressedKeys - Shuusuke, 7743\\
 GetDifficulty - 7743\\
 GetUnitDistance - Snakey1\\
 HigherPromoBonuses - Scraiza\\
@@ -266,6 +288,9 @@ Reds, Dragz, Monkeybard\\
 
 emptyString: 
 txt("  "); BYTE 0 // should be 2 or more spaces lol 
+emptyStringMed: // bunch of blank lines while above text finishes displaying  
+txt("  \\
+  "); BYTE 0 
 emptyStringLong: // bunch of blank lines while above text finishes displaying  
 txt("  \\
   \\

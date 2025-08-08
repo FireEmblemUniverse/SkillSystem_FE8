@@ -69,12 +69,11 @@ def process_folder(folder):
                 top = (height - new_height) // 2
                 bottom = top + new_height
                 left, right = 0, width
-
+            if ((width != 256) & (height != 160)):
             # Crop to 3:2 aspect ratio
-            img = img.crop((left, top, right, bottom))
-
+                img = img.crop((left, top, right, bottom))
             # Resize to 240x160
-            img = img.resize((240, 160), Image.LANCZOS)
+                img = img.resize((240, 160), Image.LANCZOS)
 
             new_img = Image.new("RGB", (256, 160), (0, 0, 0))  # Black background
             # Paste the resized image onto the new image (top-left corner)
