@@ -41,7 +41,7 @@ beq Done
 mov r0, r4
 add r0, #0x5c @attacker defense
 ldrh r3, [r0]
-add r3, #2
+add r3, #4
 strh r3, [r0]
 
 Done:
