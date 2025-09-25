@@ -31,7 +31,7 @@ mov r3,#0x30          @get the status byte
 ldrb r0,[r5,r3]       @load the status byte for the defender
 mov r1,#0xF
 and r0,r1             @we perform a bitmask operation to isolate the right side nibble that holds the status
-cmp r2, #0            @now compare the status nibble to an empty status (0)
+cmp r0, #0            @now compare the status nibble to an empty status (0)
 bne End               @if they're not equal, the defender already has a status and cannot be poisoned. So we exit
 
 @apply the poison status
@@ -53,7 +53,7 @@ mov r3,#0x30          @get the status byte
 ldrb r0,[r6,r3]       @load the status byte for the attacker
 mov r1,#0xF
 and r0,r1             @we perform a bitmask operation to isolate the right side nibble that holds the status
-cmp r2, #0            @now compare the status nibble to an empty status (0)
+cmp r0, #0            @now compare the status nibble to an empty status (0)
 bne End               @if they're not equal, the attacker already has a status and cannot be poisoned. So we exit
 
 @apply the poison status
