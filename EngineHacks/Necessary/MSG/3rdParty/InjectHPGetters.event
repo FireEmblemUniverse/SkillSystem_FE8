@@ -23,6 +23,13 @@ PUSH
 	SHORT $4284 $DD0A $1C20 $E007
 	ORG $1939C
 	SHORT $74E8
+	
+	ORG $1876A //MoveActiveUnit
+	SHORT 0x46C0
+	callHack_r1(prGotoCurHPGetter)
+	SHORT 0xE000
+	ORG $1877C
+	SHORT 0x4284
 
 POP
 
