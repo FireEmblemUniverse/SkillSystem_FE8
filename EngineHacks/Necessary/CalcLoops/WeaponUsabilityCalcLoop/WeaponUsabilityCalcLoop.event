@@ -26,11 +26,6 @@ ALIGN 4
 DoesUnitHaveWRank: 
 #incbin "DoesUnitHaveWRank.dmp"
 POIN ItemTable
-POIN CheckSkillBuffer	//changed to skilltester2 to avoid indirect recursion (endlessly looping routine calls)
-WORD ShadowgiftID
-WORD LuminaID
-WORD SHADOWGIFT_VIA_STAFF_RANK
-WORD LUMINA_VIA_STAFF_RANK
 
 ALIGN 4
 WeaponLockLoop: //r0 = character pointer, r1 = item halfword, r2 = rank; return 0 for cannot use weapon, 1 for can use weapon, and 2 for no determination
