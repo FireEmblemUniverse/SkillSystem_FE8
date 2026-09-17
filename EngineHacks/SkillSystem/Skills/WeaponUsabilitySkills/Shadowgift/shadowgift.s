@@ -81,18 +81,11 @@ False:
 mov	r0,#0
 b	End
 
-
 noLumina:
-Cont:
 mov r0,#2
 b   End
 
-
-
 True:
-@ have to also do the wrank check here to not break things
-@cmp r5,r2
-@bgt False @false if (item wrank > user wrank)
 mov	r0,#1
 
 End:
