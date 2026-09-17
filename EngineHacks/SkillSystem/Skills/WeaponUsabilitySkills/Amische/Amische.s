@@ -4,7 +4,7 @@
 @r0 = character pointer
 @r1 = item halfword
 @r2 = rank 
-@return either true or false
+@return either 2 or false
 
 .equ AmischeID, SkillTester+4
 .equ IronWeaponsList, AmischeID+4
@@ -45,7 +45,7 @@ mov r0,#0
 b GoBack
 
 RetTrue:
-mov r0,#1
+mov r0,#2
 
 GoBack:
 pop {r4-r7}

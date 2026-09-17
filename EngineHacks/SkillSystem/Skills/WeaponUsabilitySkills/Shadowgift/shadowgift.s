@@ -21,7 +21,9 @@ mov r1,#0x24
 mul r0,r1
 ldr r1,ItemTable
 add r1,r0
+ldrb r5,[r1,#0x1C] @wrank
 ldrb r2,[r1,#7]
+
 
 @shadowgift
 cmp	r2,#7	@if dark rank
@@ -36,17 +38,18 @@ beq	noShadowgift
 mov	r0,r4
 add	r0,#0x28
 ldrb	r2,[r0,#6]
-cmp	r2,r6
+cmp	r2,r5
 bhs	True
 ldrb	r2,[r0,#5]
-cmp	r2,r6
+cmp	r2,r5
 bhs	True
 ldr	r1,ShadowgiftStaffOption
 cmp	r1,#0
 beq	noShadowgift
 ldrb	r2,[r0,#4]
-cmp	r2,r6
+cmp	r2,r5
 bhs	True
+b False
 noShadowgift:
 
 @lumina
@@ -62,24 +65,34 @@ beq	noLumina
 mov	r0,r4
 add	r0,#0x28
 ldrb	r2,[r0,#7]
-cmp	r2,r6
+cmp	r2,r5
 bhs	True
 ldrb	r2,[r0,#5]
-cmp	r2,r6
+cmp	r2,r5
 bhs	True
 ldr	r1,LuminaStaffOption
 cmp	r1,#0
 beq	noLumina
 ldrb	r2,[r0,#4]
-cmp	r2,r6
+cmp	r2,r5
 bhs	True
-noLumina:
 
 False:
-mov	r0,#2
+mov	r0,#0
 b	End
 
+
+noLumina:
+Cont:
+mov r0,#2
+b   End
+
+
+
 True:
+@ have to also do the wrank check here to not break things
+@cmp r5,r2
+@bgt False @false if (item wrank > user wrank)
 mov	r0,#1
 
 End:
@@ -95,4 +108,3 @@ SkillTester:
 @WORD LuminaID
 @WORD ShadowgiftStaffOption
 @WORD LuminaStaffOption
-@WORD ItemTable
