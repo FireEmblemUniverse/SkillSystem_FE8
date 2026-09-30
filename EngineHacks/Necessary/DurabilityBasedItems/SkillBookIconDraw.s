@@ -22,6 +22,8 @@
 .global CheckIfSkillBookIcon_DropItem
 .type CheckIfSkillBookIcon_DropItem, %function
 
+.global CheckIfSkillBookIcon_Hammerne
+.type CheckIfSkillBookIcon_Hammerne, %function
 
 .equ ReturnPoint,0x8016ADD
 
@@ -380,4 +382,44 @@ bx r3
 
 .ltorg
 .align
+
+
+.equ HammerneReturnPoint, 0x8016999
+
+CheckIfSkillBookIcon_Hammerne:
+mov r0,r8
+mov r1,#0xFF
+and r0,r1
+ldr r2,=DurabilityBasedItemIconList
+
+HammerneLoopStart:
+ldrb r1,[r2]
+cmp r1,#0
+beq HammerneUseItemIcon
+cmp r0,r1
+beq HammerneLoopExit
+add r2,#2
+b HammerneLoopStart
+
+HammerneLoopExit:
+mov r0,r8
+lsr r0,r0,#8
+ldrb r1,[r2,#1]
+lsl r1,r1,#8
+orr r1,r0
+b HammerneGoBack
+
+HammerneUseItemIcon:
+ldrb r1,[r5,#0x1D]
+
+HammerneGoBack:
+mov r2,#0x80
+lsl r2,r2,#7
+mov r0,r7
+ldr r3,=HammerneReturnPoint
+bx r3
+
+.ltorg
+.align
+
 

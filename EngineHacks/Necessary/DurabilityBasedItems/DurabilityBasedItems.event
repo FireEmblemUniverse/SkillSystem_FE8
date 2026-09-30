@@ -55,6 +55,17 @@ PUSH
 		
 	ORG $16A14
 		jumpToHack(CheckIfSkillBookIcon_DropItem)
+		
+	ORG $16904
+		jumpToHack(NewItemNameGetter4)
+		
+	ORG $1693A
+		SHORT 0x46C0
+		jumpToHack(ScrollDurabilityGetter_HammerneMenu)
+
+	ORG $16980
+		jumpToHack(CheckIfSkillBookIcon_Hammerne)
+
 
 POP
 

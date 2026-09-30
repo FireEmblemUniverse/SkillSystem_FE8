@@ -13,6 +13,9 @@
 .global ScrollDurabilityGetter_DropItem
 .type ScrollDurabilityGetter_DropItem, %function
 
+.global ScrollDurabilityGetter_HammerneMenu
+.type ScrollDurabilityGetter_HammerneMenu, %function
+
 
 ScrollDurabilityGetter: @hook at 17594
 
@@ -216,4 +219,55 @@ bx r1
 .ltorg
 .align
 
+
+.equ HammerneMenu_ReturnPoint, 0x801694D
+
+@nop at 1693A + hook at 1693C 
+ScrollDurabilityGetter_HammerneMenu: 
+push {r1}
+
+@check if unbreakable
+ldr r0,[r5,#8]
+mov r4,#8
+and r0,r4
+mov r3,r8
+asr r2,r3,#8
+cmp r0,#0
+bne HammerneMenu_IsUnbreakable
+
+@check if durability should be fixed to 1
+ldr r2,=DurabilityItemList
+mov r0,r8
+mov r1,#0xFF
+and r0,r1
+
+HammerneMenu_LoopStart:
+ldrb r1,[r2]
+cmp r1,#0
+beq HammerneMenu_UseNormalDurability
+cmp r0,r1
+beq HammerneMenu_LoopExit
+add r2,#1
+b HammerneMenu_LoopStart
+
+HammerneMenu_LoopExit:
+mov r2,#1
+b HammerneMenu_GoBack
+
+HammerneMenu_UseNormalDurability:
+mov r2,r8
+lsr r2,r2,#8
+b HammerneMenu_GoBack
+
+HammerneMenu_IsUnbreakable:
+mov r2,#0xFF
+
+HammerneMenu_GoBack:
+pop {r1}
+mov r0,r12
+ldr r3,=HammerneMenu_ReturnPoint
+bx r3
+
+.ltorg
+.align
 

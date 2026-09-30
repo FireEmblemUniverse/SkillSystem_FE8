@@ -18,6 +18,9 @@
 .global NewItemNameGetter3
 .type NewItemNameGetter3, %function
 
+.global NewItemNameGetter4
+.type NewItemNameGetter4, %function
+
 
 .macro blh to, reg=r3
   ldr \reg, =\to
@@ -391,4 +394,83 @@ bx r3
 
 .ltorg
 .align
+
+
+
+.equ Func4Ret1, 0x8016915 @GetStringFromIndex call
+.equ Func4Ret2, 0x8016919 @StrInsertTact call
+
+@used exclusively by hammerne menu, identical to the last one
+NewItemNameGetter4: @hook at 08016904
+mov r0,#0xFF
+mov r1,r8
+and r0,r1
+mov r1,#36
+mul r0,r1
+ldr r1,=ItemTable
+add r5,r0,r1
+ldrh r0,[r5]
+
+ldr r3,=DurabilityBasedItemNameList
+
+Getter4_LoopDeltaStart:
+ldrh r1,[r3]
+cmp r1,#0
+beq Getter4_LoopDeltaUseID
+cmp r0,r1
+beq Getter4_LoopDeltaExit
+add r3,#8
+b Getter4_LoopDeltaStart
+
+Getter4_LoopDeltaExit:
+
+ldr r1,[r3,#4]
+
+mov r0,r8
+lsr r0,r0,#8 @just durability
+lsl r0,r0,#1 @*2
+
+add r0,r1
+ldrh r0,[r0] @r0 = text ID for skill desc text for current item
+
+blh String_GetFromIndex
+
+ldrh r1,[r3,#2] @boolean
+cmp r1,#0
+beq Getter4_SkipDoingColonTerminatonDelta
+
+@string is now loaded in memory to gCurrentTextString, now we go through and look for a colon (0x3A) byte by byte
+
+ldr r0,=gCurrentTextString
+
+Getter4_LoopStartDelta:
+ldrb r1,[r0]
+cmp r1,#0
+beq Getter4_SkipDoingColonTerminatonDelta
+cmp r1,#0x3A @ ":"
+beq Getter4_FoundColonDelta
+add r0,#1
+b Getter4_LoopStartDelta
+
+Getter4_FoundColonDelta:
+@address in r0
+mov r1,#0
+strb r1,[r0]
+
+Getter4_SkipDoingColonTerminatonDelta:
+ldr r0,=gCurrentTextString
+ldr r3,=Func4Ret2
+bx r3
+
+Getter4_LoopDeltaUseID:
+ldr r3,=Func4Ret1
+bx r3
+
+.ltorg
+.align
+
+
+
+
+
 
