@@ -21,6 +21,9 @@ jumpToHack(ShadePlus)
 ORG $3C824
 SHORT 0x0E00
 
+ORG $3DA60
+jumpToHack(ShadePlusBallista)
+
 POP
 
 ALIGN 4
@@ -44,5 +47,11 @@ WORD ShadeID
 ALIGN 4
 ShadePlus:
 #incbin "ShadePlus/ShadePlus.dmp"
+POIN SkillTester
+WORD ShadePlusID
+
+ALIGN 4
+ShadePlusBallista:
+#incbin "ShadePlus/ShadePlusBallista.dmp"
 POIN SkillTester
 WORD ShadePlusID
