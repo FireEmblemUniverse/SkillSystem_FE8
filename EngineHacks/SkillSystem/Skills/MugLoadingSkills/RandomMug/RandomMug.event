@@ -20,8 +20,9 @@
     jumpToHack(RandomMug8)
     ORG $8E2FC
     jumpToHack(RandomMug9)
-    ORG $2D7D8
-    jumpToHack(RandomMug10)
+    //deprecated; see Capture
+	//ORG $2D7D8
+    //jumpToHack(RandomMug10)
     ORG $2D7F0
     jumpToHack(RandomMug11)
     ORG $9B9A0
