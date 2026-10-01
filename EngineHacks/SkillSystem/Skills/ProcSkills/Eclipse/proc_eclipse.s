@@ -27,7 +27,7 @@ bne End
 
 @get enemy HP after battle and current damage dealt and see if we'll kill anyhow
 mov r0,r5
-add r0,#0x72
+add r0,#0x13
 ldrb r0,[r0]
 ldrb r1,[r7,#4]
 cmp r0,r1
@@ -60,7 +60,7 @@ cmp r0, #0
 beq End
 @if user has Eclipse, check for proc rate
 
-ldrb r0, [r4, #0x16] @speed stat as activation rate
+ldrb r0, [r4, #0x15] @skill stat as activation rate
 mov r1, r4 @skill user
 blh d100Result
 cmp r0, #1
@@ -82,7 +82,7 @@ ldrb  r0, EclipseID
 strb  r0, [r6,#4] 
 
 @if we proc, get enemy HP, subtract 1, and set as damage dealt 
-ldrb r5,[r5,#0x13] 
+ldrb r0,[r5,#0x13]
 sub r0,#1
 strb r0,[r7,#4]
 
