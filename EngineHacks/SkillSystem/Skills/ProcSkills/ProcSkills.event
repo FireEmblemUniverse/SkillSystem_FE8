@@ -60,6 +60,11 @@ Proc_Lethality:
 POIN SkillTester
 WORD LethalityID
 
+Proc_LethalityVanilla:
+#incbin "Lethality/proc_lethality_vanilla.dmp"
+POIN SkillTester
+WORD LethalityID
+
 Proc_AetherHeal:
 #incbin "Aether/proc_aetherheal.dmp"
 POIN SkillTester

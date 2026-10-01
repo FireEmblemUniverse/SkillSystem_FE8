@@ -49,7 +49,14 @@ POIN Proc_Vengeance //more damage
 	POIN CombatArt_Astra
 #endif // COMBAT_ARTS
 
-POIN Proc_Bane DownWithArch Proc_Lethality	//skills that set damage to max
+//skills that set damage to max
+POIN Proc_Bane DownWithArch 	
+#ifndef ENABLE_GBA_LETHALITY
+POIN Proc_Lethality
+#else // ENABLE_GBA_LETHALITY
+POIN Proc_LethalityVanilla
+#endif // ENABLE_GBA_LETHALITY
+
 
 POIN Proc_CapDamage	//check that damage is not over cap
 
