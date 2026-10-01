@@ -62,24 +62,7 @@ lop_char_skill:
 	cmp r3, #0
 	beq end_char_skill @ level 0 <=> end of list
 
-	cmp r5, #0
-	beq char_no_promoted
-
-	@ if char is promoted, check if level is 0xFF (on-load) and if skill is learned before promotion level
-	@ this is to allow prepromotes to load skills they would have learned as a non promoted class
-
-	cmp r1, #0xFF
-	bne char_promoted_no_init
-
-
-	cmp r3, #PROMOTION_LEVEL_MAX
-	ble yes_char_skill
-
-
-char_promoted_no_init:
-	@ substract promotion level to skill level, so that it matches promoted level instead of absolute level
-
-	sub r3, #PROMOTION_LEVEL_MAX
+	@ no need to check promotion status on a character skill list
 
 char_no_promoted:
 	cmp r3, r1
