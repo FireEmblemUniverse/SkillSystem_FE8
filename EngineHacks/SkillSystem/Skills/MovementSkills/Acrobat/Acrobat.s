@@ -11,10 +11,28 @@ ldr   r0,CurrentCharPtr
 ldr   r0,[r0]
 cmp   r0, #0
 bne   NoDZ
-mov   r0, r2 @if the active unit is 0, we're being called from dangerzone
+
+@if the active unit is 0, we're being called from dangerzone or a REDA
+@if dangerzone, the unit is in r2
+@if REDA, a movement table is in r2
+mov r0, r2 
+ldr r1,=#0x0202BE4C @unit structs start
+ldr r2,=#0x0202E4D4 @next thing in memory after last unit structs
+cmp r0,r1
+blt NoCheck
+cmp r0,r2
+bge NoCheck
+@r0 is a unit pointer
+b NoDZ
+
+NoCheck:
+mov r0, #0
+b AfterNoCheck
+
 NoDZ:
 ldr   r1,AcrobatID
 .short  0xF800
+AfterNoCheck:
 mov   r1,#0x0       @counter
 ldr   r5,MoveCostLoc
 Loop1:
@@ -35,6 +53,7 @@ pop   {r4-r5}
 pop   {r0}
 bx    r0
 
+.ltorg
 .align
 CurrentCharPtr:
 .long 0x03004E50
