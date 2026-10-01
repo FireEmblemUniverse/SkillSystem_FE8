@@ -1263,7 +1263,7 @@
 
 //Goddess Dance: When used, all adjacent allied units can move again.
 //By Jester
-#define GoddessDanceID 255
+#define GoddessDanceID 151
 
 //Detonate: Destroy equipped weapon to deal remaining uses as damage
 //By Jester
@@ -1287,10 +1287,6 @@
 //Vantage: If HP < 50%, strike first when attacked.
 //Author Unknown (Initial Commit)
 #define VantageID 112
-
-//Catch 'Em All: Grants the user every skill.
-//By Leonarth
-#define CatchEmAllID 151
 
 //Vantage+: User always attacks first, even if attacked. Negates crits.
 //By SD9k
@@ -1439,3 +1435,5 @@
 //Broken Skills
 #define Roll12ID 255
 #define TraceID 255
+#define CatchEmAllID 255 //causes a buffer overflow drawing the unit menu
+
