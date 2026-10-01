@@ -13,6 +13,7 @@ NewDanceUsability:
 POIN SkillTester
 WORD DanceID
 WORD ALSO_USE_VANILLA_DANCE_CHECK
+WORD GoddessDanceID
 
 ALIGN 4
 NewSupplyUsability:
@@ -62,16 +63,13 @@ ALIGN 4
 MercyEffect:
 #incbin "Mercy/MercyEffect.dmp"
 
+#include "GoddessDance/GoddessDance.lyn.event"
+
 ALIGN 4
 GoddessDanceUsability:
 #incbin "GoddessDance/GoddessDanceUsability.dmp"
 POIN SkillTester
 WORD GoddessDanceID
-POIN GetUnitsInRange
-
-ALIGN 4
-GoddessDanceEffect:
-#incbin "GoddessDance/GoddessDanceEffect.dmp"
 POIN GetUnitsInRange
 
 ALIGN 4
