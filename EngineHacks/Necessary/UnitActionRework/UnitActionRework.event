@@ -76,7 +76,7 @@ pActionRoutineTable:
 	ActionRoutine(SacrificeAction) // 0x29 
 	ActionRoutine(ArdentSacrificeAction) // 0x2A 
 	ActionRoutine(ReciprocalAidAction)  // 0x2B 
-	NoActionRoutine               // 0x2C FREE
+	ActionRoutine(Action_BigDance)   // 0x2C 
 	NoActionRoutine               // 0x2D FREE
 	NoActionRoutine               // 0x2E FREE
 	NoActionRoutine               // 0x2F FREE etc...

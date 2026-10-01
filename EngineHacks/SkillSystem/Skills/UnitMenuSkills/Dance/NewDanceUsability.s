@@ -3,6 +3,7 @@
 
 .equ DanceID,SkillTester+4
 .equ AlsoUseVanillaCheck,DanceID+4
+.equ GoddessDanceID, AlsoUseVanillaCheck+4
 
 .equ gActiveUnit,0x3004E50
 .equ gGameState,0x202BCB0
@@ -23,6 +24,16 @@ mov r4,r0
 ldr r0,=gActiveUnit
 ldr r0,[r0]
 
+@don't offer option if GoddessDance
+ldr r1, SkillTester
+mov lr, r1
+ldr r1, GoddessDanceID
+.short 0xf800
+cmp r0, #1
+beq ReturnFalse
+
+ldr r0,=gActiveUnit
+ldr r0,[r0]
 ldr r1, SkillTester
 mov lr, r1
 ldr r1, DanceID
