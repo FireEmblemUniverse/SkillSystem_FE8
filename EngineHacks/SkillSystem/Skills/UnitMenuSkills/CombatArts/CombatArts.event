@@ -6,9 +6,14 @@
 //submenu should exit back out to the unit menu
 //existing systems work for skills that are actually combat arts
 
+#include "ArtIDs.event" //ArtID Definitions
+
 #include "CombatArts.lyn.event"
 #include "CombatArtsDurabilityCost.lyn.event"
 #include "CombatArtsRestrictDoubling.lyn.event"
+#include "CombatArtsThatCannotDouble.event" //list of combat arts that can *never* double
+
+
 
 ALIGN 4
 CombatArtDoubleOptionLink:
@@ -35,21 +40,21 @@ POIN 0x22861 //On B Press
 POIN 0x4f521 //On R Press
 POIN 0x4f459 //On Help Box
 
-SetCombatArtCost(00,0) //Attack
-SetCombatArtCost(01,0) //Rescue
-SetCombatArtCost(02,0) //Pair Up
-SetCombatArtCost(03,2) //Lunge
-SetCombatArtCost(04,2) //Mercy
-SetCombatArtCost(05,2) //Gamble
-SetCombatArtCost(06,2) //Adept
-SetCombatArtCost(07,3) //Aether
-SetCombatArtCost(08,0) //Astra
-SetCombatArtCost(09,2) //Dragon Fang
-SetCombatArtCost(10,2) //Glacies
-SetCombatArtCost(11,2) //Ignis
-SetCombatArtCost(12,2) //Luna
-SetCombatArtCost(13,2) //Sol
-SetCombatArtCost(14,3) //Sure Shot
+SetCombatArtCost(AttackArtID,    0) //Attack
+SetCombatArtCost(RescueArtID,    0) //Rescue
+SetCombatArtCost(PairUpArtID,    0) //Pair Up
+SetCombatArtCost(LungeArtID,     2) //Lunge
+SetCombatArtCost(MercyArtID,     2) //Mercy
+SetCombatArtCost(GambleArtID,    2) //Gamble
+SetCombatArtCost(AdeptArtID,     2) //Adept
+SetCombatArtCost(AetherArtID,    3) //Aether
+SetCombatArtCost(AstraArtID,     0) //Astra
+SetCombatArtCost(DragonFangArtID,2) //Dragon Fang
+SetCombatArtCost(GlaciesArtID,   2) //Glacies
+SetCombatArtCost(IgnisArtID,     2) //Ignis
+SetCombatArtCost(LunaArtID,      2) //Luna
+SetCombatArtCost(SolArtID,       2) //Sol
+SetCombatArtCost(SureShotArtID,  3) //Sure Shot
 
 ALIGN 4
 CombatArtsMenu:
@@ -123,26 +128,26 @@ AdeptUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD AdeptID
-WORD 6 //Adept art ID
+WORD AdeptArtID //Adept art ID
 POIN CombatArtCostTable
 
 ALIGN 4
 AdeptEffect:
 #incbin "CombatArtEffect.dmp"
-WORD 6 //Adept art ID
+WORD AdeptArtID //Adept art ID
 
 ALIGN 4
 AetherUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD AetherID
-WORD 7 //Aether art ID
+WORD AetherArtID //Aether art ID
 POIN CombatArtCostTable
 
 ALIGN 4
 AetherEffect:
 #incbin "CombatArtEffect.dmp"
-WORD 7 //Aether art ID
+WORD AetherArtID //Aether art ID
 
 
 ALIGN 4
@@ -150,89 +155,89 @@ AstraUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD AstraID
-WORD 8 //Astra art ID
+WORD AstraArtID //Astra art ID
 POIN CombatArtCostTable
 
 ALIGN 4
 AstraEffect:
 #incbin "CombatArtEffect.dmp"
-WORD 8 //Astra art ID
+WORD AstraArtID //Astra art ID
 
 ALIGN 4
 DragonFangUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD DragonFangID
-WORD 9 //Dragon Fang art ID
+WORD DragonFangArtID //Dragon Fang art ID
 POIN CombatArtCostTable
 
 ALIGN 4
 DragonFangEffect:
 #incbin "CombatArtEffect.dmp"
-WORD 9 //Dragon Fang art ID
+WORD DragonFangArtID //Dragon Fang art ID
 
 ALIGN 4
 GlaciesUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD GlaciesID
-WORD 10 //Glacies art ID
+WORD GlaciesArtID //Glacies art ID
 POIN CombatArtCostTable
 
 ALIGN 4
 GlaciesEffect:
 #incbin "CombatArtEffect.dmp"
-WORD 10 //Glacies art ID
+WORD GlaciesArtID //Glacies art ID
 
 ALIGN 4
 IgnisUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD IgnisID
-WORD 11 //Ignis art ID
+WORD IgnisArtID //Ignis art ID
 POIN CombatArtCostTable
 
 ALIGN 4
 IgnisEffect:
 #incbin "CombatArtEffect.dmp"
-WORD 11 //Ignis art ID
+WORD IgnisArtID //Ignis art ID
 
 ALIGN 4
 LunaUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD LunaID
-WORD 12 //Luna art ID
+WORD LunaArtID //Luna art ID
 POIN CombatArtCostTable
 
 ALIGN 4
 LunaEffect:
 #incbin "CombatArtEffect.dmp"
-WORD 12 //Luna art ID
+WORD LunaArtID //Luna art ID
 
 ALIGN 4
 SolUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD SolID
-WORD 13 //Sol art ID
+WORD SolArtID //Sol art ID
 POIN CombatArtCostTable
 
 ALIGN 4
 SolEffect:
 #incbin "CombatArtEffect.dmp"
-WORD 13 //Sol art ID
+WORD SolArtID //Sol art ID
 
 ALIGN 4
 SureShotUsability:
 #incbin "CombatArtUsability.dmp"
 POIN SkillTester
 WORD SureShotID
-WORD 14 //Sure Shot art ID
+WORD SureShotArtID //Sure Shot art ID
 POIN CombatArtCostTable
 
 ALIGN 4
 SureShotEffect:
 #incbin "CombatArtEffect.dmp"
-WORD 14 //Sure Shot art ID
+WORD SureShotArtID //Sure Shot art ID
 
