@@ -7,9 +7,13 @@
 //existing systems work for skills that are actually combat arts
 
 #include "ArtIDs.event" //ArtID Definitions
+
 #include "CombatArts.lyn.event"
 #include "CombatArtsDurabilityCost.lyn.event"
 #include "CombatArtsRestrictDoubling.lyn.event"
+#include "CombatArtsThatCannotDouble.event" //list of combat arts that can *never* double
+
+
 
 ALIGN 4
 CombatArtDoubleOptionLink:

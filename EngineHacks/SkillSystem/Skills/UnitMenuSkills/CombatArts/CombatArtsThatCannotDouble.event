@@ -1,0 +1,11 @@
+//Put here the art IDs (not skill IDs) for combat arts that shouldn't be able to double
+// NOTE: as the terminator value is 0, you mustn't put ArtID that has the same value
+// As of the writing of this file, IDs 0 (Attack), 1 (Rescue), 2 (Pairup) are recommended to be kept out of this list! for common sense reasons
+ALIGN 4
+CombatArtsThatCannotDouble:
+//BYTE IgnisArtID LunaArtID SolArtID 
+BYTE 0 //the terminator
+
+
+ 
+
