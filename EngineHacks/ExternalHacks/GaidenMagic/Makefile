@@ -14,7 +14,7 @@ LYN := "$(abspath .)/FE-CLib-master/utility/lyn.exe"
 
 # setting up compilation flags
 ARCH   := -mcpu=arm7tdmi -mthumb -mthumb-interwork
-CFLAGS := $(ARCH) -Wall -O2 -mtune=arm7tdmi -mlong-calls
+CFLAGS := $(ARCH) -Wall -O1 -mtune=arm7tdmi -mlong-calls
 
 # C to ASM rule
 %.s: %.c *.c
@@ -30,5 +30,5 @@ CFLAGS := $(ARCH) -Wall -O2 -mtune=arm7tdmi -mlong-calls
 %.o: %.s *.s
 	$(AS) $(ARCH) $< -o $@
 	
-all: GaidenMagic.lyn.event
+all: GaidenMagic.lyn.event SpellSystemASM.lyn.event
 
