@@ -154,6 +154,9 @@ void Proc_GaidenMagicHPCost(BattleUnit* attacker, BattleUnit* defender, NewBattl
 	// First, let's check if the attacker is using a (gaiden) spell or if we're defending with Gaiden magic.
 	if ( GetUnitEquippedWeaponSlot(&attacker->unit) == 9 ) // Instead of checking against UsingSpellMenu, we do this to cover the case of defense.
 	{
+		//If this is a real battle, set this to fix item drop menu issues.
+		if ( battleData->config & BATTLE_CONFIG_REAL ) { UsingSpellMenu = 0; }
+		
 		SetRoundForSpell(attacker,buffer);
 	}
 }
