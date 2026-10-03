@@ -207,14 +207,20 @@ int CanCastSpellNow(Unit* unit, int spell)
 	int type = GetItemType(spell);
 	if ( type != ITYPE_STAFF )
 	{
-		if ( !CanUnitUseWeaponNow(gActiveUnit,spell) ) { return 0; }
+		DidSelectSpell = 1;
+		int canUse = !CanUnitUseWeaponNow(gActiveUnit,spell);
+		DidSelectSpell = 0;
+		if ( canUse ) { return 0; }
 		// Next, we can initialize a "dummy" target list and check if it's empty. If not, then there's a valid target we can attack.
 		MakeTargetListForWeapon(gActiveUnit,spell);
 		return GetTargetListSize() != 0;
 	}
 	else
 	{
-		return CanUnitUseItem(gActiveUnit,spell);
+		DidSelectSpell = 1;
+		int canUse = CanUnitUseItem(gActiveUnit,spell);
+		DidSelectSpell = 0;
+		return canUse;
 	}
 }
 
@@ -327,4 +333,10 @@ void GaidenZeroOutSpellVariables(void)
 	UsingSpellMenu = 0;
 	SelectedSpell = 0;
 	DidSelectSpell = 0;
+}
+
+int CanUnitUseSpell(Unit* unit, int item, int rank) {
+	if (DidSelectSpell) return 1;
+	if (SelectedSpell) return 1;
+	return 2;
 }

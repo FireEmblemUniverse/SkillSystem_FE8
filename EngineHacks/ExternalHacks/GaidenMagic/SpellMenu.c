@@ -5,7 +5,10 @@ int SpellUsability(const struct MenuCommandDefinition* menuEntry, int index, int
 	int spell = SpellsGetter(gActiveUnit,UsingSpellMenu)[GetNthUsableSpell(gActiveUnit,index,UsingSpellMenu)];
 	if ( !spell ) { return 3; }
 	// This option should be usable if the nth spell exists.
-	if ( !CanCastSpellNow(gActiveUnit,spell) ) { return 3; }
+	DidSelectSpell = 1; // For a weapon usability check
+	int canCast = !CanCastSpellNow(gActiveUnit,spell);
+	DidSelectSpell = 0;
+	if ( canCast ) { return 3; }
 	// Now, let's grey out the spell if we don't have the HP to cast it.
 	return ( HasSufficientHP(gActiveUnit,spell) ? 1 : 2 );
 }

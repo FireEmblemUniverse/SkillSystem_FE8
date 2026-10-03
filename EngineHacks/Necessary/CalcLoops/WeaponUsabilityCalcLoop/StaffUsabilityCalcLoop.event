@@ -11,6 +11,9 @@ POIN StaffLockLoop
 
 
 StaffLockLoop:
+#ifdef GAIDEN_MAGIC
+POIN CanUnitUseSpell
+#endif // GAIDEN_MAGIC
 #ifdef ADV_WEAPON_LOCKS
 	POIN AdvWeaponLocks 
 #endif // ADV_WEAPON_LOCKS
