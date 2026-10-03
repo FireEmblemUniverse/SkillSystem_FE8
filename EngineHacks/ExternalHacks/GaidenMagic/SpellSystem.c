@@ -154,6 +154,9 @@ void Proc_GaidenMagicHPCost(BattleUnit* attacker, BattleUnit* defender, NewBattl
 	// First, let's check if the attacker is using a (gaiden) spell or if we're defending with Gaiden magic.
 	if ( GetUnitEquippedWeaponSlot(&attacker->unit) == 9 ) // Instead of checking against UsingSpellMenu, we do this to cover the case of defense.
 	{
+		//If this is a real battle, set this to fix item drop menu issues.
+		if ( battleData->config & BATTLE_CONFIG_REAL ) { UsingSpellMenu = 0; }
+		
 		SetRoundForSpell(attacker,buffer);
 	}
 }
@@ -207,14 +210,20 @@ int CanCastSpellNow(Unit* unit, int spell)
 	int type = GetItemType(spell);
 	if ( type != ITYPE_STAFF )
 	{
-		if ( !CanUnitUseWeaponNow(gActiveUnit,spell) ) { return 0; }
+		DidSelectSpell = 1;
+		int canUse = !CanUnitUseWeaponNow(gActiveUnit,spell);
+		DidSelectSpell = 0;
+		if ( canUse ) { return 0; }
 		// Next, we can initialize a "dummy" target list and check if it's empty. If not, then there's a valid target we can attack.
 		MakeTargetListForWeapon(gActiveUnit,spell);
 		return GetTargetListSize() != 0;
 	}
 	else
 	{
-		return CanUnitUseItem(gActiveUnit,spell);
+		DidSelectSpell = 1;
+		int canUse = CanUnitUseItem(gActiveUnit,spell);
+		DidSelectSpell = 0;
+		return canUse;
 	}
 }
 
@@ -327,4 +336,10 @@ void GaidenZeroOutSpellVariables(void)
 	UsingSpellMenu = 0;
 	SelectedSpell = 0;
 	DidSelectSpell = 0;
+}
+
+int CanUnitUseSpell(Unit* unit, int item, int rank) {
+	if (DidSelectSpell) return 1;
+	if (SelectedSpell) return 1;
+	return 2;
 }

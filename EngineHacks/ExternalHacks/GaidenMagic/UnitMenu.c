@@ -15,13 +15,21 @@ int GaidenWhiteMagicUMUsability(void)
 
 static int GaidenMagicUMUsabilityExt(u8* spellList)
 {
+	// First, if we already moved this always fails
+	if (gActiveUnit->state & US_CANTOING) return 3;
+	
 	u8* validList = gGenericBuffer; // Let's build a list of valid spells.
+	DidSelectSpell = 1; // For a weapon usability check
 	for ( int i = 0 ; spellList[i] ; i++ )
 	{	
-		if ( !CanCastSpellNow(gActiveUnit,spellList[i]|0xFF00) ) { continue; }
+		DidSelectSpell = 1; // For a weapon usability check
+		int canCast = !CanCastSpellNow(gActiveUnit,spellList[i]|0xFF00);
+		DidSelectSpell = 0;
+		if ( canCast ) { continue; }
 		*validList = spellList[i];
 		validList++;
 	}
+	DidSelectSpell = 0;
 	*validList = 0;
 	// At this point, validList has a 0-terminated list of spells that we can use NOW (aside from HP costs).
 	validList = gGenericBuffer;
