@@ -1,0 +1,21 @@
+PUSH
+	ORG 0x167A4
+	replaceWithHack(CanUnitWieldStaff)
+POP
+
+CanUnitWieldStaff:
+#incbin "CanUnitWieldStaff.dmp" //1 byte change from CanUnitWieldWeapon
+POIN ItemTable
+POIN WLockLookupList
+POIN StaffLockLoop
+
+
+StaffLockLoop:
+#ifdef ADV_WEAPON_LOCKS
+	POIN AdvWeaponLocks 
+#endif // ADV_WEAPON_LOCKS
+POIN Amische
+POIN DoesUnitHaveWRank // Must always be last
+WORD 0
+
+

@@ -37,3 +37,5 @@ POIN Shadowgift // Also contains Lumina
 POIN DoesUnitHaveWRank // Must always be last
 WORD 0
 
+
+#include "StaffUsabilityCalcLoop.event"
