@@ -107,23 +107,13 @@ beq CannotWield
 IsUnitStatused:
 mov r0,r4
 add r0,#0x30
-ldrb r1,[r0] @This is the status byte?
-mov r0,#0xF @status 0xF = stone
+ldrb r1,[r0] @This is the status byte
+mov r0,#0xF @dropping the status duration
 and r0,r1 
 ldr r3,ItemTable 
-cmp r0,#3 
+cmp r0,#3 @silence
 bne PrepareExternalLoop
-mov r1,#0xFF
-and r1,r5
-lsl r0,r1,#3
-add r0,r1
-lsl r0,r0,#2
-add r0,r3
-ldr r0,[r0,#8]
-mov r1,#2
-and r0,r1
-cmp r0,#0
-beq PrepareExternalLoop
+@don't need to check anything about the staff, we already know it's a magic thing
 
 CannotWield:
 mov r1,#0
