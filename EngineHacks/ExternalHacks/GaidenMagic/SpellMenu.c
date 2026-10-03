@@ -114,7 +114,7 @@ int SpellOnHover(MenuProc* proc)
 	}
 	for ( int i = 0 ; i < 3 ; i++ ) { Text_Display(&menuItemPanel->textHandles[i],&gBG0MapBuffer[y+1+2*i][x+1]); }
 	
-	if ( spellType != ITYPE_STAFF ) { DrawIcon(&gBG0MapBuffer[y+1][x+5],spellType+0x70,menuItemPanel->oam2base<<0xC); } // This HAS to happen after the Text_Display calls.
+	if ( spellType != ITYPE_STAFF ) { DrawIcon(&gBG0MapBuffer[y+1][x+5],spellType|0x400,menuItemPanel->oam2base<<0xC); } // This HAS to happen after the Text_Display calls.
 	
 	BmMapFill(gMapMovement,-1);
 	BmMapFill(gMapRange,0);
