@@ -8,7 +8,7 @@ u8* SpellsGetterForLevel(Unit* unit, int level, int type)  // Same as SpellsGett
 {
 	// Treat level = -1 as any level equal to or below the unit's current level.
 	int unitLevel = unit->level;
-	if ( UNIT_ATTRIBUTES(unit) & CA_PROMOTED ) { unitLevel += 80; } // Treat promoted as top bit set.
+	if ( UNIT_ATTRIBUTES(unit) & CA_PROMOTED ) { unitLevel |= 0x80; } // Treat promoted as top bit set.
 	u8* currBuffer = SpellsBuffer;
 	SpellList* ROMList = SpellListTable[unit->pCharacterData->number];
 	if ( ROMList )
@@ -187,7 +187,9 @@ int InitGaidenSpellLearnPopup(void) // Responsible for returning a boolean for w
 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
 	if ( !subject ) { return 0; } // If this isn't filled, we shouldn't show a popup.
 	// Our unit leveled up! Let's see if they have a spell to gain at their new level.
-	u8* spells = SpellsGetterForLevel(&subject->unit,subject->unit.level,-1);
+	int level = subject->unit.level;
+	if (UNIT_ATTRIBUTES(&subject->unit) & CA_PROMOTED) { level |= 0x80; }
+	u8* spells = SpellsGetterForLevel(&subject->unit,level,-1);
 	// Eh let's just handle learning one spell at a time for now.
 	if ( *spells )
 	{
