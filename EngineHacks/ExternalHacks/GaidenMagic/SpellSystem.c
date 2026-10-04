@@ -154,14 +154,14 @@ void Proc_GaidenMagicHPCost(BattleUnit* attacker, BattleUnit* defender, NewBattl
 	// First, let's check if the attacker is using a (gaiden) spell or if we're defending with Gaiden magic.
 	if ( GetUnitEquippedWeaponSlot(&attacker->unit) == 9 ) // Instead of checking against UsingSpellMenu, we do this to cover the case of defense.
 	{
-		//If this is a real battle, set this to fix item drop menu issues.
-		if ( battleData->config & BATTLE_CONFIG_REAL ) { UsingSpellMenu = 0; }
+		//If this is a real battle and the final round, set this to fix item drop menu issues.
+		if ( (battleData->config & BATTLE_CONFIG_REAL) && (buffer->attributes & BATTLE_HIT_INFO_FINISHES) ) { UsingSpellMenu = 0; }
 		
-		SetRoundForSpell(attacker,buffer);
+		SetRoundForSpell(attacker,buffer,battleData);
 	}
 }
 
-void SetRoundForSpell(BattleUnit* unit, NewBattleHit* buffer)
+void SetRoundForSpell(BattleUnit* unit, NewBattleHit* buffer, BattleStats* battleData)
 {
 	if ( HasSufficientHP(&unit->unit,unit->weapon) )
 	{
@@ -175,6 +175,8 @@ void SetRoundForSpell(BattleUnit* unit, NewBattleHit* buffer)
 	{
 		// I think the cleanest way to handle preventing rounds with insufficient HP is to set a bit for later.
 		buffer->attributes |= BATTLE_HIT_ATTR_5; // This bit is checked in an external hack I've made.
+		// Let's make sure we don't deal any damage this round.
+		battleData->damage = 0;
 	}
 }
 
