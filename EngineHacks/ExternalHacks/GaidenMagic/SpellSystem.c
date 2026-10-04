@@ -61,7 +61,8 @@ int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 	{
 		// It is not our phase.
 		// Well, all the logic is in NewGetUnitEquippedWeaponSlot. Why not get the slot then return that item, checking for case 9 (Gaiden magic)?
-		if ( GetUnitEquippedWeaponSlot(unit) == 9 )
+		// Because doing that breaks Mag/2 weapons on enemy phase
+		if ( GetFirstAttackSpell(unit) )
 		{
 			// We're not using the spell menu, but we're still using Gaiden magic. We must be trying to counter with it.
 			int spell = GetFirstAttackSpell(unit);
