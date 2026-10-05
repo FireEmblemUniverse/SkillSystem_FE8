@@ -24,7 +24,7 @@ Byte  Bit-offset   Desc
 		0x08 	Half Hp (used only by hp stat getter; nothing inflicts this. It was planned for hexing rod) 
 		0x10 	Armor March (+2 mov)
 		0x20 	Vigor Dance (+2 str/mag/def)
-		0x40 	FREE 
+		0x40 	Galeforce flag 
 		0x80 	FREE 
 
 
@@ -57,7 +57,7 @@ Byte  Bit-offset   Desc
 		0x08 	Half Hp (used only by hp stat getter; nothing inflicts this. It was planned for hexing rod) 
 		0x10 	Armor March (+2 mov)
 		0x20 	Vigor Dance (+2 str/mag/def)
-		0x40 	FREE 
+		0x40 	Galeforce flag
 		0x80 	FREE 
 +0x07   0x01 	FREE 
 		0x02 	FREE 
@@ -95,7 +95,7 @@ Byte  Bit-offset   Desc
 		0x08 	Half Hp (used only by hp stat getter; nothing inflicts this. It was planned for hexing rod) 
 		0x10 	Armor March (+2 mov)
 		0x20 	Vigor Dance (+2 str/mag/def)
-		0x40 	FREE 
+		0x40 	Galeforce flag 
 		0x80 	FREE 
 
 
