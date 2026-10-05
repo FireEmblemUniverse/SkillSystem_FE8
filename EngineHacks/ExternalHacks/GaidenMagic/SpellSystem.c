@@ -359,3 +359,18 @@ void ApplySupportMagicHPCost() {
 
 }
 
+u8* ESU_SaveGaidenMagicVariables(u8* buffer) {
+	*(buffer+0) = UsingSpellMenu;
+	*(buffer+1) = SelectedSpell;
+	*(buffer+2) = DidSelectSpell;
+	
+	return buffer;
+}
+
+u8* ESU_LoadGaidenMagicVariables(u8* buffer) {
+	UsingSpellMenu = *(buffer+0);
+	SelectedSpell = *(buffer+1);
+	DidSelectSpell = *(buffer+2);
+	return buffer;
+}
+
