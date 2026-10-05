@@ -13,11 +13,10 @@ Galeforce:
 ldr	r2,=#0x203A958
 mov	r0, #0x00
 strb	r0, [r2,#0x10]	@clear steps taken this turn
-ldr	r2, [r4]
-ldr	r0, [r2,#0x0C]	@status bitfield
-mov	r1, #0x04
-lsl	r1, #0x08
-orr	r0, r1
+push {r0-r3}
+mov r0, r4
+bl SetGaleforceBit
+pop {r0-r3}
 b	End
 
 Canto:

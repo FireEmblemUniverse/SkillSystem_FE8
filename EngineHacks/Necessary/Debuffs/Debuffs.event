@@ -155,6 +155,8 @@ ArmorMarchBitOffset_Link:
 WORD MiscOffset+3
 VigorDanceBitOffset_Link:
 WORD MiscOffset+4 
+GaleforceBitOffset_Link:
+WORD MiscOffset+5
 //Used with Dragz's Effectiveness Items
 /*
 FlammableBitOffset_Link:
