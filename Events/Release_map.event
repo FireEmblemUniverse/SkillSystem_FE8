@@ -15,6 +15,9 @@ EventPointerTable(0x7, PointerList)
 VeinEffect(0, FreezeAllEnemies)
 #endif // DRAGON_VEINS
 
+// If you're using this for reference, 
+// this is not a recommended way of setting a chapter name.
+// We only do it this way so the map can be fully toggled.
 setText(0x160, NewChName)
 
 ALIGN 4
