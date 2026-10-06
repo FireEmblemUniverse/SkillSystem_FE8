@@ -2,14 +2,26 @@
 	/* EXP calculation loop */
 
 PUSH
+	//Combat EXP
 	ORG $2b960
 		ALIGN 4
 		SHORT $4778 $46C0
 		WORD $E59FC000 $E12FFF1C
 		POIN EXPCalcLoop
+		
+	//Staff EXP
+	ORG $2C694
+		jumpToHack(ExpLoopStaff)
+	
+	//Misc EXP (actions that give 10)
+	ORG $2C6CC
+		callHack_r0(ExpLoopMisc)
 POP
 
 #include "EXPCalcLoop.lyn.event"
+#include "StaffEXPCalcLoop.lyn.event"
+#include "MiscEXPCalcLoop.lyn.event"
+
 EXPCalcFunctions:
 POIN Paragon Veteran Blossom VoidCurse
 #ifdef MODULAR_EXP
