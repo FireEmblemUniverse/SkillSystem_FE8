@@ -159,7 +159,7 @@ mov r0, r5 @ deployment byte
 mov r3, r10 
 cmp r5, r3 
 bge NextEndOfTurnFunction 
-@add r5, #1 @ for next time 
+add r5, #1 @ for next time 
 blh GetUnit 
 mov r7, r0 @ unit 
 bl IsUnitOnField 
@@ -253,7 +253,7 @@ mov r0, r5 @ deployment byte
 mov r3, r10 
 cmp r5, r3 
 bge NextStartOfTurnFunction 
-@add r5, #1 @ for next time 
+add r5, #1 @ for next time 
 blh GetUnit 
 mov r7, r0 @ unit 
 bl IsUnitOnField 
@@ -417,21 +417,24 @@ lsl r1, #2 @ 4 bytes per entry
 ldr r0, [r3, r1] 
 cmp r0, #0 
 beq GotoBreakEndProcLoop 
+b EndOfTurnProcUnitLoop
 
+ResetEndOfTurnLoop:
+ldrb r0, [r4, #DeployByte] 
+mov r1, #1 
+add r1, r0 
+strb r1, [r4, #DeployByte] 
 
 EndOfTurnProcUnitLoop: 
 ldrb r0, [r4, #DeployByte] 
 ldrb r1, [r4, #EndOfDeployByte] 
 cmp r0, r1 
 bge NextEndOfTurnProcFunction 
-mov r1, #1 
-add r1, r0 
-strb r1, [r4, #DeployByte] 
 blh GetUnit 
 str r0, [r4, #pUnit] 
 bl IsUnitOnField 
 cmp r0, #0 
-beq EndOfTurnProcUnitLoop
+beq ResetEndOfTurnLoop
 
 mov r2, #0 
 strb r2, [r4, #SkillBufferCounter] 
@@ -447,7 +450,7 @@ strb r1, [r4, #SkillBufferCounter]
 ldr r3, [r4, #SkillBuffer] 
 ldrb r1, [r3, r1] @ skill we have 
 cmp r1, #0 
-beq EndOfTurnProcUnitLoop
+beq ResetEndOfTurnLoop
 
 ldr r3, =EndOfTurnCalcLoop 
 mov r2, #FuncCoun 
@@ -560,21 +563,24 @@ lsl r1, #2 @ 4 bytes per entry
 ldr r0, [r3, r1] 
 cmp r0, #0 
 beq GotoBreakStartProcLoop 
+b StartOfTurnProcUnitLoop
 
+ResetStartOfTurnLoop:
+ldrb r0, [r4, #DeployByte] 
+mov r1, #1 
+add r1, r0 
+strb r1, [r4, #DeployByte] 
 
 StartOfTurnProcUnitLoop: 
 ldrb r0, [r4, #DeployByte] 
 ldrb r1, [r4, #EndOfDeployByte] 
 cmp r0, r1 
 bge NextStartOfTurnProcFunction 
-mov r1, #1 
-add r1, r0 
-strb r1, [r4, #DeployByte] 
 blh GetUnit 
 str r0, [r4, #pUnit] 
 bl IsUnitOnField 
 cmp r0, #0 
-beq StartOfTurnProcUnitLoop
+beq ResetStartOfTurnLoop
 
 mov r2, #0 
 strb r2, [r4, #SkillBufferCounter] 
@@ -590,7 +596,7 @@ strb r1, [r4, #SkillBufferCounter]
 ldr r3, [r4, #SkillBuffer] 
 ldrb r1, [r3, r1] @ skill we have 
 cmp r1, #0 
-beq StartOfTurnProcUnitLoop
+beq ResetStartOfTurnLoop
 
 ldr r3, =StartOfTurnCalcLoop 
 mov r2, #FuncCoun 
