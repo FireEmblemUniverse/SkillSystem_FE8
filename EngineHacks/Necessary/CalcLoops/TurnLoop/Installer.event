@@ -53,12 +53,12 @@ PROC_YIELD // Buffer.
 PROC_SET_NAME(StartOfTurnCalcLoopName)
 PROC_LOOP_ROUTINE(TurnLoop_Idle) // Do nothing until ProcGoto is used. 
 PROC_LABEL(0) 
-PROC_CALL_ROUTINE_2(ExecuteFirstFunc)
+//PROC_CALL_ROUTINE_2(ExecuteFirstFunc)
 PROC_LOOP_ROUTINE(EndOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
 PROC_LABEL(1) 
 PROC_CALL_ROUTINE(StartOfTurnCalcLoop_SilentFunctions)
 PROC_LABEL(2) 
-PROC_CALL_ROUTINE_2(ExecuteFirstFunc)
+//PROC_CALL_ROUTINE_2(ExecuteFirstFunc)
 PROC_LOOP_ROUTINE(StartOfTurnCalcLoop_Main) // Skipped over if there are no units that will act for that allegiance 
 PROC_END
 
