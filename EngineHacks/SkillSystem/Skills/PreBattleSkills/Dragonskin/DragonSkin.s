@@ -37,7 +37,7 @@ add r0,#0x4C
 ldr r0,[r0]
 mov r3,#0x2
 lsl r3,#16 @0x00020000
-and r0,r1
+and r0,r3
 cmp r0,#0
 beq CanUseDef1
 mov r2,#0
@@ -76,7 +76,7 @@ add r0,#0x4C
 ldr r0,[r0]
 mov r3,#0x2
 lsl r3,#16 @0x00020000
-and r0,r1
+and r0,r3
 cmp r0,#0
 beq CanUseDef2
 mov r2,#0
