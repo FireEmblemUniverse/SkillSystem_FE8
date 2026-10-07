@@ -159,7 +159,7 @@ mov r0, r5 @ deployment byte
 mov r3, r10 
 cmp r5, r3 
 bge NextEndOfTurnFunction 
-add r5, #1 @ for next time 
+@add r5, #1 @ for next time 
 blh GetUnit 
 mov r7, r0 @ unit 
 bl IsUnitOnField 
@@ -253,7 +253,7 @@ mov r0, r5 @ deployment byte
 mov r3, r10 
 cmp r5, r3 
 bge NextStartOfTurnFunction 
-add r5, #1 @ for next time 
+@add r5, #1 @ for next time 
 blh GetUnit 
 mov r7, r0 @ unit 
 bl IsUnitOnField 
