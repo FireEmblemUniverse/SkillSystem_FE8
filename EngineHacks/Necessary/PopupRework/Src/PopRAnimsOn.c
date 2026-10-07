@@ -23,8 +23,8 @@ struct PopupReworkAnimsOnProc {
 };
 
 static void PopR_AnimsOnAddIcon(struct PopupReworkProc* proc, unsigned iconId, unsigned xOffset);
-static void PopR_AnimsOnDraw(struct PopupReworkAnimsOnProc* proc);
-static void PopR_AnimsOnWait(struct PopupReworkAnimsOnProc* proc);
+void PopR_AnimsOnDraw(struct PopupReworkAnimsOnProc* proc);
+void PopR_AnimsOnWait(struct PopupReworkAnimsOnProc* proc);
 static void PopR_AnimsOnCleanup(struct PopupReworkAnimsOnProc* proc);
 
 static const struct ProcInstruction sProc_PopRAnimsOnPopup[] = {
@@ -38,7 +38,7 @@ static const struct ProcInstruction sProc_PopRAnimsOnPopup[] = {
 	PROC_END
 };
 
-static struct PopupReworkProc* PopR_StartAnimsOnPopup(const u32* definition, unsigned time, struct Proc* parent) {
+struct PopupReworkProc* PopR_StartAnimsOnPopup(const u32* definition, unsigned time, struct Proc* parent) {
 	struct PopupReworkAnimsOnProc* proc = (struct PopupReworkAnimsOnProc*) ProcStartBlocking(
 		sProc_PopRAnimsOnPopup, parent
 	);
@@ -72,7 +72,7 @@ static void PopR_AnimsOnAddIcon(struct PopupReworkProc* proc, unsigned iconId, u
 	LoadIconObjectGraphics(iconId, 0x40);
 }
 
-static void PopR_AnimsOnDraw(struct PopupReworkAnimsOnProc* proc) {
+void PopR_AnimsOnDraw(struct PopupReworkAnimsOnProc* proc) {
 	static const unsigned BOX_GFX_TILE  = 0x100;
 	static const unsigned TEXT_GFX_TILE = 0x108;
 	static const unsigned TEXT_PAL      = 0;
@@ -118,7 +118,7 @@ static void PopR_AnimsOnDraw(struct PopupReworkAnimsOnProc* proc) {
 	SomeBattlePlaySound_8071990(proc->popr.pop.soundId, 0x100);
 }
 
-static void PopR_AnimsOnWait(struct PopupReworkAnimsOnProc* proc) {
+void PopR_AnimsOnWait(struct PopupReworkAnimsOnProc* proc) {
 	if (proc->popr.pop.clock < 0) {
 		if (gKeyState.pressedKeys & KEY_BUTTON_A)
 			BreakProcLoop((struct Proc*) (proc));
@@ -144,8 +144,8 @@ struct AnimsOnWrapperProc {
 	/* 2C */ const struct BattlePopupType* itPop;
 };
 
-static void PopR_AnimsOnWrapperPreparePopup(struct AnimsOnWrapperProc* proc);
-static void PopR_AnimsOnWrapperDisplayPopup(struct AnimsOnWrapperProc* proc);
+void PopR_AnimsOnWrapperPreparePopup(struct AnimsOnWrapperProc* proc);
+void PopR_AnimsOnWrapperDisplayPopup(struct AnimsOnWrapperProc* proc);
 static void PopR_AnimsOnWrapperCleanup(struct AnimsOnWrapperProc* proc);
 
 static const struct ProcInstruction sProc_PopR_AnimsOnWrapper[] = {
@@ -179,7 +179,7 @@ void PopR_StartBattlePopups(void) {
 }
 
 //Search for a popup that can display. If found, itPop will point to it
-static void PopR_AnimsOnWrapperPreparePopup(struct AnimsOnWrapperProc* proc) {
+void PopR_AnimsOnWrapperPreparePopup(struct AnimsOnWrapperProc* proc) {
 	const struct BattlePopupType type = *proc->itPop;
 
 	if (!type.tryInit) {
@@ -198,10 +198,10 @@ static void PopR_AnimsOnWrapperPreparePopup(struct AnimsOnWrapperProc* proc) {
 	BreakProcLoop((struct Proc*) (proc));
 }
 
-static void PopR_AnimsOnWrapperDisplayPopup(struct AnimsOnWrapperProc* proc) {
+void PopR_AnimsOnWrapperDisplayPopup(struct AnimsOnWrapperProc* proc) {
 	const struct BattlePopupType type = *proc->itPop++;
 	PopR_StartAnimsOnPopup(type.definition, type.time, (struct Proc*) (proc));
-	ProcGoto((struct Proc*) (proc), 0);
+	//ProcGoto((struct Proc*) (proc), 0);
 }
 
 static void PopR_AnimsOnWrapperCleanup(struct AnimsOnWrapperProc* proc) {
