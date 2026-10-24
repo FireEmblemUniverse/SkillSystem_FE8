@@ -68,7 +68,7 @@ WORD 4
 LukRallyAmount_Link: 
 WORD 8 
 MovRallyAmount_Link: 
-WORD 2 
+WORD 1
 
 
 #define DebuffEntrySize 8 // Number of bytes 
