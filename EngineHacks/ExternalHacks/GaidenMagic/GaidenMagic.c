@@ -117,7 +117,7 @@ int NewGetUnitEquippedWeapon(Unit* unit);
 int NewGetUnitEquippedWeaponSlot(Unit* unit);
 u32 NewGetUnitUseFlags(Unit* unit);
 void Proc_GaidenMagicHPCost(BattleUnit* attacker, BattleUnit* defender, NewBattleHit* buffer, BattleStats* battleData);
-void SetRoundForSpell(BattleUnit* unit, NewBattleHit* buffer);
+void SetRoundForSpell(BattleUnit* unit, NewBattleHit* buffer, BattleStats* battleData);
 int InitGaidenSpellLearnPopup(void);
 int HasSufficientHP(Unit* unit, int spell);
 int CanCastSpellNow(Unit* unit, int spell);

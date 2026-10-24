@@ -8,7 +8,7 @@ u8* SpellsGetterForLevel(Unit* unit, int level, int type)  // Same as SpellsGett
 {
 	// Treat level = -1 as any level equal to or below the unit's current level.
 	int unitLevel = unit->level;
-	if ( UNIT_ATTRIBUTES(unit) & CA_PROMOTED ) { unitLevel += 80; } // Treat promoted as top bit set.
+	if ( UNIT_ATTRIBUTES(unit) & CA_PROMOTED ) { unitLevel |= 0x80; } // Treat promoted as top bit set.
 	u8* currBuffer = SpellsBuffer;
 	SpellList* ROMList = SpellListTable[unit->pCharacterData->number];
 	if ( ROMList )
@@ -61,7 +61,8 @@ int NewGetUnitEquippedWeapon(Unit* unit) // Autohook to 0x08016B28.
 	{
 		// It is not our phase.
 		// Well, all the logic is in NewGetUnitEquippedWeaponSlot. Why not get the slot then return that item, checking for case 9 (Gaiden magic)?
-		if ( GetUnitEquippedWeaponSlot(unit) == 9 )
+		// Because doing that breaks Mag/2 weapons on enemy phase
+		if ( GetFirstAttackSpell(unit) )
 		{
 			// We're not using the spell menu, but we're still using Gaiden magic. We must be trying to counter with it.
 			int spell = GetFirstAttackSpell(unit);
@@ -154,11 +155,14 @@ void Proc_GaidenMagicHPCost(BattleUnit* attacker, BattleUnit* defender, NewBattl
 	// First, let's check if the attacker is using a (gaiden) spell or if we're defending with Gaiden magic.
 	if ( GetUnitEquippedWeaponSlot(&attacker->unit) == 9 ) // Instead of checking against UsingSpellMenu, we do this to cover the case of defense.
 	{
-		SetRoundForSpell(attacker,buffer);
+		//If this is a real battle and the final round, set this to fix item drop menu issues.
+		if ( (battleData->config & BATTLE_CONFIG_REAL) && (buffer->attributes & BATTLE_HIT_INFO_FINISHES) ) { UsingSpellMenu = 0; }
+		
+		SetRoundForSpell(attacker,buffer,battleData);
 	}
 }
 
-void SetRoundForSpell(BattleUnit* unit, NewBattleHit* buffer)
+void SetRoundForSpell(BattleUnit* unit, NewBattleHit* buffer, BattleStats* battleData)
 {
 	if ( HasSufficientHP(&unit->unit,unit->weapon) )
 	{
@@ -172,6 +176,8 @@ void SetRoundForSpell(BattleUnit* unit, NewBattleHit* buffer)
 	{
 		// I think the cleanest way to handle preventing rounds with insufficient HP is to set a bit for later.
 		buffer->attributes |= BATTLE_HIT_ATTR_5; // This bit is checked in an external hack I've made.
+		// Let's make sure we don't deal any damage this round.
+		battleData->damage = 0;
 	}
 }
 
@@ -184,7 +190,9 @@ int InitGaidenSpellLearnPopup(void) // Responsible for returning a boolean for w
 	if ( gBattleTarget.levelPrevious != gBattleTarget.unit.level ) { subject = &gBattleTarget; }
 	if ( !subject ) { return 0; } // If this isn't filled, we shouldn't show a popup.
 	// Our unit leveled up! Let's see if they have a spell to gain at their new level.
-	u8* spells = SpellsGetterForLevel(&subject->unit,subject->unit.level,-1);
+	int level = subject->unit.level;
+	if (UNIT_ATTRIBUTES(&subject->unit) & CA_PROMOTED) { level |= 0x80; }
+	u8* spells = SpellsGetterForLevel(&subject->unit,level,-1);
 	// Eh let's just handle learning one spell at a time for now.
 	if ( *spells )
 	{
@@ -207,14 +215,20 @@ int CanCastSpellNow(Unit* unit, int spell)
 	int type = GetItemType(spell);
 	if ( type != ITYPE_STAFF )
 	{
-		if ( !CanUnitUseWeaponNow(gActiveUnit,spell) ) { return 0; }
+		DidSelectSpell = 1;
+		int canUse = !CanUnitUseWeaponNow(gActiveUnit,spell);
+		DidSelectSpell = 0;
+		if ( canUse ) { return 0; }
 		// Next, we can initialize a "dummy" target list and check if it's empty. If not, then there's a valid target we can attack.
 		MakeTargetListForWeapon(gActiveUnit,spell);
 		return GetTargetListSize() != 0;
 	}
 	else
 	{
-		return CanUnitUseItem(gActiveUnit,spell);
+		DidSelectSpell = 1;
+		int canUse = CanUnitUseItem(gActiveUnit,spell);
+		DidSelectSpell = 0;
+		return canUse;
 	}
 }
 
@@ -328,3 +342,35 @@ void GaidenZeroOutSpellVariables(void)
 	SelectedSpell = 0;
 	DidSelectSpell = 0;
 }
+
+int CanUnitUseSpell(Unit* unit, int item, int rank) {
+	if (DidSelectSpell) return 1;
+	if (SelectedSpell) return 1;
+	return 2;
+}
+
+void ApplySupportMagicHPCost() {
+	//if support magic & cast a spell
+	if ( gActionData.unitActionType == UNIT_ACTION_STAFF && SelectedSpell ) {
+		int cost = GetSpellCost(SelectedSpell);
+		//we had enough HP to cast, or would've been previously prevented
+		gActiveUnit->curHP -= cost;
+	}
+
+}
+
+u8* ESU_SaveGaidenMagicVariables(u8* buffer) {
+	*(buffer+0) = UsingSpellMenu;
+	*(buffer+1) = SelectedSpell;
+	*(buffer+2) = DidSelectSpell;
+	
+	return buffer;
+}
+
+u8* ESU_LoadGaidenMagicVariables(u8* buffer) {
+	UsingSpellMenu = *(buffer+0);
+	SelectedSpell = *(buffer+1);
+	DidSelectSpell = *(buffer+2);
+	return buffer;
+}
+

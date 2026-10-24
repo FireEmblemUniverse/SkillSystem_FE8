@@ -205,6 +205,16 @@ gSuspendSaveChunks:
 	
 	// ends at $290E
 	// free up to $2E78 ($56A free bytes)
+	
+	#ifdef GAIDEN_MAGIC
+	
+	//  $290E
+	DeclSaveChunk($290E, $0003, ESU_SaveGaidenMagicVariables, ESU_LoadGaidenMagicVariables)
+	
+	// ends at $2911
+	// free up to $2E78 ($567 free bytes)
+	
+	#endif // GAIDEN_MAGIC
 
 	DeclSaveChunk(0, 0, 0, MSu_LoadClaimFlagsFromParentSave) // Load Bonus Claim flags from parent save
 

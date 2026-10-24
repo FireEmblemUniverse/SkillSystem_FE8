@@ -20,9 +20,6 @@ PUSH
     BYTE 0xD2
 POP
 */
-//Fix MNC2 Freezing glitch (breaks skirmishes!)
-  ORG $BD070
-  SHORT $E0B8
   
 //Fix coordinate loading in WARP codes when not loading from slot B (by hypergammaspaces)
 ORG $10C18

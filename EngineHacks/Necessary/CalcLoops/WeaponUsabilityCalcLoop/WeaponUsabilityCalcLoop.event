@@ -29,6 +29,9 @@ POIN ItemTable
 
 ALIGN 4
 WeaponLockLoop: //r0 = character pointer, r1 = item halfword, r2 = rank; return 0 for cannot use weapon, 1 for can use weapon, and 2 for no determination
+#ifdef GAIDEN_MAGIC
+POIN CanUnitUseSpell
+#endif // GAIDEN_MAGIC
 #ifdef ADV_WEAPON_LOCKS
 	POIN AdvWeaponLocks 
 #endif // ADV_WEAPON_LOCKS
@@ -37,3 +40,5 @@ POIN Shadowgift // Also contains Lumina
 POIN DoesUnitHaveWRank // Must always be last
 WORD 0
 
+
+#include "StaffUsabilityCalcLoop.event"

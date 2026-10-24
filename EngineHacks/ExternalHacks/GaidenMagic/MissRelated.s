@@ -63,6 +63,9 @@ MOV r1, #0x0
 LDSH r4, [r0, r1] //pointer:0203E152
 ADD r4, #0x1 //This lets us check the HP from the next round
 MOV r0, r5
+// NOTE: THIS METHOD DOES NOT WORK
+// The data this reads from is not updated for rounds with a miss
+
 
 blh 0x0805A16C, r3   //GetAISSubjectId r0=@AnimationInterpreter
 cmp r0, #0x0	//IsRightToLeft

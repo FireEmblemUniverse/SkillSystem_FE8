@@ -31,6 +31,18 @@ mov r1, r4
 add r1, #0x5C  		@defender def
 ldrh r2,[r1]		@load it to register
 
+@don't use def if getting hit with an ignore defense weapon
+mov r0,r5
+add r0,#0x4C
+ldr r0,[r0]
+mov r3,#0x2
+lsl r3,#16 @0x00020000
+and r0,r3
+cmp r0,#0
+beq CanUseDef1
+mov r2,#0
+
+CanUseDef1:
 mov r0, r5
 add r0,#0x5A		@attacker atk
 ldrh r3,[r0]		@load it to register
@@ -44,8 +56,9 @@ mov r0,#0x0
 strh r0, [r1]		@make defenders def 0
 
 
-@skillcheck for attacker
+
 AttackerCheck:
+@skillcheck for attacker
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r5 @attacker data
@@ -53,11 +66,22 @@ ldr r1, DragonSkinID
 .short 0xf800
 cmp r0, #0
 beq End
-
 mov r1, r5
 add r1, #0x5C  		@attacker def
 ldrh r2,[r1]		@load it to register
 
+@don't use def if getting hit with an ignore defense weapon
+mov r0,r4
+add r0,#0x4C
+ldr r0,[r0]
+mov r3,#0x2
+lsl r3,#16 @0x00020000
+and r0,r3
+cmp r0,#0
+beq CanUseDef2
+mov r2,#0
+
+CanUseDef2:
 mov r0, r4
 add r0,#0x5A		@defender atk
 ldrh r3,[r0]		@load it to register

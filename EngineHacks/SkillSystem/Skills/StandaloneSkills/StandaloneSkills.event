@@ -42,10 +42,6 @@ callHack_r1(TriangleAttackSkill2)
 
 #endif
 
-//ParagonMisc
-ORG $2C6CC
-callHack_r0(ParagonMisc)
-
 //Synchronize
 ORG $2C214
 jumpToHack(Synchronize)
@@ -120,11 +116,6 @@ VigorDanceReset:
 ALIGN 4
 TriangleAttackIDLink:
 BYTE TriangleAttackID
-
-ALIGN 4
-#include "Paragon/ParagonMisc.lyn.event"
-ParagonIDLink:
-BYTE ParagonID
 
 #include "Synchronize/Synchronize.lyn.event"
 SynchronizeIDLink:

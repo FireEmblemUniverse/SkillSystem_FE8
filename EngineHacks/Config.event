@@ -219,6 +219,11 @@ MESSAGE Please see the README.md there or ask @Vesly for help.
 // If uncommented all boss kills will play critical hit animations.
 // #define FLASHY_MODE
 
+// If uncommented, will install MNC2Fix.
+// This allows MNC2 to work on every chapter no matter what.
+// If commented, a different fix will be installed that breaks skirmishes.
+#define FIX_MNC2
+
 // If uncommented, the unit load buffer will be repointed.
 // The location it is repointed to is also defined here. The default location is
 // the area used for debug printing.
@@ -278,10 +283,6 @@ MESSAGE Please see the README.md there or ask @Vesly for help.
 
 //If commented, Triangle Attack will use a skill check instead of a bitflag.
 //#define VANILLA_TRIANGLE_ATTACK
-
-//If uncommented, RNG will remain consistent, but enemies will be unable to use Galeforce.
-//The current implementation of Galeforce causes RNG to change when reloading a suspend save.
-// #define GALEFORCE_RNG_FIX
 
 //If HEROES_MOVEMENT_SKILL_REQUIRED is not defined, this setting will control whether or not skills can still be used.
 #define ALSO_USE_MOVEMENT_SKILL_CHECK True

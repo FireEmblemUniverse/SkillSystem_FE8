@@ -16,6 +16,7 @@ POIN SavageBlow BreathOfLife Despoil Lifetaker Fury PoisonStrike PastelVeil Pois
 POIN StrTaker SklTaker SpdTaker DefTaker ResTaker LukTaker MagTaker MovTaker 
 POIN Canto CantoPlus Galeforce FailGale ReMove Powerstaff CulturedPostCombat Gridmaster Pathfinder //this order for canto and friends is the only one I tested
 #ifdef GAIDEN_MAGIC
+	POIN ApplySupportMagicHPCost
 	POIN GaidenZeroOutSpellVariables // without this there was an R-text bug when obtaining an item during the end scene after KOing an enemy 
 #endif // GAIDEN_MAGIC
 WORD 0 //Terminator
