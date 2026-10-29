@@ -3,9 +3,9 @@
   mov lr, \reg
   .short 0xf800
 .endm
-.equ CulturedID, SkillTester+4
-.equ CulturedEvent, CulturedID+4
-.equ NiceThighsTester, CulturedEvent+4
+.equ AwestruckID, SkillTester+4
+.equ AwestruckEvent, AwestruckID+4
+.equ AttractiveTester, AwestruckEvent+4
 .thumb
 
 push	{r14}
@@ -17,22 +17,22 @@ beq	End
 
 @check for skill
 mov	r0, r4
-ldr	r1, CulturedID
+ldr	r1, AwestruckID
 ldr	r3, SkillTester
 mov	lr, r3
 .short	0xf800
 cmp		r0,#0
 beq		End
 
-@check if already Cultured; if so can't trigger again
+@check if already Awestruck; if so can't trigger again
 mov r0, r4
 bl CheckGaleforceBit
 cmp r0, #0
 bne	End
 
 
-@check for adjacent units that have Nice Thighs
-ldr r0,NiceThighsTester
+@check for adjacent units that have Attractive
+ldr r0,AttractiveTester
 mov r14,r0
 mov r0,r4
 .short 0xF800
@@ -63,7 +63,7 @@ strb	r2, [r0]
 Event:
 ldr	r0,=#0x800D07C		@event engine thingy
 mov	lr, r0
-ldr	r0, CulturedEvent		@this event is just "play some sound effects"
+ldr	r0, AwestruckEvent		@this event is just "play some sound effects"
 mov	r1, #0x01			@0x01 = wait for events
 .short	0xF800
 

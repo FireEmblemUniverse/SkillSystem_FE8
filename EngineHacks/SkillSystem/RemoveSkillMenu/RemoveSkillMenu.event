@@ -12,7 +12,7 @@
 	(ASMC_LearnNewSkill|1)
 		call through events with ASMC. Will learn to the unit defined by slot 2 the skill of index in slot 1
 		Ex:
-			SVAL 1 NiceThighsID
+			SVAL 1 AttractiveID
 			SVAL 2 (-1) // (-1) is active unit
 			ASMC (ASMC_LearnNewSkill|1)
 

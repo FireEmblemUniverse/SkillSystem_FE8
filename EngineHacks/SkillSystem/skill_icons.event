@@ -149,8 +149,8 @@ ORG SkillIcon(GaleforceID)
 ORG SkillIcon(RenewalID)
 #incbin "SkillIcons/Renewal.dmp"
 
-ORG SkillIcon(NiceThighsID)
-#incbin "SkillIcons/NiceThighs.dmp"
+ORG SkillIcon(AttractiveID)
+#incbin "SkillIcons/Attractive.dmp"
 
 ORG SkillIcon(DemoiselleID)
 #incbin "SkillIcons/Demoiselle.dmp"
@@ -332,8 +332,8 @@ ORG SkillIcon(DragonsBloodID)
 ORG SkillIcon(GambleID)
 #incbin "SkillIcons/Gamble.dmp"
 
-ORG SkillIcon(PersonalityID)
-#incbin "SkillIcons/Personality.dmp"
+ORG SkillIcon(CharmingID)
+#incbin "SkillIcons/Charming.dmp"
 
 ORG SkillIcon(QuickDrawID)
 #incbin "SkillIcons/QuickDraw.dmp"
@@ -785,8 +785,8 @@ ORG SkillIcon(PoiseID)
 ORG SkillIcon(ResourcefulID)
 #incbin "SkillIcons/Resourceful.dmp"
 
-ORG SkillIcon(CulturedID)
-#incbin "SkillIcons/Cultured.dmp"
+ORG SkillIcon(AwestruckID)
+#incbin "SkillIcons/Awestruck.dmp"
 
 ORG SkillIcon(SkybreakerID)
 #incbin "SkillIcons/Skybreaker.dmp"
@@ -848,11 +848,11 @@ ORG SkillIcon(LullSpectrumID)
 ORG SkillIcon(ImbueID)
 #incbin "SkillIcons/Imbue.dmp"
 
-ORG SkillIcon(ThotslayerID)
-#incbin "SkillIcons/Thotslayer.dmp"
+ORG SkillIcon(EnviousID)
+#incbin "SkillIcons/Envious.dmp"
 
-ORG SkillIcon(ThighdeologyID)
-#incbin "SkillIcons/Thighdeology.dmp"
+ORG SkillIcon(AdmirerID)
+#incbin "SkillIcons/Admirer.dmp"
 
 ORG SkillIcon(CorrosionID)
 #incbin "SkillIcons/Corrosion.dmp"
