@@ -432,9 +432,9 @@
 //By circleseverywhere
 #define SavageBlowID 125
 
-//Cultured: If unit attacks next to a unit with Nice Thighs, move again. -50 hit against units with Nice Thighs.
+//Awestruck: If unit attacks next to a unit with Attractive, move again. -50 hit against units with Attractive.
 //By Sme
-#define CulturedID 121
+#define AwestruckID 121
 
 //Gridmaster: Movement skills do not end your action.
 //By Sme
@@ -769,13 +769,13 @@
 //By Sme
 #define DoubleLionID 152
 
-//Thighdeology: If a unit within 3 tiles has Nice Thighs, gain +2 Attack and +20 Hit.
+//Admirer: If a unit within 3 tiles has Attractive, gain +2 Attack and +20 Hit.
 //By Sme
-#define ThighdeologyID 187
+#define AdmirerID 187
 
-//Thotslayer: +15 crit against units with Nice Thighs or Personality.
+//Envious: +15 crit against units with Attractive or Charming.
 //By Sme
-#define ThotslayerID 188
+#define EnviousID 188
 
 //Heavy Blade: +4 Damage/-2 Attack Speed when unit’s Con. is bigger than the enemy.
 //By Mikey Seregon
@@ -1428,8 +1428,8 @@
 //Display-Only Skills
 
 #define CunningID 4
-#define NiceThighsID 115
-#define PersonalityID 116
+#define AttractiveID 115
+#define CharmingID 116
 
 
 //Broken Skills

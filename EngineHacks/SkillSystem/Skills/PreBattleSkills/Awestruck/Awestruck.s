@@ -1,6 +1,6 @@
 .thumb
-.equ CulturedID, SkillTester+4
-.equ NiceThighsID, CulturedID+4
+.equ AwestruckID, SkillTester+4
+.equ AttractiveID, AwestruckID+4
 
 push {r4-r7, lr}
 mov r4, r0 @attacker
@@ -9,17 +9,17 @@ mov r5, r1 @defender
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r4 @attacker data
-ldr r1, CulturedID
+ldr r1, AwestruckID
 .short 0xf800
 cmp r0, #0
 beq GoBack
 
-@Cultured: -50 hit if opponent has Nice Thighs
+@Awestruck: -50 hit if opponent has Attractive
 
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r5
-ldr r1, NiceThighsID
+ldr r1, AttractiveID
 .short 0xf800
 cmp r0, #1
 bne GoBack
@@ -38,8 +38,8 @@ pop {r4-r7, r15}
 
 SkillTester:
 @Poin SkillTester
-@WORD CulturedID
+@WORD AwestruckID
 @WORD DebuffTable
-@WORD CulturedBit
+@WORD AwestruckBit
 @WORD 8 //size of debuff table entry
-@WORD NiceThighsID
+@WORD AttractiveID

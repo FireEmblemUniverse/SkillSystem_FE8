@@ -1,0 +1,15 @@
+
+ALIGN 4
+AwestruckPostCombat:
+#incbin "AwestruckPostBattle.dmp"
+POIN SkillTester
+WORD AwestruckID
+POIN AwestruckEvent
+POIN AttractiveTester
+#include "AwestruckEvent.event"
+
+ALIGN 4
+AttractiveTester:
+#incbin "AttractiveTester.dmp"
+POIN SkillTester
+WORD AttractiveID

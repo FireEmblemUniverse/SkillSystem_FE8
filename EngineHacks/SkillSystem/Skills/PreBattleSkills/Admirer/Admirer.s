@@ -1,7 +1,7 @@
 .thumb
-.equ ThighdeologyID, SkillTester+4
-.equ AuraSkillCheck, ThighdeologyID+4
-.equ NiceThighsID, AuraSkillCheck+4
+.equ AdmirerID, SkillTester+4
+.equ AuraSkillCheck, AdmirerID+4
+.equ AttractiveID, AuraSkillCheck+4
 
 push {r4-r7, lr}
 mov r4, r0 @attacker
@@ -10,16 +10,16 @@ mov r5, r1 @defendker
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r4 @attacker data
-ldr r1, ThighdeologyID
+ldr r1, AdmirerID
 .short 0xf800
 cmp r0, #0
 beq GoBack
 
-@if we have Thighdeology, check for people with Nice Thighs
+@if we have Admirer, check for people with Attractive
 ldr r0, AuraSkillCheck
 mov lr, r0
 mov r0, r4 @attacker
-ldr r1, NiceThighsID
+ldr r1, AttractiveID
 mov r2, #4 @all units
 mov r3, #3 @range
 .short 0xf800
@@ -48,6 +48,6 @@ pop {r4-r7, r15}
 
 SkillTester:
 @POIN SkillTester
-@WORD ThighdeologyID
+@WORD AdmirerID
 @POIN AuraSkillCheck
-@WORD NiceThighsID
+@WORD AttractiveID

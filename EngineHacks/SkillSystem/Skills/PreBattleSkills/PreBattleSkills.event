@@ -313,23 +313,23 @@ DoubleLion:
 POIN SkillTester
 WORD DoubleLionID
 
-#include "Cultured/Cultured.event"
+#include "Awestruck/Awestruck.event"
 
 ALIGN 4
-Thighdeology:
-#incbin "Thighdeology/Thighdeology.dmp"
+Admirer:
+#incbin "Admirer/Admirer.dmp"
 POIN SkillTester
-WORD ThighdeologyID
+WORD AdmirerID
 POIN NewAuraSkillCheck
-WORD NiceThighsID
+WORD AttractiveID
 
 ALIGN 4
-Thotslayer:
-#incbin "Thotslayer/Thotslayer.dmp"
+Envious:
+#incbin "Envious/Envious.dmp"
 POIN SkillTester
-WORD ThotslayerID
-WORD NiceThighsID
-WORD PersonalityID
+WORD EnviousID
+WORD AttractiveID
+WORD CharmingID
 
 ALIGN 4
 ChargePlus:

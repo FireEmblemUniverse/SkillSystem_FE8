@@ -1,7 +1,7 @@
 .thumb
-.equ ThotslayerID, SkillTester+4
-.equ NiceThighsID, ThotslayerID+4
-.equ PersonalityID, NiceThighsID+4
+.equ EnviousID, SkillTester+4
+.equ AttractiveID, EnviousID+4
+.equ CharmingID, AttractiveID+4
 
 push {r4-r7, lr}
 mov r4, r0 @attacker
@@ -10,7 +10,7 @@ mov r5, r1 @defendker
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r4 @attacker data
-ldr r1, ThotslayerID
+ldr r1, EnviousID
 .short 0xf800
 cmp r0, #0
 beq GoBack
@@ -20,7 +20,7 @@ beq GoBack
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r5 @defender data
-ldr r1, NiceThighsID
+ldr r1, AttractiveID
 .short 0xf800
 cmp r0, #0
 bne ActivateSkill
@@ -28,7 +28,7 @@ bne ActivateSkill
 ldr r0, SkillTester
 mov lr, r0
 mov r0, r5 @defender data
-ldr r1, PersonalityID
+ldr r1, CharmingID
 .short 0xf800
 cmp r0, #0
 beq GoBack
@@ -50,6 +50,6 @@ pop {r4-r7, r15}
 
 SkillTester:
 @POIN SkillTester
-@WORD ThotslayerID
-@WORD NiceThighsID
-@WORD PersonalityID
+@WORD EnviousID
+@WORD AttractiveID
+@WORD CharmingID
