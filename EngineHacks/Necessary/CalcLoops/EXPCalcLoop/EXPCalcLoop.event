@@ -10,8 +10,13 @@ PUSH
 		POIN EXPCalcLoop
 		
 	//Staff EXP
+	ORG $2C648
+		SHORT 0xE024
+	ORG $2C65C
+		SHORT 0xE01A
 	ORG $2C694
 		jumpToHack(ExpLoopStaff)
+		
 	
 	//Misc EXP (actions that give 10)
 	ORG $2C6CC
