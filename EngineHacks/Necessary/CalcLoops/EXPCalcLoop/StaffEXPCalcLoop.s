@@ -1,6 +1,12 @@
 .thumb
 .align
 
+.equ CanBattleUnitGainLevels, 0x0802B9F5
+.macro blh to, reg=r3
+    ldr \reg, =\to
+    mov lr, \reg
+    .short 0xF800
+.endm
 
 .global ExpLoopStaff
 .type ExpLoopStaff, %function
@@ -10,6 +16,17 @@ ExpLoopStaff:
 @r2 = current exp value (not capped)
 
 push {r4-r7}
+
+push {r2}
+mov r0,r4
+blh CanBattleUnitGainLevels
+pop {r2}
+cmp r0,#0
+bne DoExpCheck
+mov r0,#0
+b ApplyExp
+
+DoExpCheck:
 cmp r2,#100
 ble NoInitialCap
 mov r2,#100
