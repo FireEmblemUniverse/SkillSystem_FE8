@@ -22,9 +22,20 @@ mov r0,r4
 blh CanBattleUnitGainLevels
 pop {r2}
 cmp r0,#0
-bne DoExpCheck
+bne DoMissCheck
 mov r0,#0
 b ApplyExp
+
+DoMissCheck:
+ldr r0,=#0x203AAC0
+ldr r0,[r0]
+lsl r0,r0,#0xD
+lsr r0,r0,#0xD
+mov r1,#2
+and r0,r1
+cmp r0,#0
+beq DoExpCheck
+mov r2,#1
 
 DoExpCheck:
 cmp r2,#100
